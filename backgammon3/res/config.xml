@@ -1,0 +1,193 @@
+<root>   	
+    	// Spieler beginnt mit Farbe blau
+	<colorHuman>1</colorHuman>
+    	
+    	// Sound File
+    	<soundFile>res/sound_long.wav</soundFile>
+    	
+    	// Innere Fenster Größe
+    	<width>1000</width>
+    	<height>600</height>
+    	// Mindestgröße des Fensters
+    	<minWidth>1000</minWidth>
+    	<minHeight>600</minHeight>
+    	
+    	// Anzahl der Points
+    	<numberOfPoints>24</numberOfPoints>
+
+    	// Place Größe
+    	<pointWidth>70</pointWidth>
+    	// Place Größe
+    	<barWidth>120</barWidth>
+    	// Place Größe
+    	<goalWidth>60</goalWidth>
+    	// Checker Größe
+    	<checkerWidth>20</checkerWidth>
+    	// Board Hintergrund
+    	<bgImage>res/map10.png</bgImage>
+    	// Point
+    	<pointImage>res/stellung.png</pointImage>
+    	<pointSelectedImage>res/stellung.svg</pointSelectedImage>
+    	// Bar
+    	<bar0Image>res/einsatzlazarettblau.png</bar0Image>
+    	<bar0SelectedImage>res/stabilisierenblau.png</bar0SelectedImage>
+    	<bar1Image>res/einsatzlazarettrot.png</bar1Image>
+    	<bar1SelectedImage>res/stabilisierenrot.png</bar1SelectedImage>
+    	// Goal
+    	<goal0Image>res/verfügungsraum.png</goal0Image>
+    	<goal0SelectedImage>res/verfügungsraumblau.png</goal0SelectedImage>
+    	<goal1Image>res/vermuteterRaumFeind.png</goal1Image>
+    	<goal1SelectedImage>res/raumFeind.png</goal1SelectedImage>
+    	// Checker
+    	<checker0Image>res/leo.svg</checker0Image>
+    	<checker1Image>res/t80.svg</checker1Image>
+    	
+    	// Menu
+    	<menuButtonImage>res/menu.png</menuButtonImage>
+    	<menuButtonWidth>120</menuButtonWidth>
+    	<menuButtonPositionX>435</menuButtonPositionX>
+    	<menuButtonPositionY>50</menuButtonPositionY>
+    	
+
+    	// Dice
+    	<dicePositionX>-20</dicePositionX>
+    	<dicePositionY>65</dicePositionY>
+    	<diceWidth>35</diceWidth>
+    	<diceImage>res/dice</diceImage>
+    	<diceImageUsed>res/diceUsed</diceImageUsed>
+    	// Point Position
+    	<point0PositionX>300</point0PositionX>
+    	<point0PositionY>200</point0PositionY>
+	<point0Rotation>-70</point0Rotation>
+    	
+    	<point1PositionX>240</point1PositionX>
+    	<point1PositionY>230</point1PositionY>
+	<point1Rotation>0</point1Rotation>
+
+    	<point2PositionX>125</point2PositionX>
+    	<point2PositionY>220</point2PositionY>
+	<point2Rotation>5</point2Rotation>
+
+    	<point3PositionX>20</point3PositionX>
+    	<point3PositionY>200</point3PositionY>
+	<point3Rotation>15</point3Rotation>
+
+    	<point4PositionX>-70</point4PositionX>
+    	<point4PositionY>190</point4PositionY>
+	<point4Rotation>0</point4Rotation>
+
+    	<point5PositionX>-160</point5PositionX>
+    	<point5PositionY>200</point5PositionY>
+	<point5Rotation>-15</point5Rotation>
+
+    	<point6PositionX>-250</point6PositionX>
+    	<point6PositionY>210</point6PositionY>
+	<point6Rotation>0</point6Rotation>
+
+    	<point7PositionX>-335</point7PositionX>
+    	<point7PositionY>200</point7PositionY>
+	<point7Rotation>15</point7Rotation>
+
+    	<point8PositionX>-340</point8PositionX>
+    	<point8PositionY>140</point8PositionY>
+	<point8Rotation>120</point8Rotation>
+
+    	<point9PositionX>-310</point9PositionX>
+    	<point9PositionY>60</point9PositionY>
+	<point9Rotation>100</point9Rotation>
+
+    	<point10PositionX>-350</point10PositionX>
+    	<point10PositionY>-20</point10PositionY>
+	<point10Rotation>30</point10Rotation>
+
+    	<point11PositionX>-415</point11PositionX>
+    	<point11PositionY>-70</point11PositionY>
+	<point11Rotation>60</point11Rotation>
+
+    	<point12PositionX>-420</point12PositionX>
+    	<point12PositionY>-135</point12PositionY>
+	<point12Rotation>110</point12Rotation>
+
+    	<point13PositionX>-380</point13PositionX>
+    	<point13PositionY>-175</point13PositionY>
+	<point13Rotation>165</point13Rotation>
+
+    	<point14PositionX>-300</point14PositionX>
+    	<point14PositionY>-195</point14PositionY>
+	<point14Rotation>170</point14Rotation>
+
+    	<point15PositionX>-220</point15PositionX>
+    	<point15PositionY>-200</point15PositionY>
+	<point15Rotation>180</point15Rotation>
+
+    	<point16PositionX>-140</point16PositionX>
+    	<point16PositionY>-200</point16PositionY>
+	<point16Rotation>180</point16Rotation>
+
+    	<point17PositionX>-60</point17PositionX>
+    	<point17PositionY>-200</point17PositionY>
+	<point17Rotation>180</point17Rotation>
+
+    	<point18PositionX>35</point18PositionX>
+    	<point18PositionY>-190</point18PositionY>
+	<point18Rotation>200</point18Rotation>
+
+    	<point19PositionX>140</point19PositionX>
+    	<point19PositionY>-190</point19PositionY>
+	<point19Rotation>165</point19Rotation>
+
+    	<point20PositionX>235</point20PositionX>
+    	<point20PositionY>-200</point20PositionY>
+	<point20Rotation>180</point20Rotation>
+
+    	<point21PositionX>320</point21PositionX>
+    	<point21PositionY>-185</point21PositionY>
+	<point21Rotation>-160</point21Rotation>
+
+    	<point22PositionX>352</point22PositionX>
+    	<point22PositionY>-135</point22PositionY>
+	<point22Rotation>-90</point22Rotation>
+
+    	<point23PositionX>340</point23PositionX>
+    	<point23PositionY>-65</point23PositionY>
+	<point23Rotation>-70</point23Rotation>
+    	
+    	// Bar 1 Position
+    	<bar0PositionX>200</bar0PositionX>
+    	<bar0PositionY>10</bar0PositionY>
+    	// Bar 2 Position
+    	<bar1PositionX>200</bar1PositionX>
+    	<bar1PositionY>80</bar1PositionY>
+
+    	// Goal 1 Position
+    	<goal0PositionX>435</goal0PositionX>
+    	<goal0PositionY>-230</goal0PositionY>
+    	// Goal 2 Position
+    	<goal1PositionX>435</goal1PositionX>
+    	<goal1PositionY>230</goal1PositionY>
+    	
+  	// Checkers hinzufügen
+    	<point0CheckersNumber>2</point0CheckersNumber>
+    	<point0CheckersPlayer>0</point0CheckersPlayer>
+
+    	<point5CheckersNumber>5</point5CheckersNumber>
+    	<point5CheckersPlayer>1</point5CheckersPlayer>
+
+    	<point7CheckersNumber>3</point7CheckersNumber>
+    	<point7CheckersPlayer>1</point7CheckersPlayer>
+
+    	<point11CheckersNumber>5</point11CheckersNumber>
+    	<point11CheckersPlayer>0</point11CheckersPlayer>
+
+    	<point12CheckersNumber>5</point12CheckersNumber>
+    	<point12CheckersPlayer>1</point12CheckersPlayer>
+
+    	<point16CheckersNumber>3</point16CheckersNumber>
+    	<point16CheckersPlayer>0</point16CheckersPlayer>
+
+    	<point18CheckersNumber>5</point18CheckersNumber>
+    	<point18CheckersPlayer>0</point18CheckersPlayer>
+
+    	<point23CheckersNumber>2</point23CheckersNumber>
+    	<point23CheckersPlayer>1</point23CheckersPlayer>
+</root>
