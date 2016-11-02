@@ -92,4 +92,9 @@ public class GameStage extends AppStage {
 			stage.hide();
 		}
 	}
+
+	@Override
+	public Stage getStage() {
+		return stage;
+	}
 }

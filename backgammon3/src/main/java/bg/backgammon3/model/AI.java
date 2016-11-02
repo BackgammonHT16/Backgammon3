@@ -25,6 +25,9 @@ public class AI extends Player {
 
 	@Override
 	public void handle(GameObject gameObject) {
+		if(gameObject instanceof UpdateAI) {
+			board.handle(gameObject);
+		}
 	}
 	
 	public void selectStartPlace() {

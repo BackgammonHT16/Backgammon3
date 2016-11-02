@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import bg.backgammon3.model.*;
 import bg.backgammon3.model.action.Action;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 
 /**
  * @author philipp
@@ -25,6 +26,8 @@ public abstract class AppStage {
 
 	public abstract void update(Action action);
 	
-	public abstract void hide();
+	public abstract void hide(); 
+	
+	public abstract Stage getStage();
 
 }

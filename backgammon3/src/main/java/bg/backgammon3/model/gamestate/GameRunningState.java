@@ -17,6 +17,17 @@ public class GameRunningState extends GameState {
 	}
 	
 
+	@Override
+	public void handle(GameObject gameObject, boolean busy) {
+		if (gameObject instanceof MenuButton) {
+			showMenu();
+		} else {
+			if(!busy){
+				game.letPlayerHandle(gameObject);
+			}
+		}
+	}
+	
 	/**
 	 * Hier kann false zurückgegeben werden da das Menu sowieso im Moment unsichtbar ist.
 	 */
@@ -41,7 +52,7 @@ public class GameRunningState extends GameState {
 
 
 	@Override
-	public void quitGame() {
+	public void quitThisGame() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -54,4 +65,6 @@ public class GameRunningState extends GameState {
 	public void showMenu() {
 		game.setState(new MenuState(game));
 	}
+
+
 }

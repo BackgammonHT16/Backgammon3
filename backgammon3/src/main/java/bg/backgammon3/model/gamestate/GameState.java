@@ -29,10 +29,12 @@ public abstract class GameState {
 	
 	public abstract void continueGame();
 	
-	public abstract void quitGame();
+	public abstract void quitThisGame();
 	
 	/**
 	 * Der MenuButton im Spiel wurde gepresst.
 	 */
 	public abstract void showMenu();
+
+	public abstract void handle(GameObject gameObject, boolean busy);
 }

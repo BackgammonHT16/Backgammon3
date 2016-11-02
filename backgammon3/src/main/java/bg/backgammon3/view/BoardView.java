@@ -146,6 +146,8 @@ public class BoardView extends ImageView implements GameObjectView {
 			update();
 		} else if (action instanceof SelectEndPlace) {
 			update();
+		} else if (action instanceof ShowRoute) {
+			update();
 		} else if (action instanceof SingleDiceWasRolled) {
 			diceView.singleDiceWasRolled();
 		} else if (action instanceof DiceWasRolled) {

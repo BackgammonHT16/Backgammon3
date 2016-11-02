@@ -22,7 +22,6 @@ import org.w3c.dom.NodeList;
  *
  */
 public class Config {
-	
 	private static Logger logger = LogManager.getLogger(Config.class);
 	
 	// Enthält die Daten im Format: "Schlüssel" -> Wert
@@ -53,6 +52,9 @@ public class Config {
 	 */
 	public static void setInteger(String property, int value)
 	{
+		if(getInteger("doNotUpdate") == 1) {
+			return;
+		}
 		if(config.replace(property, value) == null)
 		{
 			logger.warn("Nicht vorhandener Wert überschrieben.");
@@ -77,6 +79,9 @@ public class Config {
 	 */
 	public static void setString(String property, int value)
 	{
+		if(getInteger("doNotUpdate") == 1) {
+			return;
+		}
 		if(config.replace(property, value) == null)
 		{
 			logger.warn("Nicht vorhandener Wert überschrieben.");

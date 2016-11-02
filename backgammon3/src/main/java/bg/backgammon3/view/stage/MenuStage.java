@@ -4,13 +4,17 @@
 package bg.backgammon3.view.stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Game;
+import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
 import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -40,9 +44,13 @@ public class MenuStage extends AppStage {
 	
 	// Das Menu
 	private Stage stage;
+	
+	// Model Klasse
+	private Menu menu = new Menu();
 
 	public MenuStage(Game game) {
 		super(game);
+		menu = game.getMenu();
 		appStage = null;
 		initMenu();
 	}
@@ -83,16 +91,16 @@ public class MenuStage extends AppStage {
 		grid.add(color, 0, 0);
 
 		ObservableList<String> optionsColor = FXCollections.observableArrayList("Blue", "Red");
-		final ComboBox comboBoxColor = new ComboBox(optionsColor);
-		comboBoxColor.setValue(optionsColor.get(0));
+		final ComboBox<String> comboBoxColor = new ComboBox<String>(optionsColor);
+		comboBoxColor.setValue(optionsColor.get(menu.getColor()));
 		grid.add(comboBoxColor, 1, 0);
 
 		Label difficulty = new Label("Difficulty");
 		grid.add(difficulty, 0, 1);
 
 		ObservableList<String> optionsDifficulty = FXCollections.observableArrayList("Easy", "Hard");
-		final ComboBox comboBoxDifficulty = new ComboBox(optionsDifficulty);
-		comboBoxDifficulty.setValue(optionsDifficulty.get(0));
+		final ComboBox<String> comboBoxDifficulty = new ComboBox<String>(optionsDifficulty);
+		comboBoxDifficulty.setValue(optionsDifficulty.get(menu.getDifficulty()));
 		grid.add(comboBoxDifficulty, 1, 1);
 
 		Label sound = new Label("Sound");
@@ -100,66 +108,68 @@ public class MenuStage extends AppStage {
 
 		// A checkbox with a string caption
 		final CheckBox checkBoxSound = new CheckBox();
+		checkBoxSound.setSelected(menu.getSound());
 		grid.add(checkBoxSound, 1, 2);
 
 		Label time = new Label("Time");
 		grid.add(time, 0, 3);
 
 		ObservableList<String> optionsTime = FXCollections.observableArrayList("Endless", "5s", "10s", "20s", "40s");
-		final ComboBox comboBoxTime = new ComboBox(optionsTime);
-		comboBoxTime.setValue(optionsTime.get(0));
+		final ComboBox<String> comboBoxTime = new ComboBox<String>(optionsTime);
+		int timeId = 0;
+		if(menu.getTime() == -1) {
+			timeId = 0;
+		} else if(menu.getTime() == 5) {
+			timeId = 1;
+		} else if(menu.getTime() == 10) {
+			timeId = 2;
+		} else if(menu.getTime() == 20) {
+			timeId = 3;
+		} else if(menu.getTime() == 40) {
+			timeId = 4;
+		} 
+		comboBoxTime.setValue(optionsTime.get(timeId));
 		grid.add(comboBoxTime, 1, 3);
 
 		AnchorPane anchorpane = new AnchorPane();
-		final Button buttonStartGame = new StartButtonView("Start Game");
-		Button buttonContinue = new ContinueButtonView("Continue Game");
-		Button buttonQuit = new QuitButtonView("Quit");
+		final Button buttonStartGame = new StartButtonView("Start Game", menu);
+		Button buttonContinue = new ContinueButtonView("Continue Game", menu);
+		Button buttonQuit = new QuitButtonView("Quit", menu);
 
-		buttonStartGame.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				
-				int color = ((String) comboBoxColor.getValue()).equals("Blue") ? 0 : 1;
-				int difficulty = ((String) comboBoxColor.getValue()).equals("Easy") ? 0 : 1;
-				int time = 0;
-				if (((String) comboBoxColor.getValue()).equals("Endless")) {
-					time = -1;
-				} else if (((String) comboBoxColor.getValue()).equals("5s")) {
-					time = 5;
-				} else if (((String) comboBoxColor.getValue()).equals("10s")) {
-					time = 10;
-				} else if (((String) comboBoxColor.getValue()).equals("20s")) {
-					time = 20;
-				} else if (((String) comboBoxColor.getValue()).equals("40s")) {
-					time = 40;
-				}
-				//MenuStage.this.engine.resetGame(color, difficulty, time);
-				//MenuStage.this.engine.setSound(checkBoxSound.isSelected());
-				stage.hide();
+		comboBoxColor.setOnAction((event) -> {
+			menu.setColor(((String) comboBoxColor.getValue()).equals("Blue") ? 0 : 1);
+		});
+		
+		comboBoxDifficulty.setOnAction((event) -> {
+			menu.setDifficulty(((String) comboBoxDifficulty.getValue()).equals("Easy") ? 1 : 2);
+		});
+		
+		checkBoxSound.setOnAction((event) -> {
+			menu.setSound(checkBoxSound.isSelected());
+		});
+		
+		comboBoxTime.setOnAction((event) -> {				
+			if (((String) comboBoxTime.getValue()).equals("Endless")) {
+				menu.setTime(-1);
+			} else if (((String) comboBoxTime.getValue()).equals("5s")) {
+				menu.setTime(5);
+			} else if (((String) comboBoxTime.getValue()).equals("10s")) {
+				menu.setTime(10);
+			} else if (((String) comboBoxTime.getValue()).equals("20s")) {
+				menu.setTime(20);
+			} else if (((String) comboBoxTime.getValue()).equals("40s")) {
+				menu.setTime(40);
 			}
 		});
-
-		buttonContinue.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				
-				//Menu.this.engine.setState(Menu.this.oldState);
-				//Menu.this.engine.setSound(checkBoxSound.isSelected());
-				stage.hide();
-			}
-		});
-
-		buttonQuit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				stage.hide();
-				//Menu.this.engine.quit();
-			}
-		});
+		
 
 		HBox hb = new HBox();
 		hb.setPadding(new Insets(0, 10, 10, 10));
 		hb.setSpacing(10);
 		hb.getChildren().add(buttonStartGame);
 		controls.add(buttonStartGame);
-		if (game.gameCanContinue()) 
+		//if (game.gameCanContinue()) 
+		if(appStage != null)
 		{
 			buttonContinue.setDefaultButton(true);
 			hb.getChildren().add(buttonContinue);
@@ -205,6 +215,7 @@ public class MenuStage extends AppStage {
 				}
 			}
 		});
+		
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
@@ -227,5 +238,16 @@ public class MenuStage extends AppStage {
 		{
 			stage.hide();
 		}
+	}
+
+
+	@Override
+	public Stage getStage() {
+		return stage;
+	}
+
+
+	public Menu getMenu() {
+		return menu;
 	}
 }

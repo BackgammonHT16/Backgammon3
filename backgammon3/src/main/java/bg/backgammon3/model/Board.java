@@ -15,6 +15,7 @@ import bg.backgammon3.model.action.Action;
 import bg.backgammon3.model.action.DiceWasRolled;
 import bg.backgammon3.model.action.DiceWasUsed;
 import bg.backgammon3.model.action.MoveChecker;
+import bg.backgammon3.model.action.ShowRoute;
 import bg.backgammon3.model.action.SingleDiceWasRolled;
 import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.place.*;
@@ -207,6 +208,12 @@ public class Board extends GameObject {
 	}
 
 	public void moveChecker(Place endPlace) {
+		PointState endPoint = endPlace.getState();
+		resetPointState();
+		startPlace.setState(new StartPoint(currentPlayer));
+		endPlace.setState(endPoint);
+		addActionAtEnd(new ShowRoute());
+		
 		// Checker am Start Entfernen
 		startPlace.removeChecker();
 

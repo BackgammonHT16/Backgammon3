@@ -83,6 +83,8 @@ public class GameController implements EventHandler<Event> {
 			quitGame();
 		} else if (action instanceof CloseGame) {
 			closeGame();
+		} else if (action instanceof UpdateModel) {
+			game.handle(new UpdateAI(), false);
 		} else {
 			appStage.update(action);
 		}
@@ -121,7 +123,9 @@ public class GameController implements EventHandler<Event> {
 		logger.info("Spiel wird weiter ausgeführt.");
 		// Das Spiel wird weiter ausgeführt.
 		if (appStage instanceof MenuStage) {
-			appStage = ((MenuStage) appStage).getGameStage();
+			MenuStage menuStage = (MenuStage) appStage;
+			appStage = menuStage.getGameStage();
+			menuStage.hide();
 			initControls();
 		} else {
 			logger.warn("Unerwartete Klasse in appStage abgespeichert. MenuStage erwartet.");
@@ -159,6 +163,12 @@ public class GameController implements EventHandler<Event> {
 		for (Node node : appStage.getControls()) {
 			node.setOnMouseClicked(this);
 		}
+		appStage.getStage().setOnCloseRequest(e -> {
+			if(appStage instanceof MenuStage) {
+				game.handle(new ContinueButton(((MenuStage) appStage).getMenu()), busy);
+				appStage.hide();
+			}
+		});
 	}
 
 	/**
@@ -167,13 +177,7 @@ public class GameController implements EventHandler<Event> {
 	 * @param event
 	 */
 	public void handle(Event event) {
-		if (event.getSource() instanceof StartButtonView) {
-			game.startGame();
-		} else if (event.getSource() instanceof ContinueButtonView) {
-			game.continueGame();
-		} else if (event.getSource() instanceof QuitButtonView) {
-			game.quitGame();
-		} else if (event.getSource() instanceof GameObjectView) {
+		if (event.getSource() instanceof GameObjectView) {
 			game.handle(((GameObjectView) event.getSource()).getGameObject(), busy);
 		} else {
 			logger.error("Unbekannte Event Quelle.");

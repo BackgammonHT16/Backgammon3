@@ -8,5 +8,14 @@ package bg.backgammon3.model;
  *
  */
 public class QuitButton extends GameObject {
+	private Menu menu;
+	
+	public QuitButton(Menu menu) {
+		this.menu = menu;
+	}
+	
+	public Menu getMenu() {
+		return menu;
+	}
 
 }

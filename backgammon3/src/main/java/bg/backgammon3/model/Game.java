@@ -15,6 +15,9 @@ import bg.backgammon3.App;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.gamestate.*;
+import bg.backgammon3.view.ContinueButtonView;
+import bg.backgammon3.view.QuitButtonView;
+import bg.backgammon3.view.StartButtonView;
 import javafx.event.Event;
 
 /**
@@ -42,6 +45,8 @@ public class Game extends GameStatus {
 	// Das SpielBrett
 	private Board board;
 	
+	// Das Menu
+	private Menu menu = new Menu();
 
 	public Game() {
 		initGame();
@@ -129,14 +134,7 @@ public class Game extends GameStatus {
 	 * @param event Der zu verarbeitende Event
 	 */
 	public void handle(GameObject gameObject, boolean busy) {
-		if(gameObject instanceof MenuButton) {
-			logger.info("Menu Button wurde geklickt");
-			currentState.showMenu();
-		} else {
-			if(!busy){
-				currentPlayer.handle(gameObject);
-			}
-		}
+		currentState.handle(gameObject, busy);
 	}
 
 	/**
@@ -180,7 +178,7 @@ public class Game extends GameStatus {
 	}
 
 	public void quitGame() {
-		currentState.quitGame();
+		currentState.quitThisGame();
 	}
 
 	public void setState(GameState gameState) {
@@ -239,5 +237,13 @@ public class Game extends GameStatus {
 	 */
 	public Board getBoard() {
 		return board;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void letPlayerHandle(GameObject gameObject) {
+		currentPlayer.handle(gameObject);
 	}
 }
