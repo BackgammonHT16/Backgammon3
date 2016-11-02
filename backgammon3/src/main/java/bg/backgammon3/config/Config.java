@@ -55,6 +55,7 @@ public class Config {
 		if(getInteger("doNotUpdate") == 1) {
 			return;
 		}
+		writeConfig(fileName,property,value);
 		if(config.replace(property, value) == null)
 		{
 			logger.warn("Nicht vorhandener Wert überschrieben.");
@@ -82,6 +83,7 @@ public class Config {
 		if(getInteger("doNotUpdate") == 1) {
 			return;
 		}
+		writeConfig(fileName,property,value);
 		if(config.replace(property, value) == null)
 		{
 			logger.warn("Nicht vorhandener Wert überschrieben.");
@@ -132,4 +134,41 @@ public class Config {
 		}
 
 	}
+	public static void writeConfig(String XMLFilename,String property, int value) {
+		fileName = XMLFilename;			
+		try {
+
+			File file = new File(XMLFilename);
+
+			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
+			Document doc = dBuilder.parse(file);
+
+			if (doc.hasChildNodes()) {
+
+				NodeList nodeList = doc.getChildNodes().item(0).getChildNodes();
+				//config = new LinkedHashMap<String, Object>();
+				
+				// Durch alle Kind Elemente iterieren und temp vergleichen mit property, TODO null abfangen 
+				for (int count = 0; count < nodeList.getLength(); count++) {
+
+					Node tempNode = nodeList.item(count);
+					
+					if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+
+						//logger.info(tempNode.getNodeName() + " " + tempNode.getTextContent());
+						
+						// unterscheiden zwischen Integer und String
+						if ((tempNode.getTextContent()).matches(property))
+							tempNode.setNodeValue(String.valueOf(value));					
+					}
+				}
+
+			}
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}	
+	}
+	
 }
