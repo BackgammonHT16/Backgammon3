@@ -1,13 +1,48 @@
 package bg.backgammon3;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import bg.backgammon3.config.Config;
+import bg.backgammon3.controller.GameController;
+import bg.backgammon3.view.stage.GameStage;
+import javafx.application.Application;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+
 /**
- * Hello world!
+ * Anfangs Klasse des Spiels. 
  *
  */
-public class App 
+public class App extends Application
 {
+	private Logger logger = LogManager.getLogger(App.class);
+
+	/**
+	 * Wird beim Programmstart aufgerufen
+	 * @param stage Wurzel Knoten für die gesamte Darstellung des Spiels
+	 */
+	@Override
+	public void start(Stage stage)
+	{
+		initGameStage();
+		logger.info("Spiel gestartet");
+	}
+	
+	private void initGameStage() {
+		// Konfigurationsdaten laden
+		Config.initConfig();
+		
+		// Damit wird der Controller Geladen
+		new GameController();
+	}
+
+	/**
+	 * Main Funktion
+	 * @param args Wird nicht verwendet
+	 */
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	launch(args);
     }
 }

@@ -27,6 +27,9 @@ public class Config {
 	
 	// Enthält die Daten im Format: "Schlüssel" -> Wert
 	private static LinkedHashMap<String, Object> config;
+	
+	// Enthält den Dateinamen der Konfigurationsdatei
+	private static String fileName;
 
 	public static void initConfig() {
 		initConfig("res/config.xml");
@@ -37,9 +40,23 @@ public class Config {
 	 * @param property Schlüssel des Wertes.
 	 * @return Zu property zugehöriger Integer Wert.
 	 */
-	public static int getInteger(String property)
+	public static Integer getInteger(String property)
 	{
-		return (Integer) config.get("property");
+		return (Integer) config.get(property);
+	}
+	
+	/**
+	 * Ändert den Wert zu der übergebenen property. Diese Änderung wird in der XML Datei abgespeichert.
+	 * TODO Geänderten Wert abspeichern.
+	 * @param property Schlüssel des zu ändernden Wertes.
+	 * @param value Wert der aktualisiert werden soll.
+	 */
+	public static void setInteger(String property, int value)
+	{
+		if(config.replace(property, value) == null)
+		{
+			logger.warn("Nicht vorhandener Wert überschrieben.");
+		}
 	}
 
 	/**
@@ -49,14 +66,29 @@ public class Config {
 	 */
 	public static String getString(String property)
 	{
-		return (String) config.get("property");
+		return (String) config.get(property);
 	}
-
+	
+	/**
+	 * Ändert den Wert zu der übergebenen property. Diese Änderung wird in der XML Datei abgespeichert.
+	 * TODO Geänderten Wert abspeichern.
+	 * @param property Schlüssel des zu ändernden Wertes.
+	 * @param value Wert der aktualisiert werden soll.
+	 */
+	public static void setString(String property, int value)
+	{
+		if(config.replace(property, value) == null)
+		{
+			logger.warn("Nicht vorhandener Wert überschrieben.");
+		}
+	}
+	
 	/**
 	 * Lädt die Konfigurationsdaten aus einer XML Datei in die Variable config
 	 * @param XMLFilename Name der XML Datei die die Konfigurationsdaten enthält
 	 */
 	public static void initConfig(String XMLFilename) {
+		fileName = XMLFilename;
 		try {
 
 			File file = new File(XMLFilename);
