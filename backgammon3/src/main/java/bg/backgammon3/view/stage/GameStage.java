@@ -3,6 +3,7 @@
  */
 package bg.backgammon3.view.stage;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,8 @@ import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -27,6 +30,7 @@ import javafx.stage.Stage;
 public class GameStage extends AppStage {
 	private Logger logger = LogManager.getLogger(GameStage.class);
 	private BoardView boardView;
+	private MediaPlayer mediaPlayer;
 	private Stage stage;
 
 	public GameStage(Game game) {
@@ -68,6 +72,11 @@ public class GameStage extends AppStage {
 		// stage.setMinWidth(stage.getWidth());
 		// stage.setMinHeight(stage.getHeight());
 		// Alles anzeigen
+		
+		initSound(Config.getString("soundFile"));
+		if(Config.getInteger("playSound") == 1) {
+			sound(true);
+		}
 		stage.setScene(scene);
 		stage.show();
 
@@ -82,7 +91,11 @@ public class GameStage extends AppStage {
 	}
 
 	public void update(Action action) {
-		boardView.update(action);
+		if(action instanceof UpdateSound) {
+			sound(Config.getInteger("playSound") == 0 ? false : true);
+		} else {
+			boardView.update(action);
+		}
 	}
 
 	@Override
@@ -96,5 +109,25 @@ public class GameStage extends AppStage {
 	@Override
 	public Stage getStage() {
 		return stage;
+	}
+	
+
+	public void sound(Boolean play)
+	{
+		if(play)
+		{
+			mediaPlayer.play();
+		}
+		else
+		{
+			mediaPlayer.stop();
+		}
+	}
+	
+
+	private void initSound(String musicFile) {
+		Media media = new Media(new File(musicFile).toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 	}
 }

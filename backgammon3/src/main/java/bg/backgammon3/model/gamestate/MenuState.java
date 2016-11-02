@@ -74,7 +74,8 @@ public class MenuState extends GameState {
 
 		// Zustand Ändern
 		game.setState(new GameRunningState(game));
-		
+
+		game.addActionAtBeginn(new UpdateSound());
 		game.addActionAtBeginn(new ContinueGame());
 		
 	}

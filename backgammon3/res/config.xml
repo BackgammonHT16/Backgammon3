@@ -6,8 +6,6 @@
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
 	
-	<!-- Maximale Zugzeit -->
-	<maximumTime>-1</maximumTime>
 	
 	<doNotUpdate>0</doNotUpdate>
 	
@@ -20,6 +18,13 @@
 	<textX>-20</textX>
 	<textY>95</textY>
 	<textSize>20</textSize>
+	
+	<!-- Timer anzeige -->
+	<timerX>50</timerX>
+	<timerY>95</timerY>
+	<timerSize>20</timerSize>
+	<!-- Maximale Zugzeit -->
+	<maximumTime>-1</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>

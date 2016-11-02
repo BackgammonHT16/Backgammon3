@@ -40,6 +40,10 @@ public class ChooseEndState extends BoardState {
 				board.setState(new NextState(board));
 				board.addActionAtEnd(new UpdateModel());
 			}
+		} else if(gameObject instanceof Board){
+			ChooseStartState c = new ChooseStartState(board);
+			board.setState(c);
+			c.init();
 		}
 	}
 

@@ -100,7 +100,7 @@ public class MenuStage extends AppStage {
 
 		ObservableList<String> optionsDifficulty = FXCollections.observableArrayList("Easy", "Hard");
 		final ComboBox<String> comboBoxDifficulty = new ComboBox<String>(optionsDifficulty);
-		comboBoxDifficulty.setValue(optionsDifficulty.get(menu.getDifficulty()));
+		comboBoxDifficulty.setValue(optionsDifficulty.get(menu.getDifficulty() - 1));
 		grid.add(comboBoxDifficulty, 1, 1);
 
 		Label sound = new Label("Sound");

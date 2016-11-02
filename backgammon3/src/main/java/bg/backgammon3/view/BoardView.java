@@ -31,8 +31,10 @@ public class BoardView extends ImageView implements GameObjectView {
 	private ArrayList<PlaceView> places = new ArrayList<PlaceView>();
 	
 	private DiceView diceView;
-	
+
 	private Text text;
+	
+	private Text timer;
 
 	public ArrayList<Node> getControls() {
 		return controls;
@@ -73,16 +75,25 @@ public class BoardView extends ImageView implements GameObjectView {
 		
 		
 		// Timer Anzeige
-		
+		initTimer(root);
 		
 	}
 	
-	public void initText(Pane root) {
+	private void initText(Pane root) {
 		text = new Text();
 		text.setTranslateX(Config.getInteger("textX"));
 		text.setTranslateY(Config.getInteger("textY"));
 		text.setFont(new Font(Config.getInteger("textSize")));	
 		root.getChildren().add(text);
+	}
+
+	private void initTimer(Pane root) {
+		timer = new Text();
+		timer.setTranslateX(Config.getInteger("timerX"));
+		timer.setTranslateY(Config.getInteger("timerY"));
+		timer.setFont(new Font(Config.getInteger("timerSize")));	
+		timer.textProperty().bind(board.getTimer().getTime().asString());
+		root.getChildren().add(timer);
 	}
 	
 	public void initPlaces(Pane root) {
@@ -156,6 +167,8 @@ public class BoardView extends ImageView implements GameObjectView {
 			diceView.diceWasUsed();
 		} else if (action instanceof MoveChecker) {
 			moveChecker(((MoveChecker) action).getStartId(), ((MoveChecker) action).getEndId());
+		} else if (action instanceof StartTimer) {
+			board.getTimer().acitvateTimer();
 		}
 	}
 	

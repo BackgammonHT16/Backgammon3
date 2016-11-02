@@ -37,7 +37,7 @@ public class Board extends GameObject {
 	
 	private Place startPlace;
 
-	private Timer timer;
+	private Timer timer = new Timer();
 	
 	private Dices dices;
 
@@ -264,6 +264,10 @@ public class Board extends GameObject {
 
 	public void finishGame() {
 		gameStatus.gameIsFinished(currentPlayer);
+	}
+	
+	public Timer getTimer() {
+		return timer;
 	}
 	
 }
