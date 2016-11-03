@@ -53,6 +53,7 @@ public class MenuState extends GameState {
 
 
 	private void startGame(Menu menu) {
+		logger.info("MenuState: Spiel starten wurde gedrückt");
 		if(menu.getColor() == 0) {
 			Config.setInteger("firstPlayer", 0);
 			Config.setInteger("player0Type", 0);

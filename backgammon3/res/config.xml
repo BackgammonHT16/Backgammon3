@@ -1,4 +1,4 @@
-<root>   	
+<?xml version="1.0" encoding="UTF-8"?><root>   	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
 	<player1Type>1</player1Type>
