@@ -29,10 +29,10 @@ public class Menu extends GameObject {
 	
 	public Menu() {
 		color = Config.getInteger("firstPlayer");
-		if(color == 0) {
-			difficulty = Config.getInteger("player1Type");
-		} else {
+		if(Config.getInteger("player0Type") != 0) {
 			difficulty = Config.getInteger("player0Type");
+		} else {
+			difficulty = Config.getInteger("player1Type");
 		}
 		sound = Config.getInteger("playSound") == 0 ? false : true;
 		time = Config.getInteger("maximumTime");
