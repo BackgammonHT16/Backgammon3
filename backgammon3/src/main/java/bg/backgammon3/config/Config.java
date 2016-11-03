@@ -72,7 +72,7 @@ public class Config {
 		if (getInteger("doNotUpdate") == 1) {
 			return;
 		}
-		//writeConfig(fileName, property, Integer.toString(value));
+		writeConfig(fileName, property, Integer.toString(value));
 		//writeConfig(fileName, property, value);
 		if (config.replace(property, value) == null) {
 			logger.warn("Nicht vorhandener Wert überschrieben.");
@@ -103,7 +103,7 @@ public class Config {
 		if (getInteger("doNotUpdate") == 1) {
 			return;
 		}
-		//writeConfig(fileName,property,value);
+		writeConfig(fileName,property,value);
 	
 		if (config.replace(property, value) == null) {
 			logger.warn("Nicht vorhandener Wert überschrieben.");
@@ -158,7 +158,7 @@ public class Config {
 
 	}
 
-	public static void writeConfig(String XMLFilename, String property, int value) {
+	public static void writeConfig(String XMLFilename, String property, String value) {
 		//logger.info("Filename: " + fileName + " Property: " + property + " Value: " + value);
 		boolean changed = false;
 		try {
@@ -185,7 +185,7 @@ public class Config {
 							logger.info("NodeName: " + tempNode.getNodeName() + " Property: " + property);
 							if ((property).equals(tempNode.getNodeName())) {
 								changed = true;
-								tempNode.setTextContent(Integer.toString(value));
+								tempNode.setTextContent(value);
 
 							}
 						}
