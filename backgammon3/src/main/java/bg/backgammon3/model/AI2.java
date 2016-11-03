@@ -16,12 +16,12 @@ import bg.backgammon3.model.pointstate.StartPoint;
  * @author philipp
  *
  */
-public class AI extends Player {
-	private Logger logger = LogManager.getLogger(AI.class);
+public class AI2 extends Player {
+	private Logger logger = LogManager.getLogger(AI2.class);
 
-	public AI(Integer id){
+	public AI2(Integer id){
 		super(id);
-		logger.info("AI Easy erstellt mit id " + id);
+		logger.info("AI Hard erstellt mit id " + id);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class AI extends Player {
 	}
 	
 	public void selectStartPlace() {
-		logger.info("AI Easy wählt StartPlace.");
+		logger.info("AI Hard wählt StartPlace.");
 		Place startPlace = null; 
 		for(Map.Entry<Integer, Place> p : board.getPlaces().entrySet()) {
 			if(p.getValue().getState() instanceof StartPoint) {
@@ -43,7 +43,7 @@ public class AI extends Player {
 	}
 	
 	public void selectEndPlace() {
-		logger.info("AI Easy wählt EndPlace.");
+		logger.info("AI Hard wählt EndPlace.");
 		Place endPlace = null; 
 		for(Map.Entry<Integer, Place> p : board.getPlaces().entrySet()) {
 			if(p.getValue().getState() instanceof EndPoint) {
@@ -54,7 +54,7 @@ public class AI extends Player {
 	}
 	
 	public void rollDice() {
-		logger.info("AI Easy würfelt.");
+		logger.info("AI Hard würfelt.");
 		board.handle(board.getDices());
 	}
 }

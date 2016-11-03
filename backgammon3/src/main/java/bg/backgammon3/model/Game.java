@@ -214,11 +214,16 @@ public class Game extends GameStatus {
 		players = new LinkedHashMap<Integer, Player>();
 		// Alle Spieler aus der Konfigurationsdatei hinzufügen
 		for (int i = 0; Config.getInteger("player" + i + "Type") != null; i++) {
-			// Es wird unterschieden nach Menschlichen Spielern (0) und nach Computer (1) gesteuerten Spielern.
+			// Es wird unterschieden zwischen 
+			// Menschlichen Spielern (0), 
+			// Einfacher AI (1) und  
+			// Komplexer AI (2).
 			if (Config.getInteger("player" + i + "Type") == 0) {
 				players.put(i, new Human(i));
 			} else if (Config.getInteger("player" + i + "Type") == 1) {
 				players.put(i, new AI(i));
+			} else if (Config.getInteger("player" + i + "Type") == 2) {
+				players.put(i, new AI2(i));
 			}
 		}
 		// Der Spieler der anfängt wird festgelegt.
