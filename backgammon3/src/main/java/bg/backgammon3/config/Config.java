@@ -10,8 +10,6 @@ import java.util.LinkedHashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-//import javax.xml.stream.XMLStreamException;
-//import javax.xml.stream.XMLStreamWriter;
 
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,17 +19,14 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
-//import org.w3c.dom.Element;
-//import org.w3c.dom.NamedNodeMap;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import org.w3c.dom.Document;
-//import org.w3c.dom.Node;
-//import org.w3c.dom.NodeList;
+
 
 /**
  * Diese Klasse stellt dem Programm Daten aus einem Konfigurationsfile zur
@@ -78,7 +73,7 @@ public class Config {
 			return;
 		}
 		//writeConfig(fileName, property, Integer.toString(value));
-		writeConfig(fileName, property, value);
+		//writeConfig(fileName, property, value);
 		if (config.replace(property, value) == null) {
 			logger.warn("Nicht vorhandener Wert überschrieben.");
 		}
