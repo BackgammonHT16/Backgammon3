@@ -37,8 +37,10 @@ public class ChooseEndState extends BoardState {
 		if(gameObject instanceof Place) {
 			if(((Place) gameObject).getState() instanceof EndPoint) {
 				board.moveChecker((Place) gameObject);
-				board.setState(new NextState(board));
+				NextState c = new NextState(board);
+				board.setState(c);
 				board.addActionAtEnd(new UpdateModel());
+				c.init();
 			}
 		} else if(gameObject instanceof Board){
 			ChooseStartState c = new ChooseStartState(board);

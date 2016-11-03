@@ -20,6 +20,7 @@ public class RollDiceState extends BoardState {
 
 	public void init() {
 		board.addActionAtEnd(new RollDice());
+		board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
 	}
 	
 	@Override

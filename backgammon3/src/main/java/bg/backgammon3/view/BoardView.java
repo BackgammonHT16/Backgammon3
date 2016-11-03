@@ -136,13 +136,17 @@ public class BoardView extends ImageView implements GameObjectView {
 		
 	}
 	
+	public void update() {
+		update(true);
+	}
+	
 	/**
 	 * Geht alle Places durch und setzt die Bilder entsprechend.
 	 * TODO Überlegen ob das hier überhaupt gebraucht wird.
 	 */
-	public void update() {
+	public void update(boolean showHighlights) {
 		for(PlaceView p : places) {
-			p.update();
+			p.update(showHighlights);
 		}
 	}
 	
@@ -159,6 +163,8 @@ public class BoardView extends ImageView implements GameObjectView {
 			update();
 		} else if (action instanceof ShowRoute) {
 			update();
+		} else if (action instanceof ShowPlacesWithoutMarks) {
+			update(false);
 		} else if (action instanceof SingleDiceWasRolled) {
 			diceView.singleDiceWasRolled();
 		} else if (action instanceof DiceWasRolled) {

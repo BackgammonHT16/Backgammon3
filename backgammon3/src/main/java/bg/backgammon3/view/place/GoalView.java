@@ -5,6 +5,8 @@ package bg.backgammon3.view.place;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.place.Place;
+import bg.backgammon3.model.pointstate.EndPoint;
+import bg.backgammon3.model.pointstate.StartPoint;
 import bg.backgammon3.view.helper.Position;
 import bg.backgammon3.view.helper.StaticImageHelper;
 
@@ -49,5 +51,16 @@ public class GoalView extends PlaceView{
 		double y = getTranslateY() + y1;
 		
 		return new Position(x, y, getRotate());
+	}
+	
+
+	public void update(boolean showHighlights) {
+		if(place.getState() instanceof StartPoint && showHighlights) {
+			setImage(startImages.get(((StartPoint)place.getState()).getPlayerId()));
+		} else if(place.getState() instanceof EndPoint && showHighlights) {
+			setImage(endImages.get(((EndPoint)place.getState()).getPlayerId()));
+		} else {
+			setImage(normalImage);
+		}
 	}
 }

@@ -82,11 +82,11 @@ public abstract class PlaceView extends ImageView implements GameObjectView{
 		checkers.get(checkers.size() - 1).moveTo(placeView);
 	}
 	
-	public void update() {
-		if(place.getState() instanceof StartPoint) {
+	public void update(boolean showHighlights) {
+		if(place.getState() instanceof StartPoint && showHighlights) {
 			setImage(startImages.get(((StartPoint)place.getState()).getPlayerId()));
 			this.toFront();
-		} else if(place.getState() instanceof EndPoint) {
+		} else if(place.getState() instanceof EndPoint && showHighlights) {
 			setImage(endImages.get(((EndPoint)place.getState()).getPlayerId()));
 			this.toFront();
 		} else {
