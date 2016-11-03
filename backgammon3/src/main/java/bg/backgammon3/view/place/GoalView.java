@@ -5,6 +5,7 @@ package bg.backgammon3.view.place;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.place.Place;
+import bg.backgammon3.view.helper.Position;
 import bg.backgammon3.view.helper.StaticImageHelper;
 
 /**
@@ -31,5 +32,22 @@ public class GoalView extends PlaceView{
 			startImages.add(StaticImageHelper.loadImage(Config.getString("goalImageStartPlayer" + i)));
 			endImages.add(StaticImageHelper.loadImage(Config.getString("goalImageEndPlayer" + i)));
 		}
+	}
+	
+	@Override
+	public Position getNewCheckerPosition() {
+		
+		double x0 = 1.0 * Config.getInteger("checkerWidth") * (int)((checkers.size()-0) % 3 - 1);
+		double y0 = 1.0 * Config.getInteger("checkerWidth") * (int)((checkers.size()-0) / 3 - 2);
+
+		double angle = -Math.toRadians(getRotate());
+		
+		double x1 = Math.cos(angle) * x0 + Math.sin(angle) * y0;
+		double y1 = - Math.sin(angle) * x0 + Math.cos(angle) * y0;
+
+		double x = getTranslateX() + x1;
+		double y = getTranslateY() + y1;
+		
+		return new Position(x, y, getRotate());
 	}
 }

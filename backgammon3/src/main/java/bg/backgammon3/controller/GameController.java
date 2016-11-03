@@ -184,8 +184,8 @@ public class GameController implements EventHandler<Event> {
 		}
 
 		// Anschließend Änderungen durch das Modell verarbeiten
-		if(!busy) {
+		//if(!busy) {
 			handleAllActions();
-		}
+		//}
 	}
 }

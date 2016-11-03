@@ -168,7 +168,7 @@ public class BoardView extends ImageView implements GameObjectView {
 		} else if (action instanceof MoveChecker) {
 			moveChecker(((MoveChecker) action).getStartId(), ((MoveChecker) action).getEndId());
 		} else if (action instanceof StartTimer) {
-			board.getTimer().acitvateTimer();
+			timer.textProperty().bind(board.getTimer().acitvateTimer().asString());
 		}
 	}
 	

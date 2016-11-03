@@ -8,20 +8,8 @@ package bg.backgammon3.model;
 import bg.backgammon3.config.Config;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -31,11 +19,13 @@ import javafx.util.Duration;
 public class Timer extends GameObject {
 	private boolean active;
 	private boolean over;
-	private IntegerProperty time;
+	private IntegerProperty time = new SimpleIntegerProperty(Config.getInteger("maximumTime"));
 	private Timeline timeline;
+	private ActionInterface actionInterface;
 	
-	public Timer() {
-		resetTimer();
+	
+	public Timer(ActionInterface actionInterface) {
+		this.actionInterface = actionInterface;
 	}
 	
 	public void resetTimer() {
@@ -43,7 +33,7 @@ public class Timer extends GameObject {
 		if(timeline != null) {
 			timeline.stop();
 		}
-		time = new SimpleIntegerProperty(Config.getInteger("maximumTime"));
+		time.set(Config.getInteger("maximumTime"));
 		if(time.get() <= 0) {
 			active = false;
 		} else {
@@ -60,11 +50,12 @@ public class Timer extends GameObject {
 	    timeline.getKeyFrames().add(
 	            new KeyFrame(Duration.seconds(1),
 	              e-> {
-	                	time.add(-1);
+	                	time.set(time.get() - 1);
 	                    if (time.get() <= 0) {
 	                    	active = false;
 	                    	over = true;
 	                        timeline.stop();
+	                    	actionInterface.timeOver();
 	                    }
 	                  }
 	            ));

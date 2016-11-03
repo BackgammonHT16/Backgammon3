@@ -22,4 +22,9 @@ public class DisplayMessage extends Action {
 	public int getTime() {
 		return 0;
 	}
+	
+	@Override
+	public String toString() {
+		return "DisplayMessage: " + message;
+	}
 }

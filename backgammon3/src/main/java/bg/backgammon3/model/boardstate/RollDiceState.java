@@ -29,6 +29,8 @@ public class RollDiceState extends BoardState {
 			ChooseStartState c = new ChooseStartState(board);
 			board.setState(c);
 			c.init();
+			board.getTimer().resetTimer();
+			board.addActionAtEnd(new StartTimer());
 		}
 	}
 

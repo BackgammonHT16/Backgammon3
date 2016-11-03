@@ -14,6 +14,7 @@ import bg.backgammon3.config.Config;
 import bg.backgammon3.model.action.Action;
 import bg.backgammon3.model.action.DiceWasRolled;
 import bg.backgammon3.model.action.DiceWasUsed;
+import bg.backgammon3.model.action.DisplayMessage;
 import bg.backgammon3.model.action.MoveChecker;
 import bg.backgammon3.model.action.ShowRoute;
 import bg.backgammon3.model.action.SingleDiceWasRolled;
@@ -26,7 +27,7 @@ import javafx.scene.Node;
  * @author philipp
  *
  */
-public class Board extends GameObject {
+public class Board extends GameObject implements ActionInterface {
 	private Logger logger = LogManager.getLogger(Board.class);
 
 	private Integer numberOfPlayers = null;
@@ -37,7 +38,7 @@ public class Board extends GameObject {
 	
 	private Place startPlace;
 
-	private Timer timer = new Timer();
+	private Timer timer = new Timer(this);
 	
 	private Dices dices;
 
@@ -195,14 +196,20 @@ public class Board extends GameObject {
 	}
 
 	public void nextPlayer() {
-		currentPlayer = (currentPlayer + 1) % getNumberOfPlayers();
+		currentPlayer = getNextPlayer();
 		gameStatus.setPlayer(currentPlayer);
 	}
 
+	public Integer getNextPlayer() {
+		return (currentPlayer + 1) % getNumberOfPlayers();
+	}
+	
+	@Override
 	public void addActionAtBeginn(Action action) {
 		gameStatus.addActionAtBeginn(action);
 	}
 
+	@Override
 	public void addActionAtEnd(Action action) {
 		gameStatus.addActionAtEnd(action);
 	}
@@ -264,6 +271,11 @@ public class Board extends GameObject {
 
 	public void finishGame() {
 		gameStatus.gameIsFinished(currentPlayer);
+	}
+	
+	public void timeOver() {
+		addActionAtEnd(new DisplayMessage("Time Over!"));
+		gameStatus.gameIsFinished(getNextPlayer());
 	}
 	
 	public Timer getTimer() {

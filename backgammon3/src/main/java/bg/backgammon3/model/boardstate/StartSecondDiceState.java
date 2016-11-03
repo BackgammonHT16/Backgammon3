@@ -33,8 +33,8 @@ public class StartSecondDiceState extends BoardState {
 			}
 			ChooseStartState c = new ChooseStartState(board);
 			board.setState(c);
-			board.getTimer().resetTimer();
 			c.init();
+			board.getTimer().resetTimer();
 			board.addActionAtEnd(new StartTimer());
 		}
 	}
