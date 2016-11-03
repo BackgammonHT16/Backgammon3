@@ -31,7 +31,7 @@ public class GameRunningState extends GameState {
 	/**
 	 * Hier kann false zurückgegeben werden da das Menu sowieso im Moment unsichtbar ist.
 	 */
-	public boolean gameCanContinue()
+	public boolean getGameCanContinue()
 	{
 		return false;
 	}
@@ -63,7 +63,7 @@ public class GameRunningState extends GameState {
 	 */
 	@Override
 	public void showMenu() {
-		game.setState(new MenuState(game));
+		game.setState(new MenuState(game, true));
 	}
 
 

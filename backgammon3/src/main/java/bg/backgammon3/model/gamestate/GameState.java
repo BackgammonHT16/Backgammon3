@@ -23,7 +23,7 @@ public abstract class GameState {
 	 * um zu wissen ob der Continue Button angezeigt werden soll.
 	 * @return True falls das Spiel fortgesetzt werden kann.
 	 */
-	public abstract boolean gameCanContinue();
+	public abstract boolean getGameCanContinue();
 	
 	public abstract void startGame();
 	

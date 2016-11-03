@@ -16,10 +16,18 @@ import bg.backgammon3.model.action.*;
  */
 public class MenuState extends GameState {
 	private Logger logger = LogManager.getLogger(MenuState.class);
+	private boolean gameCanContinue = false;
 
 	public MenuState(Game game)
 	{
 		super(game);
+		game.addActionAtBeginn(new ShowMenu());
+	}
+	
+	public MenuState(Game game, boolean gameCanContinue)
+	{
+		super(game);
+		this.gameCanContinue = gameCanContinue;
 		game.addActionAtBeginn(new ShowMenu());
 	}
 	
@@ -38,10 +46,9 @@ public class MenuState extends GameState {
 		}
 	}
 	
-	public boolean gameCanContinue()
+	public boolean getGameCanContinue()
 	{
-		// TODO implementieren
-		return false;
+		return gameCanContinue;
 	}
 
 

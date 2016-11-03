@@ -56,7 +56,7 @@ public class Game extends GameStatus {
 	 * Initialisiert die Modell Klassen und zeigt zu Spielbeginn das Menu an.
 	 */
 	private void initGame() {
-		currentState = new MenuState(this);
+		currentState = new MenuState(this, false);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class Game extends GameStatus {
 	public void gameIsFinished(Integer playerId) {
 		addActionAtEnd(new DisplayMessage("Spieler " + playerId + " hat gewonnen."));
 		addActionAtEnd(new CloseGame());
-		currentState = new MenuState(this);
+		currentState = new MenuState(this, false);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class Game extends GameStatus {
 	 * @return True falls das Spiel fortgesetzt werden kann.
 	 */
 	public boolean gameCanContinue() {
-		return currentState.gameCanContinue();
+		return currentState.getGameCanContinue();
 	}
 
 	public void startGame() {

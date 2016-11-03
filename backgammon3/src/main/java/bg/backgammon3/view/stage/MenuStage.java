@@ -168,8 +168,8 @@ public class MenuStage extends AppStage {
 		hb.setSpacing(10);
 		hb.getChildren().add(buttonStartGame);
 		controls.add(buttonStartGame);
-		//if (game.gameCanContinue()) 
-		if(appStage != null)
+		if (game.gameCanContinue()) 
+		//if(appStage != null)
 		{
 			buttonContinue.setDefaultButton(true);
 			hb.getChildren().add(buttonContinue);
