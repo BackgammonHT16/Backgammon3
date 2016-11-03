@@ -21,6 +21,8 @@ public class RollDiceState extends BoardState {
 	public void init() {
 		board.addActionAtEnd(new RollDice());
 		board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+		board.getTimer().resetTimer();
+		board.addActionAtEnd(new StartTimer());
 	}
 	
 	@Override
@@ -30,8 +32,6 @@ public class RollDiceState extends BoardState {
 			ChooseStartState c = new ChooseStartState(board);
 			board.setState(c);
 			c.init();
-			board.getTimer().resetTimer();
-			board.addActionAtEnd(new StartTimer());
 		}
 	}
 

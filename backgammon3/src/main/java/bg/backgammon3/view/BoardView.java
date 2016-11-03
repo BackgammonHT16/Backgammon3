@@ -91,8 +91,12 @@ public class BoardView extends ImageView implements GameObjectView {
 		timer = new Text();
 		timer.setTranslateX(Config.getInteger("timerX"));
 		timer.setTranslateY(Config.getInteger("timerY"));
-		timer.setFont(new Font(Config.getInteger("timerSize")));	
-		timer.textProperty().bind(board.getTimer().getTime().asString());
+		timer.setFont(new Font(Config.getInteger("timerSize")));
+		if(Config.getInteger("maximumTime") != -1) {
+			timer.textProperty().bind(board.getTimer().getTime().asString());
+		} else {
+			timer.setVisible(false);
+		}
 		root.getChildren().add(timer);
 	}
 	
