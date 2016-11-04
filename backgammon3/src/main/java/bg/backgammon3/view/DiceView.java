@@ -66,14 +66,16 @@ public class DiceView extends Group implements GameObjectView {
 		return dices;
 	}
 
-	public void singleDiceWasRolled() {
-		update();
+	public int singleDiceWasRolled() {
 		// TODO Animation einfügen
+		update();
+		return 0;
 	}
 	
-	public void diceWasRolled() {
-		update();
+	public int diceWasRolled() {
 		// TODO Animation einfügen
+		update();
+		return 0;
 	}
 
 	public void diceWasUsed() {

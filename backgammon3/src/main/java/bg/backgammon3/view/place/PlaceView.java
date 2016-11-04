@@ -78,8 +78,8 @@ public abstract class PlaceView extends ImageView implements GameObjectView{
 		return place;
 	}
 	
-	public void moveCheckerTo(PlaceView placeView) {
-		checkers.get(checkers.size() - 1).moveTo(placeView);
+	public int moveCheckerTo(PlaceView placeView) {
+		return checkers.get(checkers.size() - 1).moveTo(placeView);
 	}
 	
 	public void update(boolean showHighlights) {

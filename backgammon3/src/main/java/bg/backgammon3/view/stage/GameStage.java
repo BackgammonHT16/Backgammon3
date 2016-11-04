@@ -102,12 +102,13 @@ public class GameStage extends AppStage {
 		return null;
 	}
 
-	public void update(Action action) {
+	public int update(Action action) {
 		if (action instanceof UpdateSound) {
 			sound(Config.getInteger("playSound") == 0 ? false : true);
 		} else {
-			boardView.update(action);
+			return boardView.update(action);
 		}
+		return 0;
 	}
 
 	@Override

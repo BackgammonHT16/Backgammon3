@@ -7,7 +7,7 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="bg.backgammon3.config.Config" level="info" additivity="false">
+		<Logger name="bg.backgammon3.config.Config" level="off" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 		<Logger name="bg.backgammon3.view.helper" level="off" additivity="false">

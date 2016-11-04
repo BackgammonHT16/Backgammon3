@@ -223,8 +223,8 @@ public class MenuStage extends AppStage {
 		return controls;
 	}
 
-	public void update(Action action) {
-
+	public int update(Action action) {
+		return 0;
 	}
 	
 

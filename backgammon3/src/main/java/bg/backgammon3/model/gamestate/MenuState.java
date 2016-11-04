@@ -53,6 +53,9 @@ public class MenuState extends GameState {
 
 
 	private void startGame(Menu menu) {
+		// Spielfeld anzeigen und Menu Verstecken
+		game.addActionAtBeginn(new StartGame());
+		
 		logger.info("MenuState: Spiel starten wurde gedrückt");
 		if(menu.getColor() == 0) {
 			Config.setInteger("firstPlayer", 0);
@@ -72,8 +75,6 @@ public class MenuState extends GameState {
 		// Zustand Ändern
 		game.setState(new GameRunningState(game));
 		
-		// Spielfeld anzeigen und Menu Verstecken
-		game.addActionAtBeginn(new StartGame());
 	}
 
 

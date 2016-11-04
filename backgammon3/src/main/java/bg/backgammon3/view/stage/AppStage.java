@@ -24,7 +24,7 @@ public abstract class AppStage {
 	
 	public abstract ArrayList<Node> getControls();
 
-	public abstract void update(Action action);
+	public abstract int update(Action action);
 	
 	public abstract void hide(); 
 	

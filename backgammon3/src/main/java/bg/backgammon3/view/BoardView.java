@@ -158,7 +158,7 @@ public class BoardView extends ImageView implements GameObjectView {
 	 * Führt die geforderte Aktion aus.
 	 * @param action Die durchzuführende Aktion
 	 */
-	public void update(Action action) {
+	public int update(Action action) {
 		if(action instanceof DisplayMessage) {
 			text.setText(((DisplayMessage) action).getMessage());
 		} else if (action instanceof SelectStartPlace) {
@@ -170,16 +170,20 @@ public class BoardView extends ImageView implements GameObjectView {
 		} else if (action instanceof ShowPlacesWithoutMarks) {
 			update(false);
 		} else if (action instanceof SingleDiceWasRolled) {
-			diceView.singleDiceWasRolled();
+			return diceView.singleDiceWasRolled();
 		} else if (action instanceof DiceWasRolled) {
-			diceView.diceWasRolled();
+			return diceView.diceWasRolled();
 		} else if (action instanceof DiceWasUsed) {
 			diceView.diceWasUsed();
 		} else if (action instanceof MoveChecker) {
-			moveChecker(((MoveChecker) action).getStartId(), ((MoveChecker) action).getEndId());
+			return moveChecker(((MoveChecker) action).getStartId(), ((MoveChecker) action).getEndId());
+		} else if (action instanceof Move2Checkers) {
+			return Math.max(moveChecker(((Move2Checkers) action).getStartId1(), ((Move2Checkers) action).getEndId1()), 
+					moveChecker(((Move2Checkers) action).getStartId2(), ((Move2Checkers) action).getEndId2()));
 		} else if (action instanceof StartTimer) {
 			timer.textProperty().bind(board.getTimer().acitvateTimer().asString());
 		}
+		return 0;
 	}
 	
 	/**
@@ -187,9 +191,9 @@ public class BoardView extends ImageView implements GameObjectView {
 	 * @param startId Start Platz.
 	 * @param endId End Platz.
 	 */
-	public void moveChecker(Integer startId, Integer endId) {
+	public int moveChecker(Integer startId, Integer endId) {
 		logger.info("MoveChecker von " + startId + " nach " + endId + ".");
-		places.get(startId).moveCheckerTo(places.get(endId));
+		return places.get(startId).moveCheckerTo(places.get(endId));
 	}
 
 }

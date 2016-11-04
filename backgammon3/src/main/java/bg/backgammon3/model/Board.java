@@ -15,6 +15,7 @@ import bg.backgammon3.model.action.Action;
 import bg.backgammon3.model.action.DiceWasRolled;
 import bg.backgammon3.model.action.DiceWasUsed;
 import bg.backgammon3.model.action.DisplayMessage;
+import bg.backgammon3.model.action.Move2Checkers;
 import bg.backgammon3.model.action.MoveChecker;
 import bg.backgammon3.model.action.ShowRoute;
 import bg.backgammon3.model.action.SingleDiceWasRolled;
@@ -230,23 +231,31 @@ public class Board extends GameObject implements ActionInterface {
 		if(ps.get(0).getPlayerId() != currentPlayer && ps.get(0).getNumberOfCheckers() > 0) {
 			// Feindlichen Checker auf Bar verschieben
 			routes.get(ps.get(0).getPlayerId()).getBar().addChecker(ps.get(0).getPlayerId());
-			addActionAtEnd(new MoveChecker(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId()));
+			addActionAtEnd(new Move2Checkers(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId(), startPlace.getId(), ps.get(0).getId()));
+			((EndPoint) endPlace.getState()).dices.get(0).setUsed();
+			addActionAtEnd(new DiceWasUsed());
+		} else {
+			((EndPoint) endPlace.getState()).dices.get(0).setUsed();
+			addActionAtEnd(new DiceWasUsed());
+			addActionAtEnd(new MoveChecker(startPlace.getId(), ps.get(0).getId()));
 		}
-		((EndPoint) endPlace.getState()).dices.get(0).setUsed();
-		addActionAtEnd(new DiceWasUsed());
-		addActionAtEnd(new MoveChecker(startPlace.getId(), ps.get(0).getId()));
 		
 		for(int i = 0; i < ps.size() - 1; i++) {
 			if(ps.get(i + 1).getPlayerId() != currentPlayer && ps.get(i + 1).getNumberOfCheckers() > 0) {
 				// Feindlichen Checker auf Bar verschieben
 				routes.get(ps.get(i + 1).getPlayerId()).getBar().addChecker(ps.get(i + 1).getPlayerId());
-				addActionAtEnd(new MoveChecker(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId()));
+				addActionAtEnd(new Move2Checkers(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId(), ps.get(i).getId(), ps.get(i + 1).getId()));
+				ps.get(i).addChecker(currentPlayer);
+				ps.get(i).removeChecker();
+				((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
+				addActionAtEnd(new DiceWasUsed());
+			} else {
+				ps.get(i).addChecker(currentPlayer);
+				ps.get(i).removeChecker();
+				((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
+				addActionAtEnd(new DiceWasUsed());
+				addActionAtEnd(new MoveChecker(ps.get(i).getId(), ps.get(i + 1).getId()));
 			}
-			ps.get(i).addChecker(currentPlayer);
-			ps.get(i).removeChecker();
-			((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
-			addActionAtEnd(new DiceWasUsed());
-			addActionAtEnd(new MoveChecker(ps.get(i).getId(), ps.get(i + 1).getId()));
 		}
 		endPlace.addChecker(currentPlayer);
 

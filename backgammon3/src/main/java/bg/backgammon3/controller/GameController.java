@@ -3,6 +3,8 @@
  */
 package bg.backgammon3.controller;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,8 +27,10 @@ public class GameController implements EventHandler<Event> {
 	private Logger logger = LogManager.getLogger(GameController.class);
 
 	private boolean busy = false;
+	private AtomicBoolean atomicBusy = new AtomicBoolean(false);
 	private Game game;
 	private AppStage appStage;
+	private AppStage gameStage;
 
 	public GameController() {
 		initGameController();
@@ -47,6 +51,47 @@ public class GameController implements EventHandler<Event> {
 	 */
 	private void handleAllActions() {
 		logger.info("Auf dem Aktions Stack: " + game.getAction());
+/*		
+		(new Thread(new Task<Void>(){
+			@Override
+			public Void call(){
+				try {
+					threadBusy.acquire();
+					while (game.getAction() != null) {
+						Thread.sleep(handleAction(game.popAction()));
+					}
+					threadBusy.release();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					logger.error(e);
+				}
+				return null;
+			}
+		})).start();
+*/		
+		if(game.getAction() instanceof ShowMenu) {
+			handleAction(game.popAction());
+		} else if (game.getAction() instanceof StartGame) {
+			handleAction(game.popAction());
+		} else if (game.getAction() instanceof ContinueGame) {
+			handleAction(game.popAction());
+		} else if (game.getAction() instanceof Quit) {
+			handleAction(game.popAction());
+		} else if (game.getAction() instanceof CloseGame) {
+			handleAction(game.popAction());
+		}
+		if(game.getAction() == null) {
+			return;
+		}
+		if(atomicBusy.compareAndSet(false, true)) {
+			int time = handleAction(game.popAction());
+			logger.info("Warte Zeit für diese Aktion: " + time);
+			Timeline timeline = new Timeline();
+			timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
+			//handleAction(game.popAction());
+			timeline.play();
+		}
+/*		
 		if(game.getAction() == null) {
 			busy = false;
 			return;
@@ -61,6 +106,8 @@ public class GameController implements EventHandler<Event> {
 		//while (game.getAction() != null) {
 		//	handleAction(game.popAction());
 		//}
+
+*/
 	}
 
 	/**
@@ -70,7 +117,7 @@ public class GameController implements EventHandler<Event> {
 	 * @param action
 	 *            Nächste durchzuführende Aktion
 	 */
-	private void handleAction(Action action) {
+	private int handleAction(Action action) {
 		game.checkActionForAI(action);
 		if (action instanceof ShowMenu) {
 			initMenuView();
@@ -85,8 +132,9 @@ public class GameController implements EventHandler<Event> {
 		} else if (action instanceof UpdateModel) {
 			game.handle(new UpdateAI(), false);
 		} else {
-			appStage.update(action);
+			return gameStage.update(action);
 		}
+		return 0;
 	}
 	
 	private void closeGame() {
@@ -152,6 +200,7 @@ public class GameController implements EventHandler<Event> {
 			appStage.hide();
 		}
 		appStage = new GameStage(game);
+		gameStage = appStage;
 		initControls();
 	}
 
