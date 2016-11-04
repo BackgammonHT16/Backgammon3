@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.model.GameObject;
-import bg.backgammon3.model.boardstate.StartState;
 import bg.backgammon3.model.pointstate.*;
 
 /**

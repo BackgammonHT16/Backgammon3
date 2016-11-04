@@ -21,7 +21,6 @@ import bg.backgammon3.model.action.SingleDiceWasRolled;
 import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.place.*;
 import bg.backgammon3.model.pointstate.*;
-import javafx.scene.Node;
 
 /**
  * @author philipp

@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
-import bg.backgammon3.model.gamestate.MenuState;
 
 /**
  * @author philipp

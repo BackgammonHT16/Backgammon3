@@ -14,9 +14,6 @@ import bg.backgammon3.model.*;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.view.*;
 import bg.backgammon3.view.javafxsvg.*;
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -57,17 +54,6 @@ public class GameStage extends AppStage {
 		boardView = new BoardView(game.getBoard(), root);
 
 		Scene scene = new Scene(root, Config.getInteger("width"), Config.getInteger("height"));
-
-		// Das Fenster soll mindestens so groß wie der Inhalt sein
-		// stage.minHeightProperty().bind(Bindings.max(Config.getInteger("minHeight"),
-		// stage.heightProperty().subtract(scene.heightProperty()).add(root.minHeightProperty())));
-
-		// stage.minWidthProperty().bind(Bindings.max(Config.getInteger("minWidth"),
-		// stage.widthProperty().subtract(scene.widthProperty()).add(root.minWidthProperty())));
-
-		// stage.sizeToScene();
-		// Alles anzeigen
-
 		initSound(Config.getString("soundFile"));
 		if (Config.getInteger("playSound") == 1) {
 			sound(true);
@@ -84,9 +70,11 @@ public class GameStage extends AppStage {
 		stage.setMinHeight(Config.getInteger("minHeight") + 70);
 		
 		handleSizeChange(scene, root);
+
+		// Alles anzeigen
 		stage.setScene(scene);
 		stage.show();
-
+		logger.info("Spiel wird angezeigt.");
 	}
 	
 	private void handleSizeChange(Scene scene, StackPane root) {

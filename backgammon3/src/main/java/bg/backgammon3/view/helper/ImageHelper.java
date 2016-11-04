@@ -3,10 +3,6 @@
  */
 package bg.backgammon3.view.helper;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import bg.backgammon3.view.BoardView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,7 +11,7 @@ import javafx.scene.image.ImageView;
  *
  */
 public class ImageHelper extends ImageView {
-	private Logger logger = LogManager.getLogger(ImageHelper.class);
+	
 	public ImageHelper(String filename)
 	{
 		LoadImage(filename);

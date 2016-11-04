@@ -5,9 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.controller.GameController;
-import bg.backgammon3.view.stage.GameStage;
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**

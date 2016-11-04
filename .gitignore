@@ -1,8 +1,9 @@
 
 # Local files for Backup etc
-backgammon2/res/old/
-backgammon2/res/sicherung/
-backgammon2/log/
+backgammon3/res/old/
+backgammon3/res/sicherung/
+backgammon3/log/
+backgammon3/doc/
 *.uml*
 *.log
 

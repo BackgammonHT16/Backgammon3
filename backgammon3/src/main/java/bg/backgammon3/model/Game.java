@@ -11,14 +11,9 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bg.backgammon3.App;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.gamestate.*;
-import bg.backgammon3.view.ContinueButtonView;
-import bg.backgammon3.view.QuitButtonView;
-import bg.backgammon3.view.StartButtonView;
-import javafx.event.Event;
 
 /**
  * Ausgangsklasse des Modells

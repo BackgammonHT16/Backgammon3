@@ -6,9 +6,7 @@ package bg.backgammon3.view;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
 import bg.backgammon3.view.helper.StaticImageHelper;
-import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 /**
  * @author philipp

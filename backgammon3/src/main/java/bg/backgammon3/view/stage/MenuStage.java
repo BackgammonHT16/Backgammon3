@@ -4,9 +4,7 @@
 package bg.backgammon3.view.stage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
@@ -14,7 +12,6 @@ import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -25,7 +22,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -59,8 +55,8 @@ public class MenuStage extends AppStage {
 	/**
 	 * Falls das Spiel bereits geöffnet ist wird es in appStage zwischen gespeichert. So kann es am ende 
 	 * wieder von GameController übernommen werden.
-	 * @param game
-	 * @param appStage
+	 * @param game Handle zur Hauptklasse des Modells
+	 * @param appStage Handle zur GameStage
 	 */
 	public MenuStage(Game game, AppStage appStage) {
 		super(game);

@@ -6,7 +6,6 @@ package bg.backgammon3.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bg.backgammon3.App;
 import bg.backgammon3.model.*;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.view.*;
