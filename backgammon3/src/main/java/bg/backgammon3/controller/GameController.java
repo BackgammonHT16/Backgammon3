@@ -51,24 +51,7 @@ public class GameController implements EventHandler<Event> {
 	 */
 	private void handleAllActions() {
 		logger.info("Auf dem Aktions Stack: " + game.getAction());
-/*		
-		(new Thread(new Task<Void>(){
-			@Override
-			public Void call(){
-				try {
-					threadBusy.acquire();
-					while (game.getAction() != null) {
-						Thread.sleep(handleAction(game.popAction()));
-					}
-					threadBusy.release();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					logger.error(e);
-				}
-				return null;
-			}
-		})).start();
-*/		
+		
 		if(game.getAction() instanceof ShowMenu) {
 			handleAction(game.popAction());
 		} else if (game.getAction() instanceof StartGame) {
@@ -88,26 +71,8 @@ public class GameController implements EventHandler<Event> {
 			logger.info("Warte Zeit für diese Aktion: " + time);
 			Timeline timeline = new Timeline();
 			timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
-			//handleAction(game.popAction());
 			timeline.play();
 		}
-/*		
-		if(game.getAction() == null) {
-			busy = false;
-			return;
-		} else {
-			busy = true;
-			logger.info("Warte Zeit für diese Aktion: " + game.getAction().getTime());
-			Timeline timeline = new Timeline();
-			timeline.getKeyFrames().add(new KeyFrame(new Duration((double)game.getAction().getTime() + 1), e -> handleAllActions()));
-			handleAction(game.popAction());
-			timeline.play();
-		}
-		//while (game.getAction() != null) {
-		//	handleAction(game.popAction());
-		//}
-
-*/
 	}
 
 	/**

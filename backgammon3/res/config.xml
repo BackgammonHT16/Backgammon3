@@ -7,7 +7,7 @@
 	<firstPlayer>0</firstPlayer>
 	
 	
-	<doNotUpdate>0</doNotUpdate>
+	<doNotUpdate>1</doNotUpdate>
 	
 
 	<!-- Hintergrund Sound -->
@@ -80,6 +80,8 @@
 	<checker0Image>res/leo.svg</checker0Image>
 	<checker1Image>res/t80.svg</checker1Image>
 	<checkerMoveSpeed>150</checkerMoveSpeed>
+	
+	<diceRollTime>150</diceRollTime>
 	
 	<animationTime>800</animationTime>
 

@@ -23,6 +23,9 @@ public class CheckerView {
 	private Logger logger = LogManager.getLogger(CheckerView.class);
 	private PlaceView placeView;
 	private ImageView image;
+	
+	// Wird nur für die Konsistenz Überprüfung in PlaceView benötigt
+	private Integer playerId;
 
 	public CheckerView(PlaceView placeView) {
 		this.placeView = placeView;
@@ -31,6 +34,7 @@ public class CheckerView {
 
 	private void initCheckerView() {
 		Position position = placeView.getNewCheckerPosition();
+		playerId = placeView.getPlace().getPlayerId();
 		image = new ImageHelper(Config.getString("checker" + placeView.getPlace().getPlayerId() + "Image"),
 				Config.getInteger("checkerWidth"), false, position.x, position.y);
 	}
@@ -67,6 +71,10 @@ public class CheckerView {
 	        );
 		t.play();
 		return time;
+	}
+	
+	public Integer getPlayerId() {
+		return playerId;
 	}
 
 }

@@ -5,6 +5,10 @@ package bg.backgammon3.view.place;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.GameObject;
 import bg.backgammon3.model.place.Place;
@@ -20,6 +24,7 @@ import javafx.scene.image.ImageView;
  *
  */
 public abstract class PlaceView extends ImageView implements GameObjectView{
+	private Logger logger = LogManager.getLogger(PlaceView.class);
 	protected Place place;
 	protected Image normalImage;
 	protected ArrayList<Image> startImages = new ArrayList<Image>();
@@ -67,6 +72,7 @@ public abstract class PlaceView extends ImageView implements GameObjectView{
 	public Position addChecker(CheckerView checker) {
 		Position p = getNewCheckerPosition();
 		checkers.add(checker);
+		consistencyCheck();
 		return p;
 	}
 	
@@ -92,7 +98,22 @@ public abstract class PlaceView extends ImageView implements GameObjectView{
 		} else {
 			setImage(normalImage);
 		}
+		consistencyCheck();
 	}
 	
+	public void consistencyCheck() {
+		if(checkers.size() != place.getNumberOfCheckers()) {
+			logger.error("Checker zahl auf PlaceView " + place.getId() + " ist ungeich der auf Place (" + checkers.size() + " zu " + place.getNumberOfCheckers() + ")");
+		}
+		int i = 0;
+		for(CheckerView c : checkers) {
+			if(c.getPlayerId() != place.getPlayerId()) {
+				i++;
+			}
+		}
+		if(i > 0) {
+			logger.error("Auf PlaceView " + place.getId() + " sind " + i + " Checker des falschen Spielers");
+		}
+	}
 	
 }

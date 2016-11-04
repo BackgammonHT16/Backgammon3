@@ -1,13 +1,18 @@
 package bg.backgammon3.view;
 
+import java.util.Random;
+
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Dice;
 import bg.backgammon3.model.Dices;
 import bg.backgammon3.model.GameObject;
 import bg.backgammon3.view.helper.ImageHelper;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class DiceView extends Group implements GameObjectView {
 	private Image[] image;
@@ -67,15 +72,38 @@ public class DiceView extends Group implements GameObjectView {
 	}
 
 	public int singleDiceWasRolled() {
-		// TODO Animation einfügen
-		update();
-		return 0;
+		int time = Config.getInteger("diceRollTime");
+		Timeline timeline = new Timeline();
+		imageView[2].setImage(image[0]);
+		imageView[3].setImage(image[0]);
+		timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time), e -> {
+			Random r = new Random();
+			int diceToRole = 0;
+			if(dices.getDice(1).getIsActive()) {
+				diceToRole = 1;
+			}
+			imageView[diceToRole].setImage(image[r.nextInt(6) + 1]);
+			}));
+		timeline.setCycleCount(6);
+		timeline.setOnFinished(e -> {update();});
+		timeline.play();
+		return time * 6;
 	}
 	
 	public int diceWasRolled() {
-		// TODO Animation einfügen
-		update();
-		return 0;
+		int time = Config.getInteger("diceRollTime");
+		Timeline timeline = new Timeline();
+		imageView[2].setImage(image[0]);
+		imageView[3].setImage(image[0]);
+		timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time), e -> {
+			Random r = new Random();
+			imageView[0].setImage(image[r.nextInt(6) + 1]);
+			imageView[1].setImage(image[r.nextInt(6) + 1]);
+			}));
+		timeline.setCycleCount(6);
+		timeline.setOnFinished(e -> {update();});
+		timeline.play();
+		return time * 6;
 	}
 
 	public void diceWasUsed() {
