@@ -147,7 +147,11 @@ public class Game extends GameStatus {
 	 */
 	@Override
 	public void gameIsFinished(Integer playerId) {
-		addActionAtEnd(new DisplayMessage("Spieler " + playerId + " hat gewonnen."));
+		String playerColor = "Blue";
+		if(playerId == 1) {
+			playerColor = "Red";
+		}
+		addActionAtEnd(new DisplayMessage(playerColor + " player  Won."));
 		addActionAtEnd(new CloseGame());
 		currentState = new MenuState(this, false);
 	}

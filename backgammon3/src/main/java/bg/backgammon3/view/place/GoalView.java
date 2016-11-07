@@ -33,6 +33,8 @@ public class GoalView extends PlaceView{
 		for(int i = 0; Config.getString("goalImageStartPlayer" + i) != null; i++) {
 			startImages.add(StaticImageHelper.loadImage(Config.getString("goalImageStartPlayer" + i)));
 			endImages.add(StaticImageHelper.loadImage(Config.getString("goalImageEndPlayer" + i)));
+			hoverStartImages.add(StaticImageHelper.loadImage(Config.getString("goalImageHoverStartPlayer" + i)));
+			hoverEndImages.add(StaticImageHelper.loadImage(Config.getString("goalImageHoverEndPlayer" + i)));
 		}
 	}
 	
@@ -62,5 +64,9 @@ public class GoalView extends PlaceView{
 		} else {
 			setImage(normalImage);
 		}
+		tempImage = this.getImage();
+		tempPointState = place.getState();
+		tempPlayerId = place.getPlayerId();
+		consistencyCheck();
 	}
 }

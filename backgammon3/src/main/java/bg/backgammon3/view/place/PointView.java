@@ -32,6 +32,8 @@ public class PointView extends PlaceView {
 		for(int i = 0; Config.getString("pointImageStartPlayer" + i) != null; i++) {
 			startImages.add(StaticImageHelper.loadImage(Config.getString("pointImageStartPlayer" + i)));
 			endImages.add(StaticImageHelper.loadImage(Config.getString("pointImageEndPlayer" + i)));
+			hoverStartImages.add(StaticImageHelper.loadImage(Config.getString("pointImageHoverStartPlayer" + i)));
+			hoverEndImages.add(StaticImageHelper.loadImage(Config.getString("pointImageHoverEndPlayer" + i)));
 		}
 	}
 	
@@ -46,6 +48,10 @@ public class PointView extends PlaceView {
 		} else {
 			setImage(normalImage);
 		}
+		tempImage = this.getImage();
+		tempPointState = place.getState();
+		tempPlayerId = place.getPlayerId();
+		consistencyCheck();
 	}
 
 }

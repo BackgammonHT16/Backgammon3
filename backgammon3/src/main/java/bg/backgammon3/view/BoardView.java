@@ -13,7 +13,6 @@ import bg.backgammon3.model.*;
 import bg.backgammon3.model.GameObject;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.*;
-import bg.backgammon3.view.helper.ImageHelper;
 import bg.backgammon3.view.helper.StaticImageHelper;
 import bg.backgammon3.view.place.*;
 import javafx.scene.Node;

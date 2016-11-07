@@ -28,24 +28,43 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 	protected Image normalImage;
 	protected ArrayList<Image> startImages = new ArrayList<Image>();
 	protected ArrayList<Image> endImages = new ArrayList<Image>();
+	protected ArrayList<Image> hoverStartImages = new ArrayList<Image>();
+	protected ArrayList<Image> hoverEndImages = new ArrayList<Image>();
+	protected Image tempImage;
+	protected PointState tempPointState;
+	protected int tempPlayerId;
 
 	ArrayList<CheckerView> checkers = new ArrayList<CheckerView>();
 
 	public PlaceView(Place place) {
 		this.place = place;
+		tempPointState = place.getState();
+		tempPlayerId = place.getPlayerId();
 	}
 
 	public void initPlaceView() {
 		for (int i = 0; i < place.getNumberOfCheckers(); i++) {
 			checkers.add(new CheckerView(this));
 		}
+		tempImage = this.getImage();
+		this.setOnMouseEntered(e->{
+			if(tempPointState instanceof StartPoint) {
+				this.setImage(hoverStartImages.get(tempPlayerId));
+			} else if (tempPointState instanceof EndPoint) {
+				this.setImage(hoverEndImages.get(tempPlayerId));
+			} else if (tempPointState instanceof NormalPoint) {
+			}
+		});
+		this.setOnMouseExited(e->{
+			this.setImage(tempImage);
+		});
 	}
 
 	@Override
 	public GameObject getGameObject() {
 		return place;
 	}
-
+	
 	public ArrayList<CheckerView> getCheckers() {
 		return checkers;
 	}
@@ -95,6 +114,9 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 		} else {
 			setImage(normalImage);
 		}
+		tempImage = this.getImage();
+		tempPointState = place.getState();
+		tempPlayerId = place.getPlayerId();
 		consistencyCheck();
 	}
 

@@ -33,6 +33,8 @@ public class BarView extends PlaceView {
 		for(int i = 0; Config.getString("barImageStartPlayer" + i) != null; i++) {
 			startImages.add(StaticImageHelper.loadImage(Config.getString("barImageStartPlayer" + i)));
 			endImages.add(StaticImageHelper.loadImage(Config.getString("barImageEndPlayer" + i)));
+			hoverStartImages.add(StaticImageHelper.loadImage(Config.getString("barImageHoverStartPlayer" + i)));
+			hoverEndImages.add(StaticImageHelper.loadImage(Config.getString("barImageHoverEndPlayer" + i)));
 		}
 	}
 
@@ -44,5 +46,9 @@ public class BarView extends PlaceView {
 		} else {
 			setImage(normalImage);
 		}
+		tempImage = this.getImage();
+		tempPointState = place.getState();
+		tempPlayerId = place.getPlayerId();
+		consistencyCheck();
 	}
 }
