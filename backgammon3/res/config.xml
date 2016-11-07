@@ -400,8 +400,7 @@
 	<!-- Home Field startet bei dieser Position einschließlich -->
 	<player0HomeFieldStartsAt>19</player0HomeFieldStartsAt>
 	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
-	
-	
+
 	<!-- Würfel wird simuliert bei 1 -->
 	<simulateDice>0</simulateDice>
 </root>
