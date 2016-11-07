@@ -5,10 +5,18 @@
 			<!--PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} 
 				- %msg%n" / -->
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
-      		<RegexFilter regex=".*ROUTE.*ERROR.*" onMatch="ACCEPT" onMismatch="DENY"/>
+      		<RegexFilter regex=".*ROUTE.*INFO.*" onMatch="ACCEPT" onMismatch="DENY"/>
 		</Console>
+		<File name="logFile" fileName="log/bg.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
+      		<RegexFilter regex=".*LOGROUTE.*" onMatch="ACCEPT" onMismatch="DENY"/>
+		</File>
 	</Appenders>
 	<Loggers>
+		<Logger name="bg" level="info"
+			additivity="true">
+			<AppenderRef ref="logFile" />
+		</Logger>
 		<Logger name="bg.backgammon3.config.Config" level="off"
 			additivity="false">
 			<AppenderRef ref="Console" />

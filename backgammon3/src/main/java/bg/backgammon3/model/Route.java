@@ -3,6 +3,7 @@
  */
 package bg.backgammon3.model;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.apache.logging.log4j.LogManager;
@@ -62,15 +63,19 @@ public class Route {
 	 */
 	private boolean overReachingMoveAllowed(Dices dices) {
 		for (int i = 0; i < places.size(); i++) {
-			if (isLegalStartPlace(places.get(i), dices, false)) {
+			if (isLegalStartPlace(places.get(i), dices, false).size() > 0) {
 				return false;
 			}
 		}
-		// TODO hier wird evtl der Fall übersehen dass alle Checker bereits weg sind bis auf einen der 
-		// sich außerhalb des HomeFields befindet. Angenommen dieser würde so würfeln dass er in einem
-		// Doppelzug über das Goal hinauskommt dann würde dieser Zug verboten sein. Es ist zu prüfen
-		// ob dieser Zug legal ist. 
-		// Nichts desto trotz könnte man diesen Zug in zwei einzelnen Schritten machen. Es ergibt sich 
+		// TODO hier wird evtl der Fall übersehen dass alle Checker bereits weg
+		// sind bis auf einen der
+		// sich außerhalb des HomeFields befindet. Angenommen dieser würde so
+		// würfeln dass er in einem
+		// Doppelzug über das Goal hinauskommt dann würde dieser Zug verboten
+		// sein. Es ist zu prüfen
+		// ob dieser Zug legal ist.
+		// Nichts desto trotz könnte man diesen Zug in zwei einzelnen Schritten
+		// machen. Es ergibt sich
 		// also spielerisch kein Nachteil.
 		return allCheckersInHomeField();
 	}
@@ -92,8 +97,16 @@ public class Route {
 	 *            Die gewürfelte Augenzahl.
 	 * @return Wahr wenn es sich bei place um einen legalen Startplatz handelt.
 	 */
-	public boolean isLegalStartPlace(Place place, Dices dices) {
+	public ArrayList<Place> isLegalStartPlace(Place place, Dices dices) {
 		return isLegalStartPlace(place, dices, overReachingMoveAllowed(dices));
+	}
+	
+	/**
+	 * Gibt an ob ein Checker des Spielers auf der Bar liegt.
+	 * @return Wahr wenn ein Checker auf der Bar liegt.
+	 */
+	private boolean isBarUsed() {
+		return places.get(0).getNumberOfCheckers() > 0;
 	}
 
 	/**
@@ -116,30 +129,32 @@ public class Route {
 	 *            erreichbar wenn zu hoch gewürfelt wurde.
 	 * @return Wahr wenn es sich bei place um einen legalen Startplatz handelt.
 	 */
-	private boolean isLegalStartPlace(Place place, Dices dices, boolean overReachingIsAllowed) {
-		if (places.get(0).getNumberOfCheckers() > 0) {
+	private ArrayList<Place> isLegalStartPlace(Place place, Dices dices, boolean overReachingIsAllowed) {
+		ArrayList<Place> endPlaces = new ArrayList<Place>();
+		if (isBarUsed()) {
 			// Die Bar ist besetzt
 			if (place.getId() != places.get(0).getId()) {
-				return false;
+				return endPlaces;
 			}
 		}
 		if (place.getPlayerId() != playerId) {
 			// Es handelt sich um ein gegnerisches Feld
-			return false;
+			return endPlaces;
 		}
 		if (place.getNumberOfCheckers() == 0) {
 			// Das Feld ist leer
-			return false;
+			return endPlaces;
 		}
 		if (place.getId() == places.get(places.size() - 1).getId()) {
 			// Es handelt sich um unser Goal
-			return false;
+			return endPlaces;
 		}
 		// Prüfen ob dieser Platz einen gültigen Zielplatz hat.
-		if (hasLegalEndPlace(place, dices, false, overReachingIsAllowed)) {
-			return true;
+		endPlaces = hasLegalEndPlace(place, dices, false, overReachingIsAllowed);
+		if (endPlaces.size() > 0) {
+			return endPlaces;
 		}
-		return false;
+		return endPlaces;
 	}
 
 	/**
@@ -155,10 +170,11 @@ public class Route {
 	 *            eingetragen.
 	 * @return Wahr falls ein gültiger Zielplatz existiert.
 	 */
-	public boolean hasLegalEndPlace(Place place, Dices dices, boolean markRoute) {
+	public ArrayList<Place> hasLegalEndPlace(Place place, Dices dices, boolean markRoute) {
+		// TODO prüfen ob markRoute nicht weitergegeben werden soll
 		return hasLegalEndPlace(place, dices, true, overReachingMoveAllowed(dices));
 	}
-	
+
 	/**
 	 * Prüft ob der gegebene Platz einen legalen Zielplatz hat und falls
 	 * markRoute wahr ist wird dort dann die Route dorthin eingetragen.
@@ -175,7 +191,8 @@ public class Route {
 	 *            erreichbar wenn zu hoch gewürfelt wurde.
 	 * @return Wahr falls ein gültiger Zielplatz existiert.
 	 */
-	public boolean hasLegalEndPlace(Place place, Dices dices, boolean markRoute, boolean overReachingIsAllowed) {
+	public ArrayList<Place> hasLegalEndPlace(Place place, Dices dices, boolean markRoute,
+			boolean overReachingIsAllowed) {
 		int d0 = (dices.getValue(0) == null) ? 0 : dices.getValue(0).getValue();
 		int d1 = (dices.getValue(1) == null) ? 0 : dices.getValue(1).getValue();
 		int d2 = (dices.getValue(2) == null) ? 0 : dices.getValue(2).getValue();
@@ -183,43 +200,51 @@ public class Route {
 
 		int pId = getPlaceId(place);
 		boolean oRA = overReachingIsAllowed;
-		boolean result = false;
+		// boolean result = false;
+
+		ArrayList<Place> endPlaces = new ArrayList<Place>();
 
 		if (d0 != 0) {
 			// Erster Würfel
 			Place p0 = getPlace(d0 + pId, oRA);
 			if (isLegalEndPlace(p0)) {
-				result = true;
+				// result = true;
+				endPlaces.add(p0);
 				if (markRoute) {
 					getPlace(d0 + pId, oRA).setState(new EndPoint(playerId, dices.getValue(0), p0));
 				}
-
-				if (d1 != 0 && d0 + pId < places.size()) {
+				// Weitere Plätze dürfen nur besucht werden wenn nur ein Checker auf der Bar liegt
+				if (d1 != 0 && d0 + pId < places.size() && places.get(0).getNumberOfCheckers() <= 1) {
 					// Zweiter Würfel
 					Place p1 = getPlace(d0 + d1 + pId, oRA);
 					if (isLegalEndPlace(p1)) {
+						endPlaces.add(p1);
 						if (markRoute) {
-							getPlace(d0 + d1 + pId, oRA).setState(new EndPoint(playerId, dices.getValue(0), p0, dices.getValue(1), p1));
-						}
-					}
-
-					if (d2 != 0 && d0 + d1 + pId < places.size()) {
-						// Dritter Würfel
-						Place p2 = getPlace(d0 + d1 + d2 + pId, oRA);
-						if (isLegalEndPlace(p2)) {
-							if (markRoute) {
-								getPlace(d0 + d1 + d2 + pId, oRA).setState(
-										new EndPoint(playerId, dices.getValue(2), p0, dices.getValue(1), p1, dices.getValue(0), p2));
-							}
+							getPlace(d0 + d1 + pId, oRA)
+									.setState(new EndPoint(playerId, dices.getValue(0), p0, dices.getValue(1), p1));
 						}
 
-						if (d3 != 0 && d0 + d1 + d2 + pId < places.size()) {
-							// Vierter Würfel
-							Place p3 = getPlace(d0 + d1 + d2 + d3 + pId, oRA);
-							if (isLegalEndPlace(p3)) {
+						if (d2 != 0 && d0 + d1 + pId < places.size()) {
+							// Dritter Würfel
+							Place p2 = getPlace(d0 + d1 + d2 + pId, oRA);
+							if (isLegalEndPlace(p2)) {
+								endPlaces.add(p2);
 								if (markRoute) {
-									getPlace(d0 + d1 + d2 + d3 + pId, oRA).setState(new EndPoint(playerId, dices.getValue(3), p0,
-											dices.getValue(2), p1, dices.getValue(1), p2, dices.getValue(0), p3));
+									getPlace(d0 + d1 + d2 + pId, oRA).setState(new EndPoint(playerId, dices.getValue(2),
+											p0, dices.getValue(1), p1, dices.getValue(0), p2));
+								}
+
+								if (d3 != 0 && d0 + d1 + d2 + pId < places.size()) {
+									// Vierter Würfel
+									Place p3 = getPlace(d0 + d1 + d2 + d3 + pId, oRA);
+									if (isLegalEndPlace(p3)) {
+										endPlaces.add(p3);
+										if (markRoute) {
+											getPlace(d0 + d1 + d2 + d3 + pId, oRA).setState(
+													new EndPoint(playerId, dices.getValue(3), p0, dices.getValue(2), p1,
+															dices.getValue(1), p2, dices.getValue(0), p3));
+										}
+									}
 								}
 							}
 						}
@@ -227,32 +252,38 @@ public class Route {
 				}
 			}
 		}
-		if(d1 != 0 && d1 != d0){
+		if (d1 != 0 && d1 != d0) {
 			// Zweiter Würfel
 			Place p0 = getPlace(d1 + pId, oRA);
 			if (isLegalEndPlace(p0)) {
-				result = true;
+				// result = true;
+				endPlaces.add(p0);
 				if (markRoute) {
 					getPlace(d1 + pId, oRA).setState(new EndPoint(playerId, dices.getValue(1), p0));
 				}
 
-				if (d0 != 0 && d1 + pId < places.size()) {
+				// Weitere Plätze dürfen nur besucht werden wenn nur ein Checker auf der Bar liegt
+				if (d0 != 0 && d1 + pId < places.size() && places.get(0).getNumberOfCheckers() <= 1) {
 					// Zweiter Würfel
 					Place p1 = getPlace(d0 + d1 + pId, oRA);
 					if (isLegalEndPlace(p1)) {
+						endPlaces.add(p1);
 						if (markRoute) {
-							getPlace(d0 + d1 + pId, oRA).setState(new EndPoint(playerId, dices.getValue(1), p0, dices.getValue(0), p1));
+							getPlace(d0 + d1 + pId, oRA)
+									.setState(new EndPoint(playerId, dices.getValue(1), p0, dices.getValue(0), p1));
 						}
 					}
 				}
 			}
 		}
-		return result;
+		return endPlaces;
 	}
 
 	/**
-	 * Findet den Place an i-ter Stelle. Falls oRA (overReachIsAllowed) aktiviert ist 
-	 * dann erhält man Goal wenn die zahl größer places.size() ist.
+	 * Findet den Place an i-ter Stelle. Falls oRA (overReachIsAllowed)
+	 * aktiviert ist dann erhält man Goal wenn die zahl größer places.size()
+	 * ist.
+	 * 
 	 * @param i
 	 * @param oRA
 	 * @return
@@ -303,23 +334,25 @@ public class Route {
 	 * @return Wahr wenn es sich bei place um einen legalen Zielplatz handelt.
 	 */
 	public boolean isLegalEndPlace(Place place) {
-		if(place == null) {
+		if (place == null) {
 			return false;
 		}
-		if(place.getPlayerId() != playerId && place.getPlayerId() != -1) {
+		if (place.getPlayerId() != playerId && place.getPlayerId() != -1) {
 			// Platz ist vom Gegner belegt
-			if(place.getNumberOfCheckers() <= 1) {
-				// Der Platz ist durch weniger als einen Gegnerischen Checker blockiert.
+			if (place.getNumberOfCheckers() <= 1) {
+				// Der Platz ist durch weniger als einen Gegnerischen Checker
+				// blockiert.
 				return true;
 			}
-		} else if(place.getPlayerId() == -1) {
+		} else if (place.getPlayerId() == -1) {
 			// Der Platz ist unbelegt
 			return true;
-		} else if(place.getPlayerId() == playerId && place instanceof Point) {
+		} else if (place.getPlayerId() == playerId && place instanceof Point) {
 			// Der Platz gehört uns ist aber weder unser Goal noch unsere Bar
 			return true;
-		} else if(place.getPlayerId() == playerId && place instanceof Goal && allCheckersInHomeField()) {
-			// Wenn alle Checker im Heimfeld sind kann unser Tor freigeschalten werden.
+		} else if (place.getPlayerId() == playerId && place instanceof Goal && allCheckersInHomeField()) {
+			// Wenn alle Checker im Heimfeld sind kann unser Tor freigeschalten
+			// werden.
 			return true;
 		}
 		return false;
@@ -365,15 +398,16 @@ public class Route {
 	public Integer getBarId() {
 		return places.get(0).getId();
 	}
-	
+
 	/**
 	 * Gibt wahr zurück wenn alle Checker des Spielers im letzten Feld sind.
+	 * 
 	 * @return Wahr wenn der Spieler gewonnen hat.
 	 */
 	public boolean hasWon() {
 		boolean won = true;
-		for(int i = 0; i < places.size() - 1; i++) {
-			if(places.get(i).getPlayerId() == playerId && places.get(i).getNumberOfCheckers() > 0) {
+		for (int i = 0; i < places.size() - 1; i++) {
+			if (places.get(i).getPlayerId() == playerId && places.get(i).getNumberOfCheckers() > 0) {
 				won = false;
 			}
 		}

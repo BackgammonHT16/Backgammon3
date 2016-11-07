@@ -77,7 +77,7 @@ public class Board extends GameObject implements ActionInterface {
 		// Start Zustand Einstellen
 		setStartState();
 
-		logger.info("[ROUTE][ERROR] Spiel " + gameNumber++ + " mit Dice Seed  " + dices.getSeed());
+		logger.info("[ROUTE][INFO] Spiel " + gameNumber++ + " mit Dice Seed  " + dices.getSeed());
 	}
 	
 	public void setStartPlace(Place place) {
@@ -93,8 +93,9 @@ public class Board extends GameObject implements ActionInterface {
 	public boolean markStartPlaces() {
 		boolean startPlaceExists = false;
 		for(Map.Entry<Integer, Place> p : places.entrySet()) {
-			if(routes.get(currentPlayer).isLegalStartPlace(p.getValue(), dices)) {
-				p.getValue().setState(new StartPoint(currentPlayer));
+			ArrayList<Place> endPlaces = routes.get(currentPlayer).isLegalStartPlace(p.getValue(), dices);
+			if(endPlaces.size() > 0) {
+				p.getValue().setState(new StartPoint(currentPlayer, endPlaces));
 				startPlaceExists = true;
 			} else {
 				p.getValue().setState(new NormalPoint());
@@ -105,7 +106,7 @@ public class Board extends GameObject implements ActionInterface {
 	
 	public void markEndPlaces() {
 		resetPointState();
-		startPlace.setState(new StartPoint(currentPlayer));
+		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>()));
 		routes.get(currentPlayer).hasLegalEndPlace(startPlace, dices, true);
 	}
 	
@@ -220,7 +221,7 @@ public class Board extends GameObject implements ActionInterface {
 	public void moveChecker(Place endPlace) {
 		PointState endPoint = endPlace.getState();
 		resetPointState();
-		startPlace.setState(new StartPoint(currentPlayer));
+		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>()));
 		endPlace.setState(endPoint);
 		addActionAtEnd(new ShowRoute());
 		

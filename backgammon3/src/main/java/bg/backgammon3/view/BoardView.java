@@ -192,8 +192,8 @@ public class BoardView extends ImageView implements GameObjectView {
 	 * @param endId End Platz.
 	 */
 	public int moveChecker(Integer startId, Integer endId) {
-		logger.info("[ROUTE] Würfel: " + diceView);
-		logger.info("[ROUTE] MoveChecker von Spieler " + places.get(endId).getPlace().getPlayerId() + " von Place " + startId + " nach " + endId + ".");
+		logger.info("[ROUTE][LOGROUTE] Würfel: " + diceView);
+		logger.info("[ROUTE][LOGROUTE] MoveChecker von Spieler " + places.get(endId).getPlace().getPlayerId() + " von Place " + startId + " nach " + endId + ".");
 		return places.get(startId).moveCheckerTo(places.get(endId));
 	}
 

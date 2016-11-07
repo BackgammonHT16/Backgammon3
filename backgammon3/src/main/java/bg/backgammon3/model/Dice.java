@@ -14,6 +14,7 @@ import bg.backgammon3.config.Config;
 public class Dice {
 	private int value = 0;
 	private Random r = new Random(1);
+	private static int simulationDiceNumber = 0;
 	
 	public Dice() {
 		r = new Random();
@@ -36,7 +37,14 @@ public class Dice {
 	private boolean active = false;
 	
 	public int role() {
-		value = r.nextInt(6) + 1;
+		if(Config.getInteger("simulateDice") == 0) {
+			value = r.nextInt(6) + 1;
+		} else {
+			if(Config.getInteger("d" + simulationDiceNumber) == null) {
+				simulationDiceNumber = 0;
+			}
+			value = Config.getInteger("d" + simulationDiceNumber++);
+		}
 		used = false;
 		active = true;
 		return value;

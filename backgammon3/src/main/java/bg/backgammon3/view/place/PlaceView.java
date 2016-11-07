@@ -115,7 +115,7 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 					+ place.getPlayerId());
 		}		
 		if (i > 0 && checkers.size() > 1) {
-			logger.error("[ROUTE][ERROR] Auf PlaceView " + place.getId() + ((i > 1) ? " sind " : " ist ") + i + " Checker von Spieler "
+			logger.error("[ROUTE][INFO] Auf PlaceView " + place.getId() + ((i > 1) ? " sind " : " ist ") + i + " Checker von Spieler "
 					+ (1 - place.getPlayerId()) + " und " + (checkers.size() - i) + " Checker von Spieler "
 					+ place.getPlayerId());
 		}
