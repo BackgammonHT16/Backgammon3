@@ -109,5 +109,9 @@ public class DiceView extends Group implements GameObjectView {
 	public void diceWasUsed() {
 		update();
 	}
-	
+
+	@Override
+	public String toString() {
+		return dices.toString();
+	}
 }

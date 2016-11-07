@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
-	<player0Type>0</player0Type>
+	<player0Type>1</player0Type>
 	<player1Type>1</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
 	
 	
-	<doNotUpdate>0</doNotUpdate>
+	<doNotUpdate>1</doNotUpdate>
 	
 
 	<!-- Hintergrund Sound -->
@@ -79,11 +79,11 @@
 	// Checker
 	<checker0Image>res/leo.svg</checker0Image>
 	<checker1Image>res/t80.svg</checker1Image>
-	<checkerMoveSpeed>150</checkerMoveSpeed>
+	<checkerMoveSpeed>10000</checkerMoveSpeed>
 	
-	<diceRollTime>150</diceRollTime>
+	<diceRollTime>1</diceRollTime>
 	
-	<animationTime>800</animationTime>
+	<animationTime>1</animationTime>
 
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
@@ -100,9 +100,9 @@
 	<diceImageUsed>res/diceUsed</diceImageUsed>
 	
 	<seed>1</seed>
-	<useSeed>0</useSeed>
+	<useSeed>1</useSeed>
 	
-	<loopGame>0</loopGame>
+	<loopGame>1</loopGame>
 	
 	
 	// Point Position

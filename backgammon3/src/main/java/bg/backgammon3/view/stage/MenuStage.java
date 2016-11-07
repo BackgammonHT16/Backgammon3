@@ -5,6 +5,7 @@ package bg.backgammon3.view.stage;
 
 import java.util.ArrayList;
 
+import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
@@ -216,6 +217,7 @@ public class MenuStage extends AppStage {
 		stage.setTitle("Menu");
 		stage.setScene(scene);
 		stage.show();
+		
 	}
 
 	@Override

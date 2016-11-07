@@ -5,12 +5,29 @@ package bg.backgammon3.model;
 
 import java.util.Random;
 
+import bg.backgammon3.config.Config;
+
 /**
  * @author philipp
  *
  */
 public class Dice {
 	private int value = 0;
+	private Random r = new Random(1);
+	
+	public Dice() {
+		r = new Random();
+	}
+	
+	// zum Debuggen
+	public Dice(int seed) {
+		if(Config.getInteger("useSeed") == 1) {
+			r = new Random(seed);
+		}
+		else {
+			r = new Random();
+		}
+	}
 	
 	// Würfel wurde benutzt
 	private boolean used = false;
@@ -19,7 +36,6 @@ public class Dice {
 	private boolean active = false;
 	
 	public int role() {
-		Random r = new Random();
 		value = r.nextInt(6) + 1;
 		used = false;
 		active = true;

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.backgammon3.config.Config;
+
 /**
  * @author philipp
  *
@@ -16,9 +18,14 @@ public class Dices extends GameObject{
 	private Logger logger = LogManager.getLogger(Dices.class);
 	ArrayList<Dice> dices = new ArrayList<Dice>();
 	
+	private static int seed;
+	
 	public Dices() {
+		if(seed == 0) {
+			seed = Config.getInteger("seed");
+		}
 		for(int i = 0; i < 4; i++) {
-			dices.add(new Dice());
+			dices.add(new Dice(i + seed++));
 		}
 	}
 	
@@ -37,7 +44,7 @@ public class Dices extends GameObject{
 	
 	private void resetDice() {
 		for(int i = 0; i < 4; i++) {
-			dices.set(i, new Dice());
+			dices.set(i, new Dice(i + seed++));
 		}
 	}
 	
@@ -91,5 +98,9 @@ public class Dices extends GameObject{
 			ret += d + ", ";
 		}
 		return ret.substring(0, ret.length() - 2);
+	}
+	
+	public int getSeed() {
+		return seed;
 	}
 }

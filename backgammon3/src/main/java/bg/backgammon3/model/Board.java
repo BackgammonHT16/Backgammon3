@@ -50,6 +50,8 @@ public class Board extends GameObject implements ActionInterface {
 	
 	// Erlaubt das hinzufügen von Aktionen zur Liste der Aktionen
 	GameStatus gameStatus;
+	
+	private static int gameNumber = 0;
 
 	public Board(GameStatus gameStatus) {
 		this.gameStatus = gameStatus;
@@ -75,6 +77,7 @@ public class Board extends GameObject implements ActionInterface {
 		// Start Zustand Einstellen
 		setStartState();
 
+		logger.info("[ROUTE][ERROR] Spiel " + gameNumber++ + " mit Dice Seed  " + dices.getSeed());
 	}
 	
 	public void setStartPlace(Place place) {
