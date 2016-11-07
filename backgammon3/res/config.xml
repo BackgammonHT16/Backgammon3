@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
-	<player0Type>0</player0Type>
-	<player1Type>1</player1Type>
+	<player0Type>1</player0Type>
+	<player1Type>0</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
-	<firstPlayer>0</firstPlayer>
+	<firstPlayer>1</firstPlayer>
 	
 	
 	<doNotUpdate>0</doNotUpdate>
@@ -24,7 +24,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>40</maximumTime>
+	<maximumTime>20</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
@@ -49,23 +49,40 @@
 	<barImageStartPlayer1>res/stabilisierenrot.png</barImageStartPlayer1>
 	<goalImageStartPlayer0>res/verfügungsraumblau.png</goalImageStartPlayer0>
 	<goalImageStartPlayer1>res/raumFeind.png</goalImageStartPlayer1>
+
+	<barImageHoverStartPlayer0>res/stabilisierenblauhover.png</barImageHoverStartPlayer0>
+	<barImageHoverStartPlayer1>res/stabilisierenrothover.png</barImageHoverStartPlayer1>
+	<goalImageHoverStartPlayer0>res/verfügungsraumblauhover.png</goalImageHoverStartPlayer0>
+	<goalImageHoverStartPlayer1>res/raumFeindhover.png</goalImageHoverStartPlayer1>
 	
 	<barImageEndPlayer0>res/stabilisierenblau.png</barImageEndPlayer0>
 	<barImageEndPlayer1>res/stabilisierenrot.png</barImageEndPlayer1>
 	<goalImageEndPlayer0>res/verfügungsraumblau.png</goalImageEndPlayer0>
 	<goalImageEndPlayer1>res/raumFeind.png</goalImageEndPlayer1>
+
+	<barImageHoverEndPlayer0>res/stabilisierenblauhover.png</barImageHoverEndPlayer0>
+	<barImageHoverEndPlayer1>res/stabilisierenrothover.png</barImageHoverEndPlayer1>
+	<goalImageHoverEndPlayer0>res/verfügungsraumblauhover.png</goalImageHoverEndPlayer0>
+	<goalImageHoverEndPlayer1>res/raumFeindhover.png</goalImageHoverEndPlayer1>
 	
 	
 	<pointImageStartPlayer0>res/stellungangriffauswahlblau.png</pointImageStartPlayer0>
 	<pointImageStartPlayer1>res/stellungangriffauswahlrot.png</pointImageStartPlayer1>
+
+	<pointImageHoverStartPlayer0>res/stellungangriffauswahlblauhover.png</pointImageHoverStartPlayer0>
+	<pointImageHoverStartPlayer1>res/stellungangriffauswahlrothover.png</pointImageHoverStartPlayer1>
 	
 	<pointImageEndPlayer0>res/stellungangriffblau.png</pointImageEndPlayer0>
 	<pointImageEndPlayer1>res/stellungangriffrot.png</pointImageEndPlayer1>
+
+	<pointImageHoverEndPlayer0>res/stellungangriffblauhover.png</pointImageHoverEndPlayer0>
+	<pointImageHoverEndPlayer1>res/stellungangriffrothover.png</pointImageHoverEndPlayer1>
 	
 	
 	// Point
 	<pointImage>res/stellung.png</pointImage>
 	<pointSelectedImage>res/stellung.svg</pointSelectedImage>
+	
 	// Bar
 	<bar0Image>res/einsatzlazarettblau.png</bar0Image>
 	<bar0SelectedImage>res/stabilisierenblau.png</bar0SelectedImage>
