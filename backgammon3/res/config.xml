@@ -15,7 +15,7 @@
 	<playSound>0</playSound>
 	
 	<!-- Text anzeige -->
-	<textX>415</textX>
+	<textX>405</textX>
 	<textY>100</textY>
 	<textSize>20</textSize>
 	
@@ -24,7 +24,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>20</maximumTime>
+	<maximumTime>40</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
@@ -90,7 +90,7 @@
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
 	<menuButtonWidth>250</menuButtonWidth>
-	<menuButtonPositionX>415</menuButtonPositionX>
+	<menuButtonPositionX>405</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
 	<menuText>Menu</menuText>
 	// Timer
