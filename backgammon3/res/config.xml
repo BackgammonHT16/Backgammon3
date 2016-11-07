@@ -45,39 +45,40 @@
 	<bgImage>res/map.png</bgImage>
 	
 	<!-- Bilder der Einzelnen Punkte -->
+	//Start
 	<barImageStartPlayer0>res/stabilisierenblau.png</barImageStartPlayer0>
 	<barImageStartPlayer1>res/stabilisierenrot.png</barImageStartPlayer1>
 	<goalImageStartPlayer0>res/verfügungsraumblau.png</goalImageStartPlayer0>
 	<goalImageStartPlayer1>res/raumFeind.png</goalImageStartPlayer1>
-
-	<barImageHoverStartPlayer0>res/stabilisierenblauhover.png</barImageHoverStartPlayer0>
-	<barImageHoverStartPlayer1>res/stabilisierenrothover.png</barImageHoverStartPlayer1>
-	<goalImageHoverStartPlayer0>res/verfügungsraumblauhover.png</goalImageHoverStartPlayer0>
-	<goalImageHoverStartPlayer1>res/raumFeindhover.png</goalImageHoverStartPlayer1>
-	
+	//End
 	<barImageEndPlayer0>res/stabilisierenblau.png</barImageEndPlayer0>
 	<barImageEndPlayer1>res/stabilisierenrot.png</barImageEndPlayer1>
 	<goalImageEndPlayer0>res/verfügungsraumblau.png</goalImageEndPlayer0>
 	<goalImageEndPlayer1>res/raumFeind.png</goalImageEndPlayer1>
-
+	//StartHover
+	<barImageHoverStartPlayer0>res/stabilisierenblauhover.png</barImageHoverStartPlayer0>
+	<barImageHoverStartPlayer1>res/stabilisierenrothover.png</barImageHoverStartPlayer1>
+	<goalImageHoverStartPlayer0>res/verfügungsraumblauhover.png</goalImageHoverStartPlayer0>
+	<goalImageHoverStartPlayer1>res/raumFeindhover.png</goalImageHoverStartPlayer1>
+	//EndHover
 	<barImageHoverEndPlayer0>res/stabilisierenblauhover.png</barImageHoverEndPlayer0>
 	<barImageHoverEndPlayer1>res/stabilisierenrothover.png</barImageHoverEndPlayer1>
 	<goalImageHoverEndPlayer0>res/verfügungsraumblauhover.png</goalImageHoverEndPlayer0>
 	<goalImageHoverEndPlayer1>res/raumFeindhover.png</goalImageHoverEndPlayer1>
-	
-	
+	//PointImageStart
 	<pointImageStartPlayer0>res/stellungangriffauswahlblau.png</pointImageStartPlayer0>
 	<pointImageStartPlayer1>res/stellungangriffauswahlrot.png</pointImageStartPlayer1>
-
-	<pointImageHoverStartPlayer0>res/stellungangriffauswahlblauhover.png</pointImageHoverStartPlayer0>
-	<pointImageHoverStartPlayer1>res/stellungangriffauswahlrothover.png</pointImageHoverStartPlayer1>
-	
+	//PointImageEnd
 	<pointImageEndPlayer0>res/stellungangriffblau.png</pointImageEndPlayer0>
 	<pointImageEndPlayer1>res/stellungangriffrot.png</pointImageEndPlayer1>
-
+	//PointImageHoverStart
+	<pointImageHoverStartPlayer0>res/stellungangriffauswahlblauhover.png</pointImageHoverStartPlayer0>
+	<pointImageHoverStartPlayer1>res/stellungangriffauswahlrothover.png</pointImageHoverStartPlayer1>
+	//PointImageHoverEnd
 	<pointImageHoverEndPlayer0>res/stellungangriffblauhover.png</pointImageHoverEndPlayer0>
 	<pointImageHoverEndPlayer1>res/stellungangriffrothover.png</pointImageHoverEndPlayer1>
 	
+
 	
 	// Point
 	<pointImage>res/stellung.png</pointImage>
