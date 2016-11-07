@@ -58,15 +58,23 @@ public class GoalView extends PlaceView{
 
 	public void update(boolean showHighlights) {
 		if(place.getState() instanceof StartPoint && showHighlights) {
-			setImage(startImages.get(((StartPoint)place.getState()).getPlayerId()));
+			if(place.getState().getSelected()) {
+				setImage(hoverStartImages.get(((StartPoint)place.getState()).getPlayerId()));
+			} else {
+				setImage(startImages.get(((StartPoint)place.getState()).getPlayerId()));
+			}
 		} else if(place.getState() instanceof EndPoint && showHighlights) {
-			setImage(endImages.get(((EndPoint)place.getState()).getPlayerId()));
+			if(place.getState().getSelected()) {
+				setImage(hoverEndImages.get(((EndPoint)place.getState()).getPlayerId()));
+			} else {
+				setImage(endImages.get(((EndPoint)place.getState()).getPlayerId()));
+			}
 		} else {
 			setImage(normalImage);
 		}
 		tempImage = this.getImage();
 		tempPointState = place.getState();
-		tempPlayerId = place.getPlayerId();
+		tempPlayerId = place.getState().getPlayerId();
 		consistencyCheck();
 	}
 }

@@ -8,5 +8,6 @@ package bg.backgammon3.model.pointstate;
  *
  */
 public abstract class PointState {
-
+	public abstract boolean getSelected();
+	public abstract Integer getPlayerId();
 }

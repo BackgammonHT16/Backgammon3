@@ -47,15 +47,23 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 			checkers.add(new CheckerView(this));
 		}
 		tempImage = this.getImage();
-		this.setOnMouseEntered(e->{
-			if(tempPointState instanceof StartPoint) {
+		this.setOnMouseEntered(e -> {
+			if ((tempPlayerId == 0 && Config.getInteger("player0Type") == 1)
+					|| (tempPlayerId == 1 && Config.getInteger("player1Type") == 1) || tempPointState.getSelected()) {
+				return;
+			}
+			if (tempPointState instanceof StartPoint) {
 				this.setImage(hoverStartImages.get(tempPlayerId));
 			} else if (tempPointState instanceof EndPoint) {
 				this.setImage(hoverEndImages.get(tempPlayerId));
 			} else if (tempPointState instanceof NormalPoint) {
 			}
 		});
-		this.setOnMouseExited(e->{
+		this.setOnMouseExited(e -> {
+			if ((tempPlayerId == 0 && Config.getInteger("player0Type") == 1)
+					|| (tempPlayerId == 1 && Config.getInteger("player1Type") == 1) || tempPointState.getSelected()) {
+				return;
+			}
 			this.setImage(tempImage);
 		});
 	}
@@ -64,7 +72,7 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 	public GameObject getGameObject() {
 		return place;
 	}
-	
+
 	public ArrayList<CheckerView> getCheckers() {
 		return checkers;
 	}
@@ -106,17 +114,25 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 
 	public void update(boolean showHighlights) {
 		if (place.getState() instanceof StartPoint && showHighlights) {
-			setImage(startImages.get(((StartPoint) place.getState()).getPlayerId()));
+			if(place.getState().getSelected()) {
+				setImage(hoverStartImages.get(((StartPoint) place.getState()).getPlayerId()));
+			} else {
+				setImage(startImages.get(((StartPoint) place.getState()).getPlayerId()));
+			}
 			this.toFront();
 		} else if (place.getState() instanceof EndPoint && showHighlights) {
-			setImage(endImages.get(((EndPoint) place.getState()).getPlayerId()));
+			if(place.getState().getSelected()) {
+				setImage(endImages.get(((EndPoint) place.getState()).getPlayerId()));
+			} else {
+				setImage(hoverEndImages.get(((EndPoint) place.getState()).getPlayerId()));
+			}
 			this.toFront();
 		} else {
 			setImage(normalImage);
 		}
 		tempImage = this.getImage();
 		tempPointState = place.getState();
-		tempPlayerId = place.getPlayerId();
+		tempPlayerId = place.getState().getPlayerId();
 		consistencyCheck();
 	}
 
@@ -132,14 +148,14 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 			}
 		}
 		if (i > 0) {
-			logger.error("[ROUTE] Auf PlaceView " + place.getId() + ((i > 1) ? " sind " : " ist ") + i + " Checker von Spieler "
-					+ (1 - place.getPlayerId()) + " und " + (checkers.size() - i) + " Checker von Spieler "
-					+ place.getPlayerId());
-		}		
+			logger.error("[ROUTE] Auf PlaceView " + place.getId() + ((i > 1) ? " sind " : " ist ") + i
+					+ " Checker von Spieler " + (1 - place.getPlayerId()) + " und " + (checkers.size() - i)
+					+ " Checker von Spieler " + place.getPlayerId());
+		}
 		if (i > 0 && checkers.size() > 1) {
-			logger.error("[ROUTE][INFO] Auf PlaceView " + place.getId() + ((i > 1) ? " sind " : " ist ") + i + " Checker von Spieler "
-					+ (1 - place.getPlayerId()) + " und " + (checkers.size() - i) + " Checker von Spieler "
-					+ place.getPlayerId());
+			logger.error("[ROUTE][INFO] Auf PlaceView " + place.getId() + ((i > 1) ? " sind " : " ist ") + i
+					+ " Checker von Spieler " + (1 - place.getPlayerId()) + " und " + (checkers.size() - i)
+					+ " Checker von Spieler " + place.getPlayerId());
 		}
 	}
 

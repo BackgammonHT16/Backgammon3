@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
-	<player0Type>1</player0Type>
-	<player1Type>0</player1Type>
+	<player0Type>0</player0Type>
+	<player1Type>1</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
-	<firstPlayer>1</firstPlayer>
+	<firstPlayer>0</firstPlayer>
 	
 	
 	<doNotUpdate>0</doNotUpdate>

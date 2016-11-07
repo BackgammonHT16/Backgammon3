@@ -106,7 +106,7 @@ public class Board extends GameObject implements ActionInterface {
 	
 	public void markEndPlaces() {
 		resetPointState();
-		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>()));
+		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>(), true));
 		routes.get(currentPlayer).hasLegalEndPlace(startPlace, dices, true);
 	}
 	
@@ -221,7 +221,10 @@ public class Board extends GameObject implements ActionInterface {
 	public void moveChecker(Place endPlace) {
 		PointState endPoint = endPlace.getState();
 		resetPointState();
-		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>()));
+		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>(), true));
+		if(endPoint instanceof EndPoint) {
+			((EndPoint) endPoint).setSelected(true);
+		}
 		endPlace.setState(endPoint);
 		addActionAtEnd(new ShowRoute());
 		
