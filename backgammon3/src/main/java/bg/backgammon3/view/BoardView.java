@@ -13,6 +13,8 @@ import bg.backgammon3.model.*;
 import bg.backgammon3.model.GameObject;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.*;
+import bg.backgammon3.view.helper.ImageHelper;
+import bg.backgammon3.view.helper.StaticImageHelper;
 import bg.backgammon3.view.place.*;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -35,6 +37,9 @@ public class BoardView extends ImageView implements GameObjectView {
 	private Text text;
 	
 	private Text timer;
+	
+	private ImageView timerbg = new ImageView();
+	private ImageView messagebg = new ImageView();
 
 	public ArrayList<Node> getControls() {
 		return controls;
@@ -66,7 +71,7 @@ public class BoardView extends ImageView implements GameObjectView {
 		controls.add(diceView);
 		
 		// Menu Button
-		MenuButtonView menuButtonView = new MenuButtonView(new MenuButton());
+		MenuButtonView menuButtonView = new MenuButtonView(new MenuButton(),root);
 		root.getChildren().add(menuButtonView);
 		controls.add(menuButtonView);
 		
@@ -80,24 +85,40 @@ public class BoardView extends ImageView implements GameObjectView {
 	}
 	
 	private void initText(Pane root) {
+		StaticImageHelper.loadImageView(
+				Config.getString("messageImage"),
+				Config.getInteger("messageWidth"),
+				false,
+				Config.getInteger("textX"),
+				Config.getInteger("textY"), messagebg);
 		text = new Text();
 		text.setTranslateX(Config.getInteger("textX"));
 		text.setTranslateY(Config.getInteger("textY"));
-		text.setFont(new Font(Config.getInteger("textSize")));	
+		text.setFont(Font.font(Config.getString("Font"),Config.getInteger("textSize")));	
 		root.getChildren().add(text);
+		root.getChildren().add(messagebg);
 	}
 
 	private void initTimer(Pane root) {
+		StaticImageHelper.loadImageView(
+				Config.getString("timerImage"),
+				Config.getInteger("timerWidth"),
+				false,
+				Config.getInteger("timerX"),
+				Config.getInteger("timerY"), timerbg);
+				
 		timer = new Text();
 		timer.setTranslateX(Config.getInteger("timerX"));
 		timer.setTranslateY(Config.getInteger("timerY"));
-		timer.setFont(new Font(Config.getInteger("timerSize")));
+		timer.setFont(Font.font (Config.getString("Font"),Config.getInteger("timerSize")));
 		if(Config.getInteger("maximumTime") != -1) {
 			timer.textProperty().bind(board.getTimer().getTime().asString());
 		} else {
 			timer.setVisible(false);
+			timerbg.setVisible(false);
 		}
 		root.getChildren().add(timer);
+		root.getChildren().add(timerbg);
 	}
 	
 	public void initPlaces(Pane root) {

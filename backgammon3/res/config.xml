@@ -15,22 +15,22 @@
 	<playSound>0</playSound>
 	
 	<!-- Text anzeige -->
-	<textX>-20</textX>
-	<textY>95</textY>
+	<textX>415</textX>
+	<textY>100</textY>
 	<textSize>20</textSize>
 	
 	<!-- Timer anzeige -->
-	<timerX>150</timerX>
-	<timerY>95</timerY>
+	<timerX>100</timerX>
+	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>-1</maximumTime>
+	<maximumTime>20</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
 	<height>600</height>
 	// Mindestgröße des Fensters
-	<minWidth>500</minWidth>
+	<minWidth>200</minWidth>
 	<minHeight>300</minHeight>
 
 	// Place Größe
@@ -84,22 +84,24 @@
 	<diceRollTime>150</diceRollTime>
 	
 	<animationTime>800</animationTime>
-
+	
+	//Font
+	<Font>Courier New</Font>
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
-	<menuButtonWidth>120</menuButtonWidth>
-	<menuButtonPositionX>435</menuButtonPositionX>
+	<menuButtonWidth>250</menuButtonWidth>
+	<menuButtonPositionX>415</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
+	<menuText>Menu</menuText>
 	// Timer
-	<timerImage>res/menu.png</timerImage>
-	<timerWidth>120</timerWidth>
-	<timerPositionX>150</timerPositionX>
-	<timerPositionY>95</timerPositionY>
+	<timerImage>res/timerImage.png</timerImage>
+	<timerWidth>250</timerWidth>
+	
+	
 	// Message
-	<messageImage>res/menu.png</messageImage>
-	<messageWidth>120</messageWidth>
-	<messagePositionX>-20</messagePositionX>
-	<messagePositionY>95</messagePositionY>
+	<messageImage>res/messageImage.png</messageImage>
+	<messageWidth>250</messageWidth>
+	
 	// Dice
 	<dicePositionX>-20</dicePositionX>
 	<dicePositionY>65</dicePositionY>
