@@ -90,8 +90,16 @@
 	<menuButtonWidth>120</menuButtonWidth>
 	<menuButtonPositionX>435</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
-
-
+	// Timer
+	<timerImage>res/menu.png</timerImage>
+	<timerWidth>120</timerWidth>
+	<timerPositionX>150</timerPositionX>
+	<timerPositionY>95</timerPositionY>
+	// Message
+	<messageImage>res/menu.png</messageImage>
+	<messageWidth>120</messageWidth>
+	<messagePositionX>-20</messagePositionX>
+	<messagePositionY>95</messagePositionY>
 	// Dice
 	<dicePositionX>-20</dicePositionX>
 	<dicePositionY>65</dicePositionY>
