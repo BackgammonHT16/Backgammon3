@@ -263,19 +263,19 @@
 
 	<!-- Für jeden Point muss ein Feld erstellt werden -->
 	<place0CheckersNumber>2</place0CheckersNumber>
-	<place0CheckersPlayer>0</place0CheckersPlayer>
+	<place0CheckersPlayer>1</place0CheckersPlayer>
 	<place0Type>0</place0Type>
 
-	<place1CheckersNumber>0</place1CheckersNumber>
-	<place1CheckersPlayer>-1</place1CheckersPlayer>
+	<place1CheckersNumber>2</place1CheckersNumber>
+	<place1CheckersPlayer>1</place1CheckersPlayer>
 	<place1Type>0</place1Type>
 
-	<place2CheckersNumber>0</place2CheckersNumber>
-	<place2CheckersPlayer>-1</place2CheckersPlayer>
+	<place2CheckersNumber>3</place2CheckersNumber>
+	<place2CheckersPlayer>1</place2CheckersPlayer>
 	<place2Type>0</place2Type>
 
-	<place3CheckersNumber>0</place3CheckersNumber>
-	<place3CheckersPlayer>-1</place3CheckersPlayer>
+	<place3CheckersNumber>2</place3CheckersNumber>
+	<place3CheckersPlayer>1</place3CheckersPlayer>
 	<place3Type>0</place3Type>
 
 	<place4CheckersNumber>0</place4CheckersNumber>
@@ -290,8 +290,8 @@
 	<place6CheckersPlayer>-1</place6CheckersPlayer>
 	<place6Type>0</place6Type>
 
-	<place7CheckersNumber>3</place7CheckersNumber>
-	<place7CheckersPlayer>1</place7CheckersPlayer>
+	<place7CheckersNumber>0</place7CheckersNumber>
+	<place7CheckersPlayer>-1</place7CheckersPlayer>
 	<place7Type>0</place7Type>
 
 	<place8CheckersNumber>0</place8CheckersNumber>
@@ -306,12 +306,12 @@
 	<place10CheckersPlayer>-1</place10CheckersPlayer>
 	<place10Type>0</place10Type>
 
-	<place11CheckersNumber>5</place11CheckersNumber>
-	<place11CheckersPlayer>0</place11CheckersPlayer>
+	<place11CheckersNumber>0</place11CheckersNumber>
+	<place11CheckersPlayer>-1</place11CheckersPlayer>
 	<place11Type>0</place11Type>
 
-	<place12CheckersNumber>5</place12CheckersNumber>
-	<place12CheckersPlayer>1</place12CheckersPlayer>
+	<place12CheckersNumber>0</place12CheckersNumber>
+	<place12CheckersPlayer>-1</place12CheckersPlayer>
 	<place12Type>0</place12Type>
 
 	<place13CheckersNumber>0</place13CheckersNumber>
@@ -326,36 +326,36 @@
 	<place15CheckersPlayer>-1</place15CheckersPlayer>
 	<place15Type>0</place15Type>
 
-	<place16CheckersNumber>3</place16CheckersNumber>
-	<place16CheckersPlayer>0</place16CheckersPlayer>
+	<place16CheckersNumber>0</place16CheckersNumber>
+	<place16CheckersPlayer>-1</place16CheckersPlayer>
 	<place16Type>0</place16Type>
 
 	<place17CheckersNumber>0</place17CheckersNumber>
 	<place17CheckersPlayer>-1</place17CheckersPlayer>
 	<place17Type>0</place17Type>
 
-	<place18CheckersNumber>5</place18CheckersNumber>
-	<place18CheckersPlayer>0</place18CheckersPlayer>
+	<place18CheckersNumber>0</place18CheckersNumber>
+	<place18CheckersPlayer>-1</place18CheckersPlayer>
 	<place18Type>0</place18Type>
 
 	<place19CheckersNumber>0</place19CheckersNumber>
 	<place19CheckersPlayer>-1</place19CheckersPlayer>
 	<place19Type>0</place19Type>
 
-	<place20CheckersNumber>0</place20CheckersNumber>
-	<place20CheckersPlayer>-1</place20CheckersPlayer>
+	<place20CheckersNumber>3</place20CheckersNumber>
+	<place20CheckersPlayer>0</place20CheckersPlayer>
 	<place20Type>0</place20Type>
 
-	<place21CheckersNumber>0</place21CheckersNumber>
-	<place21CheckersPlayer>-1</place21CheckersPlayer>
+	<place21CheckersNumber>2</place21CheckersNumber>
+	<place21CheckersPlayer>0</place21CheckersPlayer>
 	<place21Type>0</place21Type>
 
-	<place22CheckersNumber>0</place22CheckersNumber>
-	<place22CheckersPlayer>-1</place22CheckersPlayer>
+	<place22CheckersNumber>3</place22CheckersNumber>
+	<place22CheckersPlayer>0</place22CheckersPlayer>
 	<place22Type>0</place22Type>
 
 	<place23CheckersNumber>2</place23CheckersNumber>
-	<place23CheckersPlayer>1</place23CheckersPlayer>
+	<place23CheckersPlayer>0</place23CheckersPlayer>
 	<place23Type>0</place23Type>
 	
 	<!-- Route Player 0 -->
