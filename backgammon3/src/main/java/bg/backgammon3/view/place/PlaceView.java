@@ -47,17 +47,9 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 			checkers.add(new CheckerView(this));
 		}
 		tempImage = this.getImage();
+		
 		this.setOnMouseEntered(e -> {
-			if ((tempPlayerId == 0 && Config.getInteger("player0Type") == 1)
-					|| (tempPlayerId == 1 && Config.getInteger("player1Type") == 1) || tempPointState.getSelected()) {
-				return;
-			}
-			if (tempPointState instanceof StartPoint) {
-				this.setImage(hoverStartImages.get(tempPlayerId));
-			} else if (tempPointState instanceof EndPoint) {
-				this.setImage(hoverEndImages.get(tempPlayerId));
-			} else if (tempPointState instanceof NormalPoint) {
-			}
+			mouseEntered();
 		});
 		this.setOnMouseExited(e -> {
 			if ((tempPlayerId == 0 && Config.getInteger("player0Type") == 1)
@@ -66,8 +58,24 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 			}
 			this.setImage(tempImage);
 		});
+		this.setOnMouseMoved(e -> {
+			mouseEntered();
+		});
 	}
 
+	protected void mouseEntered() {
+		if ((tempPlayerId == 0 && Config.getInteger("player0Type") == 1)
+				|| (tempPlayerId == 1 && Config.getInteger("player1Type") == 1) || tempPointState.getSelected()) {
+			return;
+		}
+		if (tempPointState instanceof StartPoint) {
+			this.setImage(hoverStartImages.get(tempPlayerId));
+		} else if (tempPointState instanceof EndPoint) {
+			this.setImage(hoverEndImages.get(tempPlayerId));
+		} else if (tempPointState instanceof NormalPoint) {
+		}
+	}
+	
 	@Override
 	public GameObject getGameObject() {
 		return place;
@@ -135,6 +143,7 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 		tempPlayerId = place.getState().getPlayerId();
 		consistencyCheck();
 	}
+
 
 	public void consistencyCheck() {
 		if (checkers.size() != place.getNumberOfCheckers()) {

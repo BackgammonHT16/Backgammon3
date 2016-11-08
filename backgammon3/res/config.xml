@@ -24,13 +24,13 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>20</maximumTime>
+	<maximumTime>40</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
 	<height>600</height>
 	// Mindestgröße des Fensters
-	<minWidth>200</minWidth>
+	<minWidth>500</minWidth>
 	<minHeight>300</minHeight>
 
 	// Place Größe

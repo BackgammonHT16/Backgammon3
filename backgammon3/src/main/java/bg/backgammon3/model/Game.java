@@ -93,6 +93,15 @@ public class Game extends GameStatus {
 			} else if(action instanceof RollDice) {
 				((AI) currentPlayer).rollDice();
 			}
+		} else if (currentPlayer instanceof AI2) {
+			// Die AI ist am Zug
+			if(action instanceof SelectStartPlace) {
+				((AI2) currentPlayer).selectStartPlace();
+			} else if(action instanceof SelectEndPlace) {
+				((AI2) currentPlayer).selectEndPlace();
+			} else if(action instanceof RollDice) {
+				((AI2) currentPlayer).rollDice();
+			}
 		}
 	}
 
@@ -151,7 +160,7 @@ public class Game extends GameStatus {
 		if(playerId == 1) {
 			playerColor = "Red";
 		}
-		addActionAtEnd(new DisplayMessage(playerColor + " player  Won."));
+		addActionAtEnd(new DisplayMessage(playerColor + " player  won."));
 		addActionAtEnd(new CloseGame());
 		currentState = new MenuState(this, false);
 	}
