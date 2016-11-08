@@ -76,6 +76,7 @@ public class CheckerView {
 	}
 
 	private int startAnimationTo(MathVector p1, Double a1, MathVector p2, Double a2) {
+		// Code für gerade Linie
 /*		double dx = image.getTranslateX() - p.x;
 		double dy = image.getTranslateY() - p.y;
 		double distance = Math.sqrt(dx * dx + dy * dy);
@@ -89,21 +90,7 @@ public class CheckerView {
 						new KeyFrame(new Duration(time), new KeyValue(image.translateXProperty(), p.x),
 								new KeyValue(image.translateYProperty(), p.y)));
 		t.play();
-
-		MathVector p1 = new MathVector(image.translateXProperty().get(), image.translateYProperty().get());
-		MathVector p2 = new MathVector(p.x, p.y);
-		Double x1 = image.translateXProperty().get();
-		Double y1 = image.translateYProperty().get();
-		Double x2 = p.x;
-		Double y2 = p.y;
-		Double vx = x2 - x1;
-		Double vy = y2 - y1;
-		Double rx = vx/Math.sqrt(vx*vx+vy*vy);
-		Double ry = vy/Math.sqrt(vx*vx+vy*vy);
-		Double controlx1 = x2 - x1;
-		Double controly1;
-		Double controlx2;
-		Double controly2;*/
+*/
 
 		MathVector correction = new MathVector(image.getFitWidth() / 2, image.getFitWidth() / 2);
 		p1 = p1.add(correction);
