@@ -91,6 +91,19 @@ public class Dices extends GameObject{
 		return null;
 	}
 	
+	/**
+	 * Gibt wahr zurück falls alle Würfel aufgebraucht wurden.
+	 * @return Wahr falls alle Würfel aufgebraucht wurden.
+	 */
+	public boolean allDicesUsed() {
+		for(Dice d : dices) {
+			if(d.getIsActive() && !d.getIsUsed()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		String ret = "";
@@ -102,5 +115,11 @@ public class Dices extends GameObject{
 	
 	public int getSeed() {
 		return seed;
+	}
+
+	public void setAllUsed() {
+		for(Dice d : dices) {
+			d.setUsed();
+		}
 	}
 }

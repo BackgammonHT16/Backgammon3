@@ -55,6 +55,11 @@ public class Menu extends GameObject {
 	 * @return the difficulty
 	 */
 	public Integer getDifficulty() {
+		if(difficulty == 0) {
+			// Beide Spieler sind Menschen. Solange das Menu nicht darauf angepasst ist
+			// wird das einfach ignoriert.
+			return 1;
+		}
 		return difficulty;
 	}
 

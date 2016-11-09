@@ -26,9 +26,13 @@ public class ChooseStartState extends BoardState {
 	
 	public void init() {
 		if(!board.markStartPlaces()) {
-			if(board.isHumanPlayer()) {
-				board.addActionAtEnd(new DisplayMessage("No Possible Moves!"));
+			// if(board.isHumanPlayer()) {
+			if(!board.getDices().allDicesUsed()){
+				board.addActionAtEnd(new DisplayMessage("No Possible Moves!", 2000));
+				board.getDices().setAllUsed();
+				board.addActionAtEnd(new DiceWasUsed());
 			}
+			board.getTimer().resetTimer();
 			board.nextPlayer();
 			RollDiceState c = new RollDiceState(board);
 			board.setState(c);
