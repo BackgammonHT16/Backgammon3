@@ -6,6 +6,7 @@ package bg.backgammon3.model;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +40,9 @@ public class Board extends GameObject implements ActionInterface {
 	private Place startPlace;
 
 	private Timer timer = new Timer(this);
+	
+	// Verhindert das der Timer ein zweites GameOver auslöst
+	private AtomicBoolean atomicGameOver = new AtomicBoolean(false);
 	
 	private Dices dices;
 
@@ -111,7 +115,11 @@ public class Board extends GameObject implements ActionInterface {
 	}
 	
 	public void handle(GameObject gameObject) {
-		currentState.handle(gameObject);
+		if(gameObject instanceof Timer) {
+			timeOver();
+		} else {
+			currentState.handle(gameObject);
+		}
 	}
 
 	private void setStartState() {
@@ -217,6 +225,10 @@ public class Board extends GameObject implements ActionInterface {
 	public void addActionAtEnd(Action action) {
 		gameStatus.addActionAtEnd(action);
 	}
+	
+	public boolean isHumanPlayer() {
+		return gameStatus.isHumanPlayer(currentPlayer);
+	}
 
 	public void moveChecker(Place endPlace) {
 		PointState endPoint = endPlace.getState();
@@ -284,13 +296,27 @@ public class Board extends GameObject implements ActionInterface {
 		return routes.get(currentPlayer).hasWon();
 	}
 
+	public void finishGame(Integer winnerId) {
+		timer.killTimer();
+		if(atomicGameOver.compareAndSet(false, true)) {
+			gameStatus.gameIsFinished(winnerId);
+			currentState = new GameOverState(this);
+		}
+	}
+	
 	public void finishGame() {
-		gameStatus.gameIsFinished(currentPlayer);
+		finishGame(currentPlayer);
 	}
 	
 	public void timeOver() {
-		addActionAtEnd(new DisplayMessage("Time Over!"));
-		gameStatus.gameIsFinished(getNextPlayer());
+		if(!atomicGameOver.get()){
+			// Nachricht nur anzeigen wenn das Spiel Vorbei ist.
+
+			
+			addActionAtEnd(new DisplayMessage("Time Over!", 2000));
+				
+			finishGame(getNextPlayer());
+		}
 	}
 	
 	public Timer getTimer() {

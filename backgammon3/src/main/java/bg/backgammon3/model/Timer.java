@@ -28,6 +28,16 @@ public class Timer extends GameObject {
 		this.actionInterface = actionInterface;
 	}
 	
+	public void setActionInterface(ActionInterface actionInterface) {
+		this.actionInterface = actionInterface;
+	}
+	
+	public void killTimer() {
+		if(timeline != null) {
+			timeline.stop();
+		}
+	}
+	
 	public void resetTimer() {
 		over = false;
 		if(timeline != null) {

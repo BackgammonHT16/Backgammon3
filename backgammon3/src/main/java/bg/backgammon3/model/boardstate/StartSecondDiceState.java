@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.Dices;
 import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.action.DisplayMessage;
 import bg.backgammon3.model.action.StartTimer;
 
 /**
@@ -35,6 +36,9 @@ public class StartSecondDiceState extends BoardState {
 			c.init();
 			board.getTimer().resetTimer();
 			board.addActionAtEnd(new StartTimer());
+			if(!board.isHumanPlayer()) {
+				board.addActionAtEnd(new DisplayMessage("AI Turn"));
+			}
 		}
 	}
 

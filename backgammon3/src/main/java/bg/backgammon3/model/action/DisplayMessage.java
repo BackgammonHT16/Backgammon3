@@ -9,9 +9,16 @@ package bg.backgammon3.model.action;
  */
 public class DisplayMessage extends Action {
 	private String message;
+	private Integer activeTime;
 	
 	public DisplayMessage(String message) {
 		this.message = message;
+		this.activeTime = 0;
+	}
+	
+	public DisplayMessage(String message, Integer time) {
+		this.message = message;
+		this.activeTime = time;
 	}
 
 	public String getMessage() {
@@ -20,7 +27,7 @@ public class DisplayMessage extends Action {
 
 	@Override
 	public int getTime() {
-		return 0;
+		return activeTime;
 	}
 	
 	@Override

@@ -20,7 +20,12 @@ public class RollDiceState extends BoardState {
 
 	public void init() {
 		board.addActionAtEnd(new RollDice());
-		board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+
+		if(board.isHumanPlayer()) {
+			board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+		} else {
+			board.addActionAtEnd(new DisplayMessage("AI Turn"));
+		}
 		board.getTimer().resetTimer();
 		board.addActionAtEnd(new StartTimer());
 	}

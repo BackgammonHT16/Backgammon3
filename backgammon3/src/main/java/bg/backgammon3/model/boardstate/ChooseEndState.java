@@ -27,7 +27,9 @@ public class ChooseEndState extends BoardState {
 
 	public void init() {
 		board.markEndPlaces();
-		board.addActionAtEnd(new DisplayMessage("Choose Goal!"));
+		if(board.isHumanPlayer()) {
+			board.addActionAtEnd(new DisplayMessage("Choose Goal!"));
+		}
 		board.addActionAtEnd(new SelectEndPlace());
 	}
 	

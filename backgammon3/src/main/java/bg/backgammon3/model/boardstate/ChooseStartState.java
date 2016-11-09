@@ -26,14 +26,19 @@ public class ChooseStartState extends BoardState {
 	
 	public void init() {
 		if(!board.markStartPlaces()) {
-			board.addActionAtEnd(new DisplayMessage("No Possible Moves!"));
+			if(board.isHumanPlayer()) {
+				board.addActionAtEnd(new DisplayMessage("No Possible Moves!"));
+			}
 			board.nextPlayer();
 			RollDiceState c = new RollDiceState(board);
 			board.setState(c);
 			c.init();
 			return;
 		}
-		board.addActionAtEnd(new DisplayMessage("Choose start!"));
+
+		if(board.isHumanPlayer()) {
+			board.addActionAtEnd(new DisplayMessage("Choose start!"));
+		}
 		board.addActionAtEnd(new SelectStartPlace());
 	}
 

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?><root>   	
+	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
+	<player0Type>0</player0Type>
+	<player1Type>1</player1Type>
+	
+	<!-- ID des Spielers der das Spiel beginnt -->
+	<firstPlayer>0</firstPlayer>
+	
+	
+	<doNotUpdate>0</doNotUpdate>
+	
+
+	<!-- Hintergrund Sound -->
+	<soundFile>res/sound_long.wav</soundFile>
+	<playSound>0</playSound>
+	
+	<!-- Text anzeige -->
+	<textX>405</textX>
+	<textY>100</textY>
+	<textSize>20</textSize>
+	
+	<!-- Timer anzeige -->
+	<timerX>100</timerX>
+	<timerY>65</timerY>
+	<timerSize>20</timerSize>
+	<!-- Maximale Zugzeit -->
+	<maximumTime>10</maximumTime>
+
+	// Innere Fenster Größe
+	<width>1000</width>
+	<height>600</height>
+	// Mindestgröße des Fensters
+	<minWidth>500</minWidth>
+	<minHeight>300</minHeight>
+
+	// Place Größe
+	<pointWidth>70</pointWidth>
+	// Place Größe
+	<barWidth>120</barWidth>
+	// Place Größe
+	<goalWidth>60</goalWidth>
+	// Checker Größe
+	<checkerWidth>20</checkerWidth>
+	// Board Hintergrund
+	<bgImage>res/map.png</bgImage>
+	
+	<!-- Bilder der Einzelnen Punkte -->
+	//Start
+	<barImageStartPlayer0>res/stabilisierenblau.png</barImageStartPlayer0>
+	<barImageStartPlayer1>res/stabilisierenrot.png</barImageStartPlayer1>
+	<goalImageStartPlayer0>res/verfügungsraumblau.png</goalImageStartPlayer0>
+	<goalImageStartPlayer1>res/raumFeind.png</goalImageStartPlayer1>
+	//End
+	<barImageEndPlayer0>res/stabilisierenblau.png</barImageEndPlayer0>
+	<barImageEndPlayer1>res/stabilisierenrot.png</barImageEndPlayer1>
+	<goalImageEndPlayer0>res/verfügungsraumblau.png</goalImageEndPlayer0>
+	<goalImageEndPlayer1>res/raumFeind.png</goalImageEndPlayer1>
+	//StartHover
+	<barImageHoverStartPlayer0>res/stabilisierenblauhover.png</barImageHoverStartPlayer0>
+	<barImageHoverStartPlayer1>res/stabilisierenrothover.png</barImageHoverStartPlayer1>
+	<goalImageHoverStartPlayer0>res/verfügungsraumblauhover.png</goalImageHoverStartPlayer0>
+	<goalImageHoverStartPlayer1>res/raumFeindhover.png</goalImageHoverStartPlayer1>
+	//EndHover
+	<barImageHoverEndPlayer0>res/stabilisierenblauhover.png</barImageHoverEndPlayer0>
+	<barImageHoverEndPlayer1>res/stabilisierenrothover.png</barImageHoverEndPlayer1>
+	<goalImageHoverEndPlayer0>res/verfügungsraumblauhover.png</goalImageHoverEndPlayer0>
+	<goalImageHoverEndPlayer1>res/raumFeindhover.png</goalImageHoverEndPlayer1>
+	//PointImageStart
+	<pointImageStartPlayer0>res/stellungangriffauswahlblau.png</pointImageStartPlayer0>
+	<pointImageStartPlayer1>res/stellungangriffauswahlrot.png</pointImageStartPlayer1>
+	//PointImageEnd
+	<pointImageEndPlayer0>res/stellungangriffblau.png</pointImageEndPlayer0>
+	<pointImageEndPlayer1>res/stellungangriffrot.png</pointImageEndPlayer1>
+	//PointImageHoverStart
+	<pointImageHoverStartPlayer0>res/stellungangriffauswahlblauhover.png</pointImageHoverStartPlayer0>
+	<pointImageHoverStartPlayer1>res/stellungangriffauswahlrothover.png</pointImageHoverStartPlayer1>
+	//PointImageHoverEnd
+	<pointImageHoverEndPlayer0>res/stellungangriffblauhover.png</pointImageHoverEndPlayer0>
+	<pointImageHoverEndPlayer1>res/stellungangriffrothover.png</pointImageHoverEndPlayer1>
+	
+
+	
+	// Point
+	<pointImage>res/stellung.png</pointImage>
+	<pointSelectedImage>res/stellung.svg</pointSelectedImage>
+	
+	// Bar
+	<bar0Image>res/einsatzlazarettblau.png</bar0Image>
+	<bar0SelectedImage>res/stabilisierenblau.png</bar0SelectedImage>
+	<bar1Image>res/einsatzlazarettrot.png</bar1Image>
+	<bar1SelectedImage>res/stabilisierenrot.png</bar1SelectedImage>
+	// Goal
+	<goal0Image>res/verfügungsraum.png</goal0Image>
+	<goal0SelectedImage>res/verfügungsraumblau.png</goal0SelectedImage>
+	<goal1Image>res/vermuteterRaumFeind.png</goal1Image>
+	<goal1SelectedImage>res/raumFeind.png</goal1SelectedImage>
+	// Checker
+	<checker0Image>res/leo.svg</checker0Image>
+	<checker1Image>res/t80.svg</checker1Image>
+	<checkerMoveSpeed>150</checkerMoveSpeed>
+	
+	<diceRollTime>150</diceRollTime>
+	
+	<animationTime>800</animationTime>
+	
+	//Font
+	<Font>Courier New</Font>
+	// Menu
+	<menuButtonImage>res/menu.png</menuButtonImage>
+	<menuButtonWidth>250</menuButtonWidth>
+	<menuButtonPositionX>405</menuButtonPositionX>
+	<menuButtonPositionY>50</menuButtonPositionY>
+	<menuText>Menu</menuText>
+	// Timer
+	<timerImage>res/timerImage.png</timerImage>
+	<timerWidth>250</timerWidth>
+	
+	
+	// Message
+	<messageImage>res/messageImage.png</messageImage>
+	<messageWidth>250</messageWidth>
+	
+	// Dice
+	<dicePositionX>-20</dicePositionX>
+	<dicePositionY>65</dicePositionY>
+	<diceWidth>35</diceWidth>
+	<diceImage>res/dice</diceImage>
+	<diceImageUsed>res/diceUsed</diceImageUsed>
+	
+	<seed>1</seed>
+	<useSeed>0</useSeed>
+	
+	<loopGame>0</loopGame>
+	
+	
+	// Point Position
+	<place0PositionX>300</place0PositionX>
+	<place0PositionY>200</place0PositionY>
+	<place0Rotation>-70</place0Rotation>
+
+	<place1PositionX>240</place1PositionX>
+	<place1PositionY>230</place1PositionY>
+	<place1Rotation>0</place1Rotation>
+
+	<place2PositionX>125</place2PositionX>
+	<place2PositionY>220</place2PositionY>
+	<place2Rotation>5</place2Rotation>
+
+	<place3PositionX>20</place3PositionX>
+	<place3PositionY>200</place3PositionY>
+	<place3Rotation>15</place3Rotation>
+
+	<place4PositionX>-70</place4PositionX>
+	<place4PositionY>190</place4PositionY>
+	<place4Rotation>0</place4Rotation>
+
+	<place5PositionX>-160</place5PositionX>
+	<place5PositionY>200</place5PositionY>
+	<place5Rotation>-15</place5Rotation>
+
+	<place6PositionX>-250</place6PositionX>
+	<place6PositionY>210</place6PositionY>
+	<place6Rotation>0</place6Rotation>
+
+	<place7PositionX>-335</place7PositionX>
+	<place7PositionY>200</place7PositionY>
+	<place7Rotation>15</place7Rotation>
+
+	<place8PositionX>-340</place8PositionX>
+	<place8PositionY>140</place8PositionY>
+	<place8Rotation>120</place8Rotation>
+
+	<place9PositionX>-310</place9PositionX>
+	<place9PositionY>60</place9PositionY>
+	<place9Rotation>100</place9Rotation>
+
+	<place10PositionX>-350</place10PositionX>
+	<place10PositionY>-20</place10PositionY>
+	<place10Rotation>30</place10Rotation>
+
+	<place11PositionX>-415</place11PositionX>
+	<place11PositionY>-70</place11PositionY>
+	<place11Rotation>60</place11Rotation>
+
+	<place12PositionX>-420</place12PositionX>
+	<place12PositionY>-135</place12PositionY>
+	<place12Rotation>110</place12Rotation>
+
+	<place13PositionX>-380</place13PositionX>
+	<place13PositionY>-175</place13PositionY>
+	<place13Rotation>165</place13Rotation>
+
+	<place14PositionX>-300</place14PositionX>
+	<place14PositionY>-195</place14PositionY>
+	<place14Rotation>170</place14Rotation>
+
+	<place15PositionX>-220</place15PositionX>
+	<place15PositionY>-200</place15PositionY>
+	<place15Rotation>180</place15Rotation>
+
+	<place16PositionX>-140</place16PositionX>
+	<place16PositionY>-200</place16PositionY>
+	<place16Rotation>180</place16Rotation>
+
+	<place17PositionX>-60</place17PositionX>
+	<place17PositionY>-200</place17PositionY>
+	<place17Rotation>180</place17Rotation>
+
+	<place18PositionX>35</place18PositionX>
+	<place18PositionY>-190</place18PositionY>
+	<place18Rotation>200</place18Rotation>
+
+	<place19PositionX>140</place19PositionX>
+	<place19PositionY>-190</place19PositionY>
+	<place19Rotation>165</place19Rotation>
+
+	<place20PositionX>235</place20PositionX>
+	<place20PositionY>-200</place20PositionY>
+	<place20Rotation>180</place20Rotation>
+
+	<place21PositionX>320</place21PositionX>
+	<place21PositionY>-185</place21PositionY>
+	<place21Rotation>-160</place21Rotation>
+
+	<place22PositionX>352</place22PositionX>
+	<place22PositionY>-135</place22PositionY>
+	<place22Rotation>-90</place22Rotation>
+
+	<place23PositionX>340</place23PositionX>
+	<place23PositionY>-65</place23PositionY>
+	<place23Rotation>-70</place23Rotation>
+
+	<!--placeType 0: point, 1: bar, 2: goal -->
+	// Bar 1 Position
+	<place24PositionX>200</place24PositionX>
+	<place24PositionY>10</place24PositionY>
+	<place24CheckersPlayer>0</place24CheckersPlayer>
+	<place24CheckersNumber>0</place24CheckersNumber>
+	<place24Rotation>0</place24Rotation>
+	<place24Type>1</place24Type>
+	// Bar 2 Position
+	<place25PositionX>200</place25PositionX>
+	<place25PositionY>80</place25PositionY>
+	<place25CheckersPlayer>1</place25CheckersPlayer>
+	<place25CheckersNumber>0</place25CheckersNumber>
+	<place25Rotation>0</place25Rotation>
+	<place25Type>1</place25Type>
+
+	// Goal 1 Position
+	<place26PositionX>435</place26PositionX>
+	<place26PositionY>-230</place26PositionY>
+	<place26CheckersPlayer>0</place26CheckersPlayer>
+	<place26CheckersNumber>0</place26CheckersNumber>
+	<place26Rotation>0</place26Rotation>
+	<place26Type>2</place26Type>
+	// Goal 2 Position
+	<place27PositionX>435</place27PositionX>
+	<place27PositionY>230</place27PositionY>
+	<place27CheckersPlayer>1</place27CheckersPlayer>
+	<place27CheckersNumber>0</place27CheckersNumber>
+	<place27Rotation>0</place27Rotation>
+	<place27Type>2</place27Type>
+
+	<!-- Für jeden Point muss ein Feld erstellt werden -->
+	<place0CheckersNumber>2</place0CheckersNumber>
+	<place0CheckersPlayer>1</place0CheckersPlayer>
+	<place0Type>0</place0Type>
+
+	<place1CheckersNumber>0</place1CheckersNumber>
+	<place1CheckersPlayer>-1</place1CheckersPlayer>
+	<place1Type>0</place1Type>
+
+	<place2CheckersNumber>0</place2CheckersNumber>
+	<place2CheckersPlayer>-1</place2CheckersPlayer>
+	<place2Type>0</place2Type>
+
+	<place3CheckersNumber>0</place3CheckersNumber>
+	<place3CheckersPlayer>-1</place3CheckersPlayer>
+	<place3Type>0</place3Type>
+
+	<place4CheckersNumber>0</place4CheckersNumber>
+	<place4CheckersPlayer>-1</place4CheckersPlayer>
+	<place4Type>0</place4Type>
+
+	<place5CheckersNumber>0</place5CheckersNumber>
+	<place5CheckersPlayer>-1</place5CheckersPlayer>
+	<place5Type>0</place5Type>
+
+	<place6CheckersNumber>0</place6CheckersNumber>
+	<place6CheckersPlayer>-1</place6CheckersPlayer>
+	<place6Type>0</place6Type>
+
+	<place7CheckersNumber>0</place7CheckersNumber>
+	<place7CheckersPlayer>-1</place7CheckersPlayer>
+	<place7Type>0</place7Type>
+
+	<place8CheckersNumber>0</place8CheckersNumber>
+	<place8CheckersPlayer>-1</place8CheckersPlayer>
+	<place8Type>0</place8Type>
+
+	<place9CheckersNumber>0</place9CheckersNumber>
+	<place9CheckersPlayer>-1</place9CheckersPlayer>
+	<place9Type>0</place9Type>
+
+	<place10CheckersNumber>0</place10CheckersNumber>
+	<place10CheckersPlayer>-1</place10CheckersPlayer>
+	<place10Type>0</place10Type>
+
+	<place11CheckersNumber>0</place11CheckersNumber>
+	<place11CheckersPlayer>-1</place11CheckersPlayer>
+	<place11Type>0</place11Type>
+
+	<place12CheckersNumber>0</place12CheckersNumber>
+	<place12CheckersPlayer>-1</place12CheckersPlayer>
+	<place12Type>0</place12Type>
+
+	<place13CheckersNumber>0</place13CheckersNumber>
+	<place13CheckersPlayer>-1</place13CheckersPlayer>
+	<place13Type>0</place13Type>
+
+	<place14CheckersNumber>0</place14CheckersNumber>
+	<place14CheckersPlayer>-1</place14CheckersPlayer>
+	<place14Type>0</place14Type>
+
+	<place15CheckersNumber>0</place15CheckersNumber>
+	<place15CheckersPlayer>-1</place15CheckersPlayer>
+	<place15Type>0</place15Type>
+
+	<place16CheckersNumber>0</place16CheckersNumber>
+	<place16CheckersPlayer>-1</place16CheckersPlayer>
+	<place16Type>0</place16Type>
+
+	<place17CheckersNumber>0</place17CheckersNumber>
+	<place17CheckersPlayer>-1</place17CheckersPlayer>
+	<place17Type>0</place17Type>
+
+	<place18CheckersNumber>0</place18CheckersNumber>
+	<place18CheckersPlayer>-1</place18CheckersPlayer>
+	<place18Type>0</place18Type>
+
+	<place19CheckersNumber>0</place19CheckersNumber>
+	<place19CheckersPlayer>-1</place19CheckersPlayer>
+	<place19Type>0</place19Type>
+
+	<place20CheckersNumber>0</place20CheckersNumber>
+	<place20CheckersPlayer>-1</place20CheckersPlayer>
+	<place20Type>0</place20Type>
+
+	<place21CheckersNumber>0</place21CheckersNumber>
+	<place21CheckersPlayer>-1</place21CheckersPlayer>
+	<place21Type>0</place21Type>
+
+	<place22CheckersNumber>0</place22CheckersNumber>
+	<place22CheckersPlayer>-1</place22CheckersPlayer>
+	<place22Type>0</place22Type>
+
+	<place23CheckersNumber>2</place23CheckersNumber>
+	<place23CheckersPlayer>0</place23CheckersPlayer>
+	<place23Type>0</place23Type>
+	
+	<!-- Route Player 0 -->
+	<player0RoutePlace0>24</player0RoutePlace0>
+	<player0RoutePlace1>0</player0RoutePlace1>
+	<player0RoutePlace2>1</player0RoutePlace2>
+	<player0RoutePlace3>2</player0RoutePlace3>
+	<player0RoutePlace4>3</player0RoutePlace4>
+	<player0RoutePlace5>4</player0RoutePlace5>
+	<player0RoutePlace6>5</player0RoutePlace6>
+	<player0RoutePlace7>6</player0RoutePlace7>
+	<player0RoutePlace8>7</player0RoutePlace8>
+	<player0RoutePlace9>8</player0RoutePlace9>
+	<player0RoutePlace10>9</player0RoutePlace10>
+	<player0RoutePlace11>10</player0RoutePlace11>
+	<player0RoutePlace12>11</player0RoutePlace12>
+	<player0RoutePlace13>12</player0RoutePlace13>
+	<player0RoutePlace14>13</player0RoutePlace14>
+	<player0RoutePlace15>14</player0RoutePlace15>
+	<player0RoutePlace16>15</player0RoutePlace16>
+	<player0RoutePlace17>16</player0RoutePlace17>
+	<player0RoutePlace18>17</player0RoutePlace18>
+	<player0RoutePlace19>18</player0RoutePlace19>
+	<player0RoutePlace20>19</player0RoutePlace20>
+	<player0RoutePlace21>20</player0RoutePlace21>
+	<player0RoutePlace22>21</player0RoutePlace22>
+	<player0RoutePlace23>22</player0RoutePlace23>
+	<player0RoutePlace24>23</player0RoutePlace24>
+	<player0RoutePlace25>26</player0RoutePlace25>
+	
+	
+	<!-- Route Player 1 -->
+	<player1RoutePlace0>25</player1RoutePlace0>
+	<player1RoutePlace1>23</player1RoutePlace1>
+	<player1RoutePlace2>22</player1RoutePlace2>
+	<player1RoutePlace3>21</player1RoutePlace3>
+	<player1RoutePlace4>20</player1RoutePlace4>
+	<player1RoutePlace5>19</player1RoutePlace5>
+	<player1RoutePlace6>18</player1RoutePlace6>
+	<player1RoutePlace7>17</player1RoutePlace7>
+	<player1RoutePlace8>16</player1RoutePlace8>
+	<player1RoutePlace9>15</player1RoutePlace9>
+	<player1RoutePlace10>14</player1RoutePlace10>
+	<player1RoutePlace11>13</player1RoutePlace11>
+	<player1RoutePlace12>12</player1RoutePlace12>
+	<player1RoutePlace13>11</player1RoutePlace13>
+	<player1RoutePlace14>10</player1RoutePlace14>
+	<player1RoutePlace15>9</player1RoutePlace15>
+	<player1RoutePlace16>8</player1RoutePlace16>
+	<player1RoutePlace17>7</player1RoutePlace17>
+	<player1RoutePlace18>6</player1RoutePlace18>
+	<player1RoutePlace19>5</player1RoutePlace19>
+	<player1RoutePlace20>4</player1RoutePlace20>
+	<player1RoutePlace21>3</player1RoutePlace21>
+	<player1RoutePlace22>2</player1RoutePlace22>
+	<player1RoutePlace23>1</player1RoutePlace23>
+	<player1RoutePlace24>0</player1RoutePlace24>
+	<player1RoutePlace25>27</player1RoutePlace25>
+	
+	<!-- Home Field startet bei dieser Position einschließlich -->
+	<player0HomeFieldStartsAt>19</player0HomeFieldStartsAt>
+	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
+
+	<!-- Würfel wird simuliert bei 1 -->
+	<simulateDice>1</simulateDice>
+	<d0>2</d0>
+	<d1>1</d1>
+	<d2>3</d2>
+	<d3>4</d3>
+</root>

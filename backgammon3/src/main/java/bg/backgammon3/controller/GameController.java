@@ -23,7 +23,7 @@ import javafx.util.Duration;
  * @author philipp
  *
  */
-public class GameController implements EventHandler<Event> {
+public class GameController implements EventHandler<Event>, ActionInterface {
 	private Logger logger = LogManager.getLogger(GameController.class);
 
 	private boolean busy = false;
@@ -165,6 +165,7 @@ public class GameController implements EventHandler<Event> {
 			appStage.hide();
 		}
 		appStage = new GameStage(game);
+		game.getBoard().getTimer().setActionInterface(this);
 		gameStage = appStage;
 		initControls();
 	}
@@ -200,5 +201,23 @@ public class GameController implements EventHandler<Event> {
 		//if(!busy) {
 			handleAllActions();
 		//}
+	}
+
+	@Override
+	public void addActionAtBeginn(Action action) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addActionAtEnd(Action action) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void timeOver() {
+		game.handle(game.getBoard().getTimer(), false);
+		handleAllActions();
 	}
 }

@@ -181,6 +181,7 @@ public class BoardView extends ImageView implements GameObjectView {
 	public int update(Action action) {
 		if(action instanceof DisplayMessage) {
 			text.setText(((DisplayMessage) action).getMessage());
+			return ((DisplayMessage) action).getTime();
 		} else if (action instanceof SelectStartPlace) {
 			update();
 		} else if (action instanceof SelectEndPlace) {

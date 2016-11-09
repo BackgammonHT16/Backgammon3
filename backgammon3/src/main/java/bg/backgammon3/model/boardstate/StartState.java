@@ -19,7 +19,11 @@ public class StartState extends BoardState {
 	public StartState(Board board) {
 		super(board);
 		logger.info("StartState erstellt.");
-		board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+		if(board.isHumanPlayer()) {
+			board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+		} else {
+			board.addActionAtEnd(new DisplayMessage("AI Turn"));
+		}
 		board.addActionAtEnd(new RollDice());
 	}
 

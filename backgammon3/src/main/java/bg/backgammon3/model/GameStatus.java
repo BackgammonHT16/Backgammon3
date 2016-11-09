@@ -38,4 +38,12 @@ public abstract class GameStatus {
 	 *            Dieses Element wird am Ende der Liste angefügt.
 	 */
 	public abstract void addActionAtEnd(Action action);
+	
+
+	/**
+	 * Gibt an ob der Spieler mit der Id playerId ein Menschlicher Spieler ist.
+	 * @param playerId Die id des zu prüfenden Spielers.
+	 * @return Wahr wenn der Spieler ein Mensch ist.
+	 */
+	public abstract boolean isHumanPlayer(Integer playerId);
 }

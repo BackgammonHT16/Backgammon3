@@ -160,7 +160,7 @@ public class Game extends GameStatus {
 		if(playerId == 1) {
 			playerColor = "Red";
 		}
-		addActionAtEnd(new DisplayMessage(playerColor + " player  won."));
+		addActionAtEnd(new DisplayMessage(playerColor + " player won.", 2000));
 		addActionAtEnd(new CloseGame());
 		currentState = new MenuState(this, false);
 	}
@@ -258,5 +258,10 @@ public class Game extends GameStatus {
 
 	public void letPlayerHandle(GameObject gameObject) {
 		currentPlayer.handle(gameObject);
+	}
+
+	@Override
+	public boolean isHumanPlayer(Integer playerId) {
+		return players.get(playerId) instanceof Human;
 	}
 }
