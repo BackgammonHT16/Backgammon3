@@ -5,14 +5,20 @@ package bg.backgammon3.view.stage;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import bg.backgammon3.config.Config;
+import bg.backgammon3.model.Board;
 import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
+import bg.backgammon3.model.action.DisableContinueButton;
 import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -23,6 +29,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -34,16 +41,23 @@ import javafx.stage.Stage;
  *
  */
 public class MenuStage extends AppStage {
+	private Logger logger = LogManager.getLogger(MenuStage.class);
+
 	private ArrayList<Node> controls = new ArrayList<Node>();
-	
+
 	// Speichert die appStage des Spiels ab solange das Menu angezeigt wird.
 	private AppStage appStage;
-	
+
 	// Das Menu
 	private Stage stage;
-	
+
 	// Model Klasse
 	private Menu menu = new Menu();
+
+	// Continue Button wird ausgelagert um ihn deaktivieren zu können falls das
+	// Spiel beendet wird während
+	// das Menu angezeigt wird.
+	private Button buttonContinue;
 
 	public MenuStage(Game game) {
 		super(game);
@@ -52,25 +66,26 @@ public class MenuStage extends AppStage {
 		initMenu();
 	}
 
-
 	/**
-	 * Falls das Spiel bereits geöffnet ist wird es in appStage zwischen gespeichert. So kann es am ende 
-	 * wieder von GameController übernommen werden.
-	 * @param game Handle zur Hauptklasse des Modells
-	 * @param appStage Handle zur GameStage
+	 * Falls das Spiel bereits geöffnet ist wird es in appStage zwischen
+	 * gespeichert. So kann es am ende wieder von GameController übernommen
+	 * werden.
+	 * 
+	 * @param game
+	 *            Handle zur Hauptklasse des Modells
+	 * @param appStage
+	 *            Handle zur GameStage
 	 */
 	public MenuStage(Game game, AppStage appStage) {
 		super(game);
 		this.appStage = appStage;
 		initMenu();
 	}
-	
-	
-	public AppStage getGameStage()
-	{
+
+	public AppStage getGameStage() {
 		return appStage;
 	}
-	
+
 	/**
 	 * Zeigt das Menu an
 	 */
@@ -114,38 +129,38 @@ public class MenuStage extends AppStage {
 		ObservableList<String> optionsTime = FXCollections.observableArrayList("Endless", "5s", "10s", "20s", "40s");
 		final ComboBox<String> comboBoxTime = new ComboBox<String>(optionsTime);
 		int timeId = 0;
-		if(menu.getTime() == -1) {
+		if (menu.getTime() == -1) {
 			timeId = 0;
-		} else if(menu.getTime() == 5) {
+		} else if (menu.getTime() == 5) {
 			timeId = 1;
-		} else if(menu.getTime() == 10) {
+		} else if (menu.getTime() == 10) {
 			timeId = 2;
-		} else if(menu.getTime() == 20) {
+		} else if (menu.getTime() == 20) {
 			timeId = 3;
-		} else if(menu.getTime() == 40) {
+		} else if (menu.getTime() == 40) {
 			timeId = 4;
-		} 
+		}
 		comboBoxTime.setValue(optionsTime.get(timeId));
 		grid.add(comboBoxTime, 1, 3);
 
 		AnchorPane anchorpane = new AnchorPane();
 		final Button buttonStartGame = new StartButtonView("Start Game", menu);
-		Button buttonContinue = new ContinueButtonView("Continue Game", menu);
+		buttonContinue = new ContinueButtonView("Continue Game", menu);
 		Button buttonQuit = new QuitButtonView("Quit", menu);
 
 		comboBoxColor.setOnAction((event) -> {
 			menu.setColor(((String) comboBoxColor.getValue()).equals("Blue") ? 0 : 1);
 		});
-		
+
 		comboBoxDifficulty.setOnAction((event) -> {
 			menu.setDifficulty(((String) comboBoxDifficulty.getValue()).equals("Easy") ? 1 : 2);
 		});
-		
+
 		checkBoxSound.setOnAction((event) -> {
 			menu.setSound(checkBoxSound.isSelected());
 		});
-		
-		comboBoxTime.setOnAction((event) -> {				
+
+		comboBoxTime.setOnAction((event) -> {
 			if (((String) comboBoxTime.getValue()).equals("Endless")) {
 				menu.setTime(-1);
 			} else if (((String) comboBoxTime.getValue()).equals("5s")) {
@@ -158,23 +173,20 @@ public class MenuStage extends AppStage {
 				menu.setTime(40);
 			}
 		});
-		
 
 		HBox hb = new HBox();
 		hb.setPadding(new Insets(0, 10, 10, 10));
 		hb.setSpacing(10);
 		hb.getChildren().add(buttonStartGame);
 		controls.add(buttonStartGame);
-		if (game.gameCanContinue()) 
-		//if(appStage != null)
+		if (game.gameCanContinue())
+		// if(appStage != null)
 		{
-			buttonContinue.setDefaultButton(true);
+			// buttonContinue.setDefaultButton(true);
 			hb.getChildren().add(buttonContinue);
 			controls.add(buttonContinue);
-		} 
-		else 
-		{
-			buttonStartGame.setDefaultButton(true);
+		} else {
+			// buttonStartGame.setDefaultButton(true);
 		}
 		hb.getChildren().add(buttonQuit);
 		controls.add(buttonQuit);
@@ -195,29 +207,23 @@ public class MenuStage extends AppStage {
 		stage.minWidthProperty().bind(
 				Bindings.max(300, stage.widthProperty().subtract(scene.widthProperty()).add(root.minWidthProperty())));
 
-		if (game.gameCanContinue()) 
-		{
+		if (game.gameCanContinue()) {
 			buttonContinue.requestFocus();
-		} 
-		else 
-		{
+			// buttonContinue.setOnAction(e->{buttonContinue.fire();});
+		} else {
 			buttonStartGame.requestFocus();
 		}
-
-		buttonStartGame.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent ev) {
-				if (ev.getCode() == KeyCode.ENTER || ev.getCode() == KeyCode.SPACE) {
-					buttonStartGame.fire();
-					ev.consume();
-				}
-			}
-		});
-		
+		/*
+		 * buttonStartGame.addEventHandler(KeyEvent.KEY_PRESSED, new
+		 * EventHandler<KeyEvent>() { public void handle(KeyEvent ev) { if
+		 * (ev.getCode() == KeyCode.ENTER || ev.getCode() == KeyCode.SPACE) {
+		 * buttonStartGame.fire(); ev.consume(); } } });
+		 */
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
 		stage.show();
-		
+
 	}
 
 	@Override
@@ -226,24 +232,26 @@ public class MenuStage extends AppStage {
 	}
 
 	public int update(Action action) {
+		if (action instanceof DisableContinueButton) {
+			if (buttonContinue != null) {
+				logger.info("Continue Button wird disabled.");
+				buttonContinue.setDisable(true);
+			}
+		}
 		return 0;
 	}
-	
 
 	@Override
 	public void hide() {
-		if(stage != null)
-		{
+		if (stage != null) {
 			stage.hide();
 		}
 	}
-
 
 	@Override
 	public Stage getStage() {
 		return stage;
 	}
-
 
 	public Menu getMenu() {
 		return menu;

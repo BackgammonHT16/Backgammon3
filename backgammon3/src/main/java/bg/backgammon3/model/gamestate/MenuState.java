@@ -57,6 +57,13 @@ public class MenuState extends GameState {
 
 
 	private void startGame(Menu menu) {
+		// Timer deaktivieren
+		if(game.getBoard() != null) {
+			game.getBoard().getTimer().resetTimer();
+		}
+		// Stack Leeren
+		while(game.popAction() != null){}
+		
 		// Spielfeld anzeigen und Menu Verstecken
 		game.addActionAtBeginn(new StartGame());
 		
@@ -122,5 +129,12 @@ public class MenuState extends GameState {
 	public void quitThisGame() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void gameIsFinished(Integer playerId) {
+		game.addActionAtBeginn(new DisableContinueButton());
+		gameCanContinue = false;
+		game.finishGame(playerId);
 	}
 }

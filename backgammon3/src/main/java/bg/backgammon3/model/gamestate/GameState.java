@@ -37,4 +37,6 @@ public abstract class GameState {
 	public abstract void showMenu();
 
 	public abstract void handle(GameObject gameObject, boolean busy);
+
+	public abstract void gameIsFinished(Integer playerId);
 }

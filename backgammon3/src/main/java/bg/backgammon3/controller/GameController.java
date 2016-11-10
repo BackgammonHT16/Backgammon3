@@ -62,6 +62,8 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			handleAction(game.popAction());
 		} else if (game.getAction() instanceof CloseGame) {
 			handleAction(game.popAction());
+		} else if (game.getAction() instanceof DisableContinueButton) {
+			handleAction(game.popAction());
 		}
 		if(game.getAction() == null) {
 			return;
@@ -94,6 +96,10 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			quitGame();
 		} else if (action instanceof CloseGame) {
 			closeGame();
+		} else if (action instanceof DisableContinueButton) {
+			if(appStage != null) {
+				appStage.update(action);
+			}
 		} else if (action instanceof UpdateModel) {
 			game.handle(new UpdateAI(), false);
 		} else {

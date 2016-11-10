@@ -67,4 +67,11 @@ public class GameRunningState extends GameState {
 	}
 
 
+	@Override
+	public void gameIsFinished(Integer playerId) {
+		game.finishGame(playerId);
+		game.setState(new MenuState(game, false));
+	}
+
+
 }

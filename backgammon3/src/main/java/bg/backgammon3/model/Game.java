@@ -156,13 +156,17 @@ public class Game extends GameStatus {
 	 */
 	@Override
 	public void gameIsFinished(Integer playerId) {
+		currentState.gameIsFinished(playerId);
+		
+	}
+	
+	public void finishGame(Integer playerId) {
 		String playerColor = "Blue";
 		if(playerId == 1) {
 			playerColor = "Red";
 		}
 		addActionAtEnd(new DisplayMessage(playerColor + " player won.", 2000));
 		addActionAtEnd(new CloseGame());
-		currentState = new MenuState(this, false);
 	}
 
 	/**
@@ -199,7 +203,7 @@ public class Game extends GameStatus {
 	public void initBoard() {
 		// Spieler Laden
 		initPlayers();
-		
+
 		
 		// Brett Laden
 		board = new Board(this);
