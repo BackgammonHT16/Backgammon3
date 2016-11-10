@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><root>   	
+<?xml version="1.0" encoding="UTF-8"?><root>   
+	<!-- Version 1.2 -->
+	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
-	<player0Type>1</player0Type>
+	<player0Type>2</player0Type>
 	<player1Type>1</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
@@ -15,13 +17,13 @@
 	<playSound>0</playSound>
 	
 	<!-- Text anzeige -->
-	<textX>-20</textX>
-	<textY>95</textY>
+	<textX>405</textX>
+	<textY>100</textY>
 	<textSize>20</textSize>
 	
 	<!-- Timer anzeige -->
-	<timerX>150</timerX>
-	<timerY>95</timerY>
+	<timerX>100</timerX>
+	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
 	<maximumTime>-1</maximumTime>
@@ -45,27 +47,45 @@
 	<bgImage>res/map.png</bgImage>
 	
 	<!-- Bilder der Einzelnen Punkte -->
+	//Start
 	<barImageStartPlayer0>res/stabilisierenblau.png</barImageStartPlayer0>
 	<barImageStartPlayer1>res/stabilisierenrot.png</barImageStartPlayer1>
 	<goalImageStartPlayer0>res/verfügungsraumblau.png</goalImageStartPlayer0>
 	<goalImageStartPlayer1>res/raumFeind.png</goalImageStartPlayer1>
-	
+	//End
 	<barImageEndPlayer0>res/stabilisierenblau.png</barImageEndPlayer0>
 	<barImageEndPlayer1>res/stabilisierenrot.png</barImageEndPlayer1>
 	<goalImageEndPlayer0>res/verfügungsraumblau.png</goalImageEndPlayer0>
 	<goalImageEndPlayer1>res/raumFeind.png</goalImageEndPlayer1>
-	
-	
+	//StartHover
+	<barImageHoverStartPlayer0>res/stabilisierenblauhover.png</barImageHoverStartPlayer0>
+	<barImageHoverStartPlayer1>res/stabilisierenrothover.png</barImageHoverStartPlayer1>
+	<goalImageHoverStartPlayer0>res/verfügungsraumblauhover.png</goalImageHoverStartPlayer0>
+	<goalImageHoverStartPlayer1>res/raumFeindhover.png</goalImageHoverStartPlayer1>
+	//EndHover
+	<barImageHoverEndPlayer0>res/stabilisierenblauhover.png</barImageHoverEndPlayer0>
+	<barImageHoverEndPlayer1>res/stabilisierenrothover.png</barImageHoverEndPlayer1>
+	<goalImageHoverEndPlayer0>res/verfügungsraumblauhover.png</goalImageHoverEndPlayer0>
+	<goalImageHoverEndPlayer1>res/raumFeindhover.png</goalImageHoverEndPlayer1>
+	//PointImageStart
 	<pointImageStartPlayer0>res/stellungangriffauswahlblau.png</pointImageStartPlayer0>
 	<pointImageStartPlayer1>res/stellungangriffauswahlrot.png</pointImageStartPlayer1>
-	
+	//PointImageEnd
 	<pointImageEndPlayer0>res/stellungangriffblau.png</pointImageEndPlayer0>
 	<pointImageEndPlayer1>res/stellungangriffrot.png</pointImageEndPlayer1>
+	//PointImageHoverStart
+	<pointImageHoverStartPlayer0>res/stellungangriffauswahlblauhover.png</pointImageHoverStartPlayer0>
+	<pointImageHoverStartPlayer1>res/stellungangriffauswahlrothover.png</pointImageHoverStartPlayer1>
+	//PointImageHoverEnd
+	<pointImageHoverEndPlayer0>res/stellungangriffblauhover.png</pointImageHoverEndPlayer0>
+	<pointImageHoverEndPlayer1>res/stellungangriffrothover.png</pointImageHoverEndPlayer1>
 	
+
 	
 	// Point
 	<pointImage>res/stellung.png</pointImage>
 	<pointSelectedImage>res/stellung.svg</pointSelectedImage>
+	
 	// Bar
 	<bar0Image>res/einsatzlazarettblau.png</bar0Image>
 	<bar0SelectedImage>res/stabilisierenblau.png</bar0SelectedImage>
@@ -79,19 +99,32 @@
 	// Checker
 	<checker0Image>res/leo.svg</checker0Image>
 	<checker1Image>res/t80.svg</checker1Image>
-	<checkerMoveSpeed>10000</checkerMoveSpeed>
+	<checkerMoveSpeed>1050</checkerMoveSpeed>
 	
-	<diceRollTime>1</diceRollTime>
+	<diceRollTime>50</diceRollTime>
 	
-	<animationTime>1</animationTime>
-
+	<animationTime>8</animationTime>
+	
+	<noPossibleMovesTime>200</noPossibleMovesTime>
+	<displayMessageTime>20</displayMessageTime>
+	
+	//Font
+	<Font>Courier New</Font>
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
-	<menuButtonWidth>120</menuButtonWidth>
-	<menuButtonPositionX>435</menuButtonPositionX>
+	<menuButtonWidth>250</menuButtonWidth>
+	<menuButtonPositionX>405</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
-
-
+	<menuText>Menu</menuText>
+	// Timer
+	<timerImage>res/timerImage.png</timerImage>
+	<timerWidth>250</timerWidth>
+	
+	
+	// Message
+	<messageImage>res/messageImage.png</messageImage>
+	<messageWidth>250</messageWidth>
+	
 	// Dice
 	<dicePositionX>-20</dicePositionX>
 	<dicePositionY>65</dicePositionY>
@@ -100,7 +133,7 @@
 	<diceImageUsed>res/diceUsed</diceImageUsed>
 	
 	<seed>1</seed>
-	<useSeed>1</useSeed>
+	<useSeed>0</useSeed>
 	
 	<loopGame>1</loopGame>
 	
@@ -390,8 +423,7 @@
 	<!-- Home Field startet bei dieser Position einschließlich -->
 	<player0HomeFieldStartsAt>19</player0HomeFieldStartsAt>
 	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
-	
-	
+
 	<!-- Würfel wird simuliert bei 1 -->
 	<simulateDice>0</simulateDice>
 </root>

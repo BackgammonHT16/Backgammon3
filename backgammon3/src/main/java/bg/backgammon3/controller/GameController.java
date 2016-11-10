@@ -203,6 +203,10 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			logger.error("Unbekannte Event Quelle.");
 		}
 
+		// Stack ausgeben
+		logger.info("Stack Dump für " + event.getSource() + ":");
+		logger.info(game.stackToString());
+		logger.info("Ende Stack Dump");
 		// Anschließend Änderungen durch das Modell verarbeiten
 		//if(!busy) {
 			handleAllActions();

@@ -30,6 +30,8 @@ public class MenuState extends GameState {
 		this.gameCanContinue = gameCanContinue;
 		if(Config.getInteger("loopGame") == 1) {
 			startGame(new Menu());
+			//game.addActionAtBeginn(new ShowMenu());
+			//game.addActionAtEnd(new StartGame());
 		} else {
 			game.addActionAtBeginn(new ShowMenu());
 		}

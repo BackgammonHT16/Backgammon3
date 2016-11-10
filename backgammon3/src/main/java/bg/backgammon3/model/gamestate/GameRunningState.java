@@ -3,6 +3,7 @@
  */
 package bg.backgammon3.model.gamestate;
 
+import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
 
 /**
@@ -70,7 +71,10 @@ public class GameRunningState extends GameState {
 	@Override
 	public void gameIsFinished(Integer playerId) {
 		game.finishGame(playerId);
-		game.setState(new MenuState(game, false));
+		GameState newState = new MenuState(game, false);
+		if(Config.getInteger("loopGame") == 0) {
+			game.setState(newState);
+		}
 	}
 
 

@@ -27,6 +27,28 @@ public class Route {
 		this.playerId = playerId;
 		initRoute(places);
 	}
+	
+	/**
+	 * Returns the routeId of place.
+	 * @param place Place of which the Id should be returned.
+	 * @return Id of the place in the route.
+	 */
+	public int getRouteId(Place place) {
+		for(int i = 0; i < places.size(); i++) {
+			if(places.get(i).getId() == place.getId()) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	/**
+	 * Gibt die Anzahl der Places zurück.
+	 * @return Die Anzahl der Places.
+	 */
+	public int size() {
+		return places.size();
+	}
 
 	/**
 	 * Route wird gemäß Konfigurationsdatei geladen

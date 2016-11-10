@@ -85,6 +85,9 @@
 	
 	<animationTime>800</animationTime>
 
+	<noPossibleMovesTime>2000</noPossibleMovesTime>
+	<displayMessageTime>2000</displayMessageTime>
+	
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
 	<menuButtonWidth>120</menuButtonWidth>

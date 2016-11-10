@@ -3,7 +3,7 @@
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
-	<player1Type>1</player1Type>
+	<player1Type>2</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
@@ -26,7 +26,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>10</maximumTime>
+	<maximumTime>-1</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
@@ -105,7 +105,7 @@
 	
 	<animationTime>800</animationTime>
 	
-	<noPossibleMovesTime>2000</noPossibleMovesTime>
+	<noPossibleMovesTime>20</noPossibleMovesTime>
 	<displayMessageTime>2000</displayMessageTime>
 	
 	//Font
@@ -267,8 +267,8 @@
 	<place27Type>2</place27Type>
 
 	<!-- Für jeden Point muss ein Feld erstellt werden -->
-	<place0CheckersNumber>2</place0CheckersNumber>
-	<place0CheckersPlayer>1</place0CheckersPlayer>
+	<place0CheckersNumber>0</place0CheckersNumber>
+	<place0CheckersPlayer>-1</place0CheckersPlayer>
 	<place0Type>0</place0Type>
 
 	<place1CheckersNumber>0</place1CheckersNumber>
@@ -307,8 +307,8 @@
 	<place9CheckersPlayer>-1</place9CheckersPlayer>
 	<place9Type>0</place9Type>
 
-	<place10CheckersNumber>0</place10CheckersNumber>
-	<place10CheckersPlayer>-1</place10CheckersPlayer>
+	<place10CheckersNumber>2</place10CheckersNumber>
+	<place10CheckersPlayer>1</place10CheckersPlayer>
 	<place10Type>0</place10Type>
 
 	<place11CheckersNumber>0</place11CheckersNumber>
@@ -323,16 +323,16 @@
 	<place13CheckersPlayer>-1</place13CheckersPlayer>
 	<place13Type>0</place13Type>
 
-	<place14CheckersNumber>0</place14CheckersNumber>
-	<place14CheckersPlayer>-1</place14CheckersPlayer>
+	<place14CheckersNumber>3</place14CheckersNumber>
+	<place14CheckersPlayer>1</place14CheckersPlayer>
 	<place14Type>0</place14Type>
 
 	<place15CheckersNumber>0</place15CheckersNumber>
 	<place15CheckersPlayer>-1</place15CheckersPlayer>
 	<place15Type>0</place15Type>
 
-	<place16CheckersNumber>0</place16CheckersNumber>
-	<place16CheckersPlayer>-1</place16CheckersPlayer>
+	<place16CheckersNumber>2</place16CheckersNumber>
+	<place16CheckersPlayer>0</place16CheckersPlayer>
 	<place16Type>0</place16Type>
 
 	<place17CheckersNumber>0</place17CheckersNumber>
@@ -359,8 +359,8 @@
 	<place22CheckersPlayer>-1</place22CheckersPlayer>
 	<place22Type>0</place22Type>
 
-	<place23CheckersNumber>2</place23CheckersNumber>
-	<place23CheckersPlayer>0</place23CheckersPlayer>
+	<place23CheckersNumber>0</place23CheckersNumber>
+	<place23CheckersPlayer>-1</place23CheckersPlayer>
 	<place23Type>0</place23Type>
 	
 	<!-- Route Player 0 -->
@@ -425,9 +425,5 @@
 	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
 
 	<!-- Würfel wird simuliert bei 1 -->
-	<simulateDice>1</simulateDice>
-	<d0>2</d0>
-	<d1>1</d1>
-	<d2>3</d2>
-	<d3>4</d3>
+	<simulateDice>0</simulateDice>
 </root>

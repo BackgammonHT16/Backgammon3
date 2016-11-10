@@ -51,7 +51,10 @@ public class Game extends GameStatus {
 	 * Initialisiert die Modell Klassen und zeigt zu Spielbeginn das Menu an.
 	 */
 	private void initGame() {
-		currentState = new MenuState(this, false);
+		GameState newState = new MenuState(this, false);
+		if(Config.getInteger("loopGame") == 0) {
+			currentState = newState;
+		}
 	}
 
 	/**
@@ -165,7 +168,7 @@ public class Game extends GameStatus {
 		if(playerId == 1) {
 			playerColor = "Red";
 		}
-		addActionAtEnd(new DisplayMessage(playerColor + " player won.", 2000));
+		addActionAtEnd(new DisplayMessage(playerColor + " player won.", Config.getInteger("displayMessageTime")));
 		addActionAtEnd(new CloseGame());
 	}
 
@@ -262,6 +265,17 @@ public class Game extends GameStatus {
 
 	public void letPlayerHandle(GameObject gameObject) {
 		currentPlayer.handle(gameObject);
+	}
+	
+	public String stackToString() {
+		String ret = "";
+		for(int i = 0; i < actions.size(); i++) {
+			ret += actions.get(i).toString() + "\n";
+		}
+		if(ret.length() > 1){
+			ret = ret.substring(0, ret.length() - 1);
+		}
+		return ret;
 	}
 
 	@Override

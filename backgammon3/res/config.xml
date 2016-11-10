@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   
-	<!-- Version 1.0 -->
+	<!-- Version 1.2 -->
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
-	<player1Type>1</player1Type>
+	<player1Type>2</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
@@ -26,7 +26,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>5</maximumTime>
+	<maximumTime>-1</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
@@ -104,6 +104,9 @@
 	<diceRollTime>150</diceRollTime>
 	
 	<animationTime>800</animationTime>
+	
+	<noPossibleMovesTime>2000</noPossibleMovesTime>
+	<displayMessageTime>2000</displayMessageTime>
 	
 	//Font
 	<Font>Courier New</Font>

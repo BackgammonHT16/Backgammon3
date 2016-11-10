@@ -94,11 +94,19 @@ public class Board extends GameObject implements ActionInterface {
 		}
 	}
 	
+	/**
+	 * Markiert alle Places entweder als StartPlace oder als NormalPoint. Falls der Place ein StartPlace ist 
+	 * dann wird ein Liste mit legalen EndPlaces hinzugefügt. Diese wird für die KI später benötigt.
+	 * @return Wahr wenn es einen legalen StartPlace gibt.
+	 */
 	public boolean markStartPlaces() {
 		boolean startPlaceExists = false;
+		// Schleife die durch alle Places iteriert
 		for(Map.Entry<Integer, Place> p : places.entrySet()) {
+			// isLegalStartPlace gibt mir zu einem bestimmten StartPlace und Würfel alle gültigen EndPlaces
 			ArrayList<Place> endPlaces = routes.get(currentPlayer).isLegalStartPlace(p.getValue(), dices);
 			if(endPlaces.size() > 0) {
+				// Falls gültige EndPlaces existieren werden diese im StartPoint abgespeichert.
 				p.getValue().setState(new StartPoint(currentPlayer, endPlaces));
 				startPlaceExists = true;
 			} else {
@@ -313,7 +321,7 @@ public class Board extends GameObject implements ActionInterface {
 			// Nachricht nur anzeigen wenn das Spiel Vorbei ist.
 
 			
-			addActionAtEnd(new DisplayMessage("Time Over!", 2000));
+			addActionAtEnd(new DisplayMessage("Time Over!", Config.getInteger("displayMessageTime")));
 				
 			finishGame(getNextPlayer());
 		}
@@ -321,6 +329,10 @@ public class Board extends GameObject implements ActionInterface {
 	
 	public Timer getTimer() {
 		return timer;
+	}
+	
+	public Route getRoute(int playerId) {
+		return routes.get(playerId);
 	}
 	
 }

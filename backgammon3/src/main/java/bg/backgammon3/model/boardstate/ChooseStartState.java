@@ -6,6 +6,7 @@ package bg.backgammon3.model.boardstate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.GameObject;
 import bg.backgammon3.model.action.*;
@@ -28,7 +29,7 @@ public class ChooseStartState extends BoardState {
 		if(!board.markStartPlaces()) {
 			// if(board.isHumanPlayer()) {
 			if(!board.getDices().allDicesUsed()){
-				board.addActionAtEnd(new DisplayMessage("No Possible Moves!", 2000));
+				board.addActionAtEnd(new DisplayMessage("No Possible Moves!", Config.getInteger("noPossibleMovesTime")));
 				board.getDices().setAllUsed();
 				board.addActionAtEnd(new DiceWasUsed());
 			}
