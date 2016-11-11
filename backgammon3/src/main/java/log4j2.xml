@@ -14,10 +14,10 @@
 		</File>
 	</Appenders>
 	<Loggers>
-		<Logger name="bg" level="info"
+		<!-- Logger name="bg" level="info"
 			additivity="true">
 			<AppenderRef ref="logFile" />
-		</Logger>
+		</Logger -->
 		<Logger name="bg.backgammon3.config.Config" level="off"
 			additivity="false">
 			<AppenderRef ref="Console" />

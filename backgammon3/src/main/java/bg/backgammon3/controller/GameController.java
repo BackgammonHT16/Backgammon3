@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.view.*;
@@ -52,28 +53,38 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 	private void handleAllActions() {
 		logger.info("Auf dem Aktions Stack: " + game.getAction());
 		
-		if(game.getAction() instanceof ShowMenu) {
-			handleAction(game.popAction());
-		} else if (game.getAction() instanceof StartGame) {
-			handleAction(game.popAction());
-		} else if (game.getAction() instanceof ContinueGame) {
-			handleAction(game.popAction());
-		} else if (game.getAction() instanceof Quit) {
-			handleAction(game.popAction());
-		} else if (game.getAction() instanceof CloseGame) {
-			handleAction(game.popAction());
-		} else if (game.getAction() instanceof DisableContinueButton) {
-			handleAction(game.popAction());
-		}
-		if(game.getAction() == null) {
-			return;
-		}
-		if(atomicBusy.compareAndSet(false, true)) {
-			int time = handleAction(game.popAction());
-			logger.info("Warte Zeit für diese Aktion: " + time);
-			Timeline timeline = new Timeline();
-			timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
-			timeline.play();
+		// GUI wird verwendet
+		if(Config.getInteger("graphics") == 1){
+			if(game.getAction() instanceof ShowMenu) {
+				handleAction(game.popAction());
+			} else if (game.getAction() instanceof StartGame) {
+				handleAction(game.popAction());
+			} else if (game.getAction() instanceof ContinueGame) {
+				handleAction(game.popAction());
+			} else if (game.getAction() instanceof Quit) {
+				handleAction(game.popAction());
+			} else if (game.getAction() instanceof CloseGame) {
+				handleAction(game.popAction());
+			} else if (game.getAction() instanceof DisableContinueButton) {
+				handleAction(game.popAction());
+			}
+			if(game.getAction() == null) {
+				return;
+			}
+			if(atomicBusy.compareAndSet(false, true)) {
+				int time = handleAction(game.popAction());
+				logger.info("Warte Zeit für diese Aktion: " + time);
+				Timeline timeline = new Timeline();
+				timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
+				timeline.play();
+			}
+		} 
+		// GUI wird nicht verwendet
+		else {
+			while(game.getAction() != null){
+				handleAction(game.popAction());
+			}
+			//handleAllActions();
 		}
 	}
 
@@ -86,25 +97,34 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 	 */
 	private int handleAction(Action action) {
 		game.checkActionForAI(action);
-		if (action instanceof ShowMenu) {
-			initMenuView();
-		} else if (action instanceof StartGame) {
-			initGameView();
-		} else if (action instanceof ContinueGame) {
-			continueGame();
-		} else if (action instanceof Quit) {
-			quitGame();
-		} else if (action instanceof CloseGame) {
-			closeGame();
-		} else if (action instanceof DisableContinueButton) {
-			if(appStage != null) {
-				appStage.update(action);
+
+		// GUI wird verwendet
+		if(Config.getInteger("graphics") == 1){
+			if (action instanceof ShowMenu) {
+				initMenuView();
+			} else if (action instanceof StartGame) {
+				initGameView();
+			} else if (action instanceof ContinueGame) {
+				continueGame();
+			} else if (action instanceof Quit) {
+				quitGame();
+			} else if (action instanceof CloseGame) {
+				closeGame();
+			} else if (action instanceof DisableContinueButton) {
+				if(appStage != null) {
+					appStage.update(action);
+				}
+			} else if (action instanceof UpdateModel) {
+				game.handle(new UpdateAI(), false);
+			} else {
+				return gameStage.update(action);
 			}
-		} else if (action instanceof UpdateModel) {
-			game.handle(new UpdateAI(), false);
-		} else {
-			//return 0;
-			return gameStage.update(action);
+		} 
+		// GUI wird nicht verwendet
+		 else {
+			if (action instanceof UpdateModel) {
+				game.handle(new UpdateAI(), false);
+			}
 		}
 		return 0;
 	}

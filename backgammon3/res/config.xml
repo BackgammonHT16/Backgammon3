@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   
-	<!-- Version 1.3 -->
+	<!-- Version 1.4 -->
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
-	<player0Type>0</player0Type>
+	<player0Type>2</player0Type>
 	<player1Type>1</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
 	
+	<!-- Spiel nicht aus dem Menu Updaten. Dies erlaubt es das Menu bei 
+		 ungewöhnlichen Einstellungen zu ignorieren -->
+	<doNotUpdate>1</doNotUpdate>
 	
-	<doNotUpdate>0</doNotUpdate>
+	<seed>1</seed>
+	<useSeed>0</useSeed>
 	
-
+	<loopGame>0</loopGame>
+	
+	<!-- 1: GUI anzeigen, 0: Nur log Ausgabe. 
+		 Diese Einstellung wird für AI Optimierung benutzt. 
+		 doNotUpdate muss auf 1 gesetzt werden. 
+		 loopGame sollte auf 1 gesetzt werden.
+		 playerIType müssen beide auf 1 oder 2 gesetzt werden -->
+	<graphics>1</graphics>
+	
+	<checkerMoveSpeed>150</checkerMoveSpeed>
+	
+	<diceRollTime>150</diceRollTime>
+	
+	<animationTime>800</animationTime>
+	
+	<noPossibleMovesTime>2000</noPossibleMovesTime>
+	<displayMessageTime>2000</displayMessageTime>
+	
+	<!-- Würfel wird simuliert bei 1. Vorgabe der Würfel mit <d0>Zahl</d0>-->
+	<simulateDice>0</simulateDice>
+	
+	
 	<!-- Hintergrund Sound -->
 	<soundFile>res/sound_long.wav</soundFile>
 	<playSound>0</playSound>
@@ -99,14 +124,7 @@
 	// Checker
 	<checker0Image>res/leo.svg</checker0Image>
 	<checker1Image>res/t80.svg</checker1Image>
-	<checkerMoveSpeed>150</checkerMoveSpeed>
 	
-	<diceRollTime>150</diceRollTime>
-	
-	<animationTime>800</animationTime>
-	
-	<noPossibleMovesTime>2000</noPossibleMovesTime>
-	<displayMessageTime>2000</displayMessageTime>
 	
 	//Font
 	<Font>Courier New</Font>
@@ -132,11 +150,7 @@
 	<diceWidth>35</diceWidth>
 	<diceImage>res/dice</diceImage>
 	<diceImageUsed>res/diceUsed</diceImageUsed>
-	
-	<seed>1</seed>
-	<useSeed>0</useSeed>
-	
-	<loopGame>0</loopGame>
+
 	
 	
 	// Point Position
@@ -425,6 +439,5 @@
 	<player0HomeFieldStartsAt>19</player0HomeFieldStartsAt>
 	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
 
-	<!-- Würfel wird simuliert bei 1 -->
-	<simulateDice>0</simulateDice>
+	
 </root>
