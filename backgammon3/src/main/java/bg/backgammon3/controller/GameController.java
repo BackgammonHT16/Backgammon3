@@ -68,13 +68,28 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 		if(game.getAction() == null) {
 			return;
 		}
-		if(atomicBusy.compareAndSet(false, true)) {
-			int time = handleAction(game.popAction());
-			logger.info("Warte Zeit für diese Aktion: " + time);
-			Timeline timeline = new Timeline();
-			timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
-			timeline.play();
+		// SPEED
+		//if(atomicBusy.compareAndSet(false, true)) {
+			
+		// SPEED
+		while(game.getAction() != null){
+			handleAction(game.popAction());
 		}
+		
+		// ENDSPEED
+			
+			//int time = handleAction(game.popAction());
+			// SPEED
+			//logger.info("Warte Zeit für diese Aktion: " + time);
+			//Timeline timeline = new Timeline();
+			// SPEED
+			//timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
+			handleAllActions();
+			
+			// SPEED
+			//timeline.play();
+		// SPEED
+		//}
 	}
 
 	/**
@@ -86,7 +101,8 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 	 */
 	private int handleAction(Action action) {
 		game.checkActionForAI(action);
-		if (action instanceof ShowMenu) {
+		// SPEED
+		/*if (action instanceof ShowMenu) {
 			initMenuView();
 		} else if (action instanceof StartGame) {
 			initGameView();
@@ -100,11 +116,12 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			if(appStage != null) {
 				appStage.update(action);
 			}
-		} else if (action instanceof UpdateModel) {
+		} else */if (action instanceof UpdateModel) {
 			game.handle(new UpdateAI(), false);
 		} else {
-			//return 0;
-			return gameStage.update(action);
+			// SPEED
+			//return gameStage.update(action);
+			return 0;
 		}
 		return 0;
 	}
