@@ -117,7 +117,8 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			} else if (action instanceof UpdateModel) {
 				game.handle(new UpdateAI(), false);
 			} else {
-				return gameStage.update(action);
+				return gameStage.accept(action);
+				//return gameStage.update(action);
 			}
 		} 
 		// GUI wird nicht verwendet

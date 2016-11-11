@@ -3,6 +3,8 @@
  */
 package bg.backgammon3.model.action;
 
+import bg.backgammon3.view.BoardView;
+
 /**
  * @author philipp
  *
@@ -14,6 +16,12 @@ public class DisplayMessage extends Action {
 	public DisplayMessage(String message) {
 		this.message = message;
 		this.activeTime = 0;
+	}
+
+	
+	public int visit(BoardView view) {
+		view.setMessage(message);
+		return activeTime;
 	}
 	
 	public DisplayMessage(String message, Integer time) {

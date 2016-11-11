@@ -14,6 +14,7 @@ import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
 import bg.backgammon3.model.action.DisableContinueButton;
+import bg.backgammon3.model.action.GameElement;
 import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -53,6 +54,8 @@ public class MenuStage extends AppStage {
 
 	// Model Klasse
 	private Menu menu = new Menu();
+	
+	private Game game;
 
 	// Continue Button wird ausgelagert um ihn deaktivieren zu können falls das
 	// Spiel beendet wird während
@@ -60,7 +63,7 @@ public class MenuStage extends AppStage {
 	private Button buttonContinue;
 
 	public MenuStage(Game game) {
-		super(game);
+		this.game = game;
 		menu = game.getMenu();
 		appStage = null;
 		initMenu();
@@ -77,7 +80,7 @@ public class MenuStage extends AppStage {
 	 *            Handle zur GameStage
 	 */
 	public MenuStage(Game game, AppStage appStage) {
-		super(game);
+		this.game = game;
 		this.appStage = appStage;
 		initMenu();
 	}
@@ -255,5 +258,17 @@ public class MenuStage extends AppStage {
 
 	public Menu getMenu() {
 		return menu;
+	}
+
+	@Override
+	public int accept(Action action) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(Action action) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

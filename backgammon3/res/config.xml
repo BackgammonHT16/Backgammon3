@@ -2,15 +2,15 @@
 	<!-- Version 1.4 -->
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
-	<player0Type>2</player0Type>
-	<player1Type>1</player1Type>
+	<player0Type>0</player0Type>
+	<player1Type>2</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
 	
 	<!-- Spiel nicht aus dem Menu Updaten. Dies erlaubt es das Menu bei 
 		 ungewöhnlichen Einstellungen zu ignorieren -->
-	<doNotUpdate>1</doNotUpdate>
+	<doNotUpdate>0</doNotUpdate>
 	
 	<seed>1</seed>
 	<useSeed>0</useSeed>

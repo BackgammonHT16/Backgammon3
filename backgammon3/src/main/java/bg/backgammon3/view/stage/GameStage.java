@@ -30,9 +30,10 @@ public class GameStage extends AppStage {
 	private BoardView boardView;
 	private MediaPlayer mediaPlayer;
 	private Stage stage;
+	private Game game;
 
 	public GameStage(Game game) {
-		super(game);
+		this.game = game;
 		initGameStage();
 	}
 
@@ -123,8 +124,12 @@ public class GameStage extends AppStage {
 	public Stage getStage() {
 		return stage;
 	}
+	
+	public void sound() {
+		sound(Config.getInteger("playSound") == 0 ? false : true);
+	}
 
-	public void sound(Boolean play) {
+	private void sound(Boolean play) {
 		if (play) {
 			mediaPlayer.play();
 		} else {
@@ -136,5 +141,16 @@ public class GameStage extends AppStage {
 		Media media = new Media(new File(musicFile).toURI().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+	}
+
+
+	@Override
+	public int accept(Action action) {
+		return action.visit(this);
+	}
+	
+	@Override
+	public int nextAccept(Action action) {
+		return boardView.accept(action);
 	}
 }

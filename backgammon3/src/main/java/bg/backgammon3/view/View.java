@@ -3,14 +3,15 @@
  */
 package bg.backgammon3.view;
 
+import bg.backgammon3.model.action.Action;
+
 /**
  * @author philipp
  *
  */
 public interface View {
-
-	/**
-	 * Aktualisiert die View
-	 */
-	public void update();
+	
+	public int accept(Action action);
+	
+	public int nextAccept(Action action);
 }

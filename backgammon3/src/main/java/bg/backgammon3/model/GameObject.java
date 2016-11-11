@@ -8,5 +8,5 @@ package bg.backgammon3.model;
  *
  */
 public abstract class GameObject {
-
+	
 }

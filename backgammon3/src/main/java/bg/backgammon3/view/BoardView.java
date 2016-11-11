@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
  * @author philipp
  *
  */
-public class BoardView extends ImageView implements GameObjectView {
+public class BoardView extends GameElement implements GameObjectView {
 	private Logger logger = LogManager.getLogger(BoardView.class);
 	private Board board;
 	private ArrayList<Node> controls = new ArrayList<Node>();
@@ -207,6 +207,26 @@ public class BoardView extends ImageView implements GameObjectView {
 		return 0;
 	}
 	
+	public void setMessage(String message) {
+		text.setText(message);
+	}
+	
+	public int singleDiceWasRolled() {
+		return diceView.singleDiceWasRolled();
+	}
+	
+	public int diceWasRolled() {
+		return diceView.diceWasRolled();
+	}
+	
+	public void diceWasUsed() {
+		diceView.diceWasUsed();
+	}
+	
+	public void startTimer() {
+		timer.textProperty().bind(board.getTimer().acitvateTimer().asString());
+	}
+	
 	/**
 	 * Verschiebt einen Checker von startId nach endId
 	 * @param startId Start Platz.
@@ -216,6 +236,17 @@ public class BoardView extends ImageView implements GameObjectView {
 		logger.info("[ROUTE][LOGROUTE] Würfel: " + diceView);
 		logger.info("[ROUTE][LOGROUTE] MoveChecker von Spieler " + places.get(endId).getPlace().getPlayerId() + " von Place " + startId + " nach " + endId + ".");
 		return places.get(startId).moveCheckerTo(places.get(endId));
+	}
+
+	
+	@Override
+	public int accept(Action action) {
+		return action.visit(this);
+	}
+	
+	@Override
+	public int nextAccept(Action action) {
+		return 0;
 	}
 
 }
