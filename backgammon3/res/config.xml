@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   
-	<!-- Version 1.2 -->
+	<!-- Version 1.3 -->
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
@@ -30,10 +30,10 @@
 
 	// Innere Fenster Größe
 	<width>1000</width>
-	<height>600</height>
+	<height>620</height>
 	// Mindestgröße des Fensters
 	<minWidth>500</minWidth>
-	<minHeight>300</minHeight>
+	<minHeight>310</minHeight>
 
 	// Place Größe
 	<pointWidth>70</pointWidth>
@@ -112,11 +112,11 @@
 	<Font>Courier New</Font>
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
-	<menuButtonImageHover>res/menuhover.png</menuButtonImageHover>
-	<menuButtonWidth>250</menuButtonWidth>
-	<menuButtonPositionX>405</menuButtonPositionX>
+	<menuButtonWidth>72</menuButtonWidth>
+	<menuButtonPositionX>390</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
 	<menuText>Menu</menuText>
+	<menuButtonImageHover>res/menuhover.png</menuButtonImageHover>
 	// Timer
 	<timerImage>res/timerImage.png</timerImage>
 	<timerWidth>250</timerWidth>
