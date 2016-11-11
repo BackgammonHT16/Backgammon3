@@ -112,6 +112,7 @@
 	<Font>Courier New</Font>
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
+	<menuButtonImageHover>res/menuhover.png</menuButtonImageHover>
 	<menuButtonWidth>250</menuButtonWidth>
 	<menuButtonPositionX>405</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
