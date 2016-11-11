@@ -169,6 +169,7 @@ public class Game extends GameStatus {
 			playerColor = "Red";
 		}
 		addActionAtEnd(new DisplayMessage(playerColor + " player won.", Config.getInteger("displayMessageTime")));
+		logger.info("[GAMEOVER] " + playerColor + " player won.");
 		addActionAtEnd(new CloseGame());
 	}
 

@@ -37,7 +37,7 @@ public class AI2 extends Player {
 	}
 	
 	/**
-	 * Bewertet einen Platz nach seiner Position in der Route
+	 * Bewertet einen Platz nach seiner Position in der Route von 411 bis 0
 	 * @param place Der zu bewertende Platz
 	 * @return Der Wert der dieser Position zugeordnet wurde
 	 */
@@ -86,7 +86,7 @@ public class AI2 extends Player {
 					if (places.get(move).getPlayerId() != -1 && places.get(move).getPlayerId() != this.id) {
 						// 0
 						// Gegner Schlagen
-						ranking.get(p).set(move, ranking.get(p).get(move) + 150);
+						ranking.get(p).set(move, ranking.get(p).get(move) + 50 + rankInRoute(places.get(p)));
 					}
 					if (places.get(p).getNumberOfCheckers() == 2) {
 						// 1
@@ -116,7 +116,7 @@ public class AI2 extends Player {
 					if (places.get(move) instanceof Goal) {
 						// 6
 						// Neues Feld ist das Goal
-						ranking.get(p).set(move, ranking.get(p).get(move) + 10);
+						ranking.get(p).set(move, ranking.get(p).get(move) + 300);
 					}
 					if (places.get(p).getNumberOfCheckers() == 3) {
 						// 7
