@@ -11,7 +11,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**
- * @author philipp
+ * @author Philipp Sammeck
  *
  */
 public abstract class AppStage {

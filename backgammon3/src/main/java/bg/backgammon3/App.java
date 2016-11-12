@@ -31,7 +31,7 @@ public class App extends Application
 		// Konfigurationsdaten laden
 		Config.initConfig();
 		
-		// Damit wird der Controller Geladen
+		// Damit wird der Controller geladen
 		new GameController();
 	}
 
@@ -44,3 +44,4 @@ public class App extends Application
     	launch(args);
     }
 }
+ 

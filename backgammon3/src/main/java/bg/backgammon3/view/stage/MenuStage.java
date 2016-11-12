@@ -37,7 +37,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * @author philipp
+ * @author philipp sammeck
  *
  */
 public class MenuStage extends AppStage {
