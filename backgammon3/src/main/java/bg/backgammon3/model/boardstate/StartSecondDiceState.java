@@ -26,24 +26,6 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public void handle(ModelVisitor gameObject) {
-		if(gameObject instanceof Dices) {
-			board.rollSingleDice();
-			if(board.getDices().getDice(0).getValue() > board.getDices().getDice(1).getValue()) {
-				board.nextPlayer();
-			}
-			ChooseStartState c = new ChooseStartState(board);
-			board.setState(c);
-			c.init();
-			board.getTimer().resetTimer();
-			board.addActionAtEnd(new StartTimer());
-			if(!board.isHumanPlayer()) {
-				board.addActionAtEnd(new DisplayMessage("AI Turn"));
-			}
-		}
-	}
-
-	@Override
 	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;

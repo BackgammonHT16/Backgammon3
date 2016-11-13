@@ -16,5 +16,5 @@ public abstract class BoardState implements ModelElement {
 		this.board = board;
 	}
 	
-	public abstract void handle(ModelVisitor gameObject);
+	//public abstract void handle(ModelVisitor gameObject);
 }

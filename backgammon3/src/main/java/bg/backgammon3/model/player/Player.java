@@ -20,7 +20,7 @@ public abstract class Player implements ModelElement {
 		this.id = id;
 	}
 	
-	public abstract void handle(ModelVisitor gameObject);
+	//public abstract void handle(ModelVisitor gameObject);
 
 	public void setBoard(Board board) {
 		this.board = board;

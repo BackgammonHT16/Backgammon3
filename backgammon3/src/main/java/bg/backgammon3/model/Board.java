@@ -122,13 +122,6 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		routes.get(currentPlayer).hasLegalEndPlace(startPlace, dices, true);
 	}
 	
-	public void handle(ModelVisitor gameObject) {
-		if(gameObject instanceof Timer) {
-			timeOver();
-		} else {
-			currentState.handle(gameObject);
-		}
-	}
 
 	private void setStartState() {
 		currentState = new StartState(this);

@@ -32,24 +32,6 @@ public class ChooseEndState extends BoardState {
 		}
 		board.addActionAtEnd(new SelectEndPlace());
 	}
-	
-	@Override
-	public void handle(ModelVisitor gameObject) {
-		logger.info("ChooseEndState handle aufgerufen mit: " + gameObject.toString());
-		if(gameObject instanceof Place) {
-			if(((Place) gameObject).getState() instanceof EndPoint) {
-				board.moveChecker((Place) gameObject);
-				WaitingState c = new WaitingState(board);
-				board.setState(c);
-				board.addActionAtEnd(new UpdateModel());
-				c.init();
-			}
-		} else if(gameObject instanceof Board){
-			ChooseStartState c = new ChooseStartState(board);
-			board.setState(c);
-			c.init();
-		}
-	}
 
 
 	@Override

@@ -29,20 +29,6 @@ public class WaitingState extends BoardState implements ModelElement {
 
 
 	@Override
-	public void handle(ModelVisitor gameObject) {
-		logger.info("Game Object die NextState weiter ausführt: " + gameObject);
-			if(gameObject instanceof UpdateAI) {
-			if(board.hasWon()) {
-				board.finishGame();
-			} else {
-				ChooseStartState c = new ChooseStartState(board);
-				board.setState(c);
-				c.init();
-			}
-		}
-	}
-
-	@Override
 	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;

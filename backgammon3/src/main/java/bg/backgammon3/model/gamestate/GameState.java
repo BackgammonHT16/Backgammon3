@@ -36,7 +36,5 @@ public abstract class GameState implements ModelElement{
 	 */
 	public abstract void showMenu();
 
-	public abstract void handle(ModelVisitor gameObject, boolean busy);
-
 	public abstract void gameIsFinished(Integer playerId);
 }

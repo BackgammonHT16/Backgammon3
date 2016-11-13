@@ -46,19 +46,6 @@ public class ChooseStartState extends BoardState {
 		}
 		board.addActionAtEnd(new SelectStartPlace());
 	}
-
-	@Override
-	public void handle(ModelVisitor gameObject) {
-		logger.info("ChooseStartState handle aufgerufen mit: " + gameObject.toString());
-		if(gameObject instanceof Place) {
-			if(((Place) gameObject).getState() instanceof StartPoint) {
-				board.setStartPlace((Place) gameObject);
-				ChooseEndState c = new ChooseEndState(board);
-				board.setState(c);
-				c.init();
-			}
-		}
-	}
 	
 	public void selectStartPlace(Place place) {
 		board.setStartPlace(place);

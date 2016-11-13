@@ -37,20 +37,6 @@ public class MenuState extends GameState {
 		}
 	}
 	
-	@Override
-	public void handle(ModelVisitor gameObject, boolean busy) {
-		if (gameObject instanceof StartButton) {
-			startGame(((StartButton) gameObject).getMenu());
-		} else if (gameObject instanceof ContinueButton) {
-			continueGame(((ContinueButton) gameObject).getMenu());
-		} else if (gameObject instanceof QuitButton) {
-			quitGame();
-		} else {
-			if(!busy){
-				game.letPlayerHandle(gameObject);
-			}
-		}
-	}
 	
 	public boolean getGameCanContinue()
 	{

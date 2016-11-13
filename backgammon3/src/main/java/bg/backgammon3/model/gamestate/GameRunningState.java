@@ -17,18 +17,6 @@ public class GameRunningState extends GameState {
 		super(game);
 	}
 	
-
-	@Override
-	public void handle(ModelVisitor gameObject, boolean busy) {
-		if (gameObject instanceof MenuButton) {
-			showMenu();
-		} else {
-			if(!busy){
-				game.letPlayerHandle(gameObject);
-			}
-		}
-	}
-	
 	/**
 	 * Hier kann false zurückgegeben werden da das Menu sowieso im Moment unsichtbar ist.
 	 */

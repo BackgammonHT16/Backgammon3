@@ -21,10 +21,10 @@ public class Human extends Player implements ModelElement {
 		logger.info("Human erstellt mit id " + id);
 	}
 
-	@Override
+	/*@Override
 	public void handle(ModelVisitor gameObject) {
 		board.handle(gameObject);
-	}
+	}*/
 
 	@Override
 	public int accept(ModelVisitor gameObject) {

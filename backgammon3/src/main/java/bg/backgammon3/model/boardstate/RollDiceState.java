@@ -30,16 +30,6 @@ public class RollDiceState extends BoardState implements ModelElement {
 		board.getTimer().resetTimer();
 		board.addActionAtEnd(new StartTimer());
 	}
-	
-	@Override
-	public void handle(ModelVisitor gameObject) {
-		if(gameObject instanceof Dices) {
-			board.rollDice();
-			ChooseStartState c = new ChooseStartState(board);
-			board.setState(c);
-			c.init();
-		}
-	}
 
 	@Override
 	public int accept(ModelVisitor gameObject) {

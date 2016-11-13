@@ -124,16 +124,6 @@ public class Game extends GameStatus implements ModelElement {
 	}
 
 	/**
-	 * Gibt das durch den Controller übergebene Event an die entsprechende
-	 * Stelle weiter.
-	 * 
-	 * @param event Der zu verarbeitende Event
-	 */
-	public void handle(ModelVisitor gameObject, boolean busy) {
-		currentState.handle(gameObject, busy);
-	}
-
-	/**
 	 * Hier wird der aktuelle Spieler durch das Board gesetzt.
 	 */
 	@Override

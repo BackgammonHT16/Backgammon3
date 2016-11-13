@@ -29,15 +29,6 @@ public class AI extends Player implements ModelElement {
 	}
 
 	@Override
-	public void handle(ModelVisitor gameObject) {
-		if(gameObject instanceof UpdateAI) {
-			board.handle(gameObject);
-		} else if (gameObject instanceof Timer) {
-			board.handle(gameObject);
-		}
-	}
-
-	@Override
 	public void selectStartPlace() {
 		logger.info("AI Easy wählt StartPlace.");
 		Place startPlace = null; 

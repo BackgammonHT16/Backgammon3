@@ -35,15 +35,6 @@ public class AI2 extends Player implements ModelElement {
 		logger.info("AI Hard erstellt mit id " + id);
 		this.aiHelper = aiHelper;
 	}
-
-	@Override
-	public void handle(ModelVisitor gameObject) {
-		if(gameObject instanceof UpdateAI) {
-			board.handle(gameObject);
-		} else if (gameObject instanceof Timer) {
-			board.handle(gameObject);
-		}
-	}
 	
 	/**
 	 * Bewertet einen Platz nach seiner Position in der Route von 411 bis 0

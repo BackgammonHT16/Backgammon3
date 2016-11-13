@@ -23,10 +23,10 @@ public class GameOverState  extends BoardState implements ModelElement {
 	}
 
 
-	@Override
+	/*@Override
 	public void handle(ModelVisitor gameObject) {
 		// Nichts tun
-	}
+	}*/
 
 	@Override
 	public int accept(ModelVisitor gameObject) {

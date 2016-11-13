@@ -28,16 +28,6 @@ public class StartState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public void handle(ModelVisitor gameObject) {
-		if(gameObject instanceof Dices) {
-			board.rollSingleDice();
-			board.nextPlayer();
-			board.setState(new StartSecondDiceState(board));
-			board.addActionAtEnd(new RollDice());
-		}
-	}
-
-	@Override
 	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
