@@ -16,9 +16,9 @@ public class UpdateSound extends Action{
 	}
 
 
-	public int visit(GameElement element) {
+	public int visit(GameStageElement element) {
 		element.sound();
 		return 0;
 	}
-
+	
 }

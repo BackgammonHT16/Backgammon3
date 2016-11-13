@@ -84,4 +84,20 @@ public class Timer extends GameObject {
 	public IntegerProperty getTime() {
 		return time;
 	}
+	
+
+	public int visit(AI ai) {
+		ai.board.accept(this);
+		return 0;
+	}
+	
+	public int visit(AI2 ai) {
+		ai.board.accept(this);
+		return 0;
+	}
+	
+	public int visit(Board board) {
+		board.timeOver();
+		return 0;
+	}
 }

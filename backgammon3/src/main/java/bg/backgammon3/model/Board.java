@@ -28,7 +28,7 @@ import bg.backgammon3.model.pointstate.*;
  * @author philipp
  *
  */
-public class Board extends GameObject implements ActionInterface {
+public class Board extends GameObject implements ActionInterface, ModelElement {
 	private Logger logger = LogManager.getLogger(Board.class);
 
 	private Integer numberOfPlayers = null;
@@ -333,6 +333,24 @@ public class Board extends GameObject implements ActionInterface {
 	
 	public Route getRoute(int playerId) {
 		return routes.get(playerId);
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		currentState.accept(gameObject);
+		return 0;
+	}
+	
+	@Override
+	public int visit(ChooseEndState g) {
+		g.deselectStartPlace();
+		return 0;
 	}
 	
 }

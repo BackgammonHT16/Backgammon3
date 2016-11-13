@@ -19,7 +19,7 @@ import bg.backgammon3.model.pointstate.StartPoint;
  * @author philipp
  *
  */
-public class AI2 extends Player {
+public class AI2 extends Player implements ModelElement {
 	private Logger logger = LogManager.getLogger(AI2.class);
 
 	private Place endPlace;
@@ -32,6 +32,8 @@ public class AI2 extends Player {
 	@Override
 	public void handle(GameObject gameObject) {
 		if(gameObject instanceof UpdateAI) {
+			board.handle(gameObject);
+		} else if (gameObject instanceof Timer) {
 			board.handle(gameObject);
 		}
 	}
@@ -156,7 +158,8 @@ public class AI2 extends Player {
 			}
 			logger.error("AI2 chose illegal StartPlace\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		}
-		board.handle(startPlace);
+		//board.handle(startPlace);
+		board.accept(startPlace);
 	}
 	
 	public void selectEndPlace() {
@@ -169,11 +172,24 @@ public class AI2 extends Player {
 			}
 			logger.error("AI2 chose illegal EndPlace\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		}
-		board.handle(endPlace);
+		//board.handle(endPlace);
+		board.accept(endPlace);
 	}
 	
 	public void rollDice() {
 		logger.info("AI Hard würfelt.");
-		board.handle(board.getDices());
+		board.accept(board.getDices());
+		//board.handle(board.getDices());
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		return 0;
 	}
 }

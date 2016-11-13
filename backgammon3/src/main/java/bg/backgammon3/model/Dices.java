@@ -9,6 +9,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
+import bg.backgammon3.model.boardstate.RollDiceState;
+import bg.backgammon3.model.boardstate.StartSecondDiceState;
+import bg.backgammon3.model.boardstate.StartState;
 
 /**
  * @author philipp
@@ -121,5 +124,23 @@ public class Dices extends GameObject{
 		for(Dice d : dices) {
 			d.setUsed();
 		}
+	}
+	
+	@Override
+	public int visit(RollDiceState s) {
+		s.rollDices();
+		return 0;
+	}	
+	
+	@Override
+	public int visit(StartSecondDiceState s) {
+		s.rollSingleDice();
+		return 0;
+	}
+	
+	@Override
+	public int visit(StartState s) {
+		s.rollSingleDice();
+		return 0;
 	}
 }

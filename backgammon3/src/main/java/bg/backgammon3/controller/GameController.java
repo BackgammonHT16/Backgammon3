@@ -24,7 +24,7 @@ import javafx.util.Duration;
  * @author philipp
  *
  */
-public class GameController implements EventHandler<Event>, ActionInterface {
+public class GameController extends GameControllerElement implements EventHandler<Event>, ActionInterface {
 	private Logger logger = LogManager.getLogger(GameController.class);
 
 	private boolean busy = false;
@@ -52,39 +52,51 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 	 */
 	private void handleAllActions() {
 		logger.info("Auf dem Aktions Stack: " + game.getAction());
-		
+
 		// GUI wird verwendet
-		if(Config.getInteger("graphics") == 1){
-			if(game.getAction() instanceof ShowMenu) {
-				handleAction(game.popAction());
-			} else if (game.getAction() instanceof StartGame) {
-				handleAction(game.popAction());
-			} else if (game.getAction() instanceof ContinueGame) {
-				handleAction(game.popAction());
-			} else if (game.getAction() instanceof Quit) {
-				handleAction(game.popAction());
-			} else if (game.getAction() instanceof CloseGame) {
-				handleAction(game.popAction());
-			} else if (game.getAction() instanceof DisableContinueButton) {
-				handleAction(game.popAction());
-			}
-			if(game.getAction() == null) {
+		if (Config.getInteger("graphics") == 1) {
+
+			Action action = game.getAction();
+			/*
+			 * if(game.getAction() instanceof ShowMenu) {
+			 * handleAction(game.popAction()); } else if (game.getAction()
+			 * instanceof StartGame) { handleAction(game.popAction()); } else if
+			 * (game.getAction() instanceof ContinueGame) {
+			 * handleAction(game.popAction()); } else if (game.getAction()
+			 * instanceof Quit) { handleAction(game.popAction()); } else if
+			 * (game.getAction() instanceof CloseGame) {
+			 * handleAction(game.popAction()); } else if (game.getAction()
+			 * instanceof DisableContinueButton) {
+			 * handleAction(game.popAction()); }
+			 */
+
+			if (action == null) {
 				return;
 			}
-			if(atomicBusy.compareAndSet(false, true)) {
-				int time = handleAction(game.popAction());
+
+			if (action.visitImmediately()) {
+				game.popAction();
+				action.visit(this);
+				handleAllActions();
+			} else if (atomicBusy.compareAndSet(false, true)) {
+				game.checkActionForAI(action);
+				game.popAction();
+				int time = action.visit(this);
 				logger.info("Warte Zeit für diese Aktion: " + time);
 				Timeline timeline = new Timeline();
-				timeline.getKeyFrames().add(new KeyFrame(new Duration((double)time + 1), e -> {atomicBusy.set(false); handleAllActions();}));
+				timeline.getKeyFrames().add(new KeyFrame(new Duration((double) time + 1), e -> {
+					atomicBusy.set(false);
+					handleAllActions();
+				}));
 				timeline.play();
 			}
-		} 
+		}
 		// GUI wird nicht verwendet
 		else {
-			while(game.getAction() != null){
-				handleAction(game.popAction());
+			while (game.getAction() != null) {
+				game.popAction().visit(this);
 			}
-			//handleAllActions();
+			// handleAllActions();
 		}
 	}
 
@@ -99,7 +111,7 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 		game.checkActionForAI(action);
 
 		// GUI wird verwendet
-		if(Config.getInteger("graphics") == 1){
+		if (Config.getInteger("graphics") == 1) {
 			if (action instanceof ShowMenu) {
 				initMenuView();
 			} else if (action instanceof StartGame) {
@@ -111,46 +123,50 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			} else if (action instanceof CloseGame) {
 				closeGame();
 			} else if (action instanceof DisableContinueButton) {
-				if(appStage != null) {
-					appStage.update(action);
+				if (appStage != null) {
+					appStage.accept(action);
+					// appStage.update(action);
 				}
 			} else if (action instanceof UpdateModel) {
-				game.handle(new UpdateAI(), false);
+				UpdateAI updateAI = new UpdateAI();
+				updateAI.setBusy(false);
+				game.accept(updateAI);
+				// game.handle(new UpdateAI(), false);
 			} else {
 				return gameStage.accept(action);
-				//return gameStage.update(action);
+				// return gameStage.update(action);
 			}
-		} 
+		}
 		// GUI wird nicht verwendet
-		 else {
+		else {
 			if (action instanceof UpdateModel) {
-				game.handle(new UpdateAI(), false);
+				UpdateAI updateAI = new UpdateAI();
+				updateAI.setBusy(false);
+				game.accept(updateAI);
+				// game.handle(new UpdateAI(), false);
 			}
 		}
 		return 0;
 	}
-	
-	private void closeGame() {
-		if(appStage != null) {
+
+	public void closeGame() {
+		if (appStage != null) {
 			// Ein eventuell noch vorhandenes Spiel wird beendet.
 			if (appStage instanceof MenuStage) {
 				AppStage gameStage = ((MenuStage) appStage).getGameStage();
-				if(gameStage != null)
-				{
+				if (gameStage != null) {
 					gameStage.hide();
 				}
 			}
 		}
 	}
-	
-	private void quitGame()
-	{
+
+	public void quitGame() {
 		logger.info("Spiel wird beendet.");
 		// Das Spiel wird beendet.
 		if (appStage instanceof MenuStage) {
 			AppStage gameStage = ((MenuStage) appStage).getGameStage();
-			if(gameStage != null)
-			{
+			if (gameStage != null) {
 				gameStage.hide();
 			}
 		} else {
@@ -159,7 +175,7 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 		appStage.hide();
 	}
 
-	private void continueGame() {
+	public void continueGame() {
 		logger.info("Spiel wird weiter ausgeführt.");
 		// Das Spiel wird weiter ausgeführt.
 		if (appStage instanceof MenuStage) {
@@ -172,21 +188,20 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 		}
 	}
 
-	private void initMenuView() {
+	public void initMenuView() {
 		logger.info("Menu wird angezeigt.");
 		appStage = new MenuStage(game, appStage);
 		initControls();
 	}
 
-	private void initGameView() {
+	public void initGameView() {
 		logger.info("Spielfeld wird angezeigt.");
 		// Falls Menu noch angezeigt wird, menu verstecken
-		if(appStage != null) {
+		if (appStage != null) {
 			// Ein eventuell noch vorhandenes Spiel wird beendet.
 			if (appStage instanceof MenuStage) {
 				AppStage gameStage = ((MenuStage) appStage).getGameStage();
-				if(gameStage != null)
-				{
+				if (gameStage != null) {
 					gameStage.hide();
 				}
 			}
@@ -206,8 +221,13 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 			node.setOnMouseClicked(this);
 		}
 		appStage.getStage().setOnCloseRequest(e -> {
-			if(appStage instanceof MenuStage) {
-				game.handle(new ContinueButton(((MenuStage) appStage).getMenu()), busy);
+			if (appStage instanceof MenuStage) {
+				GameObject gameObject = new ContinueButton(((MenuStage) appStage).getMenu());
+				gameObject.setBusy(busy);
+				game.accept(gameObject);
+
+				// game.handle(new ContinueButton(((MenuStage)
+				// appStage).getMenu()), busy);
 				appStage.hide();
 			}
 		});
@@ -220,7 +240,11 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 	 */
 	public void handle(Event event) {
 		if (event.getSource() instanceof GameObjectView) {
-			game.handle(((GameObjectView) event.getSource()).getGameObject(), busy);
+			GameObject gameObject = ((GameObjectView) event.getSource()).getGameObject();
+			gameObject.setBusy(busy);
+			game.accept(gameObject);
+			// game.handle(((GameObjectView) event.getSource()).getGameObject(),
+			// busy);
 		} else {
 			logger.error("Unbekannte Event Quelle.");
 		}
@@ -230,26 +254,59 @@ public class GameController implements EventHandler<Event>, ActionInterface {
 		logger.info(game.stackToString());
 		logger.info("Ende Stack Dump");
 		// Anschließend Änderungen durch das Modell verarbeiten
-		//if(!busy) {
-			handleAllActions();
-		//}
+		handleAllActions();
 	}
 
 	@Override
 	public void addActionAtBeginn(Action action) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addActionAtEnd(Action action) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void timeOver() {
-		game.handle(game.getBoard().getTimer(), false);
+		GameObject gameObject = game.getBoard().getTimer();
+		gameObject.setBusy(false);
+		game.accept(gameObject);
+
+		// game.handle(game.getBoard().getTimer(), false);
 		handleAllActions();
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		game.accept(gameObject);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(Action action) {
+		if (Config.getInteger("graphics") == 1) {
+			return appStage.accept(action);
+		}
+		return 0;
+	}
+
+	@Override
+	public int accept(Action action) {
+		action.visit(this);
+		return 0;
+	}
+
+	@Override
+	public boolean getBusy() {
+		return atomicBusy.get();
 	}
 }

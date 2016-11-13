@@ -48,6 +48,10 @@ public abstract class GameElement {
 		
 	}
 	
+	public void disableContinueButton() {
+		
+	}
+	
 	public abstract int accept(Action action);
 	
 	public abstract int nextAccept(Action action);

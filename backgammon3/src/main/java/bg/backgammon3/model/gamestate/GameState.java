@@ -9,7 +9,7 @@ import bg.backgammon3.model.*;
  * @author philipp
  *
  */
-public abstract class GameState {
+public abstract class GameState implements ModelElement{
 	
 	protected Game game;
 	

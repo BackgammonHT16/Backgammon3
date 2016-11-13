@@ -78,4 +78,20 @@ public class GameRunningState extends GameState {
 	}
 
 
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		if(!gameObject.getBusy()){
+			game.letPlayerHandle(gameObject);
+		}
+		return 0;
+	}
+
+
 }

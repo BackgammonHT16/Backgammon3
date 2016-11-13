@@ -58,7 +58,7 @@ public class MenuState extends GameState {
 	}
 
 
-	private void startGame(Menu menu) {
+	public void startGame(Menu menu) {
 		// Timer deaktivieren
 		if(game.getBoard() != null) {
 			game.getBoard().getTimer().resetTimer();
@@ -91,7 +91,7 @@ public class MenuState extends GameState {
 	}
 
 
-	private void continueGame(Menu menu) {
+	public void continueGame(Menu menu) {
 		Config.setInteger("playSound", menu.getSound()?1:0);
 
 		// Zustand Ändern
@@ -103,7 +103,7 @@ public class MenuState extends GameState {
 	}
 
 
-	private void quitGame() {
+	public void quitGame() {
 		game.addActionAtBeginn(new Quit());
 	}
 
@@ -138,5 +138,19 @@ public class MenuState extends GameState {
 		game.addActionAtBeginn(new DisableContinueButton());
 		gameCanContinue = false;
 		game.finishGame(playerId);
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		if(!gameObject.getBusy()) {
+			game.letPlayerHandle(gameObject);
+		}
+		return 0;
 	}
 }

@@ -15,4 +15,6 @@ public class SelectPlace extends Action {
 	public int getTime() {
 		return Config.getInteger("animationTime");
 	}
+
+
 }

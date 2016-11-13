@@ -16,7 +16,7 @@ import bg.backgammon3.model.pointstate.StartPoint;
  * @author philipp
  *
  */
-public class AI extends Player {
+public class AI extends Player implements ModelElement {
 	private Logger logger = LogManager.getLogger(AI.class);
 
 	public AI(Integer id){
@@ -27,6 +27,8 @@ public class AI extends Player {
 	@Override
 	public void handle(GameObject gameObject) {
 		if(gameObject instanceof UpdateAI) {
+			board.handle(gameObject);
+		} else if (gameObject instanceof Timer) {
 			board.handle(gameObject);
 		}
 	}
@@ -39,7 +41,8 @@ public class AI extends Player {
 				startPlace = p.getValue();
 			}
 		}
-		board.handle(startPlace);
+		//board.handle(startPlace);
+		board.accept(startPlace);
 	}
 	
 	public void selectEndPlace() {
@@ -50,11 +53,24 @@ public class AI extends Player {
 				endPlace = p.getValue();
 			}
 		}
-		board.handle(endPlace);
+		//board.handle(endPlace);
+		board.accept(endPlace);
 	}
 	
 	public void rollDice() {
 		logger.info("AI Easy würfelt.");
-		board.handle(board.getDices());
+		//board.handle(board.getDices());
+		board.accept(board.getDices());
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		return 0;
 	}
 }

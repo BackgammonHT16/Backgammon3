@@ -18,8 +18,9 @@ public class SelectEndPlace extends Action{
 	}
 
 
-	public int visit(BoardView view) {
+	public int visit(BoardElement view) {
 		view.update();
 		return 0;
 	}
+	
 }

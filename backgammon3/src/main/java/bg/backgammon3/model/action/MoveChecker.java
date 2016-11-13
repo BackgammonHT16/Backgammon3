@@ -4,7 +4,7 @@
 package bg.backgammon3.model.action;
 
 import bg.backgammon3.config.Config;
-import bg.backgammon3.view.BoardView;
+
 
 /**
  * @author philipp
@@ -19,7 +19,8 @@ public class MoveChecker extends Action {
 		this.endId = endId;
 	}
 	
-	public int visit(BoardView view) {
+	
+	public int visit(BoardElement view) {
 		return view.moveChecker(startId, endId);
 	}
 

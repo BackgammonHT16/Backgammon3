@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.pointstate.*;
 
 /**
@@ -114,5 +115,15 @@ public abstract class Place extends GameObject {
 	@Override
 	public String toString() {
 		return "Place " + id + " im Zustand " + pointState;
+	}
+
+	@Override
+	public int visit(ChooseStartState g) {
+		return pointState.visit(g, this);
+	}
+	
+	@Override
+	public int visit(ChooseEndState g) {
+		return pointState.visit(g, this);
 	}
 }

@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  * @author philipp
  *
  */
-public class GameStage extends AppStage {
+public class GameStage extends GameStageElement {
 	private Logger logger = LogManager.getLogger(GameStage.class);
 	private BoardView boardView;
 	private MediaPlayer mediaPlayer;
@@ -102,7 +102,7 @@ public class GameStage extends AppStage {
 		}
 		return null;
 	}
-
+/*
 	public int update(Action action) {
 		if (action instanceof UpdateSound) {
 			sound(Config.getInteger("playSound") == 0 ? false : true);
@@ -111,7 +111,7 @@ public class GameStage extends AppStage {
 		}
 		return 0;
 	}
-
+*/
 	@Override
 	public void hide() {
 		if (boardView != null) {

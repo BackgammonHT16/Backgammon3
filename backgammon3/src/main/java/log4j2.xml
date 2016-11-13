@@ -6,7 +6,7 @@
 				- %msg%n" / -->
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
       		<!--RegexFilter regex=".*ROUTE.*INFO.*" onMatch="ACCEPT" onMismatch="DENY"/-->
-      		<RegexFilter regex=".*GAMEOVER.*" onMatch="ACCEPT" onMismatch="DENY"/>
+      		<!-- RegexFilter regex=".*GAMEOVER.*" onMatch="ACCEPT" onMismatch="DENY"/ -->
 		</Console>
 		<File name="logFile" fileName="log/bg.log">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />

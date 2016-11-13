@@ -13,7 +13,7 @@ import bg.backgammon3.model.action.*;
  * @author philipp
  *
  */
-public class StartState extends BoardState {
+public class StartState extends BoardState implements ModelElement {
 	private Logger logger = LogManager.getLogger(StartState.class);
 	
 	public StartState(Board board) {
@@ -35,6 +35,24 @@ public class StartState extends BoardState {
 			board.setState(new StartSecondDiceState(board));
 			board.addActionAtEnd(new RollDice());
 		}
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		return 0;
+	}
+	
+	public void rollSingleDice() {
+		board.rollSingleDice();
+		board.nextPlayer();
+		board.setState(new StartSecondDiceState(board));
+		board.addActionAtEnd(new RollDice());
 	}
 
 }

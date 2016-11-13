@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.*;
@@ -58,6 +59,24 @@ public class ChooseStartState extends BoardState {
 				c.init();
 			}
 		}
+	}
+	
+	public void selectStartPlace(Place place) {
+		board.setStartPlace(place);
+		ChooseEndState c = new ChooseEndState(board);
+		board.setState(c);
+		c.init();
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		return 0;
 	}
 
 }

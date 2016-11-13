@@ -5,6 +5,7 @@ package bg.backgammon3.model.pointstate;
 
 import java.util.ArrayList;
 
+import bg.backgammon3.model.boardstate.ChooseStartState;
 import bg.backgammon3.model.place.Place;
 
 /**
@@ -38,5 +39,11 @@ public class StartPoint extends PointState {
 	
 	public ArrayList<Place> getEndPlaces() {
 		return endPlaces;
+	}
+
+	@Override
+	public int visit(ChooseStartState g, Place place) {
+		g.selectStartPlace(place);
+		return 0;
 	}
 }

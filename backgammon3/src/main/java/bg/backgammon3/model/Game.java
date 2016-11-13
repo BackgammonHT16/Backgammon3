@@ -21,7 +21,7 @@ import bg.backgammon3.model.gamestate.*;
  * @author philipp
  *
  */
-public class Game extends GameStatus {
+public class Game extends GameStatus implements ModelElement {
 	private Logger logger = LogManager.getLogger(Game.class);
 
 	// Liste der durch View durchzuführender Aktionen.
@@ -265,7 +265,8 @@ public class Game extends GameStatus {
 	}
 
 	public void letPlayerHandle(GameObject gameObject) {
-		currentPlayer.handle(gameObject);
+		currentPlayer.accept(gameObject);
+		//currentPlayer.handle(gameObject);
 	}
 	
 	public String stackToString() {
@@ -282,5 +283,17 @@ public class Game extends GameStatus {
 	@Override
 	public boolean isHumanPlayer(Integer playerId) {
 		return players.get(playerId) instanceof Human;
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		currentState.accept(gameObject);
+		return 0;
 	}
 }

@@ -5,6 +5,7 @@ package bg.backgammon3.model.boardstate;
 
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.action.CloseGame;
 import bg.backgammon3.model.action.ShowPlacesWithoutMarks;
 
@@ -12,7 +13,7 @@ import bg.backgammon3.model.action.ShowPlacesWithoutMarks;
  * @author philipp
  *
  */
-public class GameOverState  extends BoardState {
+public class GameOverState  extends BoardState implements ModelElement {
 
 	public GameOverState(Board board) {
 		super(board);
@@ -26,6 +27,17 @@ public class GameOverState  extends BoardState {
 	@Override
 	public void handle(GameObject gameObject) {
 		// Nichts tun
+	}
+
+	@Override
+	public int accept(GameObject gameObject) {
+		gameObject.visit(this);
+		return 0;
+	}
+
+	@Override
+	public int nextAccept(GameObject gameObject) {
+		return 0;
 	}
 
 }

@@ -3,7 +3,7 @@
  */
 package bg.backgammon3.model.action;
 
-import bg.backgammon3.view.BoardView;
+
 
 /**
  * @author philipp
@@ -21,8 +21,9 @@ public class Move2Checkers extends Action {
 		this.startId2 = startId2;
 		this.endId2 = endId2;
 	}
+	
 
-	public int visit(BoardView view) {
+	public int visit(BoardElement view) {
 		return Math.max(view.moveChecker(startId1, endId1),
 				view.moveChecker(startId2, endId2));
 	}

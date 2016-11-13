@@ -7,7 +7,7 @@ package bg.backgammon3.model;
  * @author philipp
  *
  */
-public abstract class Player {
+public abstract class Player implements ModelElement {
 	final Integer id;
 	protected Board board;
 	

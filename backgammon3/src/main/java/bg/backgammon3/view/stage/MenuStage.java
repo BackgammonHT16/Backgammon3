@@ -13,8 +13,10 @@ import bg.backgammon3.model.Board;
 import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
+import bg.backgammon3.model.action.AppStage;
 import bg.backgammon3.model.action.DisableContinueButton;
 import bg.backgammon3.model.action.GameElement;
+import bg.backgammon3.model.action.MenuElement;
 import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -41,7 +43,7 @@ import javafx.stage.Stage;
  * @author philipp
  *
  */
-public class MenuStage extends AppStage {
+public class MenuStage extends MenuElement {
 	private Logger logger = LogManager.getLogger(MenuStage.class);
 
 	private ArrayList<Node> controls = new ArrayList<Node>();
@@ -233,7 +235,7 @@ public class MenuStage extends AppStage {
 	public ArrayList<Node> getControls() {
 		return controls;
 	}
-
+/*
 	public int update(Action action) {
 		if (action instanceof DisableContinueButton) {
 			if (buttonContinue != null) {
@@ -242,6 +244,16 @@ public class MenuStage extends AppStage {
 			}
 		}
 		return 0;
+	}
+	
+	*/
+	
+	@Override
+	public void disableContinueButton() {
+		if (buttonContinue != null) {
+			logger.info("Continue Button wird disabled.");
+			buttonContinue.setDisable(true);
+		}
 	}
 
 	@Override
@@ -262,13 +274,14 @@ public class MenuStage extends AppStage {
 
 	@Override
 	public int accept(Action action) {
-		// TODO Auto-generated method stub
-		return 0;
+		return action.visit(this);
 	}
 
 	@Override
 	public int nextAccept(Action action) {
-		// TODO Auto-generated method stub
+		if(appStage != null) {
+			return appStage.accept(action);
+		}
 		return 0;
 	}
 }

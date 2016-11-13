@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
  * @author philipp
  *
  */
-public class BoardView extends GameElement implements GameObjectView {
+public class BoardView extends BoardElement implements GameObjectView {
 	private Logger logger = LogManager.getLogger(BoardView.class);
 	private Board board;
 	private ArrayList<Node> controls = new ArrayList<Node>();
@@ -178,7 +178,7 @@ public class BoardView extends GameElement implements GameObjectView {
 	 * Führt die geforderte Aktion aus.
 	 * @param action Die durchzuführende Aktion
 	 */
-	public int update(Action action) {
+/*	public int update(Action action) {
 		if(action instanceof DisplayMessage) {
 			text.setText(((DisplayMessage) action).getMessage());
 			return ((DisplayMessage) action).getTime();
@@ -206,7 +206,7 @@ public class BoardView extends GameElement implements GameObjectView {
 		}
 		return 0;
 	}
-	
+	*/
 	public void setMessage(String message) {
 		text.setText(message);
 	}
