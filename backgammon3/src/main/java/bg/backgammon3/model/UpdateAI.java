@@ -4,6 +4,8 @@
 package bg.backgammon3.model;
 
 import bg.backgammon3.model.boardstate.WaitingState;
+import bg.backgammon3.model.player.AI;
+import bg.backgammon3.model.player.AI2;
 
 /**
  * @author philipp
@@ -12,13 +14,13 @@ import bg.backgammon3.model.boardstate.WaitingState;
 public class UpdateAI extends GameObject {
 
 	public int visit(AI ai) {
-		ai.board.accept(this);
+		ai.getBoard().accept(this);
 		return 0;
 	}
 	
 
 	public int visit(AI2 ai) {
-		ai.board.accept(this);
+		ai.getBoard().accept(this);
 		return 0;
 	}
 	

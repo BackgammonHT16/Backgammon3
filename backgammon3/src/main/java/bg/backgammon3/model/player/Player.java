@@ -1,7 +1,11 @@
 /**
  * 
  */
-package bg.backgammon3.model;
+package bg.backgammon3.model.player;
+
+import bg.backgammon3.model.Board;
+import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelElement;
 
 /**
  * @author philipp
@@ -33,4 +37,9 @@ public abstract class Player implements ModelElement {
 	public void rollDice() {
 		
 	}
+
+	public Board getBoard() {
+		return board;
+	}
+	
 }

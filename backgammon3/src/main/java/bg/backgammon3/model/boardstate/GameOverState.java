@@ -7,7 +7,6 @@ import bg.backgammon3.model.Board;
 import bg.backgammon3.model.GameObject;
 import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.action.CloseGame;
-import bg.backgammon3.model.action.ShowPlacesWithoutMarks;
 
 /**
  * @author philipp

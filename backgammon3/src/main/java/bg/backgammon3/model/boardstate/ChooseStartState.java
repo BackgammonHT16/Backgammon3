@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.GameObject;
-import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.*;

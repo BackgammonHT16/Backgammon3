@@ -8,21 +8,16 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bg.backgammon3.config.Config;
-import bg.backgammon3.model.Board;
+
 import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
 import bg.backgammon3.model.action.Action;
 import bg.backgammon3.model.action.AppStage;
-import bg.backgammon3.model.action.DisableContinueButton;
-import bg.backgammon3.model.action.GameElement;
 import bg.backgammon3.model.action.MenuElement;
 import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -30,9 +25,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -218,12 +210,6 @@ public class MenuStage extends MenuElement {
 		} else {
 			buttonStartGame.requestFocus();
 		}
-		/*
-		 * buttonStartGame.addEventHandler(KeyEvent.KEY_PRESSED, new
-		 * EventHandler<KeyEvent>() { public void handle(KeyEvent ev) { if
-		 * (ev.getCode() == KeyCode.ENTER || ev.getCode() == KeyCode.SPACE) {
-		 * buttonStartGame.fire(); ev.consume(); } } });
-		 */
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
@@ -235,18 +221,7 @@ public class MenuStage extends MenuElement {
 	public ArrayList<Node> getControls() {
 		return controls;
 	}
-/*
-	public int update(Action action) {
-		if (action instanceof DisableContinueButton) {
-			if (buttonContinue != null) {
-				logger.info("Continue Button wird disabled.");
-				buttonContinue.setDisable(true);
-			}
-		}
-		return 0;
-	}
-	
-	*/
+
 	
 	@Override
 	public void disableContinueButton() {

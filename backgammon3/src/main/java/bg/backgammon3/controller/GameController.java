@@ -15,6 +15,7 @@ import bg.backgammon3.view.*;
 import bg.backgammon3.view.stage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -82,6 +83,10 @@ public class GameController extends GameControllerElement implements EventHandle
 		// GUI wird nicht verwendet
 		else {
 			while (game.getAction() != null) {
+				if(Config.getInteger("aiOptimizationFinished") == 1) {
+					Platform.exit();
+					return;
+				}
 				Action action = game.popAction();
 				game.checkActionForAI(action);
 				action.visit(this);

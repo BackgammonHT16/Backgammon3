@@ -6,6 +6,9 @@ package bg.backgammon3.model;
 import bg.backgammon3.model.action.GameControllerElement;
 import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.gamestate.*;
+import bg.backgammon3.model.player.AI;
+import bg.backgammon3.model.player.AI2;
+import bg.backgammon3.model.player.Human;
 
 /**
  * @author philipp

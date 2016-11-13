@@ -1,10 +1,13 @@
 /**
  * 
  */
-package bg.backgammon3.model;
+package bg.backgammon3.model.player;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelElement;
 
 /**
  * @author philipp

@@ -3,7 +3,6 @@
  */
 package bg.backgammon3.model.pointstate;
 
-import bg.backgammon3.model.GameObject;
 import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.place.*;
 

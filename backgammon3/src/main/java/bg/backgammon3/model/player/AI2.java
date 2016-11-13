@@ -1,7 +1,7 @@
 /**
  * 
  */
-package bg.backgammon3.model;
+package bg.backgammon3.model.player;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -10,6 +10,10 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelElement;
+import bg.backgammon3.model.Timer;
+import bg.backgammon3.model.UpdateAI;
 import bg.backgammon3.model.place.Goal;
 import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.EndPoint;
@@ -24,9 +28,12 @@ public class AI2 extends Player implements ModelElement {
 
 	private Place endPlace;
 	
-	public AI2(Integer id){
+	private AIHelper aiHelper;
+	
+	public AI2(Integer id, AIHelper aiHelper){
 		super(id);
 		logger.info("AI Hard erstellt mit id " + id);
+		this.aiHelper = aiHelper;
 	}
 
 	@Override
@@ -46,7 +53,7 @@ public class AI2 extends Player implements ModelElement {
 	private int rankInRoute(Place place) {
 		int routeId = board.getRoute(id).getRouteId(place);
 		int routeSize = board.getRoute(id).size();
-		int rank = (int)(0.0009 * Math.pow((routeSize - routeId), 4));
+		int rank = (int)(((double) aiHelper.getRule(8)) / 100000  * Math.pow((routeSize - routeId), 4));
 		return rank;
 	}
 
@@ -54,7 +61,7 @@ public class AI2 extends Player implements ModelElement {
 	public void selectStartPlace() {
 		logger.info("AI Hard wählt StartPlace.");
 		Place startPlace = null; 
-		int lowerBound = -1000;
+		int lowerBound = aiHelper.getBottom();
 		LinkedHashMap<Integer, Place> places = board.getPlaces();
 		int numberPlaces = places.size();
 		ArrayList<ArrayList<Integer>> ranking = new ArrayList<ArrayList<Integer>>();
@@ -89,42 +96,42 @@ public class AI2 extends Player implements ModelElement {
 					if (places.get(move).getPlayerId() != -1 && places.get(move).getPlayerId() != this.id) {
 						// 0
 						// Gegner Schlagen
-						ranking.get(p).set(move, ranking.get(p).get(move) + 50 + rankInRoute(places.get(p)));
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(0) + rankInRoute(places.get(p)));
 					}
 					if (places.get(p).getNumberOfCheckers() == 2) {
 						// 1
 						// Wenn wir hier wegziehen lassen wir einen einzelnen Checker zurück
-						ranking.get(p).set(move, ranking.get(p).get(move) - 100);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(1));
 					} 
 					if (places.get(move).getNumberOfCheckers() == 2) {
 						// 2
 						// Neues Feld sind 2 Checker
-						ranking.get(p).set(move, ranking.get(p).get(move) + 80);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(2));
 					}
 					if (places.get(move).getNumberOfCheckers() == 0) {
 						// 3
 						// Neues Feld ist kein Checker
-						ranking.get(p).set(move, ranking.get(p).get(move) - 100);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(3));
 					}
 					if (places.get(move).getNumberOfCheckers() == 1) {
 						// 4
 						// Neues Feld ist ein Checker
-						ranking.get(p).set(move, ranking.get(p).get(move) + 90);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(4));
 					}
 					if (places.get(move).getNumberOfCheckers() > 3) {
 						// 5
 						// Neues Feld sind mindestens 3 Checker
-						ranking.get(p).set(move, ranking.get(p).get(move) + 75);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(5));
 					}
 					if (places.get(move) instanceof Goal) {
 						// 6
 						// Neues Feld ist das Goal
-						ranking.get(p).set(move, ranking.get(p).get(move) + 300);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(6));
 					}
 					if (places.get(p).getNumberOfCheckers() == 3) {
 						// 7
 						// Zwei Steine zurücklassen
-						ranking.get(p).set(move, ranking.get(p).get(move) - 20);
+						ranking.get(p).set(move, ranking.get(p).get(move) + aiHelper.getRule(7));
 					}
 				} 
 			}

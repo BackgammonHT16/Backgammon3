@@ -11,11 +11,7 @@ import bg.backgammon3.model.place.Bar;
 import bg.backgammon3.model.place.Goal;
 import bg.backgammon3.view.helper.*;
 import bg.backgammon3.view.place.PlaceView;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
-import javafx.animation.PathTransition.OrientationType;
-import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
@@ -77,20 +73,6 @@ public class CheckerView {
 
 	private int startAnimationTo(MathVector p1, Double a1, MathVector p2, Double a2) {
 		// Code für gerade Linie
-/*		double dx = image.getTranslateX() - p.x;
-		double dy = image.getTranslateY() - p.y;
-		double distance = Math.sqrt(dx * dx + dy * dy);
-		int time = (int) ((distance / (double) Config.getInteger("checkerMoveSpeed")) * 1000);
-		logger.info("Checker wird über " + distance + " bewegt in der Zeit " + time);
-
-		final Timeline t = new Timeline();
-		t.getKeyFrames()
-				.addAll(new KeyFrame(Duration.ZERO, new KeyValue(image.translateXProperty(), image.getTranslateX()),
-						new KeyValue(image.translateYProperty(), image.getTranslateY())),
-						new KeyFrame(new Duration(time), new KeyValue(image.translateXProperty(), p.x),
-								new KeyValue(image.translateYProperty(), p.y)));
-		t.play();
-*/
 
 		MathVector correction = new MathVector(image.getFitWidth() / 2, image.getFitWidth() / 2);
 		p1 = p1.add(correction);

@@ -14,6 +14,11 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.gamestate.*;
+import bg.backgammon3.model.player.AI;
+import bg.backgammon3.model.player.AI2;
+import bg.backgammon3.model.player.AIHelper;
+import bg.backgammon3.model.player.Human;
+import bg.backgammon3.model.player.Player;
 
 /**
  * Ausgangsklasse des Modells
@@ -42,6 +47,9 @@ public class Game extends GameStatus implements ModelElement {
 	
 	// Das Menu
 	private Menu menu = new Menu();
+	
+	// AI Hilfsklasse zur Optimierung
+	AIHelper aiHelper;
 
 	public Game() {
 		initGame();
@@ -51,6 +59,7 @@ public class Game extends GameStatus implements ModelElement {
 	 * Initialisiert die Modell Klassen und zeigt zu Spielbeginn das Menu an.
 	 */
 	private void initGame() {
+		aiHelper = new AIHelper();
 		GameState newState = new MenuState(this, false);
 		if(Config.getInteger("loopGame") == 0) {
 			currentState = newState;
@@ -65,7 +74,6 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	@Override
 	public void addActionAtBeginn(Action action) {
-		//checkActionForAI(action);
 		actions.add(0, action);
 	}
 
@@ -77,7 +85,6 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	@Override
 	public void addActionAtEnd(Action action) {
-		//checkActionForAI(action);
 		actions.add(action);
 	}
 	
@@ -88,25 +95,6 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	public void checkActionForAI(Action action) {
 		action.visit(this);
-/*		if(currentPlayer instanceof AI) {
-			// Die AI ist am Zug
-			if(action instanceof SelectStartPlace) {
-				((AI) currentPlayer).selectStartPlace();
-			} else if(action instanceof SelectEndPlace) {
-				((AI) currentPlayer).selectEndPlace();
-			} else if(action instanceof RollDice) {
-				((AI) currentPlayer).rollDice();
-			}
-		} else if (currentPlayer instanceof AI2) {
-			// Die AI ist am Zug
-			if(action instanceof SelectStartPlace) {
-				((AI2) currentPlayer).selectStartPlace();
-			} else if(action instanceof SelectEndPlace) {
-				((AI2) currentPlayer).selectEndPlace();
-			} else if(action instanceof RollDice) {
-				((AI2) currentPlayer).rollDice();
-			}
-		}*/
 	}
 
 	/**
@@ -160,8 +148,8 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	@Override
 	public void gameIsFinished(Integer playerId) {
+		aiHelper.gameFinished(playerId);
 		currentState.gameIsFinished(playerId);
-		
 	}
 	
 	public void finishGame(Integer playerId) {
@@ -240,7 +228,10 @@ public class Game extends GameStatus implements ModelElement {
 			} else if (Config.getInteger("player" + i + "Type") == 1) {
 				players.put(i, new AI(i));
 			} else if (Config.getInteger("player" + i + "Type") == 2) {
-				players.put(i, new AI2(i));
+				aiHelper.setId(2);
+				aiHelper.setInGameId(i);
+				aiHelper.init();
+				players.put(i, new AI2(i, aiHelper));
 			}
 		}
 		// Der Spieler der anfängt wird festgelegt.

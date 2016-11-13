@@ -6,6 +6,8 @@ package bg.backgammon3.model;
 
 
 import bg.backgammon3.config.Config;
+import bg.backgammon3.model.player.AI;
+import bg.backgammon3.model.player.AI2;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
@@ -87,12 +89,12 @@ public class Timer extends GameObject {
 	
 
 	public int visit(AI ai) {
-		ai.board.accept(this);
+		ai.getBoard().accept(this);
 		return 0;
 	}
 	
 	public int visit(AI2 ai) {
-		ai.board.accept(this);
+		ai.getBoard().accept(this);
 		return 0;
 	}
 	

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import bg.backgammon3.model.*;
 import bg.backgammon3.model.boardstate.ChooseEndState;
-import bg.backgammon3.model.boardstate.ChooseStartState;
 import bg.backgammon3.model.place.Place;
 
 /**

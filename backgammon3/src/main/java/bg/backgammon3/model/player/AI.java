@@ -1,13 +1,17 @@
 /**
  * 
  */
-package bg.backgammon3.model;
+package bg.backgammon3.model.player;
 
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelElement;
+import bg.backgammon3.model.Timer;
+import bg.backgammon3.model.UpdateAI;
 import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.EndPoint;
 import bg.backgammon3.model.pointstate.StartPoint;

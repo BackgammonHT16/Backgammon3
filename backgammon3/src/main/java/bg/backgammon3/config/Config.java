@@ -72,6 +72,10 @@ public class Config {
 		if (getInteger("doNotUpdate") == 1) {
 			return;
 		}
+		forceSetInteger(property, value);
+	}
+	
+	public static void forceSetInteger(String property, int value) {
 		writeConfig(fileName, property, Integer.toString(value));
 		//writeConfig(fileName, property, value);
 		if (config.replace(property, value) == null) {

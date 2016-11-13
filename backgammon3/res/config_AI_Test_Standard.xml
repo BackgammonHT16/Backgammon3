@@ -454,7 +454,7 @@
 	
 	<!-- AI Optimierung -->
 	
-	<aiOptimizationFinished>0</aiOptimizationFinished>
+	<aiOptimizationFinished>1</aiOptimizationFinished>
 	
 	<!-- AI Optimieren. 1: Ja, 0: Nein -->
 	<ai2Optimize>1</ai2Optimize>
@@ -463,68 +463,68 @@
 	<!-- Anzahl der Verfeinerungen -->
 	<ai2PrecisionLevel>4</ai2PrecisionLevel>
 	<!-- Anzahl der Spiele Pro Einstellung -->
-	<ai2NumberOfGames>1000</ai2NumberOfGames>
+	<ai2NumberOfGames>100</ai2NumberOfGames>
 	
 	<ai2ResetBest>0</ai2ResetBest>
 	<ai2ResetCurrent>0</ai2ResetCurrent>
 	
 	<!-- Bisher bestes Ergebnis -->
-	<ai2BestResult>822</ai2BestResult>
-	<ai2BestRule0>350</ai2BestRule0>
-	<ai2BestRule1>0</ai2BestRule1>
-	<ai2BestRule2>50</ai2BestRule2>
-	<ai2BestRule3>-150</ai2BestRule3>
+	<ai2BestResult>0</ai2BestResult>
+	<ai2BestRule0>0</ai2BestRule0>
+	<ai2BestRule1>-200</ai2BestRule1>
+	<ai2BestRule2>0</ai2BestRule2>
+	<ai2BestRule3>-200</ai2BestRule3>
 	<ai2BestRule4>0</ai2BestRule4>
-	<ai2BestRule5>350</ai2BestRule5>
-	<ai2BestRule6>400</ai2BestRule6>
-	<ai2BestRule7>0</ai2BestRule7>
+	<ai2BestRule5>0</ai2BestRule5>
+	<ai2BestRule6>100</ai2BestRule6>
+	<ai2BestRule7>-200</ai2BestRule7>
 	<ai2BestRule8>0</ai2BestRule8>
 	
 	<!-- Aktueller Stand -->
-	<ai2CurrentPrecisionLevel>2</ai2CurrentPrecisionLevel>
+	<ai2CurrentPrecisionLevel>0</ai2CurrentPrecisionLevel>
 	
-	<ai2CurrentRule0>300</ai2CurrentRule0>
-	<ai2CurrentRule1>-50</ai2CurrentRule1>
-	<ai2CurrentRule2>50</ai2CurrentRule2>
-	<ai2CurrentRule3>-150</ai2CurrentRule3>
-	<ai2CurrentRule4>25</ai2CurrentRule4>
-	<ai2CurrentRule5>300</ai2CurrentRule5>
-	<ai2CurrentRule6>400</ai2CurrentRule6>
-	<ai2CurrentRule7>-50</ai2CurrentRule7>
-	<ai2CurrentRule8>37</ai2CurrentRule8>
+	<ai2CurrentRule0>0</ai2CurrentRule0>
+	<ai2CurrentRule1>-200</ai2CurrentRule1>
+	<ai2CurrentRule2>0</ai2CurrentRule2>
+	<ai2CurrentRule3>-200</ai2CurrentRule3>
+	<ai2CurrentRule4>0</ai2CurrentRule4>
+	<ai2CurrentRule5>0</ai2CurrentRule5>
+	<ai2CurrentRule6>100</ai2CurrentRule6>
+	<ai2CurrentRule7>-200</ai2CurrentRule7>
+	<ai2CurrentRule8>0</ai2CurrentRule8>
 	
 	
-	<ai2Rule0CurrentLowerBound>300</ai2Rule0CurrentLowerBound>
-	<ai2Rule0CurrentUpperBound>350</ai2Rule0CurrentUpperBound>
+	<ai2Rule0CurrentLowerBound>0</ai2Rule0CurrentLowerBound>
+	<ai2Rule0CurrentUpperBound>200</ai2Rule0CurrentUpperBound>
 	
-	<ai2Rule1CurrentLowerBound>-50</ai2Rule1CurrentLowerBound>
+	<ai2Rule1CurrentLowerBound>-200</ai2Rule1CurrentLowerBound>
 	<ai2Rule1CurrentUpperBound>0</ai2Rule1CurrentUpperBound>
 	
 	<ai2Rule2CurrentLowerBound>0</ai2Rule2CurrentLowerBound>
-	<ai2Rule2CurrentUpperBound>50</ai2Rule2CurrentUpperBound>
+	<ai2Rule2CurrentUpperBound>200</ai2Rule2CurrentUpperBound>
 	
-	<ai2Rule3CurrentLowerBound>-150</ai2Rule3CurrentLowerBound>
-	<ai2Rule3CurrentUpperBound>-100</ai2Rule3CurrentUpperBound>
+	<ai2Rule3CurrentLowerBound>-200</ai2Rule3CurrentLowerBound>
+	<ai2Rule3CurrentUpperBound>0</ai2Rule3CurrentUpperBound>
 	
 	<ai2Rule4CurrentLowerBound>0</ai2Rule4CurrentLowerBound>
-	<ai2Rule4CurrentUpperBound>25</ai2Rule4CurrentUpperBound>
+	<ai2Rule4CurrentUpperBound>100</ai2Rule4CurrentUpperBound>
 	
-	<ai2Rule5CurrentLowerBound>300</ai2Rule5CurrentLowerBound>
-	<ai2Rule5CurrentUpperBound>350</ai2Rule5CurrentUpperBound>
+	<ai2Rule5CurrentLowerBound>0</ai2Rule5CurrentLowerBound>
+	<ai2Rule5CurrentUpperBound>200</ai2Rule5CurrentUpperBound>
 	
-	<ai2Rule6CurrentLowerBound>325</ai2Rule6CurrentLowerBound>
+	<ai2Rule6CurrentLowerBound>100</ai2Rule6CurrentLowerBound>
 	<ai2Rule6CurrentUpperBound>400</ai2Rule6CurrentUpperBound>
 	
-	<ai2Rule7CurrentLowerBound>-50</ai2Rule7CurrentLowerBound>
+	<ai2Rule7CurrentLowerBound>-200</ai2Rule7CurrentLowerBound>
 	<ai2Rule7CurrentUpperBound>0</ai2Rule7CurrentUpperBound>
 	
 	<ai2Rule8CurrentLowerBound>0</ai2Rule8CurrentLowerBound>
-	<ai2Rule8CurrentUpperBound>37</ai2Rule8CurrentUpperBound>
+	<ai2Rule8CurrentUpperBound>150</ai2Rule8CurrentUpperBound>
 	
 	
 	
-	<ai2Rule0LowerBound>200</ai2Rule0LowerBound>
-	<ai2Rule0UpperBound>400</ai2Rule0UpperBound>
+	<ai2Rule0LowerBound>0</ai2Rule0LowerBound>
+	<ai2Rule0UpperBound>200</ai2Rule0UpperBound>
 	
 	<ai2Rule1LowerBound>-200</ai2Rule1LowerBound>
 	<ai2Rule1UpperBound>0</ai2Rule1UpperBound>
@@ -538,8 +538,8 @@
 	<ai2Rule4LowerBound>0</ai2Rule4LowerBound>
 	<ai2Rule4UpperBound>100</ai2Rule4UpperBound>
 	
-	<ai2Rule5LowerBound>200</ai2Rule5LowerBound>
-	<ai2Rule5UpperBound>400</ai2Rule5UpperBound>
+	<ai2Rule5LowerBound>0</ai2Rule5LowerBound>
+	<ai2Rule5UpperBound>200</ai2Rule5UpperBound>
 	
 	<ai2Rule6LowerBound>100</ai2Rule6LowerBound>
 	<ai2Rule6UpperBound>400</ai2Rule6UpperBound>
