@@ -49,7 +49,8 @@ public class AI2 extends Player implements ModelElement {
 		int rank = (int)(0.0009 * Math.pow((routeSize - routeId), 4));
 		return rank;
 	}
-	
+
+	@Override
 	public void selectStartPlace() {
 		logger.info("AI Hard wählt StartPlace.");
 		Place startPlace = null; 
@@ -162,6 +163,7 @@ public class AI2 extends Player implements ModelElement {
 		board.accept(startPlace);
 	}
 	
+	@Override
 	public void selectEndPlace() {
 		logger.info("AI Hard wählt EndPlace.");
 		if(!(endPlace.getState() instanceof EndPoint)){
@@ -175,7 +177,8 @@ public class AI2 extends Player implements ModelElement {
 		//board.handle(endPlace);
 		board.accept(endPlace);
 	}
-	
+
+	@Override
 	public void rollDice() {
 		logger.info("AI Hard würfelt.");
 		board.accept(board.getDices());

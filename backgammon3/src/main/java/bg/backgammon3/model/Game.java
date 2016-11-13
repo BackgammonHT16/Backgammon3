@@ -87,7 +87,8 @@ public class Game extends GameStatus implements ModelElement {
 	 * @param action Die zu überprüfende Aktion
 	 */
 	public void checkActionForAI(Action action) {
-		if(currentPlayer instanceof AI) {
+		action.visit(this);
+/*		if(currentPlayer instanceof AI) {
 			// Die AI ist am Zug
 			if(action instanceof SelectStartPlace) {
 				((AI) currentPlayer).selectStartPlace();
@@ -105,7 +106,7 @@ public class Game extends GameStatus implements ModelElement {
 			} else if(action instanceof RollDice) {
 				((AI2) currentPlayer).rollDice();
 			}
-		}
+		}*/
 	}
 
 	/**
@@ -295,5 +296,17 @@ public class Game extends GameStatus implements ModelElement {
 	public int nextAccept(GameObject gameObject) {
 		currentState.accept(gameObject);
 		return 0;
+	}
+
+	public void selectStartPlace() {
+		currentPlayer.selectStartPlace();
+	}
+	
+	public void selectEndPlace() {
+		currentPlayer.selectEndPlace();
+	}
+	
+	public void rollDice() {
+		currentPlayer.rollDice();
 	}
 }

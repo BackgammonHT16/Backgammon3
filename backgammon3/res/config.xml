@@ -3,10 +3,10 @@
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
-	<player1Type>2</player1Type>
+	<player1Type>1</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
-	<firstPlayer>0</firstPlayer>
+	<firstPlayer>1</firstPlayer>
 	
 	<!-- Spiel nicht aus dem Menu Updaten. Dies erlaubt es das Menu bei 
 		 ungewöhnlichen Einstellungen zu ignorieren -->
@@ -51,7 +51,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>5</maximumTime>
+	<maximumTime>-1</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>

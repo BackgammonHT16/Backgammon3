@@ -21,14 +21,14 @@ public class Timer extends GameObject {
 	private boolean over;
 	private IntegerProperty time = new SimpleIntegerProperty(Config.getInteger("maximumTime"));
 	private Timeline timeline;
-	private ActionInterface actionInterface;
+	private TimerInterface actionInterface;
 	
 	
-	public Timer(ActionInterface actionInterface) {
+	public Timer(TimerInterface actionInterface) {
 		this.actionInterface = actionInterface;
 	}
 	
-	public void setActionInterface(ActionInterface actionInterface) {
+	public void setActionInterface(TimerInterface actionInterface) {
 		this.actionInterface = actionInterface;
 	}
 	

@@ -24,7 +24,7 @@ import javafx.util.Duration;
  * @author philipp
  *
  */
-public class GameController extends GameControllerElement implements EventHandler<Event>, ActionInterface {
+public class GameController extends GameControllerElement implements EventHandler<Event>, TimerInterface {
 	private Logger logger = LogManager.getLogger(GameController.class);
 
 	private boolean busy = false;
@@ -57,18 +57,6 @@ public class GameController extends GameControllerElement implements EventHandle
 		if (Config.getInteger("graphics") == 1) {
 
 			Action action = game.getAction();
-			/*
-			 * if(game.getAction() instanceof ShowMenu) {
-			 * handleAction(game.popAction()); } else if (game.getAction()
-			 * instanceof StartGame) { handleAction(game.popAction()); } else if
-			 * (game.getAction() instanceof ContinueGame) {
-			 * handleAction(game.popAction()); } else if (game.getAction()
-			 * instanceof Quit) { handleAction(game.popAction()); } else if
-			 * (game.getAction() instanceof CloseGame) {
-			 * handleAction(game.popAction()); } else if (game.getAction()
-			 * instanceof DisableContinueButton) {
-			 * handleAction(game.popAction()); }
-			 */
 
 			if (action == null) {
 				return;
@@ -94,60 +82,14 @@ public class GameController extends GameControllerElement implements EventHandle
 		// GUI wird nicht verwendet
 		else {
 			while (game.getAction() != null) {
-				game.popAction().visit(this);
+				Action action = game.popAction();
+				game.checkActionForAI(action);
+				action.visit(this);
 			}
-			// handleAllActions();
+			//handleAllActions();
 		}
 	}
 
-	/**
-	 * Prüft ob durch das Modell die Anzeige einer neuen Stage notwendig wird.
-	 * Ansonsten wird die Aktion an die AppStage durchgereicht.
-	 * 
-	 * @param action
-	 *            Nächste durchzuführende Aktion
-	 */
-	private int handleAction(Action action) {
-		game.checkActionForAI(action);
-
-		// GUI wird verwendet
-		if (Config.getInteger("graphics") == 1) {
-			if (action instanceof ShowMenu) {
-				initMenuView();
-			} else if (action instanceof StartGame) {
-				initGameView();
-			} else if (action instanceof ContinueGame) {
-				continueGame();
-			} else if (action instanceof Quit) {
-				quitGame();
-			} else if (action instanceof CloseGame) {
-				closeGame();
-			} else if (action instanceof DisableContinueButton) {
-				if (appStage != null) {
-					appStage.accept(action);
-					// appStage.update(action);
-				}
-			} else if (action instanceof UpdateModel) {
-				UpdateAI updateAI = new UpdateAI();
-				updateAI.setBusy(false);
-				game.accept(updateAI);
-				// game.handle(new UpdateAI(), false);
-			} else {
-				return gameStage.accept(action);
-				// return gameStage.update(action);
-			}
-		}
-		// GUI wird nicht verwendet
-		else {
-			if (action instanceof UpdateModel) {
-				UpdateAI updateAI = new UpdateAI();
-				updateAI.setBusy(false);
-				game.accept(updateAI);
-				// game.handle(new UpdateAI(), false);
-			}
-		}
-		return 0;
-	}
 
 	public void closeGame() {
 		if (appStage != null) {
@@ -226,8 +168,6 @@ public class GameController extends GameControllerElement implements EventHandle
 				gameObject.setBusy(busy);
 				game.accept(gameObject);
 
-				// game.handle(new ContinueButton(((MenuStage)
-				// appStage).getMenu()), busy);
 				appStage.hide();
 			}
 		});
@@ -243,8 +183,6 @@ public class GameController extends GameControllerElement implements EventHandle
 			GameObject gameObject = ((GameObjectView) event.getSource()).getGameObject();
 			gameObject.setBusy(busy);
 			game.accept(gameObject);
-			// game.handle(((GameObjectView) event.getSource()).getGameObject(),
-			// busy);
 		} else {
 			logger.error("Unbekannte Event Quelle.");
 		}
@@ -258,24 +196,11 @@ public class GameController extends GameControllerElement implements EventHandle
 	}
 
 	@Override
-	public void addActionAtBeginn(Action action) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addActionAtEnd(Action action) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void timeOver() {
 		GameObject gameObject = game.getBoard().getTimer();
 		gameObject.setBusy(false);
 		game.accept(gameObject);
 
-		// game.handle(game.getBoard().getTimer(), false);
 		handleAllActions();
 	}
 

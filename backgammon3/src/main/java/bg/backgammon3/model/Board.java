@@ -28,7 +28,7 @@ import bg.backgammon3.model.pointstate.*;
  * @author philipp
  *
  */
-public class Board extends GameObject implements ActionInterface, ModelElement {
+public class Board extends GameObject implements TimerInterface, ModelElement {
 	private Logger logger = LogManager.getLogger(Board.class);
 
 	private Integer numberOfPlayers = null;
@@ -224,12 +224,10 @@ public class Board extends GameObject implements ActionInterface, ModelElement {
 		return (currentPlayer + 1) % getNumberOfPlayers();
 	}
 	
-	@Override
 	public void addActionAtBeginn(Action action) {
 		gameStatus.addActionAtBeginn(action);
 	}
 
-	@Override
 	public void addActionAtEnd(Action action) {
 		gameStatus.addActionAtEnd(action);
 	}

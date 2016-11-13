@@ -5,6 +5,8 @@ package bg.backgammon3.model.action;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import bg.backgammon3.model.Game;
+
 /**
  * @author philipp
  *
@@ -19,6 +21,10 @@ public class Action {
 	
 	public boolean visitImmediately() {
 		return false;
+	}
+	
+	public int visit(Game g) {
+		return 0;
 	}
 
 	public int visit(GameControllerElement g) {

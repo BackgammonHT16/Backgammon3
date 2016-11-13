@@ -32,7 +32,8 @@ public class AI extends Player implements ModelElement {
 			board.handle(gameObject);
 		}
 	}
-	
+
+	@Override
 	public void selectStartPlace() {
 		logger.info("AI Easy wählt StartPlace.");
 		Place startPlace = null; 
@@ -41,10 +42,10 @@ public class AI extends Player implements ModelElement {
 				startPlace = p.getValue();
 			}
 		}
-		//board.handle(startPlace);
 		board.accept(startPlace);
 	}
-	
+
+	@Override
 	public void selectEndPlace() {
 		logger.info("AI Easy wählt EndPlace.");
 		Place endPlace = null; 
@@ -53,13 +54,12 @@ public class AI extends Player implements ModelElement {
 				endPlace = p.getValue();
 			}
 		}
-		//board.handle(endPlace);
 		board.accept(endPlace);
 	}
-	
+
+	@Override
 	public void rollDice() {
 		logger.info("AI Easy würfelt.");
-		//board.handle(board.getDices());
 		board.accept(board.getDices());
 	}
 
