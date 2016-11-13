@@ -28,7 +28,7 @@ import bg.backgammon3.model.pointstate.*;
  * @author philipp
  *
  */
-public class Board extends GameObject implements TimerInterface, ModelElement {
+public class Board extends ModelVisitor implements TimerInterface, ModelElement {
 	private Logger logger = LogManager.getLogger(Board.class);
 
 	private Integer numberOfPlayers = null;
@@ -122,7 +122,7 @@ public class Board extends GameObject implements TimerInterface, ModelElement {
 		routes.get(currentPlayer).hasLegalEndPlace(startPlace, dices, true);
 	}
 	
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		if(gameObject instanceof Timer) {
 			timeOver();
 		} else {
@@ -334,13 +334,13 @@ public class Board extends GameObject implements TimerInterface, ModelElement {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		currentState.accept(gameObject);
 		return 0;
 	}

@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.*;
 import bg.backgammon3.view.CheckerView;
@@ -77,7 +77,7 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 	}
 	
 	@Override
-	public GameObject getGameObject() {
+	public ModelVisitor getGameObject() {
 		return place;
 	}
 

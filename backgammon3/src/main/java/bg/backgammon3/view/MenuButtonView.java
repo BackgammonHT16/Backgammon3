@@ -63,7 +63,7 @@ public class MenuButtonView extends ImageView implements GameObjectView {
 	
 	
 	@Override
-	public GameObject getGameObject() {
+	public ModelVisitor getGameObject() {
 		return menuButton;
 	}
 }

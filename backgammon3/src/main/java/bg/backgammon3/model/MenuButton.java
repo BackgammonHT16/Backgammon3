@@ -9,7 +9,7 @@ import bg.backgammon3.model.gamestate.*;
  * @author philipp
  *
  */
-public class MenuButton extends GameObject{
+public class MenuButton extends ModelVisitor{
 	
 	public int visit(GameRunningState gameRunningState) {
 		gameRunningState.showMenu();

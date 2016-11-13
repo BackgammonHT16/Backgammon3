@@ -17,7 +17,7 @@ import bg.backgammon3.model.boardstate.StartState;
  * @author philipp
  *
  */
-public class Dices extends GameObject{
+public class Dices extends ModelVisitor{
 	private Logger logger = LogManager.getLogger(Dices.class);
 	ArrayList<Dice> dices = new ArrayList<Dice>();
 	

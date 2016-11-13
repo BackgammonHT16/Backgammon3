@@ -10,7 +10,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.Timer;
 import bg.backgammon3.model.UpdateAI;
@@ -37,7 +37,7 @@ public class AI2 extends Player implements ModelElement {
 	}
 
 	@Override
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		if(gameObject instanceof UpdateAI) {
 			board.handle(gameObject);
 		} else if (gameObject instanceof Timer) {
@@ -193,13 +193,13 @@ public class AI2 extends Player implements ModelElement {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		return 0;
 	}
 }

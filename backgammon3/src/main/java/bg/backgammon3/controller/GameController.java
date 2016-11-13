@@ -169,7 +169,7 @@ public class GameController extends GameControllerElement implements EventHandle
 		}
 		appStage.getStage().setOnCloseRequest(e -> {
 			if (appStage instanceof MenuStage) {
-				GameObject gameObject = new ContinueButton(((MenuStage) appStage).getMenu());
+				ModelVisitor gameObject = new ContinueButton(((MenuStage) appStage).getMenu());
 				gameObject.setBusy(busy);
 				game.accept(gameObject);
 
@@ -185,7 +185,7 @@ public class GameController extends GameControllerElement implements EventHandle
 	 */
 	public void handle(Event event) {
 		if (event.getSource() instanceof GameObjectView) {
-			GameObject gameObject = ((GameObjectView) event.getSource()).getGameObject();
+			ModelVisitor gameObject = ((GameObjectView) event.getSource()).getGameObject();
 			gameObject.setBusy(busy);
 			game.accept(gameObject);
 		} else {
@@ -202,7 +202,7 @@ public class GameController extends GameControllerElement implements EventHandle
 
 	@Override
 	public void timeOver() {
-		GameObject gameObject = game.getBoard().getTimer();
+		ModelVisitor gameObject = game.getBoard().getTimer();
 		gameObject.setBusy(false);
 		game.accept(gameObject);
 
@@ -210,13 +210,13 @@ public class GameController extends GameControllerElement implements EventHandle
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		game.accept(gameObject);
 		return 0;
 	}

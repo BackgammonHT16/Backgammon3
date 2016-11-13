@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.Dices;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.action.DisplayMessage;
 import bg.backgammon3.model.action.StartTimer;
@@ -26,7 +26,7 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		if(gameObject instanceof Dices) {
 			board.rollSingleDice();
 			if(board.getDices().getDice(0).getValue() > board.getDices().getDice(1).getValue()) {
@@ -44,13 +44,13 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		return 0;
 	}
 	

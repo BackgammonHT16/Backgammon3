@@ -11,7 +11,7 @@ import bg.backgammon3.model.player.AI2;
  * @author philipp
  *
  */
-public class UpdateAI extends GameObject {
+public class UpdateAI extends ModelVisitor {
 
 	public int visit(AI ai) {
 		ai.getBoard().accept(this);

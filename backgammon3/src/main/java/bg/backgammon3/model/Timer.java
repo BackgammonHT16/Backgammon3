@@ -18,7 +18,7 @@ import javafx.util.Duration;
  * @author philipp
  *
  */
-public class Timer extends GameObject {
+public class Timer extends ModelVisitor {
 	private boolean active;
 	private boolean over;
 	private IntegerProperty time = new SimpleIntegerProperty(Config.getInteger("maximumTime"));

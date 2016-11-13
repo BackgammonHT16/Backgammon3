@@ -6,7 +6,7 @@ package bg.backgammon3.model.place;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.pointstate.*;
 
@@ -14,7 +14,7 @@ import bg.backgammon3.model.pointstate.*;
  * @author philipp
  *
  */
-public abstract class Place extends GameObject {
+public abstract class Place extends ModelVisitor {
 	private Logger logger = LogManager.getLogger(Place.class);
 	protected Integer playerId = -1;
 	protected Integer numberOfCheckers;

@@ -4,7 +4,7 @@
 package bg.backgammon3.model.player;
 
 import bg.backgammon3.model.Board;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 
 /**
@@ -20,7 +20,7 @@ public abstract class Player implements ModelElement {
 		this.id = id;
 	}
 	
-	public abstract void handle(GameObject gameObject);
+	public abstract void handle(ModelVisitor gameObject);
 
 	public void setBoard(Board board) {
 		this.board = board;

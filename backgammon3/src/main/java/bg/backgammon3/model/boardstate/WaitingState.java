@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.model.Board;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.UpdateAI;
 import bg.backgammon3.model.action.*;
@@ -29,7 +29,7 @@ public class WaitingState extends BoardState implements ModelElement {
 
 
 	@Override
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		logger.info("Game Object die NextState weiter ausführt: " + gameObject);
 			if(gameObject instanceof UpdateAI) {
 			if(board.hasWon()) {
@@ -43,13 +43,13 @@ public class WaitingState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		return 0;
 	}
 

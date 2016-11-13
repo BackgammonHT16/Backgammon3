@@ -6,7 +6,7 @@ package bg.backgammon3.model.player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 
 /**
@@ -22,18 +22,18 @@ public class Human extends Player implements ModelElement {
 	}
 
 	@Override
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		board.handle(gameObject);
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		board.accept(gameObject);
 		return 0;
 	}

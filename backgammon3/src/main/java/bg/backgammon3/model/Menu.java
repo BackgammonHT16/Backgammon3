@@ -12,7 +12,7 @@ import bg.backgammon3.config.Config;
  * @author philipp
  *
  */
-public class Menu extends GameObject {
+public class Menu extends ModelVisitor {
 	private Logger logger = LogManager.getLogger(Menu.class);
 	private Integer color;
 	private Integer difficulty;

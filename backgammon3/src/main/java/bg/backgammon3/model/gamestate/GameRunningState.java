@@ -19,7 +19,7 @@ public class GameRunningState extends GameState {
 	
 
 	@Override
-	public void handle(GameObject gameObject, boolean busy) {
+	public void handle(ModelVisitor gameObject, boolean busy) {
 		if (gameObject instanceof MenuButton) {
 			showMenu();
 		} else {
@@ -79,14 +79,14 @@ public class GameRunningState extends GameState {
 
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		if(!gameObject.getBusy()){
 			game.letPlayerHandle(gameObject);
 		}

@@ -5,7 +5,7 @@ package bg.backgammon3.view;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Board;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.view.helper.StaticImageHelper;
 import javafx.scene.image.ImageView;
 
@@ -23,7 +23,7 @@ public class BackgroundView extends ImageView implements GameObjectView {
 	
 	
 	@Override
-	public GameObject getGameObject() {
+	public ModelVisitor getGameObject() {
 		return board;
 	}
 

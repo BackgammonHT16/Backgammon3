@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Board;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.*;
@@ -48,7 +48,7 @@ public class ChooseStartState extends BoardState {
 	}
 
 	@Override
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		logger.info("ChooseStartState handle aufgerufen mit: " + gameObject.toString());
 		if(gameObject instanceof Place) {
 			if(((Place) gameObject).getState() instanceof StartPoint) {
@@ -68,13 +68,13 @@ public class ChooseStartState extends BoardState {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		return 0;
 	}
 

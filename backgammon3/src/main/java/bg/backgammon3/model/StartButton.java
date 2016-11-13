@@ -9,7 +9,7 @@ import bg.backgammon3.model.gamestate.MenuState;
  * @author philipp
  *
  */
-public class StartButton extends GameObject {
+public class StartButton extends ModelVisitor {
 	Menu menu;
 	
 	public StartButton(Menu menu) {

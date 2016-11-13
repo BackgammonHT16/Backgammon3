@@ -5,7 +5,7 @@ import java.util.Random;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Dice;
 import bg.backgammon3.model.Dices;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.view.helper.ImageHelper;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -67,7 +67,7 @@ public class DiceView extends Group implements GameObjectView {
 	}
 
 	@Override
-	public GameObject getGameObject() {
+	public ModelVisitor getGameObject() {
 		return dices;
 	}
 

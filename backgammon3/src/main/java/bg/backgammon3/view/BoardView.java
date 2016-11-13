@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
-import bg.backgammon3.model.GameObject;
+import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.*;
 import bg.backgammon3.view.helper.StaticImageHelper;
@@ -148,7 +148,7 @@ public class BoardView extends BoardElement implements GameObjectView {
 	 * Gibt das zum Modell zugehörige Objekt zurück. Wird gebraucht damit das Model weiß auf was geklickt wurde.
 	 */
 	@Override
-	public GameObject getGameObject() {
+	public ModelVisitor getGameObject() {
 		return board;
 	}
 

@@ -14,7 +14,7 @@ import bg.backgammon3.model.player.Human;
  * @author philipp
  *
  */
-public class GameObject {
+public class ModelVisitor {
 	// Wird von GameController gesetzt und gibt an ob noch eine
 	// animation stattfindet. Dadurch sollte sich nur der MenuButton dazu
 	// entscheiden etwas zu tun.

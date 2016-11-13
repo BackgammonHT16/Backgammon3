@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
 
 /**
@@ -117,6 +118,7 @@ public class GameStage extends GameStageElement {
 		if (boardView != null) {
 			boardView.hide();
 			stage.hide();
+			sound(false);
 		}
 	}
 
@@ -131,7 +133,9 @@ public class GameStage extends GameStageElement {
 
 	private void sound(Boolean play) {
 		if (play) {
-			mediaPlayer.play();
+			if(!mediaPlayer.getStatus().equals(Status.PLAYING)) {
+				mediaPlayer.play();
+			}
 		} else {
 			mediaPlayer.stop();
 		}

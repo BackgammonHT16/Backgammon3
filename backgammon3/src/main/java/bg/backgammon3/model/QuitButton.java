@@ -9,7 +9,7 @@ import bg.backgammon3.model.gamestate.MenuState;
  * @author philipp
  *
  */
-public class QuitButton extends GameObject {
+public class QuitButton extends ModelVisitor {
 	private Menu menu;
 	
 	public QuitButton(Menu menu) {

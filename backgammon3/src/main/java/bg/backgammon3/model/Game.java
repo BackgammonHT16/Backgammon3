@@ -129,7 +129,7 @@ public class Game extends GameStatus implements ModelElement {
 	 * 
 	 * @param event Der zu verarbeitende Event
 	 */
-	public void handle(GameObject gameObject, boolean busy) {
+	public void handle(ModelVisitor gameObject, boolean busy) {
 		currentState.handle(gameObject, busy);
 	}
 
@@ -256,7 +256,7 @@ public class Game extends GameStatus implements ModelElement {
 		return menu;
 	}
 
-	public void letPlayerHandle(GameObject gameObject) {
+	public void letPlayerHandle(ModelVisitor gameObject) {
 		currentPlayer.accept(gameObject);
 		//currentPlayer.handle(gameObject);
 	}
@@ -278,13 +278,13 @@ public class Game extends GameStatus implements ModelElement {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		currentState.accept(gameObject);
 		return 0;
 	}

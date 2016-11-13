@@ -28,7 +28,7 @@ public class StartState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public void handle(GameObject gameObject) {
+	public void handle(ModelVisitor gameObject) {
 		if(gameObject instanceof Dices) {
 			board.rollSingleDice();
 			board.nextPlayer();
@@ -38,13 +38,13 @@ public class StartState extends BoardState implements ModelElement {
 	}
 
 	@Override
-	public int accept(GameObject gameObject) {
+	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
 		return 0;
 	}
 
 	@Override
-	public int nextAccept(GameObject gameObject) {
+	public int nextAccept(ModelVisitor gameObject) {
 		return 0;
 	}
 	
