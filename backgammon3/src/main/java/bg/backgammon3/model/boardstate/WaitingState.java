@@ -16,10 +16,10 @@ import bg.backgammon3.model.action.*;
  * @author philipp
  *
  */
-public class NextState extends BoardState implements ModelElement {
-	private Logger logger = LogManager.getLogger(NextState.class);
+public class WaitingState extends BoardState implements ModelElement {
+	private Logger logger = LogManager.getLogger(WaitingState.class);
 
-	public NextState(Board board) {
+	public WaitingState(Board board) {
 		super(board);
 	}
 

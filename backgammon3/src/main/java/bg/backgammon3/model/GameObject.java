@@ -44,7 +44,7 @@ public class GameObject {
 	public int visit(GameOverState view) {
 		return view.nextAccept(this);
 	}
-	public int visit(NextState view) {
+	public int visit(WaitingState view) {
 		return view.nextAccept(this);
 	}
 	public int visit(RollDiceState view) {

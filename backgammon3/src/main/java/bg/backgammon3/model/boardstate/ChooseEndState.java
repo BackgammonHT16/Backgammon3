@@ -40,7 +40,7 @@ public class ChooseEndState extends BoardState {
 		if(gameObject instanceof Place) {
 			if(((Place) gameObject).getState() instanceof EndPoint) {
 				board.moveChecker((Place) gameObject);
-				NextState c = new NextState(board);
+				WaitingState c = new WaitingState(board);
 				board.setState(c);
 				board.addActionAtEnd(new UpdateModel());
 				c.init();
@@ -68,7 +68,7 @@ public class ChooseEndState extends BoardState {
 
 	public void selectEndPlace(Place place) {
 		board.moveChecker(place);
-		NextState c = new NextState(board);
+		WaitingState c = new WaitingState(board);
 		board.setState(c);
 		board.addActionAtEnd(new UpdateModel());
 		c.init();

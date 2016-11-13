@@ -3,7 +3,7 @@
  */
 package bg.backgammon3.model;
 
-import bg.backgammon3.model.boardstate.NextState;
+import bg.backgammon3.model.boardstate.WaitingState;
 
 /**
  * @author philipp
@@ -22,7 +22,7 @@ public class UpdateAI extends GameObject {
 		return 0;
 	}
 	
-	public int visit(NextState s) {
+	public int visit(WaitingState s) {
 		s.moveToNextState();
 		return 0;
 	}
