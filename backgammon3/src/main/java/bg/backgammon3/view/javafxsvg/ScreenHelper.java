@@ -4,7 +4,7 @@
 package bg.backgammon3.view.javafxsvg;
 
 /**
- * @author dominik
+ * 
  *
  */
 //package de.codecentric.centerdevice.javafxsvg;

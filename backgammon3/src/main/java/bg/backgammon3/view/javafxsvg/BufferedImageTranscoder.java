@@ -4,7 +4,7 @@
 package bg.backgammon3.view.javafxsvg;
 
 /**
- * @author dominik
+ * 
  *
  */
 //package de.codecentric.centerdevice.javafxsvg;
@@ -23,7 +23,7 @@ import org.apache.batik.transcoder.image.ImageTranscoder;
  * License unfortunately unknown, but using this code is probably categorized as
  * "fair use" (because the code is in my opinion too simple to be licensed)
  * 
- * @author bb-generation
+ * 
  * @see <a href="https://web.archive.org/web/20131215231214/http://bbgen.net/blog/2011/06/java-svg-to-bufferedimage/">java-
  *      svg-to-bufferedimage (as archived by archive.org)</a>
  */

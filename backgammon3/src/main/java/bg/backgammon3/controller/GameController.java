@@ -22,7 +22,7 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class GameController extends GameControllerElement implements EventHandler<Event>, TimerInterface {

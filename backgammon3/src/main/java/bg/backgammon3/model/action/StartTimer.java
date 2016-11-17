@@ -6,7 +6,7 @@ package bg.backgammon3.model.action;
 
 
 /**
- * @author philipp
+ * 
  *
  */
 public class StartTimer extends Action {

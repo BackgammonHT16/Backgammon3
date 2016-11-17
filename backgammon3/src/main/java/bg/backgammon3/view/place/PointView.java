@@ -10,7 +10,7 @@ import bg.backgammon3.model.pointstate.StartPoint;
 import bg.backgammon3.view.helper.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class PointView extends PlaceView {

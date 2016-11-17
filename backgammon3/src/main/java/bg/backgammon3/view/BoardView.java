@@ -22,7 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class BoardView extends BoardElement implements GameObjectView {

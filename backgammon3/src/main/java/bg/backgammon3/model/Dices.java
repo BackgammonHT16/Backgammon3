@@ -14,7 +14,7 @@ import bg.backgammon3.model.boardstate.StartSecondDiceState;
 import bg.backgammon3.model.boardstate.StartState;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Dices extends ModelVisitor{

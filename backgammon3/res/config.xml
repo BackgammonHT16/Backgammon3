@@ -3,7 +3,7 @@
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
-	<player1Type>2</player1Type>
+	<player1Type>1</player1Type>
 	
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
@@ -483,11 +483,11 @@
 	<!-- Aktueller Stand -->
 	<ai2CurrentPrecisionLevel>3</ai2CurrentPrecisionLevel>
 	
-	<ai2CurrentRule0>325</ai2CurrentRule0>
-	<ai2CurrentRule1>0</ai2CurrentRule1>
-	<ai2CurrentRule2>50</ai2CurrentRule2>
+	<ai2CurrentRule0>350</ai2CurrentRule0>
+	<ai2CurrentRule1>-25</ai2CurrentRule1>
+	<ai2CurrentRule2>25</ai2CurrentRule2>
 	<ai2CurrentRule3>-125</ai2CurrentRule3>
-	<ai2CurrentRule4>0</ai2CurrentRule4>
+	<ai2CurrentRule4>12</ai2CurrentRule4>
 	<ai2CurrentRule5>350</ai2CurrentRule5>
 	<ai2CurrentRule6>399</ai2CurrentRule6>
 	<ai2CurrentRule7>0</ai2CurrentRule7>

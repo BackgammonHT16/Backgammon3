@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.config.Config;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Menu extends ModelVisitor {

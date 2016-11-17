@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class StaticImageHelper {

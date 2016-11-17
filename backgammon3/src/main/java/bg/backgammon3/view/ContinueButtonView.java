@@ -7,7 +7,7 @@ import bg.backgammon3.model.*;
 import javafx.scene.control.Button;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class ContinueButtonView extends Button implements GameObjectView {

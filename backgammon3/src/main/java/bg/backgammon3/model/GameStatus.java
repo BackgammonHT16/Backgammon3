@@ -6,7 +6,7 @@ package bg.backgammon3.model;
 import bg.backgammon3.model.action.Action;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class GameStatus {

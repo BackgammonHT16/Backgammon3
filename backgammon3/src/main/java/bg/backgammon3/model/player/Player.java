@@ -8,7 +8,7 @@ import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class Player implements ModelElement {

@@ -19,7 +19,7 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class CheckerView {

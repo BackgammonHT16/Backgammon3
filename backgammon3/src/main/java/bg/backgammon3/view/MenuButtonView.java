@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class MenuButtonView extends ImageView implements GameObjectView {

@@ -14,7 +14,7 @@ import bg.backgammon3.model.place.Place;
 import bg.backgammon3.model.pointstate.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class ChooseEndState extends BoardState {

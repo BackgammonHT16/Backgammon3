@@ -10,7 +10,7 @@ import bg.backgammon3.model.*;
 import bg.backgammon3.model.action.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class StartState extends BoardState implements ModelElement {

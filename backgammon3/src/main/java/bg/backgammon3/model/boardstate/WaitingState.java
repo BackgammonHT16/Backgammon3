@@ -13,7 +13,7 @@ import bg.backgammon3.model.UpdateAI;
 import bg.backgammon3.model.action.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class WaitingState extends BoardState implements ModelElement {

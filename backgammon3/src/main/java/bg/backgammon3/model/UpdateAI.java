@@ -8,7 +8,7 @@ import bg.backgammon3.model.player.AI;
 import bg.backgammon3.model.player.AI2;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class UpdateAI extends ModelVisitor {

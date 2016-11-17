@@ -10,7 +10,7 @@ import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Human extends Player implements ModelElement {

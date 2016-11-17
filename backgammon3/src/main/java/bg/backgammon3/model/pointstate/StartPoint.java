@@ -9,7 +9,7 @@ import bg.backgammon3.model.boardstate.ChooseStartState;
 import bg.backgammon3.model.place.Place;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class StartPoint extends PointState {

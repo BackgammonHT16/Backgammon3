@@ -11,7 +11,7 @@ import bg.backgammon3.model.pointstate.StartPoint;
 import bg.backgammon3.view.helper.StaticImageHelper;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class BarView extends PlaceView {

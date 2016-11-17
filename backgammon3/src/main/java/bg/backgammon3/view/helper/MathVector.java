@@ -4,7 +4,7 @@
 package bg.backgammon3.view.helper;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class MathVector {

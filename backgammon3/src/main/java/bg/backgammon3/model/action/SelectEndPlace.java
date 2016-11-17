@@ -7,7 +7,7 @@ import bg.backgammon3.config.Config;
 import bg.backgammon3.model.Game;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class SelectEndPlace extends Action{

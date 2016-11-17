@@ -6,7 +6,7 @@ package bg.backgammon3.model.action;
 import bg.backgammon3.model.UpdateAI;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class UpdateModel extends Action {

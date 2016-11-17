@@ -11,7 +11,7 @@ import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.pointstate.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class Place extends ModelVisitor {

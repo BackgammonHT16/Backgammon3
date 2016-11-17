@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class AppStage extends GameElement {

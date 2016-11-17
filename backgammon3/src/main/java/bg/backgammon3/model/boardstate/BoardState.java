@@ -6,7 +6,7 @@ package bg.backgammon3.model.boardstate;
 import bg.backgammon3.model.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class BoardState implements ModelElement {

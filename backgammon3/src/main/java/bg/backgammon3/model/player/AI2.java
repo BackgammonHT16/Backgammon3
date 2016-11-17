@@ -20,7 +20,7 @@ import bg.backgammon3.model.pointstate.EndPoint;
 import bg.backgammon3.model.pointstate.StartPoint;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class AI2 extends Player implements ModelElement {

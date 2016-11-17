@@ -7,7 +7,7 @@ import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.place.*;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class PointState {

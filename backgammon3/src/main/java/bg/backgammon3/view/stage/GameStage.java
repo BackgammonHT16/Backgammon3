@@ -23,7 +23,7 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class GameStage extends GameStageElement {

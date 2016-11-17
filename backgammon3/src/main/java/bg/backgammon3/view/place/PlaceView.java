@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class PlaceView extends ImageView implements GameObjectView {

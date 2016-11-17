@@ -4,7 +4,7 @@
 package bg.backgammon3.model.place;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Point extends Place {

@@ -10,7 +10,7 @@ import bg.backgammon3.view.helper.StaticImageHelper;
 import javafx.scene.image.ImageView;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class BackgroundView extends ImageView implements GameObjectView {

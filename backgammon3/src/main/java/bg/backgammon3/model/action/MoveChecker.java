@@ -7,7 +7,7 @@ import bg.backgammon3.config.Config;
 
 
 /**
- * @author philipp
+ * 
  *
  */
 public class MoveChecker extends Action {

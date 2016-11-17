@@ -32,7 +32,7 @@ import org.apache.logging.log4j.Logger;
  * Diese Klasse stellt dem Programm Daten aus einem Konfigurationsfile zur
  * Verfügung.
  * 
- * @author philipp
+ * 
  *
  */
 public class Config {

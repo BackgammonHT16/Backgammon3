@@ -23,7 +23,7 @@ import bg.backgammon3.model.player.Player;
 /**
  * Ausgangsklasse des Modells
  * 
- * @author philipp
+ * 
  *
  */
 public class Game extends GameStatus implements ModelElement {

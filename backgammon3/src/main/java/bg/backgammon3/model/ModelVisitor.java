@@ -11,7 +11,7 @@ import bg.backgammon3.model.player.AI2;
 import bg.backgammon3.model.player.Human;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class ModelVisitor {

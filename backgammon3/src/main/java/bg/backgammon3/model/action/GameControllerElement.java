@@ -6,7 +6,7 @@ package bg.backgammon3.model.action;
 import bg.backgammon3.model.ModelElement;
 
 /**
- * @author philipp
+ * 
  *
  */
 public abstract class GameControllerElement extends GameElement implements ModelElement {

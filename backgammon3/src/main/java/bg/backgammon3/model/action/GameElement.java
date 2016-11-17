@@ -7,7 +7,7 @@ package bg.backgammon3.model.action;
  * Diese klasse stellt die Funktionen aus der View dar sodass diese von
  * den Action Elementen aufgerufen werden können ohne dass diese die View
  * kennen müssen
- * @author philipp
+ * 
  *
  */
 public abstract class GameElement {

@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Timer extends ModelVisitor {

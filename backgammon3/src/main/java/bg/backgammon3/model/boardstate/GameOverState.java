@@ -9,7 +9,7 @@ import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.action.CloseGame;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class GameOverState  extends BoardState implements ModelElement {

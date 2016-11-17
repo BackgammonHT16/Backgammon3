@@ -14,7 +14,7 @@ import bg.backgammon3.model.action.DisplayMessage;
 import bg.backgammon3.model.action.StartTimer;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class StartSecondDiceState extends BoardState implements ModelElement {

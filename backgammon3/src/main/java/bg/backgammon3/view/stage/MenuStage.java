@@ -32,7 +32,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class MenuStage extends MenuElement {

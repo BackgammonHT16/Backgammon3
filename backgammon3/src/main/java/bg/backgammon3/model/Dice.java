@@ -8,7 +8,7 @@ import java.util.Random;
 import bg.backgammon3.config.Config;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Dice {

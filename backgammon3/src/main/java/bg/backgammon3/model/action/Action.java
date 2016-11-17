@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import bg.backgammon3.model.Game;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Action {

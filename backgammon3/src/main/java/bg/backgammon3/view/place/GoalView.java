@@ -11,7 +11,7 @@ import bg.backgammon3.view.helper.Position;
 import bg.backgammon3.view.helper.StaticImageHelper;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class GoalView extends PlaceView{

@@ -14,7 +14,7 @@ import bg.backgammon3.model.place.*;
 import bg.backgammon3.model.pointstate.EndPoint;
 
 /**
- * @author philipp
+ * 
  *
  */
 public class Route {
