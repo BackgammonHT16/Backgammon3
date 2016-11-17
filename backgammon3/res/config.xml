@@ -24,7 +24,7 @@
 		 playerIType müssen beide auf 1 oder 2 gesetzt werden -->
 	<graphics>1</graphics>
 	
-	<checkerMoveSpeed>150</checkerMoveSpeed>
+	<checkerMoveSpeed>300</checkerMoveSpeed>
 	
 	<diceRollTime>150</diceRollTime>
 	
@@ -51,7 +51,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>-1</maximumTime>
+	<maximumTime>30</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>

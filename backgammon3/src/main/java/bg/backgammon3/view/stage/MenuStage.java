@@ -123,18 +123,18 @@ public class MenuStage extends MenuElement {
 		Label time = new Label("Time");
 		grid.add(time, 0, 3);
 
-		ObservableList<String> optionsTime = FXCollections.observableArrayList("Endless", "5s", "10s", "20s", "40s");
+		ObservableList<String> optionsTime = FXCollections.observableArrayList("Endless", "30s", "40s", "50s", "60s");
 		final ComboBox<String> comboBoxTime = new ComboBox<String>(optionsTime);
 		int timeId = 0;
 		if (menu.getTime() == -1) {
 			timeId = 0;
-		} else if (menu.getTime() == 5) {
+		} else if (menu.getTime() == 30) {
 			timeId = 1;
-		} else if (menu.getTime() == 10) {
-			timeId = 2;
-		} else if (menu.getTime() == 20) {
-			timeId = 3;
 		} else if (menu.getTime() == 40) {
+			timeId = 2;
+		} else if (menu.getTime() == 50) {
+			timeId = 3;
+		} else if (menu.getTime() == 60) {
 			timeId = 4;
 		}
 		comboBoxTime.setValue(optionsTime.get(timeId));
@@ -160,14 +160,14 @@ public class MenuStage extends MenuElement {
 		comboBoxTime.setOnAction((event) -> {
 			if (((String) comboBoxTime.getValue()).equals("Endless")) {
 				menu.setTime(-1);
-			} else if (((String) comboBoxTime.getValue()).equals("5s")) {
-				menu.setTime(5);
-			} else if (((String) comboBoxTime.getValue()).equals("10s")) {
-				menu.setTime(10);
-			} else if (((String) comboBoxTime.getValue()).equals("20s")) {
-				menu.setTime(20);
+			} else if (((String) comboBoxTime.getValue()).equals("30s")) {
+				menu.setTime(30);
 			} else if (((String) comboBoxTime.getValue()).equals("40s")) {
 				menu.setTime(40);
+			} else if (((String) comboBoxTime.getValue()).equals("50s")) {
+				menu.setTime(50);
+			} else if (((String) comboBoxTime.getValue()).equals("60s")) {
+				menu.setTime(60);
 			}
 		});
 
