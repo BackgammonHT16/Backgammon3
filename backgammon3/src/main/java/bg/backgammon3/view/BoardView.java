@@ -8,18 +8,29 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
 import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.place.*;
+import bg.backgammon3.view.helper.BackGroundHelper;
 import bg.backgammon3.view.helper.StaticImageHelper;
 import bg.backgammon3.view.place.*;
+import javafx.animation.PathTransition;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  * 
@@ -60,6 +71,9 @@ public class BoardView extends BoardElement implements GameObjectView {
 		BackgroundView bgv = new BackgroundView(board);
 		root.getChildren().add(bgv);
 		controls.add(bgv);
+		bgv.setFocusTraversable(true);
+		BackGroundHelper.initBackground(root, bgv);
+		
 		
 		// Places und Checker
 		initPlaces(root);

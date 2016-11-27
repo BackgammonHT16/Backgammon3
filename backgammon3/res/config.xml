@@ -51,7 +51,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>30</maximumTime>
+	<maximumTime>-1</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
