@@ -29,8 +29,8 @@ public class BackGroundHelper {
 					tmpNode = 0;
 					double bodySizeY = 20;
 					double bodyPositionY = 20;
-					double startX = -root.getWidth() / 2 - 40;
-					double startY = root.getHeight() / 2 - bodySizeY - bodyPositionY;
+					double startX = -root.getWidth()/root.getScaleX() / 2 - 40;
+					double startY = root.getHeight()/root.getScaleY() / 2 - bodySizeY - bodyPositionY;
 					Group g = new Group();
 					g.setTranslateX(startX);
 					g.setTranslateY(startY);
