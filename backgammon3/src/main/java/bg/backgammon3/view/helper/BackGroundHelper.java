@@ -323,7 +323,8 @@ public class BackGroundHelper {
 			mediaPlayer.add(new MediaPlayer(media));
 			mediaPlayer.get(i).setCycleCount(0);
 		}
-		image = new ImageCursor(StaticImageHelper.loadImage(Config.getString("happyVision")));
+		Image tmpImg = StaticImageHelper.loadImage(Config.getString("happyVision"));
+		image = new ImageCursor(tmpImg, tmpImg.getWidth() / 2, tmpImg.getHeight() / 2);
 
 		textOverall = new Text();
 		textOverall.setVisible(false);
