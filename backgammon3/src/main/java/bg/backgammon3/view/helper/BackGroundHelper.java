@@ -28,6 +28,9 @@ import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 /**
@@ -46,6 +49,8 @@ public class BackGroundHelper {
 	private static ArrayList<MediaPlayer> mediaPlayer = new ArrayList<MediaPlayer>();
 	private static int count = 0;
 	private static ImageCursor image;
+	private static int sizeOverall = 0;
+	private static Text textOverall;
 
 	
 	public static void showBackground(Pane root, ImageView bgv, int dir, double y, double v, double s) {
@@ -172,8 +177,50 @@ public class BackGroundHelper {
 			}
 			ImageView im = new ImageView();
 			StaticImageHelper.loadImageView(Config.getString("happyPatch"), 70, false, 0, 0, im);
+			g.setMouseTransparent(true);
 			g.getChildren().add(im);
 			pathTransition.stop();
+			
+			int sizeSingle = (int)(-s * 10.0) + 20;
+			sizeSingle = (sizeSingle / 3) * 10;
+			sizeOverall += sizeSingle;
+
+			textOverall.setText(Integer.toString(sizeOverall));
+			textOverall.toFront();
+			
+			Text text = new Text();
+			text.setStrokeWidth(1);
+			text.setStroke(Color.WHITE);
+			text.setText(Integer.toString(sizeSingle));
+			text.setTranslateX(g.translateXProperty().getValue());
+			text.setTranslateY(g.translateYProperty().getValue());
+			text.setFont(Font.font(Config.getString("Font"), FontWeight.BOLD, Config.getInteger("textSize")*3));
+			elemente.add(text);
+			root.getChildren().add(text);
+
+			ArrayList<KeyFrame> kf = new ArrayList<KeyFrame>();
+			KeyFrame k = new KeyFrame(Duration.millis(0), new KeyValue(text.scaleXProperty(), 1));
+			kf.add(k);
+			k = new KeyFrame(Duration.millis(0), new KeyValue(text.scaleYProperty(), 1));
+			kf.add(k);
+			k = new KeyFrame(Duration.millis(0), new KeyValue(text.opacityProperty(), 1));
+			kf.add(k);
+
+			k = new KeyFrame(Duration.millis(1000), new KeyValue(text.scaleXProperty(), 6));
+			kf.add(k);
+			k = new KeyFrame(Duration.millis(1000), new KeyValue(text.scaleYProperty(), 6));
+			kf.add(k);
+			k = new KeyFrame(Duration.millis(1000), new KeyValue(text.opacityProperty(), 0));
+			kf.add(k);
+			
+			k = new KeyFrame(Duration.millis(1000), b -> {root.getChildren().remove(text); elemente.remove(text);});
+			kf.add(k);
+
+			Timeline timeline  = new Timeline(); 
+			timeline.setCycleCount(0); 
+			timeline.setAutoReverse(false); 
+			timeline.getKeyFrames().addAll(kf); 
+			timeline.play();
 		});
 	}
 	
@@ -185,6 +232,18 @@ public class BackGroundHelper {
 	public static void activateInstantAction(Pane root, ImageView bgv) {
 		root.setCursor(image);
 		ArrayList<KeyFrame> kf = new ArrayList<KeyFrame>();
+		
+		
+
+		textOverall.setVisible(true);
+		textOverall.setText(Integer.toString(sizeOverall));
+		textOverall.setFont(Font.font(Config.getString("Font"), FontWeight.BOLD, Config.getInteger("textSize") * 3));
+		textOverall.setTranslateX(-Config.getInteger("width")/2 + 80);
+		textOverall.setTranslateY(-Config.getInteger("height")/2 + 40);
+		textOverall.setStroke(Color.WHITE);
+		textOverall.setStrokeWidth(1);
+		
+		
 		scale = scale > 180 ? 180 : scale;
 		scale = scale < 30 ? 30 : scale;
 		double time = 0;
@@ -200,7 +259,43 @@ public class BackGroundHelper {
 				showBackground(root, bgv, dir, y, v, s);
 			}));
 		}
-		kf.add(new KeyFrame(Duration.millis(time + 3000), a -> {mhd = false; root.setCursor(Cursor.DEFAULT); }));
+		kf.add(new KeyFrame(Duration.millis(time + 8000), a -> {
+			Text text = new Text();
+			text.setText(Integer.toString(sizeOverall));
+			text.setStrokeWidth(1);
+			text.setStroke(Color.WHITE);
+			text.setTranslateX(0);
+			text.setTranslateY(0);
+			text.setFont(Font.font(Config.getString("Font"), FontWeight.BOLD, Config.getInteger("textSize") * 6));
+			elemente.add(text);
+			root.getChildren().add(text);
+
+			ArrayList<KeyFrame> kf2 = new ArrayList<KeyFrame>();
+			KeyFrame k = new KeyFrame(Duration.millis(0), new KeyValue(text.scaleXProperty(), 1));
+			kf2.add(k);
+			k = new KeyFrame(Duration.millis(0), new KeyValue(text.scaleYProperty(), 1));
+			kf2.add(k);
+			k = new KeyFrame(Duration.millis(0), new KeyValue(text.opacityProperty(), 1));
+			kf2.add(k);
+
+			k = new KeyFrame(Duration.millis(4000), new KeyValue(text.scaleXProperty(), 10));
+			kf2.add(k);
+			k = new KeyFrame(Duration.millis(4000), new KeyValue(text.scaleYProperty(), 10));
+			kf2.add(k);
+			k = new KeyFrame(Duration.millis(4000), new KeyValue(text.opacityProperty(), 0));
+			kf2.add(k);
+			
+			k = new KeyFrame(Duration.millis(4000), b -> {root.getChildren().remove(text); elemente.remove(text);});
+			kf2.add(k);
+
+			Timeline timeline  = new Timeline(); 
+			timeline.setCycleCount(0); 
+			timeline.setAutoReverse(false); 
+			timeline.getKeyFrames().addAll(kf2); 
+			timeline.play();
+			sizeOverall = 0; 
+		}));
+		kf.add(new KeyFrame(Duration.millis(time + 9000), a -> {mhd = false; root.setCursor(Cursor.DEFAULT); }));
 		Timeline timeline  = new Timeline(); 
 		timeline.setCycleCount(0); 
 		timeline.setAutoReverse(false); 
@@ -230,6 +325,10 @@ public class BackGroundHelper {
 		}
 		image = new ImageCursor(StaticImageHelper.loadImage(Config.getString("happyVision")));
 
+		textOverall = new Text();
+		textOverall.setVisible(false);
+		elemente.add(textOverall);
+		root.getChildren().add(textOverall);
 		
 		bgv.setOnKeyTyped(e -> {
 			if(e.getCharacter().equals("s")){
