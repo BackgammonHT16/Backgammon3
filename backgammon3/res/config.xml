@@ -146,6 +146,7 @@
 	
 	<happyPatch>res/happyPatch.png</happyPatch>
 	<happySound>res/happySound.wav</happySound>
+	<happyVision>res/happyVision.png</happyVision>
 	
 	// Dice
 	<dicePositionX>-20</dicePositionX>
