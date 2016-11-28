@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   
-	<!-- Version 1.5 -->
+	<!-- Version 1.6 -->
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
@@ -143,6 +143,9 @@
 	// Message
 	<messageImage>res/messageImage.png</messageImage>
 	<messageWidth>250</messageWidth>
+	
+	<happyPatch>res/happyPatch.png</happyPatch>
+	<happySound>res/happySound.wav</happySound>
 	
 	// Dice
 	<dicePositionX>-20</dicePositionX>
