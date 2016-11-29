@@ -195,6 +195,7 @@ public class BackGroundHelper {
 			text.setTranslateX(g.translateXProperty().getValue());
 			text.setTranslateY(g.translateYProperty().getValue());
 			text.setFont(Font.font(Config.getString("Font"), FontWeight.BOLD, Config.getInteger("textSize")*3));
+			text.mouseTransparentProperty().set(true);
 			elemente.add(text);
 			root.getChildren().add(text);
 
@@ -320,8 +321,9 @@ public class BackGroundHelper {
 	public static void initBackground(Pane root, ImageView bgv) {
 		Media media = new Media(new File(Config.getString("happySound")).toURI().toString());
 		for(int i = 0; i < 10; i++) {
-			mediaPlayer.add(new MediaPlayer(media));
-			mediaPlayer.get(i).setCycleCount(0);
+			MediaPlayer tmpPlayer = new MediaPlayer(media);
+			tmpPlayer.setCycleCount(0);
+			mediaPlayer.add(tmpPlayer);
 		}
 		Image tmpImg = StaticImageHelper.loadImage(Config.getString("happyVision"));
 		image = new ImageCursor(tmpImg, tmpImg.getWidth() / 2, tmpImg.getHeight() / 2);
