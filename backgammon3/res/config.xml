@@ -443,8 +443,20 @@
 	<player0HomeFieldStartsAt>19</player0HomeFieldStartsAt>
 	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
 
+	<!-- AIeasy Werte -->
+	<ai1LowerBound>-1000000</ai1LowerBound>
+	<ai1Rule0>0</ai1Rule0>
+	<ai1Rule1>0</ai1Rule1>
+	<ai1Rule2>0</ai1Rule2>
+	<ai1Rule3>0</ai1Rule3>
+	<ai1Rule4>0</ai1Rule4>
+	<ai1Rule5>0</ai1Rule5>
+	<ai1Rule6>0</ai1Rule6>
+	<ai1Rule7>0</ai1Rule7>
+	<ai1Rule8>0</ai1Rule8>
 	
-	<!-- AI Werte -->
+	
+	<!-- AIhard Werte -->
 	<ai2LowerBound>-1000000</ai2LowerBound>
 	<ai2Rule0>50</ai2Rule0>
 	<ai2Rule1>-100</ai2Rule1>
@@ -456,7 +468,7 @@
 	<ai2Rule7>-20</ai2Rule7>
 	<ai2Rule8>90</ai2Rule8>
 	
-	<!-- AI Optimierung -->
+	<!-- AIhard Optimierung -->
 	
 	<aiOptimizationFinished>0</aiOptimizationFinished>
 	

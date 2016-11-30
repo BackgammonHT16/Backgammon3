@@ -34,6 +34,7 @@ public class AIHelper {
 		init();
 	}
 	
+		
 	public void init() {
 		if(Config.getInteger("ai" + id + "Optimize") == 0) {
 			optimize = false;

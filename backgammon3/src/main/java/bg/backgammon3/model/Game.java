@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.gamestate.*;
-import bg.backgammon3.model.player.AI;
 import bg.backgammon3.model.player.AI2;
 import bg.backgammon3.model.player.AIHelper;
 import bg.backgammon3.model.player.Human;
@@ -216,7 +215,9 @@ public class Game extends GameStatus implements ModelElement {
 			if (Config.getInteger("player" + i + "Type") == 0) {
 				players.put(i, new Human(i));
 			} else if (Config.getInteger("player" + i + "Type") == 1) {
-				players.put(i, new AI(i));
+				aiHelper.setId(1);
+				aiHelper.setInGameId(i);
+				players.put(i, new AI2(i, aiHelper));
 			} else if (Config.getInteger("player" + i + "Type") == 2) {
 				aiHelper.setId(2);
 				aiHelper.setInGameId(i);
