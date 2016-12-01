@@ -26,16 +26,16 @@ public abstract class Player implements ModelElement {
 		this.board = board;
 	}
 	
-	public void selectStartPlace() {
-		
+	public int selectStartPlace() {
+		return 0;
 	}
 	
-	public void selectEndPlace() {
-		
+	public int selectEndPlace() {
+		return 0;
 	}
 	
-	public void rollDice() {
-		
+	public int rollDice() {
+		return 0;
 	}
 
 	public Board getBoard() {

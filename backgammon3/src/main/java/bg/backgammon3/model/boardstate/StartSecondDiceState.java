@@ -27,8 +27,7 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
@@ -46,6 +45,9 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 		c.init();
 		board.getTimer().resetTimer();
 		board.addActionAtEnd(new StartTimer());
+		
+		board.getTimer().acitvateTimer();
+		
 		if(!board.isHumanPlayer()) {
 			board.addActionAtEnd(new DisplayMessage("AI Turn"));
 		}

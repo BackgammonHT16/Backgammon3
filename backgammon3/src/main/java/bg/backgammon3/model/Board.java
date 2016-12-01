@@ -52,6 +52,8 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 	// Routen der einzelnen Spieler, der Key ist die playerId.
 	private LinkedHashMap<Integer, Route> routes;
 	
+	private ArrayList<Move> moves;
+	
 	// Erlaubt das hinzufügen von Aktionen zur Liste der Aktionen
 	GameStatus gameStatus;
 	
@@ -80,6 +82,8 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 
 		// Start Zustand Einstellen
 		setStartState();
+		
+		moves = new ArrayList<Move>();
 
 		logger.info("[ROUTE][INFO] Spiel " + gameNumber++ + " mit Dice Seed  " + dices.getSeed());
 	}
@@ -194,14 +198,16 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		return dices;
 	}
 
-	public void rollSingleDice() {
+	public int rollSingleDice() {
 		dices.singleRole();
 		addActionAtEnd(new SingleDiceWasRolled());
+		return 3;
 	}
 	
-	public void rollDice() {
+	public int rollDice() {
 		dices.roleDice();
 		addActionAtEnd(new DiceWasRolled());
+		return 1;
 	}
 
 	public void setState(BoardState state) {
@@ -250,12 +256,15 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 			// Feindlichen Checker auf Bar verschieben
 			routes.get(ps.get(0).getPlayerId()).getBar().addChecker(ps.get(0).getPlayerId());
 			addActionAtEnd(new Move2Checkers(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId(), startPlace.getId(), ps.get(0).getId()));
+			addMove(new Move(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId()));
+			addMove(new Move(startPlace.getId(), ps.get(0).getId()));
 			((EndPoint) endPlace.getState()).dices.get(0).setUsed();
 			addActionAtEnd(new DiceWasUsed());
 		} else {
 			((EndPoint) endPlace.getState()).dices.get(0).setUsed();
 			addActionAtEnd(new DiceWasUsed());
 			addActionAtEnd(new MoveChecker(startPlace.getId(), ps.get(0).getId()));
+			addMove(new Move(startPlace.getId(), ps.get(0).getId()));
 		}
 		
 		for(int i = 0; i < ps.size() - 1; i++) {
@@ -263,6 +272,8 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 				// Feindlichen Checker auf Bar verschieben
 				routes.get(ps.get(i + 1).getPlayerId()).getBar().addChecker(ps.get(i + 1).getPlayerId());
 				addActionAtEnd(new Move2Checkers(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId(), ps.get(i).getId(), ps.get(i + 1).getId()));
+				addMove(new Move(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId()));
+				addMove(new Move(ps.get(i).getId(), ps.get(i + 1).getId()));
 				ps.get(i).addChecker(currentPlayer);
 				ps.get(i).removeChecker();
 				((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
@@ -273,15 +284,10 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 				((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
 				addActionAtEnd(new DiceWasUsed());
 				addActionAtEnd(new MoveChecker(ps.get(i).getId(), ps.get(i + 1).getId()));
+				addMove(new Move(ps.get(i).getId(), ps.get(i + 1).getId()));
 			}
 		}
 		endPlace.addChecker(currentPlayer);
-
-		// Würfel aktualisieren
-		//for(Dice d : ((EndPoint) endPlace.getState()).dices) {
-		//	d.setUsed();
-		//}
-			
 
 		// startPlace zurücksetzen
 		startPlace = null;
@@ -328,20 +334,29 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
-		currentState.accept(gameObject);
-		return 0;
+		return currentState.accept(gameObject);
 	}
 	
 	@Override
 	public int visit(ChooseEndState g) {
 		g.deselectStartPlace();
 		return 0;
+	}
+	
+	private void addMove(Move move) {
+		moves.add(move);
+	}
+	
+	public Move popMove() {
+		if(moves.size() == 0) {
+			return null;
+		}
+		return moves.remove(0);
 	}
 	
 }

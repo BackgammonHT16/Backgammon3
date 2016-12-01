@@ -28,13 +28,11 @@ public class Human extends Player implements ModelElement {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
-		board.accept(gameObject);
-		return 0;
+		return board.accept(gameObject);
 	}
 }

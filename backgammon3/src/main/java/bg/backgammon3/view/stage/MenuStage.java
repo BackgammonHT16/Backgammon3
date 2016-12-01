@@ -213,7 +213,7 @@ public class MenuStage extends MenuElement {
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
-		stage.show();
+		//stage.show();
 
 	}
 
@@ -258,5 +258,14 @@ public class MenuStage extends MenuElement {
 			return appStage.accept(action);
 		}
 		return 0;
+	}
+	
+	public boolean update() {
+		if(game.getMenuState().isActiv()){
+			stage.show();
+		} else {
+			hide();
+		}
+		return false;
 	}
 }

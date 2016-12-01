@@ -12,10 +12,24 @@ import bg.backgammon3.model.*;
 public abstract class GameState implements ModelElement{
 	
 	protected Game game;
+	protected boolean isActiv;
 	
 	public GameState(Game game)
 	{
 		this.game = game;
+	}
+	
+
+	public void deactivateState() {
+		isActiv = false;
+	}
+	
+	public void activateState() {
+		isActiv = true;
+	}
+	
+	public boolean isActiv() {
+		return isActiv;
 	}
 	
 	/**

@@ -29,12 +29,14 @@ public class RollDiceState extends BoardState implements ModelElement {
 		}
 		board.getTimer().resetTimer();
 		board.addActionAtEnd(new StartTimer());
+		
+		board.getTimer().acitvateTimer();
 	}
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
-		return 0;
+		return 1;
 	}
 
 	@Override

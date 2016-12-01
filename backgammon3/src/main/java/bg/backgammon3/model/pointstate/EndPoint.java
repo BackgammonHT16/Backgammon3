@@ -73,8 +73,7 @@ public class EndPoint extends PointState {
 
 	@Override
 	public int visit(ChooseEndState g, Place place) {
-		g.selectEndPlace(place);
-		return 0;
+		return g.selectEndPlace(place);
 	}
 	
 }

@@ -72,7 +72,10 @@ public class MenuState extends GameState {
 		game.initBoard();
 		
 		// Zustand Ändern
-		game.setState(new GameRunningState(game));
+		//game.setState(new GameRunningState(game));
+		deactivateState();
+		game.getGameRunningState().activateState();
+		game.setState(game.getGameRunningState());
 		
 	}
 
@@ -81,7 +84,10 @@ public class MenuState extends GameState {
 		Config.setInteger("playSound", menu.getSound()?1:0);
 
 		// Zustand Ändern
-		game.setState(new GameRunningState(game));
+		//game.setState(new GameRunningState(game));
+		deactivateState();
+		game.getGameRunningState().activateState();
+		game.setState(game.getGameRunningState());
 
 		game.addActionAtBeginn(new UpdateSound());
 		game.addActionAtBeginn(new ContinueGame());
@@ -91,6 +97,9 @@ public class MenuState extends GameState {
 
 	public void quitGame() {
 		game.addActionAtBeginn(new Quit());
+
+		deactivateState();
+		game.getGameRunningState().deactivateState();
 	}
 
 
@@ -128,14 +137,13 @@ public class MenuState extends GameState {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
 		if(!gameObject.getBusy()) {
-			game.letPlayerHandle(gameObject);
+			return game.letPlayerHandle(gameObject);
 		}
 		return 0;
 	}

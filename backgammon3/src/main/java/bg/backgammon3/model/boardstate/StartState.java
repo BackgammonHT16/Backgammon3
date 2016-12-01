@@ -29,8 +29,7 @@ public class StartState extends BoardState implements ModelElement {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override

@@ -23,15 +23,19 @@ public class WaitingState extends BoardState implements ModelElement {
 		super(board);
 	}
 
-	public void init() {
+	public int init() {
 		board.addActionAtEnd(new ShowPlacesWithoutMarks());
+		
+		// Change
+		moveToNextState();
+		return 3;
 	}
 
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
 		gameObject.visit(this);
-		return 0;
+		return 3;
 	}
 
 	@Override

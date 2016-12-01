@@ -25,7 +25,7 @@ public class ChooseStartState extends BoardState {
 		logger.info("ChooseStartState erstellt.");
 	}
 	
-	public void init() {
+	public int init() {
 		if(!board.markStartPlaces()) {
 			// if(board.isHumanPlayer()) {
 			if(!board.getDices().allDicesUsed()){
@@ -38,20 +38,22 @@ public class ChooseStartState extends BoardState {
 			RollDiceState c = new RollDiceState(board);
 			board.setState(c);
 			c.init();
-			return;
+			return 3;
 		}
 
 		if(board.isHumanPlayer()) {
 			board.addActionAtEnd(new DisplayMessage("Choose start!"));
 		}
 		board.addActionAtEnd(new SelectStartPlace());
+		return 1;
 	}
 	
-	public void selectStartPlace(Place place) {
+	public int selectStartPlace(Place place) {
 		board.setStartPlace(place);
 		ChooseEndState c = new ChooseEndState(board);
 		board.setState(c);
 		c.init();
+		return 2;
 	}
 
 	@Override

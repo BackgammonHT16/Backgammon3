@@ -43,7 +43,6 @@ public class StartPoint extends PointState {
 
 	@Override
 	public int visit(ChooseStartState g, Place place) {
-		g.selectStartPlace(place);
-		return 0;
+		return g.selectStartPlace(place);
 	}
 }

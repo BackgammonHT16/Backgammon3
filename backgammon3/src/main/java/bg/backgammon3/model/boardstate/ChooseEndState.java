@@ -36,29 +36,29 @@ public class ChooseEndState extends BoardState {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
-		deselectStartPlace();
-		return 0;
+		return deselectStartPlace();
 	}
 
-	public void selectEndPlace(Place place) {
+	public int selectEndPlace(Place place) {
 		board.moveChecker(place);
 		WaitingState c = new WaitingState(board);
 		board.setState(c);
 		board.addActionAtEnd(new UpdateModel());
 		c.init();
+		return 3;
 	}
 
-	public void deselectStartPlace() {
+	public int deselectStartPlace() {
 		ChooseStartState c = new ChooseStartState(board);
 		board.setState(c);
 		c.init();
+		return 2;
 	}
 
 }

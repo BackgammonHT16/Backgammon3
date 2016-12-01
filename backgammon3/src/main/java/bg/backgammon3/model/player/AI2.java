@@ -49,7 +49,7 @@ public class AI2 extends Player implements ModelElement {
 	}
 
 	@Override
-	public void selectStartPlace() {
+	public int selectStartPlace() {
 		logger.info("AI Hard wählt StartPlace.");
 		Place startPlace = null; 
 		int lowerBound = aiHelper.getBottom();
@@ -145,52 +145,37 @@ public class AI2 extends Player implements ModelElement {
 			}
 		}
 		
-		// Objekt ermitteln und Speichern mit Absicherung
+		// Objekt ermitteln und Speichern
 		startPlace = places.get(bestStartId);
 		endPlace = places.get(bestEndId);
 		
-		if(!(startPlace.getState() instanceof StartPoint)){
-			for(Map.Entry<Integer, Place> p : board.getPlaces().entrySet()) {
-				if(p.getValue().getState() instanceof StartPoint) {
-					startPlace = p.getValue();
-				}
-			}
-			logger.error("AI2 chose illegal StartPlace\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		}
-		//board.handle(startPlace);
 		board.accept(startPlace);
+		return 2;
 	}
 	
 	@Override
-	public void selectEndPlace() {
-		logger.info("AI Hard wählt EndPlace.");
-		if(!(endPlace.getState() instanceof EndPoint)){
-			for(Map.Entry<Integer, Place> p : board.getPlaces().entrySet()) {
-				if(p.getValue().getState() instanceof EndPoint) {
-					endPlace = p.getValue();
-				}
-			}
-			logger.error("AI2 chose illegal EndPlace\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		}
-		//board.handle(endPlace);
+	public int selectEndPlace() {
+		logger.info("AI wählt EndPlace.");
+		
 		board.accept(endPlace);
+		return 1;
 	}
 
 	@Override
-	public void rollDice() {
+	public int rollDice() {
 		logger.info("AI Hard würfelt.");
 		board.accept(board.getDices());
-		//board.handle(board.getDices());
+		return 1;
 	}
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
 		return 0;
 	}
+	
 }

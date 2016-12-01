@@ -33,7 +33,8 @@ public class GameController extends GameControllerElement implements EventHandle
 	private AtomicBoolean atomicBusy = new AtomicBoolean(false);
 	private Game game;
 	private AppStage appStage;
-	private AppStage gameStage;
+	private MenuStage menuStage;
+	private GameStage gameStage;
 
 	public GameController() {
 		initGameController();
@@ -45,8 +46,13 @@ public class GameController extends GameControllerElement implements EventHandle
 	private void initGameController() {
 		// Modell erstellen und initialisieren
 		game = new Game();
+		
+		gameStage = new GameStage(game);
+		menuStage = new MenuStage(game, gameStage);
 
-		handleAllActions();
+		initControls();
+		//handleAllActions();
+		updateUI();
 	}
 
 	/**
@@ -157,7 +163,7 @@ public class GameController extends GameControllerElement implements EventHandle
 		}
 		appStage = new GameStage(game);
 		game.getBoard().getTimer().setActionInterface(this);
-		gameStage = appStage;
+		//gameStage = appStage;
 		initControls();
 	}
 
@@ -165,17 +171,14 @@ public class GameController extends GameControllerElement implements EventHandle
 	 * Bindet die Kontrollen einer neuen Stage an diese Klasse
 	 */
 	private void initControls() {
-		for (Node node : appStage.getControls()) {
+		for (Node node : menuStage.getControls()) {
 			node.setOnMouseClicked(this);
 		}
-		appStage.getStage().setOnCloseRequest(e -> {
-			if (appStage instanceof MenuStage) {
-				ModelVisitor gameObject = new ContinueButton(((MenuStage) appStage).getMenu());
-				gameObject.setBusy(busy);
-				game.accept(gameObject);
-
-				appStage.hide();
-			}
+		for (Node node : gameStage.getControls()) {
+			node.setOnMouseClicked(this);
+		}
+		gameStage.getStage().setOnCloseRequest(e -> {
+			menuStage.hide();
 		});
 	}
 
@@ -185,7 +188,7 @@ public class GameController extends GameControllerElement implements EventHandle
 	 * @param event
 	 */
 	public void handle(Event event) {
-		if (event.getSource() instanceof GameObjectView) {
+		/*if (event.getSource() instanceof GameObjectView) {
 			ModelVisitor gameObject = ((GameObjectView) event.getSource()).getGameObject();
 			gameObject.setBusy(busy);
 			game.accept(gameObject);
@@ -199,6 +202,34 @@ public class GameController extends GameControllerElement implements EventHandle
 		logger.info("Ende Stack Dump");
 		// Anschließend Änderungen durch das Modell verarbeiten
 		handleAllActions();
+		*/
+		Integer modelPlace = 0;
+		if (event.getSource() instanceof GameObjectView) {
+			ModelVisitor gameObject = ((GameObjectView) event.getSource()).getGameObject();
+			gameObject.setBusy(busy);
+			modelPlace = this.accept(gameObject);
+		} else {
+			logger.error("Unbekannte Event Quelle.");
+		}
+
+		// Stack ausgeben
+		logger.info("Stack Dump für " + event.getSource() + ":");
+		logger.info(game.stackToString());
+		logger.info("Ende Stack Dump");
+		// Anschließend Änderungen durch das Modell verarbeiten
+		while(modelPlace != 0) {
+			updateUI();
+			modelPlace = game.checkActionForAI(modelPlace);
+		}
+		updateUI();
+		
+	}
+	
+	private void updateUI() {
+		menuStage.update();
+		if(gameStage.update()) {
+			initControls();
+		}
 	}
 
 	@Override
@@ -212,14 +243,12 @@ public class GameController extends GameControllerElement implements EventHandle
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
-		game.accept(gameObject);
-		return 0;
+		return game.accept(gameObject);
 	}
 
 	@Override

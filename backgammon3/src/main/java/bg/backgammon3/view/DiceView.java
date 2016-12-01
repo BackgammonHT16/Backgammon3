@@ -64,6 +64,10 @@ public class DiceView extends Group implements GameObjectView {
 				imageView[i].setImage(image[0]);
 			}
 		}
+		
+		if(dices.getDice(0).getIsActive() == false) {
+			imageView[0].setImage(image[1]);
+		}
 	}
 
 	@Override

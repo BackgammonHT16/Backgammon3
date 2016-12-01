@@ -47,6 +47,9 @@ public class Game extends GameStatus implements ModelElement {
 	// Das Menu
 	private Menu menu = new Menu();
 	
+	private MenuState menuState;
+	private GameRunningState gameRunningState;
+	
 	// AI Hilfsklasse zur Optimierung
 	AIHelper aiHelper;
 
@@ -59,6 +62,11 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	private void initGame() {
 		aiHelper = new AIHelper();
+		menuState = new MenuState(this, false);
+		menuState.activateState();
+		gameRunningState = new GameRunningState(this);
+		gameRunningState.deactivateState();
+		initBoard();
 		GameState newState = new MenuState(this, false);
 		if(Config.getInteger("loopGame") == 0) {
 			currentState = newState;
@@ -73,7 +81,7 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	@Override
 	public void addActionAtBeginn(Action action) {
-		actions.add(0, action);
+		//actions.add(0, action);
 	}
 
 	/**
@@ -84,7 +92,7 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	@Override
 	public void addActionAtEnd(Action action) {
-		actions.add(action);
+		//actions.add(action);
 	}
 	
 	/**
@@ -94,6 +102,18 @@ public class Game extends GameStatus implements ModelElement {
 	 */
 	public void checkActionForAI(Action action) {
 		action.visit(this);
+	}
+	
+	public int checkActionForAI(int modelPlace) {
+		// Die AI ist am Zug
+		if(modelPlace == 1) {
+			return currentPlayer.selectStartPlace();
+		} else if(modelPlace == 2) {
+			return currentPlayer.selectEndPlace();
+		} else if(modelPlace == 3) {
+			return currentPlayer.rollDice();
+		}
+		return 0;
 	}
 
 	/**
@@ -247,8 +267,8 @@ public class Game extends GameStatus implements ModelElement {
 		return menu;
 	}
 
-	public void letPlayerHandle(ModelVisitor gameObject) {
-		currentPlayer.accept(gameObject);
+	public int letPlayerHandle(ModelVisitor gameObject) {
+		return currentPlayer.accept(gameObject);
 		//currentPlayer.handle(gameObject);
 	}
 	
@@ -270,14 +290,12 @@ public class Game extends GameStatus implements ModelElement {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
-		currentState.accept(gameObject);
-		return 0;
+		return currentState.accept(gameObject);
 	}
 
 	public void selectStartPlace() {
@@ -290,5 +308,13 @@ public class Game extends GameStatus implements ModelElement {
 	
 	public void rollDice() {
 		currentPlayer.rollDice();
+	}
+	
+	public GameRunningState getGameRunningState() {
+		return gameRunningState;
+	}
+	
+	public MenuState getMenuState() {
+		return menuState;
 	}
 }

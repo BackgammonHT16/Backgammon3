@@ -47,6 +47,7 @@ public class BoardView extends BoardElement implements GameObjectView {
 	private Text text;
 	
 	private Text timer;
+	private Pane root;
 	
 	private ImageView timerbg = new ImageView();
 	private ImageView messagebg = new ImageView();
@@ -57,14 +58,19 @@ public class BoardView extends BoardElement implements GameObjectView {
 
 	public BoardView(Board board, Pane root)
 	{
-		this.board = board;
-		initBoardView(root);
+		//this.board = board;
+		this.root = root;
+		initBoardView(board);
 	}
 	
 	/**
 	 * Initialisiert die Komponenten der BoardView.
 	 */
-	public void initBoardView(Pane root) {
+	public void initBoardView(Board board) {
+		if(this.board == board) {
+			return;
+		}
+		this.board = board;
 		// Stage initialisieren
 		
 		// Hintergrund
@@ -174,8 +180,9 @@ public class BoardView extends BoardElement implements GameObjectView {
 		
 	}
 	
-	public void update() {
+	public boolean update() {
 		update(true);
+		return false;
 	}
 	
 	/**
@@ -186,6 +193,15 @@ public class BoardView extends BoardElement implements GameObjectView {
 		for(PlaceView p : places) {
 			p.update(showHighlights);
 		}
+		
+		Move move = board.popMove();
+		
+		while(move != null) {
+			moveChecker(move.getStartPlace(), move.getEndPlace());
+			move = board.popMove();
+		}
+		
+		diceView.update();
 	}
 	
 	/**
@@ -238,7 +254,8 @@ public class BoardView extends BoardElement implements GameObjectView {
 	}
 	
 	public void startTimer() {
-		timer.textProperty().bind(board.getTimer().acitvateTimer().asString());
+		//timer.textProperty().bind(board.getTimer().acitvateTimer().asString());
+		timer.textProperty().bind(board.getTimer().getTime().asString());
 	}
 	
 	/**

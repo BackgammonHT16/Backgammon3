@@ -22,6 +22,6 @@ public class StartButton extends ModelVisitor {
 
 	public int visit(MenuState g) {
 		g.startGame(menu);
-		return 0;
+		return 4;
 	}
 }

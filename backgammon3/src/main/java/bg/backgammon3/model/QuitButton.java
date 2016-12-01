@@ -22,7 +22,7 @@ public class QuitButton extends ModelVisitor {
 	
 	public int visit(MenuState g) {
 		g.quitGame();
-		return 0;
+		return 5;
 	}
 
 }

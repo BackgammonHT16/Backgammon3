@@ -22,6 +22,6 @@ public class ContinueButton extends ModelVisitor {
 	
 	public int visit(MenuState g) {
 		g.continueGame(menu);
-		return 0;
+		return 6;
 	}
 }

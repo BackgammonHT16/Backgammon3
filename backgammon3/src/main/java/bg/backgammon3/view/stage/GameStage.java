@@ -32,6 +32,8 @@ public class GameStage extends GameStageElement {
 	private MediaPlayer mediaPlayer;
 	private Stage stage;
 	private Game game;
+	private Board board;
+	private StackPane root;
 
 	public GameStage(Game game) {
 		this.game = game;
@@ -50,7 +52,7 @@ public class GameStage extends GameStageElement {
 		// Stage und scene erstellen
 		stage = new Stage();
 
-		StackPane root = new StackPane();
+		root = new StackPane();
 
 		// BoardView erstellen
 		boardView = new BoardView(game.getBoard(), root);
@@ -75,7 +77,7 @@ public class GameStage extends GameStageElement {
 
 		// Alles anzeigen
 		stage.setScene(scene);
-		stage.show();
+		//stage.show();
 		logger.info("Spiel wird angezeigt.");
 	}
 	
@@ -156,5 +158,22 @@ public class GameStage extends GameStageElement {
 	@Override
 	public int nextAccept(Action action) {
 		return boardView.accept(action);
+	}
+	
+	public boolean update() {
+		boolean updateControls = false;
+		if(game.getBoard() != board) {
+			boardView = new BoardView(game.getBoard(), root);
+			updateControls = true;
+			board = game.getBoard();
+		}
+		
+		if(game.getGameRunningState().isActiv()){
+			stage.show();
+			boardView.update();
+		} else {
+			hide();
+		}
+		return updateControls;
 	}
 }

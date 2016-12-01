@@ -20,8 +20,8 @@ public abstract class GameElement {
 		
 	}
 	
-	public void update() {
-		
+	public boolean update() {
+		return false;
 	}
 	
 	public void update(boolean showHighlights) {

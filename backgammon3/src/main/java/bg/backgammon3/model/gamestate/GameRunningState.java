@@ -11,11 +11,14 @@ import bg.backgammon3.model.*;
  *
  */
 public class GameRunningState extends GameState {
+	
 
 	public GameRunningState(Game game)
 	{
 		super(game);
+		activateState();
 	}
+	
 	
 	/**
 	 * Hier kann false zurückgegeben werden da das Menu sowieso im Moment unsichtbar ist.
@@ -52,34 +55,37 @@ public class GameRunningState extends GameState {
 	 */
 	@Override
 	public void showMenu() {
-		game.setState(new MenuState(game, true));
+		//game.setState(new MenuState(game, true));
+		game.getMenuState().activateState();
+		game.setState(game.getMenuState());
 	}
 
 
 	@Override
 	public void gameIsFinished(Integer playerId) {
 		game.finishGame(playerId);
-		GameState newState = new MenuState(game, false);
+		//GameState newState = new MenuState(game, false);
 		if(Config.getInteger("loopGame") == 0) {
-			game.setState(newState);
+			game.getMenuState().activateState();
+			game.setState(game.getMenuState());
 		}
 	}
 
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 0;
+		return gameObject.visit(this);
 	}
 
 
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
 		if(!gameObject.getBusy()){
-			game.letPlayerHandle(gameObject);
+			return game.letPlayerHandle(gameObject);
 		}
 		return 0;
 	}
+	
 
 
 }
