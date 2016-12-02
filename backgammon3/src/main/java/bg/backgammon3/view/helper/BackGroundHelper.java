@@ -74,6 +74,15 @@ public class BackGroundHelper {
 	private static Circle ball;
 	private static int score;
 	
+	/**
+	 * Zeigt den Hintergrund an
+	 * @param root Root Objekt
+	 * @param bgv der Hintergrund
+	 * @param dir Die Anzahl
+	 * @param y Die Y Koordinate
+	 * @param v Die Ausrichtung
+	 * @param s Die Skalierung
+	 */
 	public static void showBackground(Pane root, ImageView bgv, int dir, double y, double v, double s) {
 		
 		tmpNode = 0;
@@ -246,11 +255,20 @@ public class BackGroundHelper {
 		});
 	}
 	
-
+	/**
+	 * zeigt den Hintergrund an
+	 * @param root das Root element
+	 * @param bgv der hintergrund
+	 */
 	public static void showBackground(Pane root, ImageView bgv) {
 		showBackground(root, bgv, 0, 0, 1, 1);
 	}
 	
+	/**
+	 * Aktiviert alle Animationen
+ 	 * @param root das Root Objekt
+	 * @param bgv Das hintergrund bild
+	 */
 	public static void activateInstantAction(Pane root, ImageView bgv) {
 		root.setCursor(image);
 		ArrayList<KeyFrame> kf = new ArrayList<KeyFrame>();
@@ -327,6 +345,10 @@ public class BackGroundHelper {
 		scale = 0;
 	}
 	
+	/**
+	 * Aktiviert die Sichtbarkeit
+	 * @param root das Root Objekt
+	 */
 	public static void toggleVisibility(Pane root) {
 		show = !show;
 		for(int i = 0; i < elemente.size(); i++) {
@@ -339,6 +361,11 @@ public class BackGroundHelper {
 		}
 	}
 	
+	/**
+	 * Der Hintergrund
+	 * @param root das root Objekt
+	 * @param bgv der Hintergrund
+	 */
 	public static void initBackground(Pane root, ImageView bgv) {
 		Media media = new Media(new File(Config.getString("happySound")).toURI().toString());
 		for(int i = 0; i < 10; i++) {
@@ -473,6 +500,11 @@ public class BackGroundHelper {
 	}
 
 
+	/**
+	 * Aktiviert unmittelbare animationen
+	 * @param root Das root objekt 
+	 * @param bgv Das hintergrund Bild
+	 */
 	private static void activateVeryInstantAction(Pane root, ImageView bgv) {
 		int width = Config.getInteger("width");
 		int height = Config.getInteger("height");
@@ -486,9 +518,10 @@ public class BackGroundHelper {
 		
 		int batWidth = 70;
 		int batHeight = 20;
-		
+
+		Random r = new Random();
 		int ballRadius = 20;
-		double startSpeedBallX = 0;
+		double startSpeedBallX = r.nextInt(10) + 1;
 		double startSpeedBallY = -30;
 		speedBallX = startSpeedBallX;
 		speedBallY = startSpeedBallY;
@@ -527,7 +560,6 @@ public class BackGroundHelper {
 		
 		
 		
-		Random r = new Random();
 		
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++) {
@@ -713,6 +745,8 @@ public class BackGroundHelper {
 							root.getChildren().add(c);
 							elemente.add(c);
 						}
+
+						
 						root.getChildren().remove(b);
 						elemente.remove(b);
 						b.setVisible(false);
@@ -732,93 +766,11 @@ public class BackGroundHelper {
 					ball.setVisible(false);
 					ball = startLife(lives);
 					if(ball == null) {
-						showText(Integer.toString(score), 0, 0, 6.0, 6000.0, root, Color.BLACK);
-						Timeline tl = new Timeline();
-						tl.getKeyFrames().add(new KeyFrame(Duration.millis(1000), a -> {
-							Stage dialog = new Stage();
-							GridPane grid = new GridPane();
-						    grid.setHgap(10);
-						    grid.setVgap(10);
-						    grid.setPadding(new Insets(0, 10, 0, 10));
-
-						    int sc = 0;
-						    int scbias = 0;
-						    TextField name = new TextField();
-						    int place = -1;
-						    String tmpName = "";
-						    Integer tmpScore = 0;
-						    String tmpName2 = "";
-						    Integer tmpScore2 = 0;
-						    while(Config.getString("highScore" + sc + "Name") != null) {
-						    	if(score >= Config.getInteger("highScore" + sc) && place == -1) {
-						    		place = sc;
-								    tmpName = Config.getString("highScore" + (sc+1) + "Name");
-								    tmpScore = Config.getInteger("highScore" + (sc+1));
-								    if(tmpName!=null) {
-								    	Config.setString("highScore" + (sc + 1) + "Name", Config.getString("highScore" + sc + "Name"));
-								    	Config.setInteger("highScore" + (sc + 1), Config.getInteger("highScore" + sc));
-								    }
-								    grid.add(name, 0, sc + scbias); 
-								    Text t = new Text(Integer.toString(score));
-								    grid.add(t, 1, sc + scbias); 
-								    //scbias++;
-						    	} else if(place >= 0) {
-								    tmpName2 = Config.getString("highScore" + (sc + 1) + "Name");
-								    tmpScore2 = Config.getInteger("highScore" + (sc + 1));
-								    if(tmpName!=null) {
-								    	Config.setString("highScore" + (sc + 1) + "Name", tmpName);
-								    	Config.setInteger("highScore" + (sc + 1), tmpScore);
-								    }
-								    tmpName = tmpName2;
-								    tmpScore = tmpScore2;
-						    		Text t = new Text(Config.getString("highScore" + sc + "Name"));
-								    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-								    grid.add(t, 0, sc + scbias); 
-								    t = new Text(Config.getInteger("highScore" + sc).toString());
-								    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-								    grid.add(t, 1, sc + scbias); 
-						    	} else {
-								    Text t = new Text(Config.getString("highScore" + sc + "Name"));
-								    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-								    grid.add(t, 0, sc + scbias); 
-								    t = new Text(Config.getInteger("highScore" + sc).toString());
-								    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-								    grid.add(t, 1, sc + scbias); 
-						    	}
-							    
-						    	sc++;
-						    }
-						    final int pos = place;
-						    Button ok = new Button("Ok");
-						    ok.setOnMouseClicked(e-> {
-						    	Config.setString("highScore" + pos  + "Name", name.getText());
-						    	Config.setInteger("highScore" + pos, score);
-						    	removeAll(root);
-								tmpNode4 = 0;
-								li = false;
-						    	//activateVeryInstantAction(root, bgv);
-						    	dialog.hide();
-						    });
-						    //Button cancel = new Button("Cancel");
-						    HBox hbox = new HBox();
-						    hbox.getChildren().add(ok);
-						    //hbox.getChildren().add(cancel);
-						    
-						    grid.add(hbox, 0, sc + scbias, 2, 1); 
-						    
-						    dialog.setScene(new Scene(grid));
-							dialog.initOwner(root.getScene().getWindow());
-							dialog.initModality(Modality.APPLICATION_MODAL); 
-							dialog.show();
-							
-						}));
-						tl.play();
-						this.stop();
-						return;
+						finishGame(this, root);
 					}
 					ballX = 0;
 					ballY = 0;
-					speedBallX = startSpeedBallX;
+					speedBallX = r.nextInt(10) + 1;
 					speedBallY = startSpeedBallY;
 					cSpeedBallX = speedBallX * delta;
 					cSpeedBallY = speedBallY * delta;
@@ -882,7 +834,7 @@ public class BackGroundHelper {
 								}));
 								timeline.playFromStart();
 								score += 100;
-								showText(Integer.toString(100), cx, cy, 3.0, 1000.0, root, c.getFill());
+								showText(Integer.toString(50), cx, cy, 3.0, 1000.0, root, c.getFill());
 							}
 						}
 					}
@@ -894,11 +846,15 @@ public class BackGroundHelper {
 						c.setVisible(false);
 						i--;
 					}
+					
 					if(i < 0) {
 						i = 0;
 					}
 					c.setTranslateX(cx + cBonusSpeedX);
 					c.setTranslateY(cy + cBonusSpeedY);
+				}
+				if(blocks.size() == 0 && bonus.size() == 0) {
+					finishGame(this, root);
 				}
 				
 				cSpeedBallX = speedBallX * delta;
@@ -934,6 +890,11 @@ public class BackGroundHelper {
 		});
 	}
 	
+	/**
+	 * Die StartPunkte des Spielers
+	 * @param lives Liste der Punkte
+	 * @return Die fertige liste mit den Punkten
+	 */
 	private static Circle startLife(ArrayList<Circle> lives) {
 		if(lives.size() == 0) {
 			return null;
@@ -944,6 +905,16 @@ public class BackGroundHelper {
 		return tmpBall;
 	}
 	
+	/**
+	 * Zeigt  den text an
+	 * @param t Text
+	 * @param x XKoordinate
+	 * @param y Y Koordinate
+	 * @param size die Größe
+	 * @param length die Länge
+	 * @param root das Root objekt
+	 * @param paint die Farbe
+	 */
 	private static void showText(String t, double x, double y, double size, double length, Pane root, Paint paint) {
 		Text text = new Text();
 		text.setStrokeWidth(1);
@@ -982,6 +953,10 @@ public class BackGroundHelper {
 		timeline.play();
 	}
 	
+	/**
+	 * Entfernt alle Objekte
+	 * @param root das root objekt
+	 */
 	private static void removeAll(Pane root) {
 		elemente.forEach(a ->{
 			root.getChildren().remove(a);
@@ -989,14 +964,113 @@ public class BackGroundHelper {
 		});
 		elemente.clear();
 	}
+	
+	/**
+	 * beendet das Spiel
+	 * @param th der Animationstimer
+	 * @param root das Root Objekt
+	 */
+	private static void finishGame(AnimationTimer th, Pane root) {
+		showText(Integer.toString(score), 0, 0, 6.0, 6000.0, root, Color.BLACK);
+		Timeline tl = new Timeline();
+		tl.getKeyFrames().add(new KeyFrame(Duration.millis(3000), a -> {
+			Stage dialog = new Stage();
+			GridPane grid = new GridPane();
+		    grid.setHgap(10);
+		    grid.setVgap(10);
+		    grid.setPadding(new Insets(0, 10, 0, 10));
+
+		    int sc = 0;
+		    int scbias = 0;
+		    TextField name = new TextField();
+		    int place = -1;
+		    String tmpName = "";
+		    Integer tmpScore = 0;
+		    String tmpName2 = "";
+		    Integer tmpScore2 = 0;
+		    while(Config.getString("highScore" + sc + "Name") != null) {
+		    	if(score >= Config.getInteger("highScore" + sc) && place == -1) {
+		    		place = sc;
+				    tmpName = Config.getString("highScore" + (sc+1) + "Name");
+				    tmpScore = Config.getInteger("highScore" + (sc+1));
+				    if(tmpName!=null) {
+				    	Config.setString("highScore" + (sc + 1) + "Name", Config.getString("highScore" + sc + "Name"));
+				    	Config.setInteger("highScore" + (sc + 1), Config.getInteger("highScore" + sc));
+				    }
+				    grid.add(name, 0, sc + scbias); 
+				    Text t = new Text(Integer.toString(score));
+				    grid.add(t, 1, sc + scbias); 
+				    //scbias++;
+		    	} else if(place >= 0) {
+				    tmpName2 = Config.getString("highScore" + (sc + 1) + "Name");
+				    tmpScore2 = Config.getInteger("highScore" + (sc + 1));
+				    if(tmpName!=null) {
+				    	Config.setString("highScore" + (sc + 1) + "Name", tmpName);
+				    	Config.setInteger("highScore" + (sc + 1), tmpScore);
+				    }
+				    tmpName = tmpName2;
+				    tmpScore = tmpScore2;
+		    		Text t = new Text(Config.getString("highScore" + sc + "Name"));
+				    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+				    grid.add(t, 0, sc + scbias); 
+				    t = new Text(Config.getInteger("highScore" + sc).toString());
+				    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+				    grid.add(t, 1, sc + scbias); 
+		    	} else {
+				    Text t = new Text(Config.getString("highScore" + sc + "Name"));
+				    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+				    grid.add(t, 0, sc + scbias); 
+				    t = new Text(Config.getInteger("highScore" + sc).toString());
+				    //t.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+				    grid.add(t, 1, sc + scbias); 
+		    	}
+			    
+		    	sc++;
+		    }
+		    final int pos = place;
+		    Button ok = new Button("Ok");
+		    ok.setOnMouseClicked(e-> {
+		    	Config.setString("highScore" + pos  + "Name", name.getText());
+		    	Config.setInteger("highScore" + pos, score);
+		    	removeAll(root);
+				tmpNode4 = 0;
+				li = false;
+		    	//activateVeryInstantAction(root, bgv);
+		    	dialog.hide();
+		    });
+		    //Button cancel = new Button("Cancel");
+		    HBox hbox = new HBox();
+		    hbox.getChildren().add(ok);
+		    //hbox.getChildren().add(cancel);
+		    
+		    grid.add(hbox, 0, sc + scbias, 2, 1); 
+		    
+		    dialog.setScene(new Scene(grid));
+			dialog.initOwner(root.getScene().getWindow());
+			dialog.initModality(Modality.APPLICATION_MODAL); 
+			dialog.show();
+			
+		}));
+		tl.play();
+		th.stop();
+		return;
+	}
 }
 
 
-
+/**
+ * Interne Klasse die Blocks darstellt
+ *
+ */
 class Block extends Rectangle {
 	public int type;
 }
 
+/**
+ * Interne Klasse die Kreise darstellt
+ * @author philipp
+ *
+ */
 class Bonus extends Circle {
 	public int type;
 }
