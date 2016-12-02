@@ -78,7 +78,7 @@ public class Menu extends ModelVisitor {
 
 	/**
 	 * Setzt den Schwierigkeitsgrad
-	 * @param Der neue Schwierigkeitsgrad
+	 * @param difficulty Der neue Schwierigkeitsgrad
 	 */
 	public void setDifficulty(Integer difficulty) {
 		this.difficulty = difficulty;

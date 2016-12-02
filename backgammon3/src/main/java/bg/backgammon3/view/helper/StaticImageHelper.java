@@ -25,7 +25,8 @@ public class StaticImageHelper {
 
 	/**
 	 * Ladet Bild
-	 * @param filename Bild
+	 * @param filename Dateiname
+	 * @return Bild
 	 */
 	public static Image loadImage(String filename) {
 		logger.info("LoadImage mit filename: " + filename);

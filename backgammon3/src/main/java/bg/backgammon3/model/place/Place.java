@@ -23,8 +23,6 @@ public abstract class Place extends ModelVisitor {
 
 	/**
 	 * Konstruktor
-	 * @param numberOfCheckers Anzahl der Checker
-	 * @param playerId die PlayerId
 	 * @param id  Die Place id
 	 */
 	public Place(Integer id) {
@@ -50,7 +48,7 @@ public abstract class Place extends ModelVisitor {
 	}
 	
 	/**
-	 * Id des Spielers der das Feld belegt.</br>
+	 * Id des Spielers der das Feld belegt.
 	 * Der Wert ist bei unbelegten Points stets -1, bei Bar und Goal unabhängig von der 
 	 * Belegung konstant der Wert des Spielers dem es gehört.
 	 * @return Gibt die playerId des Spielers zurück der das Feld Belegt.
@@ -68,7 +66,7 @@ public abstract class Place extends ModelVisitor {
 	 * wird der Belegende Checker als Integer zurückgegeben. PlayerId wird entsprechend geändert.
 	 * @param numberOfCheckers Anzahl der hinzuzufügenden Checker
 	 * @param playerId Spieler dem die Checker gehören
-	 * @return Anzahl der verdrängten Checker. Diese sollte stets <= 1 sein.
+	 * @return Anzahl der verdrängten Checker. Diese sollte stets kleiner gleich 1 sein.
 	 */
 	public Integer addChecker(Integer numberOfCheckers, Integer playerId){
 		logger.info(numberOfCheckers + " Checker von Spieler " + playerId + " bei Place " + id + " hinzugefügt.");

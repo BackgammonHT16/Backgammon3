@@ -149,8 +149,8 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 
 	/**
 	 * Bewegt den Checker
-	 * @param placeView die PlaceView des ziels
-	 * @return
+	 * @param placeView die PlaceView des Ziels
+	 * @return Die Zeit
 	 */
 	public int moveCheckerTo(PlaceView placeView) {
 		return checkers.get(checkers.size() - 1).moveTo(placeView);

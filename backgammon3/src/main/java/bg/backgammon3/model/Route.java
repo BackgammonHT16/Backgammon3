@@ -57,6 +57,7 @@ public class Route {
 
 	/**
 	 * Route wird gemäß Konfigurationsdatei geladen
+	 * @param places die Plätze
 	 */
 	private void initRoute(LinkedHashMap<Integer, Place> places) {
 		for (int i = 0; Config.getInteger("player" + playerId + "RoutePlace" + i) != null; i++) {
@@ -108,8 +109,8 @@ public class Route {
 	}
 
 	/**
-	 * Prüft ob von dem Angegebenen Platz gestartet werden darf.</br>
-	 * Dabei werden folgende Kriterien beachtet:</br>
+	 * Prüft ob von dem Angegebenen Platz gestartet werden darf.
+	 * Dabei werden folgende Kriterien beachtet:
 	 * <ul>
 	 * <li>Falls die Bar belegt ist, ist sie der einzige gültige Startplatz</li>
 	 * <li>Der Place enthält mindestens einen Checker des Spielers</li>
@@ -137,8 +138,8 @@ public class Route {
 	}
 
 	/**
-	 * Prüft ob von dem Angegebenen Platz gestartet werden darf.</br>
-	 * Dabei werden folgende Kriterien beachtet:</br>
+	 * Prüft ob von dem Angegebenen Platz gestartet werden darf.
+	 * Dabei werden folgende Kriterien beachtet:
 	 * <ul>
 	 * <li>Falls die Bar belegt ist, ist sie der einzige gültige Startplatz</li>
 	 * <li>Der Place gehört uns und ist mit mindestens einem Klotz belegt.</li>
@@ -311,9 +312,9 @@ public class Route {
 	 * aktiviert ist dann erhält man Goal wenn die zahl größer places.size()
 	 * ist.
 	 * 
-	 * @param i
-	 * @param oRA
-	 * @return
+	 * @param i index
+	 * @param oRA Overreaching allowed
+	 * @return der Platz
 	 */
 	private Place getPlace(int i, boolean oRA) {
 		if (i < 0) {
@@ -344,8 +345,8 @@ public class Route {
 	}
 
 	/**
-	 * Prüft ob der gewählte Place als Ziel gewählt werden darf.</br>
-	 * Dafür muss eine der folgenden Bedingungen gelten:</br>
+	 * Prüft ob der gewählte Place als Ziel gewählt werden darf.
+	 * Dafür muss eine der folgenden Bedingungen gelten:
 	 * <ul>
 	 * <li>Der Place ist mit maximal einem Checker eines Gegners belegt.</li>
 	 * <li>Der Place ist unbelegt</li>
@@ -392,8 +393,8 @@ public class Route {
 	 * ergibt. Falls ja, wird isLegalEndPlace mit dem Goal des Spielers
 	 * aufgerufen
 	 * 
-	 * @param routePositionId
-	 * @return
+	 * @param routePositionId Id der Route Position
+	 * @return Wahr wenn es ein legaler EndPlatz ist
 	 */
 	public boolean isLegalEndPlace(Integer routePositionId) {
 		Place p = getPlace(routePositionId, false);
@@ -407,11 +408,11 @@ public class Route {
 	 * ergibt. Falls ja, wird isLegalEndPlace mit dem Goal des Spielers
 	 * aufgerufen
 	 * 
-	 * @param routePositionId
+	 * @param routePositionId Id der Route Position
 	 * @param overReachingIsAllowed
 	 *            Falls dieser Parameter wahr ist, ist das Goal auch dann noch
 	 *            erreichbar wenn zu hoch gewürfelt wurde.
-	 * @return
+	 * @return Wahr wenn es ein legaler EndPlatz ist
 	 */
 	public boolean isLegalEndPlace(Integer routePositionId, boolean overReachingIsAllowed) {
 		Place p = getPlace(routePositionId, overReachingIsAllowed);

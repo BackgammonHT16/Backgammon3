@@ -218,7 +218,7 @@ public class BoardView implements GameObjectView {
 	
 	/**
 	 * Geht alle Places durch und setzt die Bilder entsprechend.
-	 * 
+	 * @param showHighlights zeigt die hervorgehobenen Places an
 	 */
 	public void update(boolean showHighlights) {
 		for(PlaceView p : places) {
@@ -257,6 +257,7 @@ public class BoardView implements GameObjectView {
 	 * Verschiebt einen Checker von startId nach endId
 	 * @param startId Start Platz.
 	 * @param endId End Platz.
+	 * @return Die zeit die zum bewegen benötigt wird
 	 */
 	public int moveChecker(Integer startId, Integer endId) {
 		logger.info("[ROUTE][LOGROUTE] Würfel: " + diceView);

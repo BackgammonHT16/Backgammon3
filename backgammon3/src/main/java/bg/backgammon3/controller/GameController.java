@@ -184,7 +184,7 @@ public class GameController implements ModelElement, EventHandler<Event>, TimerI
 	/**
 	 * Behandelt die in der View entstandenen Eingaben.
 	 * 
-	 * @param event
+	 * @param event Der zu bearbeitende Event
 	 */
 	public void handle(Event event) {
 		Integer modelPlace = 0;

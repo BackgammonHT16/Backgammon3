@@ -295,7 +295,7 @@ public class AIHelper {
 
 	/**
 	 * setzt die id
-	 * @param id
+	 * @param id Logik Id der AI
 	 */
 	public void setId(int id) {
 		this.id = id;

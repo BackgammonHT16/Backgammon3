@@ -63,7 +63,7 @@ public class Dices extends ModelVisitor{
 	
 	/**
 	 * Ein würfel wird gerollt
-	 * @return
+	 * @return Die Würfel
 	 */
 	public ArrayList<Dice> singleRole() {
 		if(dices.get(1).getIsActive()) {

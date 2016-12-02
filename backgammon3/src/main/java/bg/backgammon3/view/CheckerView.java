@@ -51,7 +51,7 @@ public class CheckerView {
 
 	/**
 	 * Das Bild des checkers
-	 * @return
+	 * @return Das Bild
 	 */
 	public ImageView getImage() {
 		return image;
@@ -93,7 +93,7 @@ public class CheckerView {
 	 * @param a1 richtung 1
 	 * @param p2 punkt 2
 	 * @param a2 richtung 2
-	 * @return
+	 * @return Die Zeit
 	 */
 	private int startAnimationTo(MathVector p1, Double a1, MathVector p2, Double a2) {
 		// Code für gerade Linie

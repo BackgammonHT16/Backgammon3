@@ -85,7 +85,7 @@ public class MenuStage  {
 
 	/**
 	 * Gibt die Gamestage zurück
-	 * @return
+	 * @return Die Gamestage
 	 */
 	public GameStage getGameStage() {
 		return gameStage;

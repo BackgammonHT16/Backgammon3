@@ -215,7 +215,7 @@ public class Game extends GameStatus implements ModelElement {
 
 	/**
 	 * Den Spielzustand auf setState ändern
-	 * @param gameState
+	 * @param gameState Der Gamestate
 	 */
 	public void setState(GameState gameState) {
 		this.currentState = gameState;

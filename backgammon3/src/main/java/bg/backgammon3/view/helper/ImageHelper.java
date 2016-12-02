@@ -14,7 +14,7 @@ public class ImageHelper extends ImageView {
 	
 	/**
 	 * Konstruktor
-	 * @param filename
+	 * @param filename Datei name
 	 */
 	public ImageHelper(String filename)
 	{

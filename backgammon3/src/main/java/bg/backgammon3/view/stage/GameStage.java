@@ -36,7 +36,7 @@ public class GameStage {
 
 	/**
 	 * Konstruktor
-	 * @param game
+	 * @param game Das Game Model
 	 */
 	public GameStage(Game game) {
 		this.game = game;

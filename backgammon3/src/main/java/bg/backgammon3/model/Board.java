@@ -428,7 +428,7 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 	
 	/**
 	 * Füge move hinzu
-	 * @param move
+	 * @param move Die Bewegung
 	 */
 	private void addMove(Move move) {
 		moves.add(move);
@@ -436,7 +436,7 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 	
 	/**
 	 * Entnehme Move
-	 * @return
+	 * @return Die bewegung
 	 */
 	public Move popMove() {
 		if(moves.size() == 0) {
