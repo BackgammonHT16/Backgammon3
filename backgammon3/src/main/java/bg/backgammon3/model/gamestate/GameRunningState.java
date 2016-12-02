@@ -7,12 +7,16 @@ import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
 
 /**
- * 
+ * Der GameRunningState
  *
  */
 public class GameRunningState extends GameState {
 	
 
+	/** 
+	 * Der Konstruktor
+	 * @param game Das game
+	 */
 	public GameRunningState(Game game)
 	{
 		super(game);

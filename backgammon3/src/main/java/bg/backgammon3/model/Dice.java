@@ -8,7 +8,7 @@ import java.util.Random;
 import bg.backgammon3.config.Config;
 
 /**
- * 
+ * Modelliert den Würfel
  *
  */
 public class Dice {
@@ -16,11 +16,18 @@ public class Dice {
 	private Random r = new Random(1);
 	private static int simulationDiceNumber = 0;
 	
+	/**
+	 * Konstruktor
+	 */
 	public Dice() {
 		r = new Random();
 	}
 	
 	// zum Debuggen
+	/**
+	 * Konstruktor
+	 * @param seed Seed
+	 */
 	public Dice(int seed) {
 		if(Config.getInteger("useSeed") == 1) {
 			r = new Random(seed);
@@ -36,6 +43,10 @@ public class Dice {
 	// Würfel wurde noch nicht gewürfelt
 	private boolean active = false;
 	
+	/**
+	 * Würfel Rollen
+	 * @return wert der gerollt wurde
+	 */
 	public int role() {
 		if(Config.getInteger("simulateDice") == 0) {
 			value = r.nextInt(6) + 1;
@@ -50,24 +61,43 @@ public class Dice {
 		return value;
 	}
 	
+	/**
+	 * Würfel wird auf value gesetzt
+	 * @param value neuer Würfel Wert
+	 */
 	public void set(Integer value) {
 		used = false;
 		active = true;
 		this.value = value;
 	}
 	
+	/**
+	 * Würfel wurde benutzt
+	 */
 	public void setUsed() {
 		used = true;
 	}
 	
+	/**
+	 * Gibt an ob der Würfel aktiv ist
+	 * @return der Würfel ist aktiv
+	 */
 	public boolean getIsActive() {
 		return active;
 	}
 	
+	/**
+	 * Gibt an ob der Würfel benutzt wurde
+	 * @return Wahr wenn der würfel benutzt wurde
+	 */
 	public boolean getIsUsed() {
 		return used;
 	}
 	
+	/**
+	 * Gibt den Würfel wert an
+	 * @return Der wert des Würfels
+	 */
 	public int getValue() {
 		return value;
 	}

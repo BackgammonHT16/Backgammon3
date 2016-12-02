@@ -27,6 +27,9 @@ public class App extends Application
 		logger.info("Spiel gestartet");
 	}
 	
+	/**
+	 * Initialisiert die Game Stage
+	 */
 	private void initGameStage() {
 		// Konfigurationsdaten laden
 		Config.initConfig();

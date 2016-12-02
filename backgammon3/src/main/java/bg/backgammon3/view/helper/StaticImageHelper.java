@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * 
+ * Ladet Bilder
  *
  */
 public class StaticImageHelper {
@@ -22,6 +22,11 @@ public class StaticImageHelper {
 	private static LinkedHashMap<String, Image> images = new LinkedHashMap<String, Image>();
 	private static Logger logger = LogManager.getLogger(StaticImageHelper.class);
 
+
+	/**
+	 * Ladet Bild
+	 * @param filename Bild
+	 */
 	public static Image loadImage(String filename) {
 		logger.info("LoadImage mit filename: " + filename);
 		if(images.get(filename) == null) {
@@ -30,7 +35,12 @@ public class StaticImageHelper {
 		}
 		return images.get(filename);
 	}
-	
+
+	/**
+	 * Ladet Bild
+	 * @param filename Bild
+	 * @param image Die zu benutzende imageView
+	 */
 	public static void loadImageView(String filename, ImageView image)
 	{
 		image.setImage(loadImage(filename));
@@ -39,19 +49,37 @@ public class StaticImageHelper {
         image.setCache(true);
         image.setPickOnBounds(true);
 	}
-
+	/**
+	 * Ladet Bild
+	 * @param filename Bild
+	 * @param width breite
+	 * @param image Die zu benutzende imageView
+	 */
 	public static void loadImageView(String filename, int width, ImageView image)
 	{
 		loadImageView(filename, image);
 		image.setFitWidth(width);
 	}
-
+	/**
+	 * Ladet Bild
+	 * @param filename Bild
+	 * @param width breite
+	 * @param isClickable ist anclickbar
+	 * @param image Die zu benutzende imageView
+	 */
 	public static void loadImageView(String filename, int width, boolean isClickable, ImageView image)
 	{
 		loadImageView(filename, width, image);
 		image.setMouseTransparent(!isClickable);
 	}
 
+	/**
+	 * Ladet Bild
+	 * @param image Bild
+	 * @param width breite
+	 * @param isClickable ist anclickbar
+	 * @param imageView Die zu benutzende imageView
+	 */
 	public static void loadImageView(Image image, int width, boolean isClickable, ImageView imageView)
 	{
 		imageView.setImage(image);
@@ -61,7 +89,16 @@ public class StaticImageHelper {
 		imageView.setFitWidth(width);
 		imageView.setMouseTransparent(!isClickable);
 	}
-	
+
+	/**
+	 * Ladet Bild
+	 * @param filename Dateiname
+	 * @param width breite
+	 * @param isClickable ist anclickbar
+	 * @param x x Position
+	 * @param y y Position 
+	 * @param image Die zu benutzende imageView
+	 */
 	public static void loadImageView(
 			String filename, 
 			int width, 
@@ -75,6 +112,15 @@ public class StaticImageHelper {
 		image.setTranslateY(y);
 	}
 	
+	/**
+	 * Ladet Bild
+	 * @param filename Dateiname
+	 * @param width breite
+	 * @param isClickable ist anclickbar
+	 * @param x x Position
+	 * @param y y Position
+	 * @param image Die zu benutzende imageView
+	 */
 	public static void loadImageView(
 			String filename, 
 			int width, 

@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
- * 
+ * Menu ButtonView
  *
  */
 public class MenuButtonView extends ImageView implements GameObjectView {
@@ -25,6 +25,11 @@ public class MenuButtonView extends ImageView implements GameObjectView {
 	
 	private Image hoverImage;
 	
+	/**
+	 * Konstruktor
+	 * @param menuButton der MenuButton
+	 * @param root Das Root objekt
+	 */
 	public MenuButtonView(MenuButton menuButton,Pane root)
 	{
 		menu = new Text();

@@ -13,7 +13,10 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-
+/**
+ * Die DiceView
+ *
+ */
 public class DiceView extends Group implements GameObjectView {
 	private Image[] image;
 	private Image[] imageUsed;
@@ -21,6 +24,10 @@ public class DiceView extends Group implements GameObjectView {
 	//private Group box;
 	private Dices dices;
 	
+	/**
+	 * Konstruktor
+	 * @param dices die Dices
+	 */
 	public DiceView(Dices dices)
 	{
 		this.dices = dices;
@@ -51,6 +58,9 @@ public class DiceView extends Group implements GameObjectView {
 		setMouseTransparent(false);
 	}
 	
+	/**
+	 * Update der DiceView
+	 */
 	public void update() {
 		for(int i = 0; i < 4; i++) {
 			Dice dice = dices.getDice(i);
@@ -75,6 +85,10 @@ public class DiceView extends Group implements GameObjectView {
 		return dices;
 	}
 
+	/**
+	 * Einzelner würfel wurde gerollt
+	 * @return zeit
+	 */
 	public int singleDiceWasRolled() {
 		int time = Config.getInteger("diceRollTime");
 		Timeline timeline = new Timeline();
@@ -94,6 +108,10 @@ public class DiceView extends Group implements GameObjectView {
 		return time * 6;
 	}
 	
+	/**
+	 * Würfel wurde gerollt
+	 * @return zeit
+	 */
 	public int diceWasRolled() {
 		int time = Config.getInteger("diceRollTime");
 		Timeline timeline = new Timeline();
@@ -110,6 +128,9 @@ public class DiceView extends Group implements GameObjectView {
 		return time * 6;
 	}
 
+	/**
+	 * Die Würfel wurden benutzt
+	 */
 	public void diceWasUsed() {
 		update();
 	}

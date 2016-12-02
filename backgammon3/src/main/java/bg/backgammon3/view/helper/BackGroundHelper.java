@@ -7,7 +7,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.sun.xml.internal.ws.developer.MemberSubmissionEndpointReference.Elements;
 
 import bg.backgammon3.config.Config;
 import javafx.animation.*;
@@ -52,7 +51,15 @@ public class BackGroundHelper {
 	private static int sizeOverall = 0;
 	private static Text textOverall;
 
-	
+	/**
+	 * Zeigt den Hintergrund an
+	 * @param root Das Root element
+	 * @param bgv die Hintergrundgrafik
+	 * @param dir
+	 * @param y
+	 * @param v
+	 * @param s
+	 */
 	public static void showBackground(Pane root, ImageView bgv, int dir, double y, double v, double s) {
 		
 		tmpNode = 0;

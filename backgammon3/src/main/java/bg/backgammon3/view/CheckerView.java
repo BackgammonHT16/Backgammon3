@@ -19,7 +19,7 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 /**
- * 
+ * Die View eines Checkers
  *
  */
 public class CheckerView {
@@ -30,11 +30,18 @@ public class CheckerView {
 	// Wird nur für die Konsistenz Überprüfung in PlaceView benötigt
 	private Integer playerId;
 
+	/** 
+	 * Konstruktor
+	 * @param placeView Der Startplatz
+	 */
 	public CheckerView(PlaceView placeView) {
 		this.placeView = placeView;
 		initCheckerView();
 	}
 
+	/**
+	 * Initialisiert den Checker
+	 */
 	private void initCheckerView() {
 		Position position = placeView.getNewCheckerPosition();
 		playerId = placeView.getPlace().getPlayerId();
@@ -42,10 +49,19 @@ public class CheckerView {
 				Config.getInteger("checkerWidth"), false, position.x, position.y);
 	}
 
+	/**
+	 * Das Bild des checkers
+	 * @return
+	 */
 	public ImageView getImage() {
 		return image;
 	}
 
+	/**
+	 * Bewegt den Checker zur neuen Placeview
+	 * @param placeView die placeview
+	 * @return Die zeit
+	 */
 	public int moveTo(PlaceView placeView) {
 		MathVector p1 = new MathVector(image.translateXProperty().get(), image.translateYProperty().get());
 		Double a1 = this.placeView.rotateProperty().get();
@@ -71,6 +87,14 @@ public class CheckerView {
 		return startAnimationTo(p1, a1, p2, a2);
 	}
 
+	/**
+	 * Beginnt die Animation
+	 * @param p1 punkt 1
+	 * @param a1 richtung 1
+	 * @param p2 punkt 2
+	 * @param a2 richtung 2
+	 * @return
+	 */
 	private int startAnimationTo(MathVector p1, Double a1, MathVector p2, Double a2) {
 		// Code für gerade Linie
 
@@ -108,6 +132,10 @@ public class CheckerView {
 		return time;
 	}
 
+	/**
+	 * Gibt die Id des Spielers zurück
+	 * @return die Id des spielers
+	 */
 	public Integer getPlayerId() {
 		return playerId;
 	}

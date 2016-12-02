@@ -3,7 +3,6 @@
  */
 package bg.backgammon3.model;
 
-import bg.backgammon3.model.action.Action;
 
 /**
  * 
@@ -29,7 +28,7 @@ public abstract class GameStatus {
 	 * @param action
 	 *            Dieses Element wird am Anfang der Liste angefügt.
 	 */	
-	public abstract void addActionAtBeginn(Action action);
+//	public abstract void addActionAtBeginn(Action action);
 	
 	/**
 	 * Fügt das Element action an das Ende der Liste
@@ -37,7 +36,7 @@ public abstract class GameStatus {
 	 * @param action
 	 *            Dieses Element wird am Ende der Liste angefügt.
 	 */
-	public abstract void addActionAtEnd(Action action);
+//	public abstract void addActionAtEnd(Action action);
 	
 
 	/**

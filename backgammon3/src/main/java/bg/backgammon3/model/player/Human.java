@@ -10,12 +10,16 @@ import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 
 /**
- * 
+ * Der menschliche spieler
  *
  */
 public class Human extends Player implements ModelElement {
 	private Logger logger = LogManager.getLogger(Human.class);
 
+	/**
+	 * Der Konstruktor
+	 * @param id die id
+	 */
 	public Human(Integer id){
 		super(id);
 		logger.info("Human erstellt mit id " + id);

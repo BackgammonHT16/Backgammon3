@@ -11,9 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.model.Game;
 import bg.backgammon3.model.Menu;
-import bg.backgammon3.model.action.Action;
-import bg.backgammon3.model.action.AppStage;
-import bg.backgammon3.model.action.MenuElement;
 import bg.backgammon3.view.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -32,16 +29,17 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * 
+ * Die MenuStage
  *
  */
-public class MenuStage extends MenuElement {
+public class MenuStage  {
 	private Logger logger = LogManager.getLogger(MenuStage.class);
 
 	private ArrayList<Node> controls = new ArrayList<Node>();
 
 	// Speichert die appStage des Spiels ab solange das Menu angezeigt wird.
-	private AppStage appStage;
+	//private AppStage appStage;
+	private GameStage gameStage;
 
 	// Das Menu
 	private Stage stage;
@@ -56,10 +54,15 @@ public class MenuStage extends MenuElement {
 	// das Menu angezeigt wird.
 	private Button buttonContinue;
 
+	/**
+	 * Konstruktor
+	 * @param game das Game model
+	 */
 	public MenuStage(Game game) {
 		this.game = game;
 		menu = game.getMenu();
-		appStage = null;
+		//appStage = null;
+		gameStage = null;
 		initMenu();
 	}
 
@@ -73,14 +76,19 @@ public class MenuStage extends MenuElement {
 	 * @param appStage
 	 *            Handle zur GameStage
 	 */
-	public MenuStage(Game game, AppStage appStage) {
+	public MenuStage(Game game, GameStage appStage) {
 		this.game = game;
-		this.appStage = appStage;
+		//this.appStage = appStage;
+		this.gameStage = appStage;
 		initMenu();
 	}
 
-	public AppStage getGameStage() {
-		return appStage;
+	/**
+	 * Gibt die Gamestage zurück
+	 * @return
+	 */
+	public GameStage getGameStage() {
+		return gameStage;
 	}
 
 	/**
@@ -217,13 +225,20 @@ public class MenuStage extends MenuElement {
 
 	}
 
-	@Override
+	//@Override
+	/**
+	 * gibt die controls zurück
+	 * @return die Controls
+	 */
 	public ArrayList<Node> getControls() {
 		return controls;
 	}
 
 	
-	@Override
+	//@Override
+	/**
+	 * Deaktiviert den Continue Button
+	 */
 	public void disableContinueButton() {
 		if (buttonContinue != null) {
 			logger.info("Continue Button wird disabled.");
@@ -231,35 +246,37 @@ public class MenuStage extends MenuElement {
 		}
 	}
 
-	@Override
+	//@Override
+	/**
+	 * Schließt diese stage
+	 */
 	public void hide() {
 		if (stage != null) {
 			stage.hide();
 		}
 	}
 
-	@Override
+	//@Override
+	/**
+	 * gibt die Stage zurück
+	 * @return die stage
+	 */
 	public Stage getStage() {
 		return stage;
 	}
 
+	/**
+	 * gibt das Menuelement zurück
+	 * @return das Menuelement
+	 */
 	public Menu getMenu() {
 		return menu;
 	}
 
-	@Override
-	public int accept(Action action) {
-		return action.visit(this);
-	}
-
-	@Override
-	public int nextAccept(Action action) {
-		if(appStage != null) {
-			return appStage.accept(action);
-		}
-		return 0;
-	}
-	
+	/**
+	 * Aktualisiert diese Stage
+	 * @return false
+	 */
 	public boolean update() {
 		if(game.getMenuState().isActiv()){
 			stage.show();

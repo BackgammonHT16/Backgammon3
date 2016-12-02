@@ -6,20 +6,26 @@ package bg.backgammon3.model.boardstate;
 import bg.backgammon3.model.Board;
 import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
-import bg.backgammon3.model.action.CloseGame;
 
 /**
- * 
+ * Der GameOverstate
  *
  */
 public class GameOverState  extends BoardState implements ModelElement {
 
+	/**
+	 * Konstruktor
+	 * @param board das Board
+	 */
 	public GameOverState(Board board) {
 		super(board);
 	}
 
+	/**
+	 * Initialisiert den Zustand
+	 */
 	public void init() {
-		board.addActionAtEnd(new CloseGame());
+//		board.addActionAtEnd(new CloseGame());
 	}
 
 

@@ -3,16 +3,15 @@
  */
 package bg.backgammon3.model;
 
-import java.util.ArrayList;
+
 import java.util.LinkedHashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
-import bg.backgammon3.model.action.*;
 import bg.backgammon3.model.gamestate.*;
 import bg.backgammon3.model.player.AI2;
 import bg.backgammon3.model.player.AIHelper;
@@ -29,7 +28,7 @@ public class Game extends GameStatus implements ModelElement {
 	private Logger logger = LogManager.getLogger(Game.class);
 
 	// Liste der durch View durchzuführender Aktionen.
-	private List<Action> actions = new ArrayList<Action>();
+//	private List<Action> actions = new ArrayList<Action>();
 
 	// Spieler
 
@@ -79,10 +78,10 @@ public class Game extends GameStatus implements ModelElement {
 	 * @param action
 	 *            Dieses Element wird am Anfang der Liste angefügt.
 	 */
-	@Override
-	public void addActionAtBeginn(Action action) {
-		//actions.add(0, action);
-	}
+//	@Override
+//	public void addActionAtBeginn(Action action) {
+//		//actions.add(0, action);
+//	}
 
 	/**
 	 * Fügt das Element action an das Ende der Liste
@@ -90,20 +89,25 @@ public class Game extends GameStatus implements ModelElement {
 	 * @param action
 	 *            Dieses Element wird am Ende der Liste angefügt.
 	 */
-	@Override
-	public void addActionAtEnd(Action action) {
-		//actions.add(action);
-	}
+//	@Override
+//	public void addActionAtEnd(Action action) {
+//		//actions.add(action);
+//	}
 	
 	/**
 	 * Falls das Board von der AI eine Aktion erwartet weisen wir die AI hier an
 	 * diese Aktion auszuführen.
 	 * @param action Die zu überprüfende Aktion
 	 */
-	public void checkActionForAI(Action action) {
-		action.visit(this);
-	}
+//	public void checkActionForAI(Action action) {
+//		action.visit(this);
+//	}
 	
+	/**
+	 * Zug für die Ai prüfen
+	 * @param modelPlace Der GameState
+	 * @return der nächste gameState
+	 */
 	public int checkActionForAI(int modelPlace) {
 		// Die AI ist am Zug
 		if(modelPlace == 1) {
@@ -121,26 +125,26 @@ public class Game extends GameStatus implements ModelElement {
 	 * 
 	 * @return Nächste Aktion auf der actions liste.
 	 */
-	public Action getAction() {
-		if (actions.size() == 0) {
-			return null;
-		} else {
-			return actions.get(0);
-		}
-	}
+//	public Action getAction() {
+//		if (actions.size() == 0) {
+//			return null;
+//		} else {
+//			return actions.get(0);
+//		}
+//	}
 
 	/**
 	 * Gibt die nächste Aktion zurück und entfernt diese von der Liste
 	 * 
 	 * @return Nächste Aktion auf der actions liste.
 	 */
-	public Action popAction() {
-		if (actions.size() == 0) {
-			return null;
-		} else {
-			return actions.remove(0);
-		}
-	}
+//	public Action popAction() {
+//		if (actions.size() == 0) {
+//			return null;
+//		} else {
+//			return actions.remove(0);
+//		}
+//	}
 
 	/**
 	 * Hier wird der aktuelle Spieler durch das Board gesetzt.
@@ -161,14 +165,18 @@ public class Game extends GameStatus implements ModelElement {
 		currentState.gameIsFinished(playerId);
 	}
 	
+	/**
+	 * Das Spiel Beenden
+	 * @param playerId die Id des Spielers
+	 */
 	public void finishGame(Integer playerId) {
 		String playerColor = "Blue";
 		if(playerId == 1) {
 			playerColor = "Red";
 		}
-		addActionAtEnd(new DisplayMessage(playerColor + " player won.", Config.getInteger("displayMessageTime")));
+//		addActionAtEnd(new DisplayMessage(playerColor + " player won.", Config.getInteger("displayMessageTime")));
 		logger.info("[GAMEOVER] " + playerColor + " player won.");
-		addActionAtEnd(new CloseGame());
+//		addActionAtEnd(new CloseGame());
 	}
 
 	/**
@@ -182,19 +190,33 @@ public class Game extends GameStatus implements ModelElement {
 		return currentState.getGameCanContinue();
 	}
 
+	/**
+	 * Das Spiel Starten
+	 */
 	public void startGame() {
 		currentState.startGame();
 
 	}
 
+	/**
+	 * Das Spiel fortsetzen
+	 */
 	public void continueGame() {
 		currentState.continueGame();
 	}
 
+	
+	/**
+	 * Das Spiel beenden
+	 */
 	public void quitGame() {
 		currentState.quitThisGame();
 	}
 
+	/**
+	 * Den Spielzustand auf setState ändern
+	 * @param gameState
+	 */
 	public void setState(GameState gameState) {
 		this.currentState = gameState;
 	}
@@ -263,25 +285,34 @@ public class Game extends GameStatus implements ModelElement {
 		return board;
 	}
 
+	/** 
+	 * Das Menu
+	 * @return das Menu
+	 */
 	public Menu getMenu() {
 		return menu;
 	}
 
+	/**
+	 * Aktion wird durch spieler gehandelt
+	 * @param gameObject Das zu verabeitende objekt
+	 * @return Der GameState
+	 */
 	public int letPlayerHandle(ModelVisitor gameObject) {
 		return currentPlayer.accept(gameObject);
 		//currentPlayer.handle(gameObject);
 	}
 	
-	public String stackToString() {
-		String ret = "";
-		for(int i = 0; i < actions.size(); i++) {
-			ret += actions.get(i).toString() + "\n";
-		}
-		if(ret.length() > 1){
-			ret = ret.substring(0, ret.length() - 1);
-		}
-		return ret;
-	}
+//	public String stackToString() {
+//		String ret = "";
+//		for(int i = 0; i < actions.size(); i++) {
+//			ret += actions.get(i).toString() + "\n";
+//		}
+//		if(ret.length() > 1){
+//			ret = ret.substring(0, ret.length() - 1);
+//		}
+//		return ret;
+//	}
 
 	@Override
 	public boolean isHumanPlayer(Integer playerId) {
@@ -298,22 +329,39 @@ public class Game extends GameStatus implements ModelElement {
 		return currentState.accept(gameObject);
 	}
 
+	/**
+	 * Startplatz auswählen
+	 */
 	public void selectStartPlace() {
 		currentPlayer.selectStartPlace();
 	}
 	
+	/**
+	 * Den Endplatz auswählen
+	 */
 	public void selectEndPlace() {
 		currentPlayer.selectEndPlace();
 	}
 	
+	/**
+	 * Den Würfel rollen
+	 */
 	public void rollDice() {
 		currentPlayer.rollDice();
 	}
 	
+	/**
+	 * Der GameRunningState
+	 * @return Der GameRunningState
+	 */
 	public GameRunningState getGameRunningState() {
 		return gameRunningState;
 	}
 	
+	/**
+	 * Der MenuState
+	 * @return der MenuState
+	 */
 	public MenuState getMenuState() {
 		return menuState;
 	}

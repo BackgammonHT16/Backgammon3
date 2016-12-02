@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import bg.backgammon3.config.Config;
 
 /**
- * 
+ * Der AI Helper hilft bei der implementierung des such algorithmus
  *
  */
 public class AIHelper {
@@ -23,11 +23,19 @@ public class AIHelper {
 	private int numberOfSteps = 1;
 	private int precisionLevel = 0;
 	
+	/**
+	 * Der AI Helper
+	 */
 	public AIHelper() {
 		this.id = 0;
 		this.inGameId = 0;
 	}
 	
+	/**
+	 * Der AI Helper
+	 * @param id die id der ai
+	 * @param inGameId die in game id
+	 */
 	public AIHelper(int id, int inGameId) {
 		this.id = id;
 		this.inGameId = inGameId;
@@ -35,6 +43,9 @@ public class AIHelper {
 	}
 	
 		
+	/**
+	 * initialisierung
+	 */
 	public void init() {
 		if(Config.getInteger("ai" + id + "Optimize") == 0) {
 			optimize = false;
@@ -54,6 +65,11 @@ public class AIHelper {
 		precisionLevel = Config.getInteger("ai" + id + "CurrentPrecisionLevel");
 	}
 	
+	/**
+	 * Gibt regel wert zurück
+	 * @param i die id der regel
+	 * @return der wert der regel
+	 */
 	public int getRule(int i) {
 		if(optimize) {
 			return Config.getInteger("ai" + id + "CurrentRule" + i);
@@ -62,10 +78,18 @@ public class AIHelper {
 		}
 	}
 	
+	/** 
+	 * Optimierungsfunktion
+	 * @return Wahr wenn die optimierung beendet ist
+	 */
 	public boolean isOptimizationFinished() {
 		return precisionLevel >= Config.getInteger("ai" + id + "PrecisionLevel");
 	}
 	
+	/**
+	 * Das Spiel ist fertig
+	 * @param idWinner Die Id des Gewinners
+	 */
 	public void gameFinished(int idWinner) {
 		if(!optimize) {
 			return;
@@ -93,6 +117,9 @@ public class AIHelper {
 		}
 	}
 	
+	/**
+	 * Das ende einer serie
+	 */
 	private void logEndSeries() {
 		double ratio = ((double) currentNumberOfWins) / ((double) currentNumberOfGames) * 100;
 		String log = "[AIHELPER] Game Series Over. Precision Level: " + precisionLevel + ". "+ String.format("%5.1f", ratio) + "% gewonnen bei den Regeln ";
@@ -103,6 +130,9 @@ public class AIHelper {
 		logger.info(log);
 	}
 
+	/**
+	 * Der nächste parameterset
+	 */
 	private void setNextParameterSet() {
 		currentNumberOfGames = 0;
 		for(int i = 0; i < numberOfRules; i++) {
@@ -124,6 +154,9 @@ public class AIHelper {
 		loadNewCurrentBounds();
 	}
 	
+	/**
+	 * Die neuen randwerte
+	 */
 	private void loadNewCurrentBounds() {
 		// Alle optimierungsstufen Durchlaufen
 		if(precisionLevel >= Config.getInteger("ai" + id + "PrecisionLevel")) {
@@ -152,50 +185,95 @@ public class AIHelper {
 		resetLowerParameters(numberOfRules);
 	}
 	
+	/** 
+	 * Die Best regel
+	 * @param i id der regel
+	 * @return den Regel wert
+	 */
 	private int getBestRule(int i) {
 		return Config.getInteger("ai" + id + "BestRule" + i);
 	}
 	
 	
+	/**
+	 * Unterer Rand wert wird neugesetzt
+	 * @param rule Id der regel
+	 */
 	private void resetLowerParameters(int rule) {
 		for(int i = 0; i < rule; i++) {
 			setRule(i, getCurrentLowerBound(i));
 		}
 	}
 	
+	/**
+	 * Aktueller oberer rand
+	 * @param i id der regel
+	 * @return Der wert der Regel
+	 */
 	private int getCurrentUpperBound(int i) {
 		return Config.getInteger("ai" + id + "Rule" + i + "CurrentUpperBound");
 	}
-	
 
+	/**
+	 * Aktueller untere rand
+	 * @param i id der regel
+	 * @return Der wert der Regel
+	 */
 	private int getCurrentLowerBound(int i) {
 		return Config.getInteger("ai" + id + "Rule" + i + "CurrentLowerBound");
 	}
 	
 
+	/**
+	 * oberer rand
+	 * @param i id der regel
+	 * @return Der wert der Regel
+	 */
 	private int getUpperBound(int i) {
 		return Config.getInteger("ai" + id + "Rule" + i + "UpperBound");
 	}
 	
 
+	/**
+	 * unterer rand
+	 * @param i id der regel
+	 * @return Der wert der Regel
+	 */
 	private int getLowerBound(int i) {
 		return Config.getInteger("ai" + id + "Rule" + i + "LowerBound");
 	}
-	
+
+
+	/**
+	 * der bodenwert
+	 * @return der bodenwert
+	 */
 	public int getBottom() {
 		return Config.getInteger("ai" + id + "LowerBound");
 	}
 	
+	/**
+	 * die regel wird festgelegt
+	 * @param i id der regel
+	 * @param value wert der regel
+	 */
 	private void setRule(int i, int value) {
 		Config.forceSetInteger("ai" + id + "CurrentRule" + i, value);
 	}
 	
+	/**
+	 * Zählen der regeln
+	 * @return anzahl der regeln
+	 */
 	private int countRules() {
 		int i = 0;
 		while(Config.getInteger("ai" + id + "Rule" + i) != null) i++;
 		return i;
 	}
 	
+	/**
+	 * Setzt die neue beste regel
+	 */
 	private void resetBest() {
 		Config.forceSetInteger("ai" + id + "BestResult", 0);
 		for(int i = 0; i < numberOfRules; i++) {
@@ -203,6 +281,9 @@ public class AIHelper {
 		}
 	}
 	
+	/**
+	 * Setzt die aktuelle regel
+	 */
 	private void resetCurrent() {
 		for(int i = 0; i < numberOfRules; i++) {
 			Config.forceSetInteger("ai" + id + "Rule" + i + "CurrentLowerBound", getLowerBound(i));
@@ -212,10 +293,18 @@ public class AIHelper {
 		}
 	}
 
+	/**
+	 * setzt die id
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/** 
+	 * setzt die in game id
+	 * @param inGameId die in game id
+	 */
 	public void setInGameId(int inGameId) {
 		this.inGameId = inGameId;
 	}

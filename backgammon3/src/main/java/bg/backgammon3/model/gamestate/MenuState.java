@@ -8,22 +8,30 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
-import bg.backgammon3.model.action.*;
 
 /**
- * 
+ * Der MenuState
  *
  */
 public class MenuState extends GameState {
 	private Logger logger = LogManager.getLogger(MenuState.class);
 	private boolean gameCanContinue = false;
 
+	/**
+	 * Der Konstruktor
+	 * @param game das Spiel
+	 */
 	public MenuState(Game game)
 	{
 		super(game);
-		game.addActionAtBeginn(new ShowMenu());
+//		game.addActionAtBeginn(new ShowMenu());
 	}
 	
+	/**
+	 * Konstruktor
+	 * @param game das Spiel
+	 * @param gameCanContinue ob das Spiel fortgesetzt werden kann
+	 */
 	public MenuState(Game game, boolean gameCanContinue)
 	{
 		super(game);
@@ -33,27 +41,34 @@ public class MenuState extends GameState {
 			//game.addActionAtBeginn(new ShowMenu());
 			//game.addActionAtEnd(new StartGame());
 		} else {
-			game.addActionAtBeginn(new ShowMenu());
+//			game.addActionAtBeginn(new ShowMenu());
 		}
 	}
 	
 	
+	/**
+	 * Wahr fall das spiel fortgesetzt werden kann
+	 */
 	public boolean getGameCanContinue()
 	{
 		return gameCanContinue;
 	}
 
 
+	/**
+	 * Startet das Spiel
+	 * @param menu Das Menu Element
+	 */
 	public void startGame(Menu menu) {
 		// Timer deaktivieren
 		if(game.getBoard() != null) {
 			game.getBoard().getTimer().resetTimer();
 		}
 		// Stack Leeren
-		while(game.popAction() != null){}
+//		while(game.popAction() != null){}
 		
 		// Spielfeld anzeigen und Menu Verstecken
-		game.addActionAtBeginn(new StartGame());
+//		game.addActionAtBeginn(new StartGame());
 		
 		logger.info("MenuState: Spiel starten wurde gedrückt");
 		if(menu.getColor() == 0) {
@@ -79,7 +94,10 @@ public class MenuState extends GameState {
 		
 	}
 
-
+	/**
+	 * Setzt das Spiel fort
+	 * @param menu das MenuElement
+	 */
 	public void continueGame(Menu menu) {
 		Config.setInteger("playSound", menu.getSound()?1:0);
 
@@ -89,14 +107,17 @@ public class MenuState extends GameState {
 		game.getGameRunningState().activateState();
 		game.setState(game.getGameRunningState());
 
-		game.addActionAtBeginn(new UpdateSound());
-		game.addActionAtBeginn(new ContinueGame());
+//		game.addActionAtBeginn(new UpdateSound());
+//		game.addActionAtBeginn(new ContinueGame());
 		
 	}
 
 
+	/**
+	 * beendet das Spiel
+	 */
 	public void quitGame() {
-		game.addActionAtBeginn(new Quit());
+//		game.addActionAtBeginn(new Quit());
 
 		deactivateState();
 		game.getGameRunningState().deactivateState();
@@ -130,7 +151,7 @@ public class MenuState extends GameState {
 
 	@Override
 	public void gameIsFinished(Integer playerId) {
-		game.addActionAtBeginn(new DisableContinueButton());
+//		game.addActionAtBeginn(new DisableContinueButton());
 		gameCanContinue = false;
 		game.finishGame(playerId);
 	}

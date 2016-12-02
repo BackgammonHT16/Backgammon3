@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * 
+ * PlaceView
  *
  */
 public abstract class PlaceView extends ImageView implements GameObjectView {
@@ -36,12 +36,19 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 
 	ArrayList<CheckerView> checkers = new ArrayList<CheckerView>();
 
+	/**
+	 * Konstruktor
+	 * @param place der platz im Model
+ 	 */
 	public PlaceView(Place place) {
 		this.place = place;
 		tempPointState = place.getState();
 		tempPlayerId = place.getPlayerId();
 	}
 
+	/**
+	 * Initialisiert die placeView
+	 */
 	public void initPlaceView() {
 		for (int i = 0; i < place.getNumberOfCheckers(); i++) {
 			checkers.add(new CheckerView(this));
@@ -63,6 +70,9 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 		});
 	}
 
+	/**
+	 * Wird aufgerufen wenn die maus drübergeht
+	 */
 	protected void mouseEntered() {
 		if ((tempPlayerId == 0 && Config.getInteger("player0Type") == 1)
 				|| (tempPlayerId == 1 && Config.getInteger("player1Type") == 1) || tempPointState.getSelected()) {
@@ -81,10 +91,18 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 		return place;
 	}
 
+	/**
+	 * Gibt die checker zurück
+	 * @return die Checker
+	 */
 	public ArrayList<CheckerView> getCheckers() {
 		return checkers;
 	}
 
+	/** 
+	 * ermittelt die nächste checker position
+	 * @return die Position
+	 */
 	public Position getNewCheckerPosition() {
 
 		double x0 = 1.0 * Config.getInteger("checkerWidth") * (int) ((checkers.size() - 0) % 3 - 1);
@@ -101,6 +119,11 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 		return new Position(x, y, getRotate());
 	}
 
+	/**
+	 * Fügt checker hinzu
+	 * @param checker der Checker
+	 * @return die Position
+	 */
 	public Position addChecker(CheckerView checker) {
 		Position p = getNewCheckerPosition();
 		checkers.add(checker);
@@ -108,18 +131,35 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 		return p;
 	}
 
+	/**
+	 * entfernt angegebenen 
+	 * @param checker der Checker
+	 */
 	public void removeChecker(CheckerView checker) {
 		checkers.remove(checker);
 	}
 
+	/**
+	 * der Platz im model
+	 * @return der ModelPlatz
+	 */
 	public Place getPlace() {
 		return place;
 	}
 
+	/**
+	 * Bewegt den Checker
+	 * @param placeView die PlaceView des ziels
+	 * @return
+	 */
 	public int moveCheckerTo(PlaceView placeView) {
 		return checkers.get(checkers.size() - 1).moveTo(placeView);
 	}
 
+	/**
+	 * aktualisiert den place
+	 * @param showHighlights markiert ihn oder auch nicht
+	 */
 	public void update(boolean showHighlights) {
 		if (place.getState() instanceof StartPoint && showHighlights) {
 			if(place.getState().getSelected()) {
@@ -145,6 +185,9 @@ public abstract class PlaceView extends ImageView implements GameObjectView {
 	}
 
 
+	/**
+	 * Konsistenz prüfung
+	 */
 	public void consistencyCheck() {
 		if (checkers.size() != place.getNumberOfCheckers()) {
 			logger.error("[ROUTE] Checker zahl auf PlaceView " + place.getId() + " ist ungleich der auf Place ("

@@ -11,7 +11,7 @@ import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.pointstate.*;
 
 /**
- * 
+ * Ein Place
  *
  */
 public abstract class Place extends ModelVisitor {
@@ -20,13 +20,23 @@ public abstract class Place extends ModelVisitor {
 	protected Integer numberOfCheckers;
 	protected Integer id;
 	protected PointState pointState;
-	
+
+	/**
+	 * Konstruktor
+	 * @param numberOfCheckers Anzahl der Checker
+	 * @param playerId die PlayerId
+	 * @param id  Die Place id
+	 */
 	public Place(Integer id) {
 		this.id = id;
 		this.pointState = new NormalPoint();
 		this.numberOfCheckers = 0;
 	}
 	
+	/**
+	 * Legt den Pointstate fest
+	 * @param pointState der Pointstate
+	 */
 	public void setState(PointState pointState) {
 		this.pointState = pointState;
 	}
@@ -80,6 +90,9 @@ public abstract class Place extends ModelVisitor {
 		}
 	}
 	
+	/**
+	 * Entfernt einen Checker
+	 */
 	public void removeChecker() {
 		removeChecker(1);
 	}
@@ -108,6 +121,10 @@ public abstract class Place extends ModelVisitor {
 		return numberOfCheckers;
 	}
 
+	/**
+	 * Gibt den PointState zurück
+	 * @return der PointState
+	 */
 	public PointState getState() {
 		return pointState;
 	}

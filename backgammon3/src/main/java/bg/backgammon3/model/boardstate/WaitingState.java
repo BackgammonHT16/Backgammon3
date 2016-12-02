@@ -10,7 +10,6 @@ import bg.backgammon3.model.Board;
 import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
 import bg.backgammon3.model.UpdateAI;
-import bg.backgammon3.model.action.*;
 
 /**
  * 
@@ -19,12 +18,20 @@ import bg.backgammon3.model.action.*;
 public class WaitingState extends BoardState implements ModelElement {
 	private Logger logger = LogManager.getLogger(WaitingState.class);
 
+	/**
+	 * Konstruktor
+	 * @param board Das Board
+	 */
 	public WaitingState(Board board) {
 		super(board);
 	}
 
+	/**
+	 * Initialisiert den zustand
+	 * @return der Gamestate
+	 */
 	public int init() {
-		board.addActionAtEnd(new ShowPlacesWithoutMarks());
+//		board.addActionAtEnd(new ShowPlacesWithoutMarks());
 		
 		// Change
 		moveToNextState();
@@ -43,6 +50,9 @@ public class WaitingState extends BoardState implements ModelElement {
 		return 0;
 	}
 
+	/**
+	 * Geht über zum nächsten zustand
+	 */
 	public void moveToNextState() {
 		if(board.hasWon()) {
 			board.finishGame();

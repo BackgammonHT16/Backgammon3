@@ -11,17 +11,24 @@ import bg.backgammon3.view.helper.Position;
 import bg.backgammon3.view.helper.StaticImageHelper;
 
 /**
- * 
+ * GoalView
  *
  */
 public class GoalView extends PlaceView{
 
+	/**
+	 * Konstruktor
+	 * @param place der Platz
+	 */
 	public GoalView(Place place) {
 		super(place);
 		initGoalView();
 		initPlaceView();
 	}
-
+	
+	/**
+	 * Initialisiert die goalView
+	 */
 	private void initGoalView() {
 		StaticImageHelper.loadImageView(Config.getString("goal" + place.getPlayerId() + "Image"), Config.getInteger("goalWidth"), true,
 				Config.getInteger("place" + place.getId() + "PositionX"),

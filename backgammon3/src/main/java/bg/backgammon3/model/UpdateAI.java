@@ -7,7 +7,7 @@ import bg.backgammon3.model.boardstate.WaitingState;
 import bg.backgammon3.model.player.AI2;
 
 /**
- * 
+ * Aktualisiert die AI
  *
  */
 public class UpdateAI extends ModelVisitor {

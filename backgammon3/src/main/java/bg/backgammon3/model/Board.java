@@ -12,14 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
-import bg.backgammon3.model.action.Action;
-import bg.backgammon3.model.action.DiceWasRolled;
-import bg.backgammon3.model.action.DiceWasUsed;
-import bg.backgammon3.model.action.DisplayMessage;
-import bg.backgammon3.model.action.Move2Checkers;
-import bg.backgammon3.model.action.MoveChecker;
-import bg.backgammon3.model.action.ShowRoute;
-import bg.backgammon3.model.action.SingleDiceWasRolled;
 import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.place.*;
 import bg.backgammon3.model.pointstate.*;
@@ -59,6 +51,10 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 	
 	private static int gameNumber = 0;
 
+	/**
+	 * Konstruktor
+	 * @param gameStatus Enthält den GameStatus
+	 */
 	public Board(GameStatus gameStatus) {
 		this.gameStatus = gameStatus;
 		// initBoard();
@@ -88,10 +84,17 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		logger.info("[ROUTE][INFO] Spiel " + gameNumber++ + " mit Dice Seed  " + dices.getSeed());
 	}
 	
+	/**
+	 * Wählt den StartPlatz
+	 * @param place Der startplatz
+	 */
 	public void setStartPlace(Place place) {
 		startPlace = place; 
 	}
 	
+	/**
+	 * Setzt den StartPlatz zurück
+	 */
 	public void resetPointState() {
 		for(Map.Entry<Integer, Place> p : places.entrySet()) {
 			p.getValue().setState(new NormalPoint());
@@ -120,17 +123,25 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		return startPlaceExists;
 	}
 	
+	/**
+	 * Markiert die möglichen endplätze
+	 */
 	public void markEndPlaces() {
 		resetPointState();
 		startPlace.setState(new StartPoint(currentPlayer, new ArrayList<Place>(), true));
 		routes.get(currentPlayer).hasLegalEndPlace(startPlace, dices, true);
 	}
 	
-
+	/**
+	 * Legt den StartPlatz fest
+	 */
 	private void setStartState() {
 		currentState = new StartState(this);
 	}
 
+	/**
+	 * Lädt die würfel
+	 */
 	private void loadDices() {
 		dices = new Dices();
 	}
@@ -168,6 +179,10 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		}
 	}
 
+	
+	/**
+	 * Legt den ersten Spieler fest
+	 */
 	private void setFirstPlayer() {
 		if (Config.getInteger("firstPlayer") >= getNumberOfPlayers()) {
 			logger.warn("Id des ersten Spielers in der Konfigurationsdatei ist höher als die anzahl der Spieler.");
@@ -190,51 +205,86 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		return numberOfPlayers;
 	}
 
+	/**
+	 * Gibt die Plätze zurück
+	 * @return Die Plätze
+	 */
 	public LinkedHashMap<Integer, Place> getPlaces() {
 		return places;
 	}
 
+	/**
+	 * gibt die Würfel zurück
+	 * @return Die Würfel
+	 */
 	public Dices getDices() {
 		return dices;
 	}
 
+	/**
+	 * Rollt einen einzelnen Würfel
+	 * @return GameState
+	 */
 	public int rollSingleDice() {
 		dices.singleRole();
-		addActionAtEnd(new SingleDiceWasRolled());
+		//addActionAtEnd(new SingleDiceWasRolled());
 		return 3;
 	}
 	
+	/**
+	 * Rollt beide würfel
+	 * @return GameState
+	 */
 	public int rollDice() {
 		dices.roleDice();
-		addActionAtEnd(new DiceWasRolled());
+		//addActionAtEnd(new DiceWasRolled());
 		return 1;
 	}
 
+	/**
+	 * Legt den State fest
+	 * @param state Der neue State
+	 */
 	public void setState(BoardState state) {
 		currentState = state;
 	}
 
+	/**
+	 * Aktiviert den nächsten spieler
+	 */
 	public void nextPlayer() {
 		currentPlayer = getNextPlayer();
 		gameStatus.setPlayer(currentPlayer);
 	}
 
+	/**
+	 * Ermittelt den nächsten Spieler
+	 * @return der nächste Spieler
+	 */
 	public Integer getNextPlayer() {
 		return (currentPlayer + 1) % getNumberOfPlayers();
 	}
 	
-	public void addActionAtBeginn(Action action) {
-		gameStatus.addActionAtBeginn(action);
-	}
-
-	public void addActionAtEnd(Action action) {
-		gameStatus.addActionAtEnd(action);
-	}
+//	public void addActionAtBeginn(Action action) {
+//		gameStatus.addActionAtBeginn(action);
+//	}
+//
+//	public void addActionAtEnd(Action action) {
+//		gameStatus.addActionAtEnd(action);
+//	}
 	
+	/**
+	 * Prüft ob der Spieler KI ist oder nicht
+	 * @return Wahr wenn es sich nicht um die KI  handelt
+	 */
 	public boolean isHumanPlayer() {
 		return gameStatus.isHumanPlayer(currentPlayer);
 	}
 
+	/**
+	 * Bewegt einen Checker zum angegebenen Endplatz
+	 * @param endPlace Der Endplatz an den der Checker bewegt werden soll
+	 */
 	public void moveChecker(Place endPlace) {
 		PointState endPoint = endPlace.getState();
 		resetPointState();
@@ -243,7 +293,7 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 			((EndPoint) endPoint).setSelected(true);
 		}
 		endPlace.setState(endPoint);
-		addActionAtEnd(new ShowRoute());
+//		addActionAtEnd(new ShowRoute());
 		
 		// Checker am Start Entfernen
 		startPlace.removeChecker();
@@ -255,15 +305,15 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		if(ps.get(0).getPlayerId() != currentPlayer && ps.get(0).getNumberOfCheckers() > 0) {
 			// Feindlichen Checker auf Bar verschieben
 			routes.get(ps.get(0).getPlayerId()).getBar().addChecker(ps.get(0).getPlayerId());
-			addActionAtEnd(new Move2Checkers(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId(), startPlace.getId(), ps.get(0).getId()));
+//			addActionAtEnd(new Move2Checkers(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId(), startPlace.getId(), ps.get(0).getId()));
 			addMove(new Move(ps.get(0).getId(), routes.get(ps.get(0).getPlayerId()).getBarId()));
 			addMove(new Move(startPlace.getId(), ps.get(0).getId()));
 			((EndPoint) endPlace.getState()).dices.get(0).setUsed();
-			addActionAtEnd(new DiceWasUsed());
+//			addActionAtEnd(new DiceWasUsed());
 		} else {
 			((EndPoint) endPlace.getState()).dices.get(0).setUsed();
-			addActionAtEnd(new DiceWasUsed());
-			addActionAtEnd(new MoveChecker(startPlace.getId(), ps.get(0).getId()));
+//			addActionAtEnd(new DiceWasUsed());
+//			addActionAtEnd(new MoveChecker(startPlace.getId(), ps.get(0).getId()));
 			addMove(new Move(startPlace.getId(), ps.get(0).getId()));
 		}
 		
@@ -271,19 +321,19 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 			if(ps.get(i + 1).getPlayerId() != currentPlayer && ps.get(i + 1).getNumberOfCheckers() > 0) {
 				// Feindlichen Checker auf Bar verschieben
 				routes.get(ps.get(i + 1).getPlayerId()).getBar().addChecker(ps.get(i + 1).getPlayerId());
-				addActionAtEnd(new Move2Checkers(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId(), ps.get(i).getId(), ps.get(i + 1).getId()));
+//				addActionAtEnd(new Move2Checkers(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId(), ps.get(i).getId(), ps.get(i + 1).getId()));
 				addMove(new Move(ps.get(i + 1).getId(), routes.get(ps.get(i + 1).getPlayerId()).getBarId()));
 				addMove(new Move(ps.get(i).getId(), ps.get(i + 1).getId()));
 				ps.get(i).addChecker(currentPlayer);
 				ps.get(i).removeChecker();
 				((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
-				addActionAtEnd(new DiceWasUsed());
+//				addActionAtEnd(new DiceWasUsed());
 			} else {
 				ps.get(i).addChecker(currentPlayer);
 				ps.get(i).removeChecker();
 				((EndPoint) endPlace.getState()).dices.get(i + 1).setUsed();
-				addActionAtEnd(new DiceWasUsed());
-				addActionAtEnd(new MoveChecker(ps.get(i).getId(), ps.get(i + 1).getId()));
+//				addActionAtEnd(new DiceWasUsed());
+//				addActionAtEnd(new MoveChecker(ps.get(i).getId(), ps.get(i + 1).getId()));
 				addMove(new Move(ps.get(i).getId(), ps.get(i + 1).getId()));
 			}
 		}
@@ -301,6 +351,10 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		return routes.get(currentPlayer).hasWon();
 	}
 
+	/**
+	 * Beendet das Spiel
+	 * @param winnerId Die Id des gewinners
+	 */
 	public void finishGame(Integer winnerId) {
 		timer.killTimer();
 		if(atomicGameOver.compareAndSet(false, true)) {
@@ -309,49 +363,81 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 		}
 	}
 	
+	/**
+	 * Das Spiel soll beendet werden
+	 */
 	public void finishGame() {
 		finishGame(currentPlayer);
 	}
 	
+	/**
+	 * Der Timer ist beendet
+	 */
 	public void timeOver() {
 		if(!atomicGameOver.get()){
 			// Nachricht nur anzeigen wenn das Spiel Vorbei ist.
 
 			
-			addActionAtEnd(new DisplayMessage("Time Over!", Config.getInteger("displayMessageTime")));
+//			addActionAtEnd(new DisplayMessage("Time Over!", Config.getInteger("displayMessageTime")));
 				
 			finishGame(getNextPlayer());
 		}
 	}
 	
+	/**
+	 * Den Timer von diesem Board
+	 * @return der Timer
+	 */
 	public Timer getTimer() {
 		return timer;
 	}
 	
+	/** 
+	 * Die Route des Spielers
+	 * @param playerId Id des Spielers
+	 * @return Die Route des Spielers
+	 */
 	public Route getRoute(int playerId) {
 		return routes.get(playerId);
 	}
 
+	/**
+	 * Besuche das Board
+	 */
 	@Override
 	public int accept(ModelVisitor gameObject) {
 		return gameObject.visit(this);
 	}
 
+	/**
+	 * Besuche den BoardState
+	 */
 	@Override
 	public int nextAccept(ModelVisitor gameObject) {
 		return currentState.accept(gameObject);
 	}
 	
+	/** 
+	 * Besuche das übergeben Objekt
+	 */
 	@Override
 	public int visit(ChooseEndState g) {
 		g.deselectStartPlace();
 		return 0;
 	}
 	
+	/**
+	 * Füge move hinzu
+	 * @param move
+	 */
 	private void addMove(Move move) {
 		moves.add(move);
 	}
 	
+	/**
+	 * Entnehme Move
+	 * @return
+	 */
 	public Move popMove() {
 		if(moves.size() == 0) {
 			return null;

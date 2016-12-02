@@ -14,7 +14,7 @@ import bg.backgammon3.model.place.*;
 import bg.backgammon3.model.pointstate.EndPoint;
 
 /**
- * 
+ * Die Route
  *
  */
 public class Route {
@@ -23,6 +23,11 @@ public class Route {
 	private Integer playerId;
 	LinkedHashMap<Integer, Place> places = new LinkedHashMap<Integer, Place>();
 
+	/**
+	 * Konstruktor
+	 * @param playerId Id des Spielers
+	 * @param places die Plätze
+	 */
 	public Route(Integer playerId, LinkedHashMap<Integer, Place> places) {
 		this.playerId = playerId;
 		initRoute(places);
@@ -413,10 +418,18 @@ public class Route {
 		return isLegalEndPlace(p);
 	}
 
+	/**
+	 * Gibt die Bar zurück
+	 * @return die Bar
+	 */
 	public Place getBar() {
 		return places.get(0);
 	}
 
+	/**
+	 * Gibt die BarId zurück
+	 * @return die barId
+	 */
 	public Integer getBarId() {
 		return places.get(0).getId();
 	}

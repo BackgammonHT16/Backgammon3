@@ -14,7 +14,7 @@ import bg.backgammon3.model.boardstate.StartSecondDiceState;
 import bg.backgammon3.model.boardstate.StartState;
 
 /**
- * 
+ * Klasse die alle vier würfel enthält
  *
  */
 public class Dices extends ModelVisitor{
@@ -23,6 +23,9 @@ public class Dices extends ModelVisitor{
 	
 	private static int seed;
 	
+	/**
+	 * Konstruktor
+	 */
 	public Dices() {
 		if(seed == 0) {
 			seed = Config.getInteger("seed");
@@ -32,6 +35,10 @@ public class Dices extends ModelVisitor{
 		}
 	}
 	
+	/**
+	 * Würfel wird gerollt
+	 * @return Die würfel
+	 */
 	public ArrayList<Dice> roleDice(){
 		resetDice();
 		dices.get(0).role();
@@ -45,12 +52,19 @@ public class Dices extends ModelVisitor{
 		return dices;
 	}
 	
+	/**
+	 * Die würfel werden zurückgesetzt
+	 */
 	private void resetDice() {
 		for(int i = 0; i < 4; i++) {
 			dices.set(i, new Dice(i + seed++));
 		}
 	}
 	
+	/**
+	 * Ein würfel wird gerollt
+	 * @return
+	 */
 	public ArrayList<Dice> singleRole() {
 		if(dices.get(1).getIsActive()) {
 			resetDice();
@@ -71,6 +85,11 @@ public class Dices extends ModelVisitor{
 		return dices;
 	}
 	
+	/** 
+	 * Einen würfel ermitteln
+	 * @param i Die nummer des Würfels
+	 * @return Der Würfel
+	 */
 	public Dice getDice(int i) {
 		return dices.get(i);
 	}
@@ -116,10 +135,17 @@ public class Dices extends ModelVisitor{
 		return ret.substring(0, ret.length() - 2);
 	}
 	
+	/** 
+	 * Der Seed
+	 * @return Seed
+	 */
 	public int getSeed() {
 		return seed;
 	}
 
+	/** 
+	 * Alle würfel auf verbraucht setzen
+	 */
 	public void setAllUsed() {
 		for(Dice d : dices) {
 			d.setUsed();

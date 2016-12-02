@@ -7,7 +7,6 @@ import bg.backgammon3.model.Board;
 import bg.backgammon3.model.Dices;
 import bg.backgammon3.model.ModelVisitor;
 import bg.backgammon3.model.ModelElement;
-import bg.backgammon3.model.action.*;
 
 /**
  * 
@@ -15,20 +14,27 @@ import bg.backgammon3.model.action.*;
  */
 public class RollDiceState extends BoardState implements ModelElement {
 
+	/**
+	 * Der Konstruktor
+	 * @param board das Board
+	 */
 	public RollDiceState(Board board) {
 		super(board);
 	}
 
+	/**
+	 * Initialisiert den zustand
+	 */
 	public void init() {
-		board.addActionAtEnd(new RollDice());
+//		board.addActionAtEnd(new RollDice());
 
 		if(board.isHumanPlayer()) {
-			board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+//			board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
 		} else {
-			board.addActionAtEnd(new DisplayMessage("AI Turn"));
+//			board.addActionAtEnd(new DisplayMessage("AI Turn"));
 		}
 		board.getTimer().resetTimer();
-		board.addActionAtEnd(new StartTimer());
+//		board.addActionAtEnd(new StartTimer());
 		
 		board.getTimer().acitvateTimer();
 	}
@@ -44,6 +50,9 @@ public class RollDiceState extends BoardState implements ModelElement {
 		return 0;
 	}
 
+	/**
+	 * Rollt die Würfel
+	 */
 	public void rollDices() {
 		board.rollDice();
 		ChooseStartState c = new ChooseStartState(board);

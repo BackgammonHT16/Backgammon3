@@ -16,12 +16,19 @@ import bg.backgammon3.view.helper.StaticImageHelper;
  */
 public class BarView extends PlaceView {
 
+	/**
+	 * Konstruktor
+	 * @param place Der Platz
+	 */
 	public BarView(Place place) {
 		super(place);
 		initBarView();
 		initPlaceView();
 	}
 
+	/**
+	 * Initialisiert die barView
+	 */
 	private void initBarView() {
 		StaticImageHelper.loadImageView(Config.getString("bar" + place.getPlayerId() + "Image"), Config.getInteger("barWidth"), true,
 				Config.getInteger("place" + place.getId() + "PositionX"),

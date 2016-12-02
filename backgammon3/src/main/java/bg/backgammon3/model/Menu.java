@@ -19,6 +19,13 @@ public class Menu extends ModelVisitor {
 	private Boolean sound;
 	private Integer time;
 	
+	/**
+	 * Konstruktor
+	 * @param color Spieler Farbe
+	 * @param difficulty Spiel Schwierigkeit
+	 * @param sound Sound
+	 * @param time Zeit
+	 */
 	public Menu(Integer color, Integer difficulty, Boolean sound, Integer time) {
 		this.color = color;
 		this.difficulty = difficulty;
@@ -26,6 +33,9 @@ public class Menu extends ModelVisitor {
 		this.time = time;
 	}
 	
+	/**
+	 * Konstruktor
+	 */
 	public Menu() {
 		color = Config.getInteger("firstPlayer");
 		if(Config.getInteger("player0Type") != 0) {
@@ -38,6 +48,7 @@ public class Menu extends ModelVisitor {
 	}
 
 	/**
+	 * Die Farbe
 	 * @return the color
 	 */
 	public Integer getColor() {
@@ -45,14 +56,16 @@ public class Menu extends ModelVisitor {
 	}
 
 	/**
-	 * @param color the color to set
+	 * Die Farbe die zu setzen ist
+	 * @param color die neue Farbe
 	 */
 	public void setColor(Integer color) {
 		this.color = color;
 	}
 
 	/**
-	 * @return the difficulty
+	 * Der Schwierigkeitsgrad
+	 * @return Der Schwierigkeitsgrad
 	 */
 	public Integer getDifficulty() {
 		if(difficulty == 0) {
@@ -64,35 +77,40 @@ public class Menu extends ModelVisitor {
 	}
 
 	/**
-	 * @param difficulty the difficulty to set
+	 * Setzt den Schwierigkeitsgrad
+	 * @param Der neue Schwierigkeitsgrad
 	 */
 	public void setDifficulty(Integer difficulty) {
 		this.difficulty = difficulty;
 	}
 
 	/**
-	 * @return the sound
+	 * Der Sound
+	 * @return der sound
 	 */
 	public Boolean getSound() {
 		return sound;
 	}
 
 	/**
-	 * @param sound the sound to set
+	 * Der Sound
+	 * @param sound der neue Sound
 	 */
 	public void setSound(Boolean sound) {
 		this.sound = sound;
 	}
 
 	/**
-	 * @return the time
+	 * Die Zeit
+	 * @return die Zeit
 	 */
 	public Integer getTime() {
 		return time;
 	}
 
 	/**
-	 * @param time the time to set
+	 * Setzt die Zeit
+	 * @param time Die neue zeit
 	 */
 	public void setTime(Integer time) {
 		logger.info("Zeit wurde in Menu auf " + time + " gesetzt.");

@@ -162,6 +162,12 @@ public class Config {
 
 	}
 
+	/**
+	 * Schreibt in die Config datei
+	 * @param XMLFilename Datei name
+	 * @param property Schlüssel
+	 * @param value Wert
+	 */
 	public static void writeConfig(String XMLFilename, String property, String value) {
 		//logger.info("Filename: " + fileName + " Property: " + property + " Value: " + value);
 		boolean changed = false;

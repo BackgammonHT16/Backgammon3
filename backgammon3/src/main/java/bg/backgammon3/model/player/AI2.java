@@ -20,7 +20,7 @@ import bg.backgammon3.model.pointstate.EndPoint;
 import bg.backgammon3.model.pointstate.StartPoint;
 
 /**
- * 
+ * Die Ai
  *
  */
 public class AI2 extends Player implements ModelElement {
@@ -30,6 +30,11 @@ public class AI2 extends Player implements ModelElement {
 	
 	private AIHelper aiHelper;
 	
+	/**
+	 * Der Konstruktor
+	 * @param id die Id
+	 * @param aiHelper die Hilfsklasse
+	 */
 	public AI2(Integer id, AIHelper aiHelper){
 		super(id);
 		logger.info("AI Hard erstellt mit id " + id);

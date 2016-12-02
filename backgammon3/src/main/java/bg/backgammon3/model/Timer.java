@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
 
 /**
- * 
+ * Der Timer
  *
  */
 public class Timer extends ModelVisitor {
@@ -24,21 +24,34 @@ public class Timer extends ModelVisitor {
 	private Timeline timeline;
 	private TimerInterface actionInterface;
 	
-	
+	/**
+	 * Konstruktor
+	 * @param actionInterface zugang zum actioninterface
+	 */
 	public Timer(TimerInterface actionInterface) {
 		this.actionInterface = actionInterface;
 	}
 	
+	/**
+	 * Setzt das ActionInterface
+	 * @param actionInterface das neue ActionInterface
+	 */
 	public void setActionInterface(TimerInterface actionInterface) {
 		this.actionInterface = actionInterface;
 	}
 	
+	/**
+	 * Beendet den Timer
+	 */
 	public void killTimer() {
 		if(timeline != null) {
 			timeline.stop();
 		}
 	}
 	
+	/**
+	 * Setzt den Timer neu
+	 */
 	public void resetTimer() {
 		over = false;
 		if(timeline != null) {
@@ -52,6 +65,10 @@ public class Timer extends ModelVisitor {
 		}
 	}
 	
+	/** 
+	 * Aktiviert den Timer
+	 * @return Der zahlen wert des Timers
+	 */
 	public IntegerProperty acitvateTimer() {   
 		if(!active){
 			return new SimpleIntegerProperty(-1);
@@ -74,14 +91,26 @@ public class Timer extends ModelVisitor {
 	    return time;
 	}
 
+	/**
+	 * Gibt an ob der Timer vorbei ist
+	 * @return Wahr wenn der Timer vorbei ist
+	 */
 	public boolean isOver() {
 		return over;
 	}
 	
+	/**
+	 * Gibt an ob der Timer aktiv ist
+	 * @return Wahr wenn der Timer aktiv ist
+	 */
 	public boolean isActive() {
 		return active;
 	}
 
+	/**
+	 * Gibt den Aktuellen Timer wert zurück
+	 * @return Der TimerWert
+	 */
 	public IntegerProperty getTime() {
 		return time;
 	}

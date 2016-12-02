@@ -7,18 +7,30 @@ import bg.backgammon3.model.boardstate.*;
 import bg.backgammon3.model.place.*;
 
 /**
- * 
+ * PointState oberklasse
  *
  */
 public abstract class PointState {
 	public abstract boolean getSelected();
 	public abstract Integer getPlayerId();
 
+	/**
+	 * Besucht den übergebenen Place
+	 * @param g Der State
+	 * @param place der Place
+	 * @return 0
+	 */
 	public int visit(ChooseStartState g, Place place) {
 		g.nextAccept(place);
 		return 0;
 	}
 	
+	/**
+	 * Besucht den übergebenen Place
+	 * @param g Der State
+	 * @param place der Place
+	 * @return 0
+	 */
 	public int visit(ChooseEndState g, Place place) {
 		g.nextAccept(place);
 		return 0;

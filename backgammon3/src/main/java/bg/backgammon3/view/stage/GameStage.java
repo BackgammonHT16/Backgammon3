@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import bg.backgammon3.config.Config;
 import bg.backgammon3.model.*;
-import bg.backgammon3.model.action.*;
 import bg.backgammon3.view.*;
 import bg.backgammon3.view.javafxsvg.*;
 import javafx.scene.Node;
@@ -23,10 +22,10 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
 
 /**
- * 
+ * Die GameStage
  *
  */
-public class GameStage extends GameStageElement {
+public class GameStage {
 	private Logger logger = LogManager.getLogger(GameStage.class);
 	private BoardView boardView;
 	private MediaPlayer mediaPlayer;
@@ -35,6 +34,10 @@ public class GameStage extends GameStageElement {
 	private Board board;
 	private StackPane root;
 
+	/**
+	 * Konstruktor
+	 * @param game
+	 */
 	public GameStage(Game game) {
 		this.game = game;
 		initGameStage();
@@ -81,6 +84,11 @@ public class GameStage extends GameStageElement {
 		logger.info("Spiel wird angezeigt.");
 	}
 	
+	/**
+	 * Ändert die skalierung
+	 * @param scene die scene
+	 * @param root die root
+	 */
 	private void handleSizeChange(Scene scene, StackPane root) {
 		double zoomx = 1;
 		double zoomy = 1;
@@ -98,7 +106,11 @@ public class GameStage extends GameStageElement {
 		root.setScaleY(Math.min(zoomx, zoomy));
 	}
 
-	@Override
+
+	/**
+	 * gibt die controls zurück
+	 * @return die Controls
+	 */
 	public ArrayList<Node> getControls() {
 		if (boardView != null) {
 			return boardView.getControls();
@@ -115,7 +127,10 @@ public class GameStage extends GameStageElement {
 		return 0;
 	}
 */
-	@Override
+	//@Override
+	/**
+	 * schließt diese ansicht
+	 */
 	public void hide() {
 		if (boardView != null) {
 			boardView.hide();
@@ -124,15 +139,26 @@ public class GameStage extends GameStageElement {
 		}
 	}
 
-	@Override
+	//@Override
+	/**
+	 * Gibt die stage zurück
+	 * @return die Stage
+	 */
 	public Stage getStage() {
 		return stage;
 	}
 	
+	/**
+	 * toggelt den sound
+	 */
 	public void sound() {
 		sound(Config.getInteger("playSound") == 0 ? false : true);
 	}
 
+	/**
+	 * Schaltet den sound an oder aus
+	 * @param play sound spielt bei wahr
+	 */
 	private void sound(Boolean play) {
 		if (play) {
 			if(!mediaPlayer.getStatus().equals(Status.PLAYING)) {
@@ -143,23 +169,20 @@ public class GameStage extends GameStageElement {
 		}
 	}
 
+	/**
+	 * Initialisiert den den sound
+	 * @param musicFile der Soundfile
+	 */
 	private void initSound(String musicFile) {
 		Media media = new Media(new File(musicFile).toURI().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 	}
 
-
-	@Override
-	public int accept(Action action) {
-		return action.visit(this);
-	}
-	
-	@Override
-	public int nextAccept(Action action) {
-		return boardView.accept(action);
-	}
-	
+	/**
+	 * Aktualisiert diese Stage
+	 * @return Wahr wenn Boardview aktualisiert werden muss
+	 */
 	public boolean update() {
 		boolean updateControls = false;
 		if(game.getBoard() != board) {

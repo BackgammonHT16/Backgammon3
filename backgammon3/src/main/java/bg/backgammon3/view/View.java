@@ -3,15 +3,15 @@
  */
 package bg.backgammon3.view;
 
-import bg.backgammon3.model.action.Action;
+
 
 /**
- * 
+ * Die View
  *
  */
 public interface View {
-	
-	public int accept(Action action);
-	
-	public int nextAccept(Action action);
+//	
+//	public int accept(Action action);
+//	
+//	public int nextAccept(Action action);
 }
