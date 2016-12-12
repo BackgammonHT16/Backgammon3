@@ -17,7 +17,7 @@ import bg.backgammon3.model.place.*;
 import bg.backgammon3.model.pointstate.*;
 
 /**
- * 
+ * Model Klasse für dass Board
  *
  */
 public class Board extends ModelVisitor implements TimerInterface, ModelElement {
