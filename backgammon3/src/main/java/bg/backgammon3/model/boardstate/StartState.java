@@ -24,8 +24,10 @@ public class StartState extends BoardState implements ModelElement {
 		logger.info("StartState erstellt.");
 		if(board.isHumanPlayer()) {
 //			board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+			board.setMessage("Roll Dice!");
 		} else {
 //			board.addActionAtEnd(new DisplayMessage("AI Turn"));
+			board.setMessage("AI Turn");
 		}
 //		board.addActionAtEnd(new RollDice());
 	}

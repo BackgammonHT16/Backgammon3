@@ -33,6 +33,7 @@ public class ChooseEndState extends BoardState {
 		board.markEndPlaces();
 		if(board.isHumanPlayer()) {
 //			board.addActionAtEnd(new DisplayMessage("Choose Goal!"));
+			board.setMessage("Choose Goal!");
 		}
 //		board.addActionAtEnd(new SelectEndPlace());
 	}

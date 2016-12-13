@@ -175,6 +175,7 @@ public class Game extends GameStatus implements ModelElement {
 			playerColor = "Red";
 		}
 //		addActionAtEnd(new DisplayMessage(playerColor + " player won.", Config.getInteger("displayMessageTime")));
+		board.setMessage(playerColor + " player won.");
 		logger.info("[GAMEOVER] " + playerColor + " player won.");
 //		addActionAtEnd(new CloseGame());
 	}

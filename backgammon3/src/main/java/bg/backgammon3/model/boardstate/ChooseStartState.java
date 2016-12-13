@@ -37,6 +37,7 @@ public class ChooseStartState extends BoardState {
 			// if(board.isHumanPlayer()) {
 			if(!board.getDices().allDicesUsed()){
 //				board.addActionAtEnd(new DisplayMessage("No Possible Moves!", Config.getInteger("noPossibleMovesTime")));
+				board.setMessage("No Possible Moves!");
 				board.getDices().setAllUsed();
 //				board.addActionAtEnd(new DiceWasUsed());
 			}
@@ -50,6 +51,7 @@ public class ChooseStartState extends BoardState {
 
 		if(board.isHumanPlayer()) {
 //			board.addActionAtEnd(new DisplayMessage("Choose start!"));
+			board.setMessage("Choose start!");
 		}
 //		board.addActionAtEnd(new SelectStartPlace());
 		return 1;

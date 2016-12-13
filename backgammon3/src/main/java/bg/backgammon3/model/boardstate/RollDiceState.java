@@ -30,8 +30,10 @@ public class RollDiceState extends BoardState implements ModelElement {
 
 		if(board.isHumanPlayer()) {
 //			board.addActionAtEnd(new DisplayMessage("Roll Dice!"));
+			board.setMessage("Roll Dice!");
 		} else {
 //			board.addActionAtEnd(new DisplayMessage("AI Turn"));
+			board.setMessage("AI Turn");
 		}
 		board.getTimer().resetTimer();
 //		board.addActionAtEnd(new StartTimer());

@@ -50,6 +50,8 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 	GameStatus gameStatus;
 	
 	private static int gameNumber = 0;
+	
+	private String message;
 
 	/**
 	 * Konstruktor
@@ -379,6 +381,7 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 
 			
 //			addActionAtEnd(new DisplayMessage("Time Over!", Config.getInteger("displayMessageTime")));
+			this.setMessage("Time Over!");
 				
 			finishGame(getNextPlayer());
 		}
@@ -443,6 +446,22 @@ public class Board extends ModelVisitor implements TimerInterface, ModelElement 
 			return null;
 		}
 		return moves.remove(0);
+	}
+
+	/**
+	 * Gibt die Nachricht zurück
+	 * @return message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * Legt die Nachricht fest
+	 * @param message die neue Nachricht
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 }

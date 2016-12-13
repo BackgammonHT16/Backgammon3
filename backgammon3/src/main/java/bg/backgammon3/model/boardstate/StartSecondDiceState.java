@@ -55,6 +55,7 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 		
 		if(!board.isHumanPlayer()) {
 //			board.addActionAtEnd(new DisplayMessage("AI Turn"));
+			board.setMessage("AI Turn");
 		}
 	}
 

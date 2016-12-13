@@ -229,6 +229,8 @@ public class BoardView implements GameObjectView {
 		moveAll();
 		
 		diceView.update();
+		
+		text.setText(board.getMessage());
 	}
 	
 	/**
