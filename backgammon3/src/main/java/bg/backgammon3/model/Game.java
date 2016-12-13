@@ -66,7 +66,7 @@ public class Game extends GameStatus implements ModelElement {
 		gameRunningState = new GameRunningState(this);
 		gameRunningState.deactivateState();
 		initBoard();
-		GameState newState = new MenuState(this, false);
+		GameState newState = menuState;//new MenuState(this, false);
 		if(Config.getInteger("loopGame") == 0) {
 			currentState = newState;
 		}

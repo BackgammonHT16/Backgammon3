@@ -13,7 +13,7 @@
 	<doNotUpdate>0</doNotUpdate>
 	
 	<seed>1</seed>
-	<useSeed>1</useSeed>
+	<useSeed>0</useSeed>
 	
 	<loopGame>0</loopGame>
 	
@@ -51,7 +51,7 @@
 	<timerY>65</timerY>
 	<timerSize>20</timerSize>
 	<!-- Maximale Zugzeit -->
-	<maximumTime>-1</maximumTime>
+	<maximumTime>30</maximumTime>
 
 	// Innere Fenster Größe
 	<width>1000</width>
@@ -259,7 +259,7 @@
 	<place24PositionX>200</place24PositionX>
 	<place24PositionY>10</place24PositionY>
 	<place24CheckersPlayer>0</place24CheckersPlayer>
-	<place24CheckersNumber>2</place24CheckersNumber>
+	<place24CheckersNumber>0</place24CheckersNumber>
 	<place24Rotation>0</place24Rotation>
 	<place24Type>1</place24Type>
 	// Bar 2 Position
@@ -287,23 +287,23 @@
 
 	<!-- Für jeden Point muss ein Feld erstellt werden -->
 	<place0CheckersNumber>2</place0CheckersNumber>
-	<place0CheckersPlayer>1</place0CheckersPlayer>
+	<place0CheckersPlayer>0</place0CheckersPlayer>
 	<place0Type>0</place0Type>
 
-	<place1CheckersNumber>2</place1CheckersNumber>
-	<place1CheckersPlayer>1</place1CheckersPlayer>
+	<place1CheckersNumber>0</place1CheckersNumber>
+	<place1CheckersPlayer>-1</place1CheckersPlayer>
 	<place1Type>0</place1Type>
 
-	<place2CheckersNumber>3</place2CheckersNumber>
-	<place2CheckersPlayer>1</place2CheckersPlayer>
+	<place2CheckersNumber>0</place2CheckersNumber>
+	<place2CheckersPlayer>-1</place2CheckersPlayer>
 	<place2Type>0</place2Type>
 
-	<place3CheckersNumber>3</place3CheckersNumber>
-	<place3CheckersPlayer>1</place3CheckersPlayer>
+	<place3CheckersNumber>0</place3CheckersNumber>
+	<place3CheckersPlayer>-1</place3CheckersPlayer>
 	<place3Type>0</place3Type>
 
-	<place4CheckersNumber>3</place4CheckersNumber>
-	<place4CheckersPlayer>1</place4CheckersPlayer>
+	<place4CheckersNumber>0</place4CheckersNumber>
+	<place4CheckersPlayer>-1</place4CheckersPlayer>
 	<place4Type>0</place4Type>
 
 	<place5CheckersNumber>5</place5CheckersNumber>
@@ -362,24 +362,24 @@
 	<place18CheckersPlayer>0</place18CheckersPlayer>
 	<place18Type>0</place18Type>
 
-	<place19CheckersNumber>2</place19CheckersNumber>
-	<place19CheckersPlayer>0</place19CheckersPlayer>
+	<place19CheckersNumber>0</place19CheckersNumber>
+	<place19CheckersPlayer>-1</place19CheckersPlayer>
 	<place19Type>0</place19Type>
 
-	<place20CheckersNumber>2</place20CheckersNumber>
-	<place20CheckersPlayer>0</place20CheckersPlayer>
+	<place20CheckersNumber>0</place20CheckersNumber>
+	<place20CheckersPlayer>-1</place20CheckersPlayer>
 	<place20Type>0</place20Type>
 
-	<place21CheckersNumber>2</place21CheckersNumber>
-	<place21CheckersPlayer>0</place21CheckersPlayer>
+	<place21CheckersNumber>0</place21CheckersNumber>
+	<place21CheckersPlayer>-1</place21CheckersPlayer>
 	<place21Type>0</place21Type>
 
-	<place22CheckersNumber>2</place22CheckersNumber>
-	<place22CheckersPlayer>0</place22CheckersPlayer>
+	<place22CheckersNumber>0</place22CheckersNumber>
+	<place22CheckersPlayer>-1</place22CheckersPlayer>
 	<place22Type>0</place22Type>
 
 	<place23CheckersNumber>2</place23CheckersNumber>
-	<place23CheckersPlayer>0</place23CheckersPlayer>
+	<place23CheckersPlayer>1</place23CheckersPlayer>
 	<place23Type>0</place23Type>
 	
 	<!-- Route Player 0 -->

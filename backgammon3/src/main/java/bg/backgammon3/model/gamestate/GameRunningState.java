@@ -71,6 +71,7 @@ public class GameRunningState extends GameState {
 		//GameState newState = new MenuState(game, false);
 		if(Config.getInteger("loopGame") == 0) {
 			game.getMenuState().activateState();
+			deactivateState();
 			game.setState(game.getMenuState());
 		}
 	}

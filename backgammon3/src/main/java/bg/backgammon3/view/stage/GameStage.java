@@ -194,6 +194,7 @@ public class GameStage {
 		if(game.getGameRunningState().isActiv()){
 			stage.show();
 			boardView.update();
+			sound();
 		} else {
 			hide();
 		}
