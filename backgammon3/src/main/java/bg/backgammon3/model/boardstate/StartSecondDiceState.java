@@ -40,14 +40,14 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 	/**
 	 * Rolle einen einzelnen Würfel
 	 */
-	public void rollSingleDice() {
+	public int rollSingleDice() {
 		board.rollSingleDice();
 		if(board.getDices().getDice(0).getValue() > board.getDices().getDice(1).getValue()) {
 			board.nextPlayer();
 		}
 		ChooseStartState c = new ChooseStartState(board);
 		board.setState(c);
-		c.init();
+		int modelPlace = c.init();
 		board.getTimer().resetTimer();
 //		board.addActionAtEnd(new StartTimer());
 		
@@ -57,6 +57,7 @@ public class StartSecondDiceState extends BoardState implements ModelElement {
 //			board.addActionAtEnd(new DisplayMessage("AI Turn"));
 			board.setMessage("AI Turn");
 		}
+		return modelPlace;
 	}
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><root>   
-	<!-- Version 1.2 -->
+	<!-- Version 1.7 -->
 	
 	<!-- Spielertyp: 0 = Mensch, 1 = AI einfach, 2 = AI Schwierig -->
 	<player0Type>0</player0Type>
@@ -8,16 +8,41 @@
 	<!-- ID des Spielers der das Spiel beginnt -->
 	<firstPlayer>0</firstPlayer>
 	
-	
+	<!-- Spiel nicht aus dem Menu Updaten. Dies erlaubt es das Menu bei 
+		 ungewöhnlichen Einstellungen zu ignorieren -->
 	<doNotUpdate>0</doNotUpdate>
 	
-
+	<seed>1</seed>
+	<useSeed>0</useSeed>
+	
+	<loopGame>0</loopGame>
+	
+	<!-- 1: GUI anzeigen, 0: Nur log Ausgabe. 
+		 Diese Einstellung wird für AI Optimierung benutzt. 
+		 doNotUpdate muss auf 1 gesetzt werden. 
+		 loopGame sollte auf 1 gesetzt werden.
+		 playerIType müssen beide auf 1 oder 2 gesetzt werden -->
+	<graphics>1</graphics>
+	
+	<checkerMoveSpeed>300</checkerMoveSpeed>
+	
+	<diceRollTime>150</diceRollTime>
+	
+	<animationTime>800</animationTime>
+	
+	<noPossibleMovesTime>2000</noPossibleMovesTime>
+	<displayMessageTime>2000</displayMessageTime>
+	
+	<!-- Würfel wird simuliert bei 1. Vorgabe der Würfel mit <d0>Zahl</d0>-->
+	<simulateDice>0</simulateDice>
+	
+	
 	<!-- Hintergrund Sound -->
 	<soundFile>res/sound_long.wav</soundFile>
 	<playSound>0</playSound>
 	
 	<!-- Text anzeige -->
-	<textX>405</textX>
+	<textX>390</textX>
 	<textY>100</textY>
 	<textSize>20</textSize>
 	
@@ -30,10 +55,10 @@
 
 	// Innere Fenster Größe
 	<width>1000</width>
-	<height>600</height>
+	<height>620</height>
 	// Mindestgröße des Fensters
 	<minWidth>500</minWidth>
-	<minHeight>300</minHeight>
+	<minHeight>310</minHeight>
 
 	// Place Größe
 	<pointWidth>70</pointWidth>
@@ -99,23 +124,17 @@
 	// Checker
 	<checker0Image>res/leo.svg</checker0Image>
 	<checker1Image>res/t80.svg</checker1Image>
-	<checkerMoveSpeed>150</checkerMoveSpeed>
 	
-	<diceRollTime>150</diceRollTime>
-	
-	<animationTime>800</animationTime>
-	
-	<noPossibleMovesTime>2000</noPossibleMovesTime>
-	<displayMessageTime>2000</displayMessageTime>
 	
 	//Font
 	<Font>Courier New</Font>
 	// Menu
 	<menuButtonImage>res/menu.png</menuButtonImage>
-	<menuButtonWidth>250</menuButtonWidth>
-	<menuButtonPositionX>405</menuButtonPositionX>
+	<menuButtonWidth>72</menuButtonWidth>
+	<menuButtonPositionX>390</menuButtonPositionX>
 	<menuButtonPositionY>50</menuButtonPositionY>
 	<menuText>Menu</menuText>
+	<menuButtonImageHover>res/menuhover.png</menuButtonImageHover>
 	// Timer
 	<timerImage>res/timerImage.png</timerImage>
 	<timerWidth>250</timerWidth>
@@ -125,17 +144,17 @@
 	<messageImage>res/messageImage.png</messageImage>
 	<messageWidth>250</messageWidth>
 	
+	<happyPatch>res/happyPatch.png</happyPatch>
+	<happySound>res/happySound.wav</happySound>
+	<happyVision>res/happyVision.png</happyVision>
+	
 	// Dice
 	<dicePositionX>-20</dicePositionX>
 	<dicePositionY>65</dicePositionY>
 	<diceWidth>35</diceWidth>
 	<diceImage>res/dice</diceImage>
 	<diceImageUsed>res/diceUsed</diceImageUsed>
-	
-	<seed>1</seed>
-	<useSeed>0</useSeed>
-	
-	<loopGame>0</loopGame>
+
 	
 	
 	// Point Position
@@ -424,6 +443,155 @@
 	<player0HomeFieldStartsAt>19</player0HomeFieldStartsAt>
 	<player1HomeFieldStartsAt>19</player1HomeFieldStartsAt>
 
-	<!-- Würfel wird simuliert bei 1 -->
-	<simulateDice>0</simulateDice>
+		<!-- AI 1 Werte -->
+	<ai1LowerBound>-1000000</ai1LowerBound>
+	<ai1Rule0>0</ai1Rule0>
+	<ai1Rule1>0</ai1Rule1>
+	<ai1Rule2>0</ai1Rule2>
+	<ai1Rule3>0</ai1Rule3>
+	<ai1Rule4>0</ai1Rule4>
+	<ai1Rule5>0</ai1Rule5>
+	<ai1Rule6>0</ai1Rule6>
+	<ai1Rule7>0</ai1Rule7>
+	<ai1Rule8>0</ai1Rule8>
+	
+	<!-- AI 2 Werte -->
+	<ai2LowerBound>-1000000</ai2LowerBound>
+	<ai2Rule0>50</ai2Rule0>
+	<ai2Rule1>-100</ai2Rule1>
+	<ai2Rule2>80</ai2Rule2>
+	<ai2Rule3>-100</ai2Rule3>
+	<ai2Rule4>90</ai2Rule4>
+	<ai2Rule5>75</ai2Rule5>
+	<ai2Rule6>300</ai2Rule6>
+	<ai2Rule7>-20</ai2Rule7>
+	<ai2Rule8>90</ai2Rule8>
+	
+	<!-- AI Werte -->
+	<ai2LowerBound>-1000000</ai2LowerBound>
+	<ai2Rule0>50</ai2Rule0>
+	<ai2Rule1>-100</ai2Rule1>
+	<ai2Rule2>80</ai2Rule2>
+	<ai2Rule3>-100</ai2Rule3>
+	<ai2Rule4>90</ai2Rule4>
+	<ai2Rule5>75</ai2Rule5>
+	<ai2Rule6>300</ai2Rule6>
+	<ai2Rule7>-20</ai2Rule7>
+	<ai2Rule8>90</ai2Rule8>
+	
+	<!-- AI Optimierung -->
+	
+	<aiOptimizationFinished>0</aiOptimizationFinished>
+	
+	<!-- AI Optimieren. 1: Ja, 0: Nein -->
+	<ai2Optimize>0</ai2Optimize>
+	<!-- Anzahl der Abstufungen von Lower zu Upper Bound -->
+	<ai2Step>2</ai2Step>
+	<!-- Anzahl der Verfeinerungen -->
+	<ai2PrecisionLevel>4</ai2PrecisionLevel>
+	<!-- Anzahl der Spiele Pro Einstellung -->
+	<ai2NumberOfGames>1000</ai2NumberOfGames>
+	
+	<ai2ResetBest>0</ai2ResetBest>
+	<ai2ResetCurrent>0</ai2ResetCurrent>
+	
+	<!-- Bisher bestes Ergebnis -->
+	<ai2BestResult>822</ai2BestResult>
+	<ai2BestRule0>350</ai2BestRule0>
+	<ai2BestRule1>0</ai2BestRule1>
+	<ai2BestRule2>50</ai2BestRule2>
+	<ai2BestRule3>-150</ai2BestRule3>
+	<ai2BestRule4>0</ai2BestRule4>
+	<ai2BestRule5>350</ai2BestRule5>
+	<ai2BestRule6>400</ai2BestRule6>
+	<ai2BestRule7>0</ai2BestRule7>
+	<ai2BestRule8>0</ai2BestRule8>
+	
+	<!-- Aktueller Stand -->
+	<ai2CurrentPrecisionLevel>3</ai2CurrentPrecisionLevel>
+	
+	<ai2CurrentRule0>350</ai2CurrentRule0>
+	<ai2CurrentRule1>-25</ai2CurrentRule1>
+	<ai2CurrentRule2>25</ai2CurrentRule2>
+	<ai2CurrentRule3>-125</ai2CurrentRule3>
+	<ai2CurrentRule4>12</ai2CurrentRule4>
+	<ai2CurrentRule5>350</ai2CurrentRule5>
+	<ai2CurrentRule6>399</ai2CurrentRule6>
+	<ai2CurrentRule7>0</ai2CurrentRule7>
+	<ai2CurrentRule8>18</ai2CurrentRule8>
+	
+	
+	<ai2Rule0CurrentLowerBound>325</ai2Rule0CurrentLowerBound>
+	<ai2Rule0CurrentUpperBound>350</ai2Rule0CurrentUpperBound>
+	
+	<ai2Rule1CurrentLowerBound>-25</ai2Rule1CurrentLowerBound>
+	<ai2Rule1CurrentUpperBound>0</ai2Rule1CurrentUpperBound>
+	
+	<ai2Rule2CurrentLowerBound>25</ai2Rule2CurrentLowerBound>
+	<ai2Rule2CurrentUpperBound>50</ai2Rule2CurrentUpperBound>
+	
+	<ai2Rule3CurrentLowerBound>-150</ai2Rule3CurrentLowerBound>
+	<ai2Rule3CurrentUpperBound>-125</ai2Rule3CurrentUpperBound>
+	
+	<ai2Rule4CurrentLowerBound>0</ai2Rule4CurrentLowerBound>
+	<ai2Rule4CurrentUpperBound>12</ai2Rule4CurrentUpperBound>
+	
+	<ai2Rule5CurrentLowerBound>325</ai2Rule5CurrentLowerBound>
+	<ai2Rule5CurrentUpperBound>350</ai2Rule5CurrentUpperBound>
+	
+	<ai2Rule6CurrentLowerBound>399</ai2Rule6CurrentLowerBound>
+	<ai2Rule6CurrentUpperBound>400</ai2Rule6CurrentUpperBound>
+	
+	<ai2Rule7CurrentLowerBound>-25</ai2Rule7CurrentLowerBound>
+	<ai2Rule7CurrentUpperBound>0</ai2Rule7CurrentUpperBound>
+	
+	<ai2Rule8CurrentLowerBound>0</ai2Rule8CurrentLowerBound>
+	<ai2Rule8CurrentUpperBound>18</ai2Rule8CurrentUpperBound>
+	
+	
+	
+	<ai2Rule0LowerBound>200</ai2Rule0LowerBound>
+	<ai2Rule0UpperBound>400</ai2Rule0UpperBound>
+	
+	<ai2Rule1LowerBound>-200</ai2Rule1LowerBound>
+	<ai2Rule1UpperBound>0</ai2Rule1UpperBound>
+	
+	<ai2Rule2LowerBound>0</ai2Rule2LowerBound>
+	<ai2Rule2UpperBound>200</ai2Rule2UpperBound>
+	
+	<ai2Rule3LowerBound>-200</ai2Rule3LowerBound>
+	<ai2Rule3UpperBound>0</ai2Rule3UpperBound>
+	
+	<ai2Rule4LowerBound>0</ai2Rule4LowerBound>
+	<ai2Rule4UpperBound>100</ai2Rule4UpperBound>
+	
+	<ai2Rule5LowerBound>200</ai2Rule5LowerBound>
+	<ai2Rule5UpperBound>400</ai2Rule5UpperBound>
+	
+	<ai2Rule6LowerBound>100</ai2Rule6LowerBound>
+	<ai2Rule6UpperBound>400</ai2Rule6UpperBound>
+	
+	<ai2Rule7LowerBound>-200</ai2Rule7LowerBound>
+	<ai2Rule7UpperBound>0</ai2Rule7UpperBound>
+	
+	<ai2Rule8LowerBound>0</ai2Rule8LowerBound>
+	<ai2Rule8UpperBound>150</ai2Rule8UpperBound>
+	
+	
+	
+	
+	
+	<highScore0>2040</highScore0>
+	<highScore0Name>Test</highScore0Name>
+	<highScore1>1700</highScore1>
+	<highScore1Name>Blub</highScore1Name>
+	<highScore2>1140</highScore2>
+	<highScore2Name>der boss</highScore2Name>
+	<highScore3>860</highScore3>
+	<highScore3Name>Philipp</highScore3Name>
+	<highScore4>580</highScore4>
+	<highScore4Name>Anfang</highScore4Name>
+	<highScore5>480</highScore5>
+	<highScore5Name>test</highScore5Name>
+	
 </root>

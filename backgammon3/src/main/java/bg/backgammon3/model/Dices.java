@@ -154,14 +154,14 @@ public class Dices extends ModelVisitor{
 	
 	@Override
 	public int visit(RollDiceState s) {
-		s.rollDices();
-		return 1;
+		return s.rollDices();
+		//return 1;
 	}	
 	
 	@Override
 	public int visit(StartSecondDiceState s) {
-		s.rollSingleDice();
-		return 1;
+		return s.rollSingleDice();
+		//return 1;
 	}
 	
 	@Override

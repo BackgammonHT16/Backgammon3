@@ -43,8 +43,8 @@ public class RollDiceState extends BoardState implements ModelElement {
 
 	@Override
 	public int accept(ModelVisitor gameObject) {
-		gameObject.visit(this);
-		return 1;
+		return gameObject.visit(this);
+		//return 1;
 	}
 
 	@Override
@@ -55,11 +55,11 @@ public class RollDiceState extends BoardState implements ModelElement {
 	/**
 	 * Rollt die Würfel
 	 */
-	public void rollDices() {
+	public int rollDices() {
 		board.rollDice();
 		ChooseStartState c = new ChooseStartState(board);
 		board.setState(c);
-		c.init();
+		return c.init();
 	}
 
 

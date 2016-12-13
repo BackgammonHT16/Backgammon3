@@ -169,8 +169,8 @@ public class AI2 extends Player implements ModelElement {
 	@Override
 	public int rollDice() {
 		logger.info("AI Hard würfelt.");
-		board.accept(board.getDices());
-		return 1;
+		return board.accept(board.getDices());
+		//return 1;
 	}
 
 	@Override
